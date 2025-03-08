@@ -1,0 +1,1707 @@
+{
+  "abstract": [
+    {
+      "text": "An object that reads sample references from an asset track.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avfoundation/documentation/AVFoundation"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderSampleReferenceOutput"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)AVAssetReaderSampleReferenceOutput",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "AVAssetReaderSampleReferenceOutput"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AVFoundation"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "AVAssetReaderSampleReferenceOutput"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.10",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "AVAssetReaderSampleReferenceOutput"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVAssetReaderSampleReferenceOutput"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apps can extract information about the location of samples in a track — the file URL and offset — by adding an instance of this class to an asset reader. Read the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreMedia/kCMSampleBufferAttachmentKey_SampleReferenceURL",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreMedia/kCMSampleBufferAttachmentKey_SampleReferenceByteOffset",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " attachments on the extracted sample buffers to get the location of the sample data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also append sample buffers that you extract using this class to an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInput",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance to create movie tracks that aren’t self-contained and reference data in the original file instead. To write tracks that aren’t self-contained, use instances of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that you configure to write files of type ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVFileType/mov",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because this output doesn’t return sample data, it ignores the value of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderOutput/alwaysCopiesSampleData",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.avfoundation/documentation/AVFoundation": {
+      "abstract": [
+        {
+          "text": "Work with audiovisual assets, control device cameras, process audio, and configure system audio interactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFoundation",
+      "type": "topic",
+      "url": "/documentation/avfoundation"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReader": {
+      "abstract": [
+        {
+          "text": "An object that reads media data from an asset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAssetReader"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReader",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAssetReader"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAssetReader",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetreader"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderAudioMixOutput": {
+      "abstract": [
+        {
+          "text": "An object that reads audio samples that result from mixing audio from one or more tracks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAssetReaderAudioMixOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderAudioMixOutput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAssetReaderAudioMixOutput"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAssetReaderAudioMixOutput",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetreaderaudiomixoutput"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderOutput": {
+      "abstract": [
+        {
+          "text": "An abstract class that defines the interface to read media samples from an asset reader.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAssetReaderOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderOutput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAssetReaderOutput"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAssetReaderOutput",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetreaderoutput"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderOutput/alwaysCopiesSampleData": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the output vends copied sample data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "alwaysCopiesSampleData"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderOutput/alwaysCopiesSampleData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "alwaysCopiesSampleData"
+        }
+      ],
+      "role": "symbol",
+      "title": "alwaysCopiesSampleData",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetreaderoutput/alwayscopiessampledata"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderOutputMetadataAdaptor": {
+      "abstract": [
+        {
+          "text": "An object that creates timed metadata group objects for an asset track.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAssetReaderOutputMetadataAdaptor"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderOutputMetadataAdaptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAssetReaderOutputMetadataAdaptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAssetReaderOutputMetadataAdaptor",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetreaderoutputmetadataadaptor"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderSampleReferenceOutput": {
+      "abstract": [
+        {
+          "text": "An object that reads sample references from an asset track.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAssetReaderSampleReferenceOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderSampleReferenceOutput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAssetReaderSampleReferenceOutput"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAssetReaderSampleReferenceOutput",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetreadersamplereferenceoutput"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderSampleReferenceOutput/assetReaderSampleReferenceOutputWithTrack:": {
+      "abstract": [
+        {
+          "text": "Returns a new object that supplies sample references.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "assetReaderSampleReferenceOutputWithTrack:"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderSampleReferenceOutput/assetReaderSampleReferenceOutputWithTrack:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "assetReaderSampleReferenceOutputWithTrack:"
+        }
+      ],
+      "role": "symbol",
+      "title": "assetReaderSampleReferenceOutputWithTrack:",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetreadersamplereferenceoutput/assetreadersamplereferenceoutputwithtrack:"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderSampleReferenceOutput/init(track:)": {
+      "abstract": [
+        {
+          "text": "Creates an object that supplies sample references.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "track"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAssetTrack",
+          "text": "AVAssetTrack"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderSampleReferenceOutput/init(track:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithTrack:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(track:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetreadersamplereferenceoutput/init(track:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderSampleReferenceOutput/track": {
+      "abstract": [
+        {
+          "text": "The track from which the output reads sample references.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "track"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAssetTrack",
+          "text": "AVAssetTrack"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderSampleReferenceOutput/track",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "track"
+        }
+      ],
+      "role": "symbol",
+      "title": "track",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetreadersamplereferenceoutput/track"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderTrackOutput": {
+      "abstract": [
+        {
+          "text": "An object that reads media data from a single track of an asset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAssetReaderTrackOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderTrackOutput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAssetReaderTrackOutput"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAssetReaderTrackOutput",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetreadertrackoutput"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderVideoCompositionOutput": {
+      "abstract": [
+        {
+          "text": "An object that reads composited video frames from one or more tracks of an asset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAssetReaderVideoCompositionOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderVideoCompositionOutput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAssetReaderVideoCompositionOutput"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAssetReaderVideoCompositionOutput",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetreadervideocompositionoutput"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriter": {
+      "abstract": [
+        {
+          "text": "An object that writes media data to a container file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAssetWriter"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAssetWriter"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAssetWriter",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetwriter"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInput": {
+      "abstract": [
+        {
+          "text": "An object that appends media samples to a track in an asset writer’s output file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAssetWriterInput"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetWriterInput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAssetWriterInput"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAssetWriterInput",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetwriterinput"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVFileType/mov": {
+      "abstract": [
+        {
+          "text": "The UTI for the QuickTime movie file format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mov"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVFileType",
+          "text": "AVFileType"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVFileType/mov",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVFileTypeQuickTimeMovie"
+        }
+      ],
+      "role": "symbol",
+      "title": "mov",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avfiletype/mov"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/reading-multiview-3d-video-files": {
+      "abstract": [
+        {
+          "text": "Render single images for the left eye and right eye from a multiview High Efficiency Video Coding format file by reading individual video frames.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/reading-multiview-3d-video-files",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Reading multiview 3D video files",
+      "type": "topic",
+      "url": "/documentation/avfoundation/reading-multiview-3d-video-files"
+    },
+    "doc://com.apple.documentation/documentation/CoreMedia/kCMSampleBufferAttachmentKey_SampleReferenceByteOffset": {
+      "abstract": [
+        {
+          "text": "Indicates the byte offset at which the sample data begins (type `CFNumber`).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCMSampleBufferAttachmentKey_SampleReferenceByteOffset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreMedia/kCMSampleBufferAttachmentKey_SampleReferenceByteOffset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCMSampleBufferAttachmentKey_SampleReferenceByteOffset",
+      "type": "topic",
+      "url": "/documentation/CoreMedia/kCMSampleBufferAttachmentKey_SampleReferenceByteOffset"
+    },
+    "doc://com.apple.documentation/documentation/CoreMedia/kCMSampleBufferAttachmentKey_SampleReferenceURL": {
+      "abstract": [
+        {
+          "text": "Indicates the URL where the sample data is (type `CFURL`).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCMSampleBufferAttachmentKey_SampleReferenceURL"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreMedia/kCMSampleBufferAttachmentKey_SampleReferenceURL",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCMSampleBufferAttachmentKey_SampleReferenceURL",
+      "type": "topic",
+      "url": "/documentation/CoreMedia/kCMSampleBufferAttachmentKey_SampleReferenceURL"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderOutput"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Media-reading",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/reading-multiview-3d-video-files",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReader",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderOutput",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderTrackOutput",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderAudioMixOutput",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderVideoCompositionOutput",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderOutputMetadataAdaptor"
+      ],
+      "title": "Media reading"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-Sample-Reference-Output",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderSampleReferenceOutput/init(track:)"
+      ],
+      "title": "Creating a Sample Reference Output"
+    },
+    {
+      "anchor": "Inspecting-the-Track",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderSampleReferenceOutput/track"
+      ],
+      "title": "Inspecting the Track"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.10",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "AVAssetReaderSampleReferenceOutput"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetReaderSampleReferenceOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetReaderSampleReferenceOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.avfoundation/documentation/AVFoundation"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-Sample-Reference-Output",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderSampleReferenceOutput/assetReaderSampleReferenceOutputWithTrack:",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderSampleReferenceOutput/init(track:)"
+              ],
+              "title": "Creating a Sample Reference Output"
+            },
+            {
+              "anchor": "Inspecting-the-Track",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderSampleReferenceOutput/track"
+              ],
+              "title": "Inspecting the Track"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderOutput"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Media-reading",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/reading-multiview-3d-video-files",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReader",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderOutput",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderTrackOutput",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderAudioMixOutput",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderVideoCompositionOutput",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderOutputMetadataAdaptor"
+              ],
+              "title": "Media reading"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "AVAssetReaderSampleReferenceOutput"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetReaderOutput",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)AVAssetReaderOutput",
+                    "text": "AVAssetReaderOutput"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderOutput~1alwaysCopiesSampleData/title",
+          "value": "alwaysCopiesSampleData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderOutput~1alwaysCopiesSampleData/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "alwaysCopiesSampleData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderSampleReferenceOutput~1track/title",
+          "value": "track"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderSampleReferenceOutput~1track/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "track"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReader/title",
+          "value": "AVAssetReader"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReader/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetReader"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReader/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetReader"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderTrackOutput/title",
+          "value": "AVAssetReaderTrackOutput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderTrackOutput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetReaderTrackOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderTrackOutput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetReaderTrackOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderOutputMetadataAdaptor/title",
+          "value": "AVAssetReaderOutputMetadataAdaptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderOutputMetadataAdaptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetReaderOutputMetadataAdaptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderOutputMetadataAdaptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetReaderOutputMetadataAdaptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderOutput/title",
+          "value": "AVAssetReaderOutput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderOutput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetReaderOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderOutput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetReaderOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderAudioMixOutput/title",
+          "value": "AVAssetReaderAudioMixOutput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderAudioMixOutput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetReaderAudioMixOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderAudioMixOutput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetReaderAudioMixOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVFileType~1mov/title",
+          "value": "AVFileTypeQuickTimeMovie"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVFileType~1mov/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVFileTypeQuickTimeMovie"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreMedia~1kCMSampleBufferAttachmentKey_SampleReferenceByteOffset/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFStringRef",
+              "text": "CFStringRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "kCMSampleBufferAttachmentKey_SampleReferenceByteOffset"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderSampleReferenceOutput~1init(track:)/title",
+          "value": "initWithTrack:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderSampleReferenceOutput~1init(track:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithTrack:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreMedia~1kCMSampleBufferAttachmentKey_SampleReferenceURL/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFStringRef",
+              "text": "CFStringRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "kCMSampleBufferAttachmentKey_SampleReferenceURL"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderSampleReferenceOutput/title",
+          "value": "AVAssetReaderSampleReferenceOutput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderSampleReferenceOutput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetReaderSampleReferenceOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderSampleReferenceOutput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetReaderSampleReferenceOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriter/title",
+          "value": "AVAssetWriter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetWriter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriter/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetWriter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInput/title",
+          "value": "AVAssetWriterInput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetWriterInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetWriterInput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetWriterInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderVideoCompositionOutput/title",
+          "value": "AVAssetReaderVideoCompositionOutput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderVideoCompositionOutput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetReaderVideoCompositionOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetReaderVideoCompositionOutput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetReaderVideoCompositionOutput"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avfoundation/avassetreadersamplereferenceoutput"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/avfoundation/avassetreadersamplereferenceoutput"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,671 @@
+{
+  "abstract": [
+    {
+      "text": "An atom that contains general information about a hot spot.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "VR Media is deprecated in the QuickTime file format. The information that follows documents existing content containing VR Media and should not be used for new development.",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.qtff/documentation/quicktime-file-format"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.qtff/documentation/quicktime-file-format/Hot_spot_information_atom"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "__docc_universal_symbol_reference_$Hot_spot_information_atom",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "preciseIdentifier": "__docc_universal_symbol_reference_$Hot_spot_information_atom",
+        "text": "Hot spot information atom ('hsin')"
+      }
+    ],
+    "modules": [
+      {
+        "name": "quicktime-file-format",
+        "relatedModules": []
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "preciseIdentifier": "__docc_universal_symbol_reference_$Hot_spot_information_atom",
+        "text": "Hot spot information atom ('hsin')"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": true,
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Atom",
+    "symbolKind": "class",
+    "title": "Hot spot information atom ('hsin')"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Custom_cursor_atom"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The hot spot information atom contains general information about a hot spot. Its atom type is ",
+              "type": "text"
+            },
+            {
+              "code": "kQTVRHotSpotInfoAtomType",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (",
+              "type": "text"
+            },
+            {
+              "code": "'hsin'",
+              "type": "codeVoice"
+            },
+            {
+              "text": "). Every hot spot atom should have a hot spot information atom as a child.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The structure of a hot spot information atom is defined by the ",
+              "type": "text"
+            },
+            {
+              "code": "QTVRHotSpotInfoAtom",
+              "type": "codeVoice"
+            },
+            {
+              "text": " data type:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "typedef struct VRHotSpotInfoAtom {",
+            "    UInt16                              majorVersion;",
+            "    UInt16                              minorVersion;",
+            "    OSType                              hotSpotType;",
+            "    QTAtomID                            nameAtomID;",
+            "    QTAtomID                            commentAtomID;",
+            "    SInt32                              cursorID[3];",
+            "    Float32                             bestPan;",
+            "    Float32                             bestTilt;",
+            "    Float32                             bestFOV;",
+            "    FloatPoint                          bestViewCenter;",
+            "    Rect                                hotSpotRect;",
+            "    UInt32                              flags;",
+            "    UInt32                              reserved1;",
+            "    UInt32                              reserved2;",
+            "} VRHotSpotInfoAtom, *QTVRHotSpotInfoAtomPtr;"
+          ],
+          "syntax": "c",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "In QuickTime VR movie files, all angular values are stored as 32-bit floating-point values that specify degrees. In addition, all floating-point values conform to the IEEE Standard 754 for binary floating-point arithmetic, in big-endian format.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Custom_cursor_atom": {
+      "abstract": [
+        {
+          "text": "An atom you use to replace the default cursors used by QuickTime VR.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Custom_cursor_atom",
+      "kind": "article",
+      "role": "article",
+      "title": "Custom cursor atom",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/custom_cursor_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format": {
+      "abstract": [
+        {
+          "text": "An object-oriented file format for the storage and exchange of digital media between devices, applications, and operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "QuickTime File Format",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Hot_spot_information_atom": {
+      "abstract": [
+        {
+          "text": "An atom that contains general information about a hot spot.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Hot_spot_information_atom",
+          "text": "Hot spot information atom ('hsin')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Hot_spot_information_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hot spot information atom ('hsin')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/hot_spot_information_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Hot_spot_information_atom/bestFOV": {
+      "abstract": [
+        {
+          "text": "The best field of view for viewing this hot spot.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Hot_spot_information_atom_bestFOV",
+          "text": "bestFOV"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Hot_spot_information_atom/bestFOV",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bestFOV",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/hot_spot_information_atom/bestfov"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Hot_spot_information_atom/bestPan": {
+      "abstract": [
+        {
+          "text": "The best pan angle for viewing this hot spot.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Hot_spot_information_atom_bestPan",
+          "text": "bestPan"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Hot_spot_information_atom/bestPan",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bestPan",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/hot_spot_information_atom/bestpan"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Hot_spot_information_atom/bestTilt": {
+      "abstract": [
+        {
+          "text": "The best tilt angle for viewing this hot spot.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Hot_spot_information_atom_bestTilt",
+          "text": "bestTilt"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Hot_spot_information_atom/bestTilt",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bestTilt",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/hot_spot_information_atom/besttilt"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Hot_spot_information_atom/bestViewCenter": {
+      "abstract": [
+        {
+          "text": "The best view center for viewing this hot spot.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Hot_spot_information_atom_bestViewCenter",
+          "text": "bestViewCenter"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Hot_spot_information_atom/bestViewCenter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bestViewCenter",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/hot_spot_information_atom/bestviewcenter"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Hot_spot_information_atom/commentAtomID": {
+      "abstract": [
+        {
+          "text": "The ID of the string atom that contains a comment for the hot spot.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Hot_spot_information_atom_commentAtomID",
+          "text": "commentAtomID"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Hot_spot_information_atom/commentAtomID",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "commentAtomID",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/hot_spot_information_atom/commentatomid"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Hot_spot_information_atom/cursorID": {
+      "abstract": [
+        {
+          "text": "An array of three IDs for custom hot spot cursors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Hot_spot_information_atom_cursorID",
+          "text": "cursorID"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Hot_spot_information_atom/cursorID",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cursorID",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/hot_spot_information_atom/cursorid"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Hot_spot_information_atom/flags": {
+      "abstract": [
+        {
+          "text": "A set of hot spot flags.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Hot_spot_information_atom_flags",
+          "text": "flags"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Hot_spot_information_atom/flags",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "flags",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/hot_spot_information_atom/flags"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Hot_spot_information_atom/hotSpotRect": {
+      "abstract": [
+        {
+          "text": "The boundary box for this hot spot, specified as the number of pixels in full panoramic space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Hot_spot_information_atom_hotSpotRect",
+          "text": "hotSpotRect"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Hot_spot_information_atom/hotSpotRect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hotSpotRect",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/hot_spot_information_atom/hotspotrect"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Hot_spot_information_atom/hotSpotType": {
+      "abstract": [
+        {
+          "text": "The hot spot type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Hot_spot_information_atom_hotSpotType",
+          "text": "hotSpotType"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Hot_spot_information_atom/hotSpotType",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hotSpotType",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/hot_spot_information_atom/hotspottype"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Hot_spot_information_atom/majorVersion": {
+      "abstract": [
+        {
+          "text": "The major version number of the file format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Hot_spot_information_atom_majorVersion",
+          "text": "majorVersion"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Hot_spot_information_atom/majorVersion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "majorVersion",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/hot_spot_information_atom/majorversion"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Hot_spot_information_atom/minorVersion": {
+      "abstract": [
+        {
+          "text": "The minor version number of the file format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Hot_spot_information_atom_minorVersion",
+          "text": "minorVersion"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Hot_spot_information_atom/minorVersion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "minorVersion",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/hot_spot_information_atom/minorversion"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Hot_spot_information_atom/nameAtomID": {
+      "abstract": [
+        {
+          "text": "The ID of the string atom that contains the name of the hot spot.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Hot_spot_information_atom_nameAtomID",
+          "text": "nameAtomID"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Hot_spot_information_atom/nameAtomID",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nameAtomID",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/hot_spot_information_atom/nameatomid"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Hot_spot_information_atom/reserved1": {
+      "abstract": [
+        {
+          "text": "Reserved.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Hot_spot_information_atom_reserved1",
+          "text": "reserved1"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Hot_spot_information_atom/reserved1",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "reserved1",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/hot_spot_information_atom/reserved1"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Hot_spot_information_atom/reserved2": {
+      "abstract": [
+        {
+          "text": "Reserved.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Hot_spot_information_atom_reserved2",
+          "text": "reserved2"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Hot_spot_information_atom/reserved2",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "reserved2",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/hot_spot_information_atom/reserved2"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Hot_spot_parent_atom": {
+      "abstract": [
+        {
+          "text": "An atom that is the parent for all hot spot atoms for the node.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Hot_spot_parent_atom",
+          "text": "Hot spot parent atom ('hspa')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Hot_spot_parent_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hot spot parent atom ('hspa')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/hot_spot_parent_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Link_hot_spot_atom": {
+      "abstract": [
+        {
+          "text": "An atom that specifies information for a link hot spot.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Link_hot_spot_atom",
+          "text": "Link hot spot atom ('link')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Link_hot_spot_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Link hot spot atom ('link')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/link_hot_spot_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Node_header_atom": {
+      "abstract": [
+        {
+          "text": "An atom that describes the type and ID of a node, as well as other information about the node.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Node_header_atom",
+          "text": "Node header atom ('ndhd')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Node_header_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Node header atom ('ndhd')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/node_header_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Specific_information_atom": {
+      "abstract": [
+        {
+          "text": "An atom that identified the hot spot type.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Specific_information_atom",
+          "text": "Specific information atom"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Specific_information_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Specific information atom",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/specific_information_atom"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Specifying-node-information",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Node_header_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Hot_spot_parent_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Specific_information_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Link_hot_spot_atom"
+      ],
+      "title": "Specifying node information"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Data-fields",
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Hot_spot_information_atom/majorVersion",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Hot_spot_information_atom/minorVersion",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Hot_spot_information_atom/hotSpotType",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Hot_spot_information_atom/nameAtomID",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Hot_spot_information_atom/commentAtomID",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Hot_spot_information_atom/cursorID",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Hot_spot_information_atom/bestPan",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Hot_spot_information_atom/bestTilt",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Hot_spot_information_atom/bestFOV",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Hot_spot_information_atom/bestViewCenter",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Hot_spot_information_atom/hotSpotRect",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Hot_spot_information_atom/flags",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Hot_spot_information_atom/reserved1",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Hot_spot_information_atom/reserved2"
+      ],
+      "title": "Data fields"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quicktime-file-format/hot_spot_information_atom"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,1 +1,897 @@
-{"identifier":{"interfaceLanguage":"swift","url":"doc://com.apple.security/documentation/Security/SecACLRemove(_:)"},"sections":[],"hierarchy":{"paths":[["doc://com.apple.documentation/documentation/technologies","doc://com.apple.security/documentation/Security"]]},"primaryContentSections":[{"declarations":[{"platforms":["macOS"],"tokens":[{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"SecACLRemove"},{"kind":"text","text":"("},{"kind":"externalParam","text":"_"},{"kind":"text","text":" "},{"kind":"internalParam","text":"aclRef"},{"kind":"text","text":": "},{"text":"SecACL","identifier":"doc://com.apple.security/documentation/Security/SecACL","kind":"typeIdentifier","preciseIdentifier":"c:@T@SecACLRef"},{"text":") -> ","kind":"text"},{"text":"OSStatus","kind":"typeIdentifier","preciseIdentifier":"c:@T@OSStatus"}],"languages":["swift"]}],"kind":"declarations"},{"parameters":[{"content":[{"type":"paragraph","inlineContent":[{"type":"text","text":"An ACL entry to remove."}]}],"name":"aclRef"}],"kind":"parameters"},{"content":[{"type":"heading","anchor":"return-value","level":2,"text":"Return Value"},{"type":"paragraph","inlineContent":[{"type":"text","text":"A result code. See "},{"identifier":"doc://com.apple.security/documentation/Security/security-framework-result-codes","type":"reference","isActive":true},{"type":"text","text":"."}]}],"kind":"content"},{"content":[{"text":"Discussion","anchor":"Discussion","type":"heading","level":2},{"inlineContent":[{"type":"text","text":"This method fails if you attempt to remove the owner entry because an access instance must have exactly one such ACL at all times. If you need to change ownership settings, modify the existing owner entry rather than replacing it. In particular, use the "},{"isActive":true,"type":"reference","identifier":"doc://com.apple.security/documentation/Security/SecAccessCopyMatchingACLList(_:_:)"},{"type":"text","text":" method with the "},{"isActive":true,"type":"reference","identifier":"doc://com.apple.security/documentation/Security/kSecACLAuthorizationChangeACL"},{"type":"text","text":" authorization to find the existing entry, and the "},{"isActive":true,"type":"reference","identifier":"doc://com.apple.security/documentation/Security/SecACLSetContents(_:_:_:_:)"},{"type":"text","text":" method to change it as needed."}],"type":"paragraph"}],"kind":"content"}],"metadata":{"roleHeading":"Function","externalID":"c:@F@SecACLRemove","fragments":[{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"SecACLRemove"},{"kind":"text","text":"("},{"kind":"typeIdentifier","preciseIdentifier":"c:@T@SecACLRef","text":"SecACL"},{"kind":"text","text":") -> "},{"kind":"typeIdentifier","preciseIdentifier":"c:@T@OSStatus","text":"OSStatus"}],"navigatorTitle":[{"kind":"identifier","text":"SecACLRemove"}],"modules":[{"name":"Security"}],"platforms":[{"deprecated":false,"message":"SecKeychain is deprecated","beta":false,"name":"macOS","deprecatedAt":"10.10","unavailable":false,"introducedAt":"10.3"}],"title":"SecACLRemove(_:)","symbolKind":"func","role":"symbol"},"kind":"symbol","schemaVersion":{"major":0,"minor":3,"patch":0},"deprecationSummary":[{"inlineContent":[{"type":"text","text":"SecKeychain is deprecated"}],"type":"paragraph"}],"variants":[{"traits":[{"interfaceLanguage":"swift"}],"paths":["/documentation/security/secaclremove(_:)"]},{"traits":[{"interfaceLanguage":"occ"}],"paths":["/documentation/security/secaclremove(_:)"]}],"abstract":[{"text":"Removes the specified ACL entry from the access instance that contains it.","type":"text"}],"references":{"doc://com.apple.security/documentation/Security/SecACLSetContents(_:_:_:_:)":{"url":"/documentation/security/secaclsetcontents(_:_:_:_:)","role":"symbol","navigatorTitle":[{"text":"SecACLSetContents","kind":"identifier"}],"fragments":[{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"text":"SecACLSetContents","kind":"identifier"},{"text":"(","kind":"text"},{"text":"SecACL","kind":"typeIdentifier","preciseIdentifier":"c:@T@SecACLRef"},{"text":", ","kind":"text"},{"text":"CFArray","kind":"typeIdentifier","preciseIdentifier":"c:@T@CFArrayRef"},{"text":"?, ","kind":"text"},{"text":"CFString","kind":"typeIdentifier","preciseIdentifier":"c:@T@CFStringRef"},{"text":", ","kind":"text"},{"text":"SecKeychainPromptSelector","kind":"typeIdentifier","preciseIdentifier":"c:@E@SecKeychainPromptSelector"},{"text":") -> ","kind":"text"},{"text":"OSStatus","kind":"typeIdentifier","preciseIdentifier":"c:@T@OSStatus"}],"abstract":[{"text":"Sets the application list, description, and prompt selector for a given ACL entry.","type":"text"}],"identifier":"doc://com.apple.security/documentation/Security/SecACLSetContents(_:_:_:_:)","kind":"symbol","title":"SecACLSetContents(_:_:_:_:)","type":"topic","deprecated":true},"doc://com.apple.security/documentation/Security/SecACL":{"url":"/documentation/security/secacl","type":"topic","navigatorTitle":[{"text":"SecACL","kind":"identifier"}],"abstract":[{"text":"An opaque type that represents information about an ACL entry.","type":"text"}],"kind":"symbol","fragments":[{"text":"class","kind":"keyword"},{"text":" ","kind":"text"},{"text":"SecACL","kind":"identifier"}],"title":"SecACL","identifier":"doc://com.apple.security/documentation/Security/SecACL","role":"symbol"},"doc://com.apple.security/documentation/Security/kSecACLAuthorizationChangeACL":{"title":"kSecACLAuthorizationChangeACL","fragments":[{"kind":"keyword","text":"let"},{"kind":"text","text":" "},{"kind":"identifier","text":"kSecACLAuthorizationChangeACL"},{"kind":"text","text":": "},{"kind":"typeIdentifier","preciseIdentifier":"c:@T@CFStringRef","text":"CFString"}],"navigatorTitle":[{"kind":"identifier","text":"kSecACLAuthorizationChangeACL"}],"kind":"symbol","url":"/documentation/security/ksecaclauthorizationchangeacl","role":"symbol","identifier":"doc://com.apple.security/documentation/Security/kSecACLAuthorizationChangeACL","abstract":[{"type":"text","text":"Change an access control list entry."}],"type":"topic"},"doc://com.apple.security/documentation/Security":{"title":"Security","abstract":[{"text":"Secure the data your app manages, and control access to your app.","type":"text"}],"identifier":"doc://com.apple.security/documentation/Security","kind":"symbol","url":"/documentation/security","type":"topic","role":"collection"},"doc://com.apple.security/documentation/Security/SecACLRemove(_:)":{"title":"SecACLRemove(_:)","identifier":"doc://com.apple.security/documentation/Security/SecACLRemove(_:)","type":"topic","abstract":[{"text":"Removes the specified ACL entry from the access instance that contains it.","type":"text"}],"deprecated":true,"fragments":[{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"text":"SecACLRemove","kind":"identifier"},{"text":"(","kind":"text"},{"preciseIdentifier":"c:@T@SecACLRef","text":"SecACL","kind":"typeIdentifier"},{"text":") -> ","kind":"text"},{"preciseIdentifier":"c:@T@OSStatus","text":"OSStatus","kind":"typeIdentifier"}],"url":"/documentation/security/secaclremove(_:)","role":"symbol","kind":"symbol","navigatorTitle":[{"text":"SecACLRemove","kind":"identifier"}]},"doc://com.apple.documentation/documentation/technologies":{"title":"Technologies","abstract":[{"type":"text","text":""}],"identifier":"doc://com.apple.documentation/documentation/technologies","kind":"technologies","url":"/documentation/technologies","type":"topic","role":"overview"},"doc://com.apple.security/documentation/Security/SecAccessCopyMatchingACLList(_:_:)":{"url":"/documentation/security/secaccesscopymatchingacllist(_:_:)","abstract":[{"text":"Retrieves selected ACL entries from a given access instance.","type":"text"}],"role":"symbol","fragments":[{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"text":"SecAccessCopyMatchingACLList","kind":"identifier"},{"text":"(","kind":"text"},{"preciseIdentifier":"c:@T@SecAccessRef","text":"SecAccess","kind":"typeIdentifier"},{"text":", ","kind":"text"},{"preciseIdentifier":"c:@T@CFTypeRef","text":"CFTypeRef","kind":"typeIdentifier"},{"text":") -> ","kind":"text"},{"preciseIdentifier":"c:@T@CFArrayRef","text":"CFArray","kind":"typeIdentifier"},{"text":"?","kind":"text"}],"kind":"symbol","deprecated":true,"identifier":"doc://com.apple.security/documentation/Security/SecAccessCopyMatchingACLList(_:_:)","navigatorTitle":[{"text":"SecAccessCopyMatchingACLList","kind":"identifier"}],"type":"topic","title":"SecAccessCopyMatchingACLList(_:_:)"},"doc://com.apple.security/documentation/Security/security-framework-result-codes":{"url":"/documentation/security/security-framework-result-codes","title":"Security Framework Result Codes","kind":"article","role":"collectionGroup","abstract":[{"text":"Evaluate result codes common to many Security framework functions.","type":"text"}],"type":"topic","identifier":"doc://com.apple.security/documentation/Security/security-framework-result-codes"}},"variantOverrides":[{"traits":[{"interfaceLanguage":"occ"}],"patch":[{"op":"replace","path":"/identifier/interfaceLanguage","value":"occ"},{"value":[{"unavailable":false,"deprecated":false,"introducedAt":"10.3","beta":false,"name":"macOS","deprecatedAt":"10.10"}],"path":"/metadata/platforms","op":"replace"},{"value":"Function","path":"/metadata/roleHeading","op":"replace"},{"value":"SecACLRemove","path":"/metadata/title","op":"replace"},{"path":"/metadata/symbolKind","value":"func","op":"replace"},{"path":"/metadata/fragments","value":[{"kind":"identifier","text":"SecACLRemove"}],"op":"replace"},{"path":"/hierarchy","value":{"paths":[["doc://com.apple.documentation/documentation/technologies","doc://com.apple.security/documentation/Security"]]},"op":"replace"},{"op":"add","value":null,"path":"/topicSections"},{"op":"add","value":null,"path":"/relationshipsSections"},{"op":"add","value":null,"path":"/seeAlsoSections"},{"op":"replace","value":{"declarations":[{"platforms":["macOS"],"tokens":[{"preciseIdentifier":"c:@T@OSStatus","kind":"typeIdentifier","text":"OSStatus"},{"kind":"text","text":" "},{"kind":"identifier","text":"SecACLRemove"},{"kind":"text","text":"("},{"preciseIdentifier":"c:@T@SecACLRef","kind":"typeIdentifier","identifier":"doc://com.apple.security/documentation/Security/SecACL","text":"SecACLRef"},{"kind":"text","text":" "},{"kind":"internalParam","text":"aclRef"},{"kind":"text","text":");"}],"languages":["occ"]}],"kind":"declarations"},"path":"/primaryContentSections/0"},{"op":"replace","path":"/primaryContentSections/1","value":{"kind":"parameters","parameters":[{"name":"aclRef","content":[{"type":"paragraph","inlineContent":[{"text":"An ACL entry to remove.","type":"text"}]}]}]}},{"op":"replace","value":{"kind":"content","content":[{"level":2,"type":"heading","anchor":"return-value","text":"Return Value"},{"type":"paragraph","inlineContent":[{"text":"A result code. See ","type":"text"},{"type":"reference","identifier":"doc://com.apple.security/documentation/Security/security-framework-result-codes","isActive":true},{"text":".","type":"text"}]}]},"path":"/primaryContentSections/2"},{"op":"replace","path":"/deprecationSummary","value":[{"inlineContent":[{"text":"SecKeychain is deprecated","type":"text"}],"type":"paragraph"}]},{"op":"replace","path":"/references/doc:~1~1com.apple.security~1documentation~1Security~1SecACLSetContents(_:_:_:_:)/title","value":"SecACLSetContents"},{"op":"replace","path":"/references/doc:~1~1com.apple.security~1documentation~1Security~1SecACLSetContents(_:_:_:_:)/fragments","value":[{"kind":"identifier","text":"SecACLSetContents"}]},{"op":"replace","path":"/references/doc:~1~1com.apple.security~1documentation~1Security~1SecACL/title","value":"SecACLRef"},{"op":"replace","path":"/references/doc:~1~1com.apple.security~1documentation~1Security~1SecACL/fragments","value":[{"kind":"identifier","text":"SecACLRef"}]},{"op":"replace","path":"/references/doc:~1~1com.apple.security~1documentation~1Security~1SecACL/navigatorTitle","value":[{"kind":"identifier","text":"SecACLRef"}]},{"op":"replace","path":"/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecACLAuthorizationChangeACL/title","value":"kSecACLAuthorizationChangeACL"},{"op":"replace","path":"/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecACLAuthorizationChangeACL/fragments","value":[{"text":"kSecACLAuthorizationChangeACL","kind":"identifier"}]},{"path":"/references/doc:~1~1com.apple.security~1documentation~1Security~1SecACLRemove(_:)/title","value":"SecACLRemove","op":"replace"},{"path":"/references/doc:~1~1com.apple.security~1documentation~1Security~1SecACLRemove(_:)/fragments","value":[{"text":"SecACLRemove","kind":"identifier"}],"op":"replace"},{"path":"/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAccessCopyMatchingACLList(_:_:)/title","value":"SecAccessCopyMatchingACLList","op":"replace"},{"path":"/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAccessCopyMatchingACLList(_:_:)/fragments","value":[{"text":"SecAccessCopyMatchingACLList","kind":"identifier"}],"op":"replace"}]}],"legalNotices":{"copyright":"Copyright &copy; 2025 Apple Inc. All rights reserved.","termsOfUse":"https://www.apple.com/legal/internet-services/terms/site.html","privacyPolicy":"https://www.apple.com/privacy/privacy-policy"}}
+{
+  "abstract": [
+    {
+      "text": "Removes the specified ACL entry from the access instance that contains it.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "SecKeychain is deprecated",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.security/documentation/Security"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.security/documentation/Security/SecACLRemove(_:)"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@SecACLRemove",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "SecACLRemove"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@T@SecACLRef",
+        "text": "SecACL"
+      },
+      {
+        "kind": "text",
+        "text": ") -> "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@T@OSStatus",
+        "text": "OSStatus"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Security"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SecACLRemove"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "10.10",
+        "introducedAt": "10.3",
+        "message": "SecKeychain is deprecated",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "SecACLRemove(_:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SecACLRemove"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "aclRef"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecACL",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@SecACLRef",
+              "text": "SecACL"
+            },
+            {
+              "kind": "text",
+              "text": ") -> "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@OSStatus",
+              "text": "OSStatus"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An ACL entry to remove.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "aclRef"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A result code. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/security-framework-result-codes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This method fails if you attempt to remove the owner entry because an access instance must have exactly one such ACL at all times. If you need to change ownership settings, modify the existing owner entry rather than replacing it. In particular, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecAccessCopyMatchingACLList(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/kSecACLAuthorizationChangeACL",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " authorization to find the existing entry, and the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecACLSetContents(_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to change it as needed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.security/documentation/Security": {
+      "abstract": [
+        {
+          "text": "Secure the data your app manages, and control access to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Security",
+      "type": "topic",
+      "url": "/documentation/security"
+    },
+    "doc://com.apple.security/documentation/Security/SecACL": {
+      "abstract": [
+        {
+          "text": "An opaque type that represents information about an ACL entry.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecACL"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecACL",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecACL"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecACL",
+      "type": "topic",
+      "url": "/documentation/security/secacl"
+    },
+    "doc://com.apple.security/documentation/Security/SecACLRemove(_:)": {
+      "abstract": [
+        {
+          "text": "Removes the specified ACL entry from the access instance that contains it.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecACLRemove"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecACLRef",
+          "text": "SecACL"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecACLRemove(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecACLRemove"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecACLRemove(_:)",
+      "type": "topic",
+      "url": "/documentation/security/secaclremove(_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecACLSetContents(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Sets the application list, description, and prompt selector for a given ACL entry.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecACLSetContents"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecACLRef",
+          "text": "SecACL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFArrayRef",
+          "text": "CFArray"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SecKeychainPromptSelector",
+          "text": "SecKeychainPromptSelector"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecACLSetContents(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecACLSetContents"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecACLSetContents(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/secaclsetcontents(_:_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecAccessCopyMatchingACLList(_:_:)": {
+      "abstract": [
+        {
+          "text": "Retrieves selected ACL entries from a given access instance.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecAccessCopyMatchingACLList"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecAccessRef",
+          "text": "SecAccess"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeRef",
+          "text": "CFTypeRef"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFArrayRef",
+          "text": "CFArray"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecAccessCopyMatchingACLList(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecAccessCopyMatchingACLList"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecAccessCopyMatchingACLList(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/secaccesscopymatchingacllist(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/kSecACLAuthorizationChangeACL": {
+      "abstract": [
+        {
+          "text": "Change an access control list entry.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecACLAuthorizationChangeACL"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecACLAuthorizationChangeACL",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecACLAuthorizationChangeACL"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecACLAuthorizationChangeACL",
+      "type": "topic",
+      "url": "/documentation/security/ksecaclauthorizationchangeacl"
+    },
+    "doc://com.apple.security/documentation/Security/security-framework-result-codes": {
+      "abstract": [
+        {
+          "text": "Evaluate result codes common to many Security framework functions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/security-framework-result-codes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Security Framework Result Codes",
+      "type": "topic",
+      "url": "/documentation/security/security-framework-result-codes"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "10.10",
+              "introducedAt": "10.3",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Function"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "SecACLRemove"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "func"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecACLRemove"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.security/documentation/Security"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@T@OSStatus",
+                    "text": "OSStatus"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "SecACLRemove"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "("
+                  },
+                  {
+                    "identifier": "doc://com.apple.security/documentation/Security/SecACL",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@T@SecACLRef",
+                    "text": "SecACLRef"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "aclRef"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ");"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/1",
+          "value": {
+            "kind": "parameters",
+            "parameters": [
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An ACL entry to remove.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "aclRef"
+              }
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/2",
+          "value": {
+            "content": [
+              {
+                "anchor": "return-value",
+                "level": 2,
+                "text": "Return Value",
+                "type": "heading"
+              },
+              {
+                "inlineContent": [
+                  {
+                    "text": "A result code. See ",
+                    "type": "text"
+                  },
+                  {
+                    "identifier": "doc://com.apple.security/documentation/Security/security-framework-result-codes",
+                    "isActive": true,
+                    "type": "reference"
+                  },
+                  {
+                    "text": ".",
+                    "type": "text"
+                  }
+                ],
+                "type": "paragraph"
+              }
+            ],
+            "kind": "content"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/deprecationSummary",
+          "value": [
+            {
+              "inlineContent": [
+                {
+                  "text": "SecKeychain is deprecated",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecACLSetContents(_:_:_:_:)/title",
+          "value": "SecACLSetContents"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecACLSetContents(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecACLSetContents"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecACL/title",
+          "value": "SecACLRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecACL/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecACLRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecACL/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecACLRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecACLAuthorizationChangeACL/title",
+          "value": "kSecACLAuthorizationChangeACL"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecACLAuthorizationChangeACL/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecACLAuthorizationChangeACL"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecACLRemove(_:)/title",
+          "value": "SecACLRemove"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecACLRemove(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecACLRemove"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAccessCopyMatchingACLList(_:_:)/title",
+          "value": "SecAccessCopyMatchingACLList"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAccessCopyMatchingACLList(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecAccessCopyMatchingACLList"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/security/secaclremove(_:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/security/secaclremove(_:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

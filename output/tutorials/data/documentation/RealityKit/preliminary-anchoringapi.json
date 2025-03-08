@@ -1,0 +1,466 @@
+{
+  "abstract": [
+    {
+      "text": "A schema that defines the placement of a prim and its children at a real-world location.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit",
+        "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-usd-assets",
+        "doc://com.apple.RealityKit/documentation/RealityKit/usdz-schemas-for-ar"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/preliminary-anchoringapi"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "role": "collectionGroup",
+    "title": "Preliminary_AnchoringAPI"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this schema to attach prims to real-world areas in an AR experience, such as surfaces, images, or faces. In non-AR viewers like studio mode in AR Quick Look, the runtime displays a prim by applying its ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "transform",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " –– that is, its position, rotation, and scale –– relative to the center of the view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Although ARKit features the ability to recognize predefined real-world objects (see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/ARKit/ARReferenceObject",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": "), and location anchors (see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/ARKit/ARGeoAnchor",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": "), the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/preliminary-anchoringapi",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " schema doesn’t support object or location anchors.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Declaration",
+          "level": 3,
+          "text": "Declaration",
+          "type": "heading"
+        },
+        {
+          "code": [
+            "class \"Preliminary_AnchoringAPI\"",
+            "(",
+            "    inherits = </APISchemaBase>",
+            ")"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Nest-and-layer-anchorable-prims",
+          "level": 3,
+          "text": "Nest and layer anchorable prims",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you assign this schema to a nested prim, the runtime positions the nested prim independently by not basing the child’s transform relative to its parent. As a result, the anchorable child is effectively out of the parent’s hierarchy. Similarly, if an asset defines one or more anchorable prims layered beneath another anchorable prim, the runtime positions each prim independently. However, any unanchorable children of an anchorable prim remain positioned relative to their parent.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Since the runtime doesn’t observe anchorable prim hierarchies, you need to define all anchorable prims at the root of the document, thus, without a parent.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/placing-a-prim-in-the-real-world": {
+      "abstract": [
+        {
+          "text": "Anchor a prim to a real-world object that the runtime recognizes in the physical environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/placing-a-prim-in-the-real-world",
+      "kind": "article",
+      "role": "article",
+      "title": "Placing a prim in the real world",
+      "type": "topic",
+      "url": "/documentation/realitykit/placing-a-prim-in-the-real-world"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/preliminary-anchoring-type": {
+      "abstract": [
+        {
+          "text": "A option that specifies the type of anchor.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/preliminary-anchoring-type",
+      "kind": "article",
+      "role": "article",
+      "title": "preliminary:anchoring:type",
+      "type": "topic",
+      "url": "/documentation/realitykit/preliminary-anchoring-type"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/preliminary-anchoringapi": {
+      "abstract": [
+        {
+          "text": "A schema that defines the placement of a prim and its children at a real-world location.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/preliminary-anchoringapi",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Preliminary_AnchoringAPI",
+      "type": "topic",
+      "url": "/documentation/realitykit/preliminary-anchoringapi"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/preliminary-imageanchoring-referenceimage": {
+      "abstract": [
+        {
+          "text": "The characteristics of an image the runtime should scan for in order to attach a prim.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/preliminary-imageanchoring-referenceimage",
+      "kind": "article",
+      "role": "article",
+      "title": "preliminary:imageAnchoring:referenceImage",
+      "type": "topic",
+      "url": "/documentation/realitykit/preliminary-imageanchoring-referenceimage"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/preliminary-planeanchoring-alignment": {
+      "abstract": [
+        {
+          "text": "An option that specifies the orientation of a plane.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/preliminary-planeanchoring-alignment",
+      "kind": "article",
+      "role": "article",
+      "title": "preliminary:planeAnchoring:alignment",
+      "type": "topic",
+      "url": "/documentation/realitykit/preliminary-planeanchoring-alignment"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/preliminary-referenceimage": {
+      "abstract": [
+        {
+          "text": "A schema that defines the properties of an image in the physical environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/preliminary-referenceimage",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Preliminary_ReferenceImage",
+      "type": "topic",
+      "url": "/documentation/realitykit/preliminary-referenceimage"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-usd-assets": {
+      "abstract": [
+        {
+          "text": "Import and use 3D scenes by importing USD files.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-usd-assets",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "USD Assets",
+      "type": "topic",
+      "url": "/documentation/realitykit/realitykit-usd-assets"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/usdz-schemas-for-ar": {
+      "abstract": [
+        {
+          "text": "Add augmented reality functionality to your 3D content using USDZ schemas.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/usdz-schemas-for-ar",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "USDZ schemas for AR",
+      "type": "topic",
+      "url": "/documentation/realitykit/usdz-schemas-for-ar"
+    },
+    "doc://com.apple.documentation/documentation/ARKit/ARGeoAnchor": {
+      "abstract": [
+        {
+          "text": "An anchor that identifies a geographic location using latitude, longitude, and altitude data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARGeoAnchor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ARKit/ARGeoAnchor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ARGeoAnchor",
+      "type": "topic",
+      "url": "/documentation/ARKit/ARGeoAnchor"
+    },
+    "doc://com.apple.documentation/documentation/ARKit/ARReferenceObject": {
+      "abstract": [
+        {
+          "text": "The description of a 3D object that you want ARKit to detect in the physical environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARReferenceObject"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ARKit/ARReferenceObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ARReferenceObject",
+      "type": "topic",
+      "url": "/documentation/ARKit/ARReferenceObject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Anchoring",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/placing-a-prim-in-the-real-world",
+        "doc://com.apple.RealityKit/documentation/RealityKit/preliminary-referenceimage"
+      ],
+      "title": "Anchoring"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Properties",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/preliminary-anchoring-type",
+        "doc://com.apple.RealityKit/documentation/RealityKit/preliminary-planeanchoring-alignment",
+        "doc://com.apple.RealityKit/documentation/RealityKit/preliminary-imageanchoring-referenceimage"
+      ],
+      "title": "Properties"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ARKit~1ARReferenceObject/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "ARReferenceObject"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ARKit~1ARGeoAnchor/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "ARGeoAnchor"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)ARAnchor",
+              "text": "ARAnchor"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/preliminary-anchoringapi"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

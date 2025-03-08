@@ -1,0 +1,358 @@
+{
+  "abstract": [
+    {
+      "text": "Schedules a block object to be submitted to a queue when a group of previously submitted block objects have completed.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/dispatch"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/dispatch/1452933-dispatch_group_notify"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1452933,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@dispatch_group_notify",
+    "modules": [
+      {
+        "name": "Dispatch"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "4.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "4.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.6",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "dispatch_group_notify"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "dispatch_group_notify"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_group_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@dispatch_group_t",
+              "text": "dispatch_group_t"
+            },
+            {
+              "kind": "text",
+              "text": " group, "
+            },
+            {
+              "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@dispatch_queue_t",
+              "text": "dispatch_queue_t"
+            },
+            {
+              "kind": "text",
+              "text": " queue, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/dispatch/dispatch_block_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@dispatch_block_t",
+              "text": "dispatch_block_t"
+            },
+            {
+              "kind": "text",
+              "text": " block);"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The dispatch group to observe. The group is retained by the system until the block has run to completion. This parameter cannot be ",
+                  "type": "text"
+                },
+                {
+                  "code": "NULL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "group"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The queue to which the supplied block is submitted when the group completes. The queue is retained by the system until the block has run to completion. This parameter cannot be ",
+                  "type": "text"
+                },
+                {
+                  "code": "NULL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "queue"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The block to submit when the group completes. This function performs a ",
+                  "type": "text"
+                },
+                {
+                  "code": "Block_copy",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "code": "Block_release",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " on behalf of the caller.  This parameter cannot be ",
+                  "type": "text"
+                },
+                {
+                  "code": "NULL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "block"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This function schedules a notification block to be submitted to the specified queue when all blocks associated with the dispatch group have completed. If the group is empty (no block objects are associated with the dispatch group), the notification block object is submitted immediately.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the notification block is submitted, the group is empty. The group can either be released with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/dispatch/1496328-dispatch_release",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or be reused for additional block objects. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/dispatch/1453084-dispatch_group_async",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_group_t": {
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_group_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_group_t",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_group_t"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_t": {
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_queue_t",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_queue_t"
+    },
+    "doc://com.apple.documentation/documentation/dispatch": {
+      "identifier": "doc://com.apple.documentation/documentation/dispatch",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Dispatch",
+      "type": "topic",
+      "url": "/documentation/dispatch"
+    },
+    "doc://com.apple.documentation/documentation/dispatch/1453084-dispatch_group_async": {
+      "identifier": "doc://com.apple.documentation/documentation/dispatch/1453084-dispatch_group_async",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_group_async",
+      "type": "topic",
+      "url": "/documentation/dispatch/1453084-dispatch_group_async"
+    },
+    "doc://com.apple.documentation/documentation/dispatch/1496328-dispatch_release": {
+      "identifier": "doc://com.apple.documentation/documentation/dispatch/1496328-dispatch_release",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_release",
+      "type": "topic",
+      "url": "/documentation/dispatch/1496328-dispatch_release"
+    },
+    "doc://com.apple.documentation/documentation/dispatch/dispatch_block_t": {
+      "identifier": "doc://com.apple.documentation/documentation/dispatch/dispatch_block_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_block_t",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_block_t"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "documentation/dispatch/1452933-dispatch_group_notify"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,776 @@
+{
+  "abstract": [
+    {
+      "text": "A ",
+      "type": "text"
+    },
+    {
+      "code": "SafariExtension",
+      "type": "codeVoice"
+    },
+    {
+      "text": " instance represents your extension outside of the web content; an instance of the class is accessible as ",
+      "type": "text"
+    },
+    {
+      "code": "safari.extension",
+      "type": "codeVoice"
+    },
+    {
+      "text": ". The counterpart class to ",
+      "type": "text"
+    },
+    {
+      "code": "SafariExtension",
+      "type": "codeVoice"
+    },
+    {
+      "text": " for scripts running within the web content is ",
+      "type": "text"
+    },
+    {
+      "identifier": "doc://com.apple.documentation/documentation/safariextensions/safaricontentextension",
+      "isActive": true,
+      "type": "reference"
+    },
+    {
+      "text": ".",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "This API is deprecated in Safari 13 and later. Add features to the Safari browser with Safari web extensions or Safari app extensions instead. To convert your Legacy Safari Extension to a Safari app extension, see ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.safariservices/documentation/SafariServices/converting-a-legacy-safari-extension-to-a-safari-app-extension",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ". To start developing Safari web extensions, see ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.safariservices/documentation/SafariServices/safari-web-extensions",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ". To start developing Safari app extensions, see ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.safariservices/documentation/SafariServices/building-a-safari-app-extension",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/safariextensions",
+        "doc://com.apple.documentation/documentation/safariextensions/deprecated_symbols"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.documentation/documentation/safariextensions/safariextension"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1635516,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "cl/SafariExtension",
+    "modules": [
+      {
+        "name": "Safari Extensions JS"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.0",
+        "introducedAt": "5.0",
+        "name": "Safari Desktop"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "SafariExtension"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Safari Desktop"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SafariExtension"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Adding and removing style sheets and scripts.",
+                  "type": "text"
+                }
+              ],
+              "type": "inlineHead"
+            },
+            {
+              "text": " Adding or removing a content style sheet applies to pages immediately. Adding or removing a content script applies only to pages opened or reloaded after the change is made. Removing a style sheet or a script that is in the ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file removes it only from the current browser session.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Allow and Deny lists.",
+                  "type": "text"
+                }
+              ],
+              "type": "inlineHead"
+            },
+            {
+              "text": " A content script or style sheet may specify an allow list and a deny list; both are optional.  For a description of the pattern format, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1743059",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The script or style sheet will be applied to a page only in the following cases:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The allow and deny list are both empty.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The allow list is empty, and the page’s URL does not match anything on the deny list.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The page’s URL matches a pattern on the allow list, and the deny list is empty.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The page’s URL matches a pattern on the allow list and it does not match anything on the deny list.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1743059": {
+      "identifier": "devLink-1743059",
+      "title": "The Extension Builder Interface",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Tools/Conceptual/SafariExtensionGuide/UsingExtensionBuilder/UsingExtensionBuilder.html#//apple_ref/doc/uid/TP40009977-CH2-SW5"
+    },
+    "doc://com.apple.documentation/documentation/safariextensions": {
+      "identifier": "doc://com.apple.documentation/documentation/safariextensions",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Safari Extensions JS",
+      "type": "topic",
+      "url": "/documentation/safariextensions"
+    },
+    "doc://com.apple.documentation/documentation/safariextensions/deprecated_symbols": {
+      "identifier": "doc://com.apple.documentation/documentation/safariextensions/deprecated_symbols",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Deprecated Symbols",
+      "type": "topic",
+      "url": "/documentation/safariextensions/deprecated_symbols"
+    },
+    "doc://com.apple.documentation/documentation/safariextensions/safaricontentextension": {
+      "identifier": "doc://com.apple.documentation/documentation/safariextensions/safaricontentextension",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SafariContentExtension",
+      "type": "topic",
+      "url": "/documentation/safariextensions/safaricontentextension"
+    },
+    "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635337-displayversion": {
+      "abstract": [
+        {
+          "text": "The version number of the extension displayed to the user in the Extensions preference pane.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635337-displayversion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "displayVersion",
+      "type": "topic",
+      "url": "/documentation/safariextensions/safariextension/1635337-displayversion"
+    },
+    "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635342-setcontentblocker": {
+      "abstract": [
+        {
+          "text": "Loads content-blocking rules from an object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635342-setcontentblocker",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setContentBlocker",
+      "type": "topic",
+      "url": "/documentation/safariextensions/safariextension/1635342-setcontentblocker"
+    },
+    "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635348-settings": {
+      "abstract": [
+        {
+          "text": "The storage object for an extension’s normal settings.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635348-settings",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "settings",
+      "type": "topic",
+      "url": "/documentation/safariextensions/safariextension/1635348-settings"
+    },
+    "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635352-addcontentstylesheetfromurl": {
+      "abstract": [
+        {
+          "text": "Adds a content style sheet from a URL.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635352-addcontentstylesheetfromurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addContentStyleSheetFromURL",
+      "type": "topic",
+      "url": "/documentation/safariextensions/safariextension/1635352-addcontentstylesheetfromurl"
+    },
+    "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635354-removemenu": {
+      "abstract": [
+        {
+          "text": "Removes the specified menu.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635354-removemenu",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeMenu",
+      "type": "topic",
+      "url": "/documentation/safariextensions/safariextension/1635354-removemenu"
+    },
+    "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635361-addcontentscriptfromurl": {
+      "abstract": [
+        {
+          "text": "Adds a content script from a URL.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635361-addcontentscriptfromurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addContentScriptFromURL",
+      "type": "topic",
+      "url": "/documentation/safariextensions/safariextension/1635361-addcontentscriptfromurl"
+    },
+    "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635366-createpopover": {
+      "abstract": [
+        {
+          "text": "Creates and returns a new popover.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635366-createpopover",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "createPopover",
+      "type": "topic",
+      "url": "/documentation/safariextensions/safariextension/1635366-createpopover"
+    },
+    "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635374-removecontentscripts": {
+      "abstract": [
+        {
+          "text": "Removes all content scripts added by this extension.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635374-removecontentscripts",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeContentScripts",
+      "type": "topic",
+      "url": "/documentation/safariextensions/safariextension/1635374-removecontentscripts"
+    },
+    "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635377-popovers": {
+      "abstract": [
+        {
+          "text": "All of the popovers of an extension.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635377-popovers",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "popovers",
+      "type": "topic",
+      "url": "/documentation/safariextensions/safariextension/1635377-popovers"
+    },
+    "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635398-createmenu": {
+      "abstract": [
+        {
+          "text": "Creates and returns a new menu.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635398-createmenu",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "createMenu",
+      "type": "topic",
+      "url": "/documentation/safariextensions/safariextension/1635398-createmenu"
+    },
+    "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635402-bars": {
+      "abstract": [
+        {
+          "text": "All of the bars provided by the target extension.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635402-bars",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bars",
+      "type": "topic",
+      "url": "/documentation/safariextensions/safariextension/1635402-bars"
+    },
+    "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635422-removecontentstylesheets": {
+      "abstract": [
+        {
+          "text": "Removes all content style sheets added by this extension.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635422-removecontentstylesheets",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeContentStyleSheets",
+      "type": "topic",
+      "url": "/documentation/safariextensions/safariextension/1635422-removecontentstylesheets"
+    },
+    "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635423-baseuri": {
+      "abstract": [
+        {
+          "text": "The URI that corresponds to the root of the extension’s bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635423-baseuri",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "baseURI",
+      "type": "topic",
+      "url": "/documentation/safariextensions/safariextension/1635423-baseuri"
+    },
+    "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635425-companion": {
+      "abstract": [
+        {
+          "text": "A companion object representing a connection from the extension to a companion native application.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635425-companion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "companion",
+      "type": "topic",
+      "url": "/documentation/safariextensions/safariextension/1635425-companion"
+    },
+    "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635426-removecontentstylesheet": {
+      "abstract": [
+        {
+          "text": "Removes the specified content style sheet.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635426-removecontentstylesheet",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeContentStyleSheet",
+      "type": "topic",
+      "url": "/documentation/safariextensions/safariextension/1635426-removecontentstylesheet"
+    },
+    "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635444-securesettings": {
+      "abstract": [
+        {
+          "text": "The storage object for an extension’s secure settings.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635444-securesettings",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "secureSettings",
+      "type": "topic",
+      "url": "/documentation/safariextensions/safariextension/1635444-securesettings"
+    },
+    "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635450-globalpage": {
+      "abstract": [
+        {
+          "text": "The extension’s global page, or ",
+          "type": "text"
+        },
+        {
+          "code": "null",
+          "type": "codeVoice"
+        },
+        {
+          "text": " if the extension doesn’t have a global page.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635450-globalpage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "globalPage",
+      "type": "topic",
+      "url": "/documentation/safariextensions/safariextension/1635450-globalpage"
+    },
+    "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635460-addcontentstylesheet": {
+      "abstract": [
+        {
+          "text": "Adds a content style sheet from a string.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635460-addcontentstylesheet",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addContentStyleSheet",
+      "type": "topic",
+      "url": "/documentation/safariextensions/safariextension/1635460-addcontentstylesheet"
+    },
+    "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635463-toolbaritems": {
+      "abstract": [
+        {
+          "text": "All of the toolbar items of an extension.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635463-toolbaritems",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "toolbarItems",
+      "type": "topic",
+      "url": "/documentation/safariextensions/safariextension/1635463-toolbaritems"
+    },
+    "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635480-removecontentscript": {
+      "abstract": [
+        {
+          "text": "Removes the specified content script.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635480-removecontentscript",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeContentScript",
+      "type": "topic",
+      "url": "/documentation/safariextensions/safariextension/1635480-removecontentscript"
+    },
+    "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635493-removepopover": {
+      "abstract": [
+        {
+          "text": "Removes the specified popover.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635493-removepopover",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removePopover",
+      "type": "topic",
+      "url": "/documentation/safariextensions/safariextension/1635493-removepopover"
+    },
+    "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635505-menus": {
+      "abstract": [
+        {
+          "text": "All of the menus of an extension.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635505-menus",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "menus",
+      "type": "topic",
+      "url": "/documentation/safariextensions/safariextension/1635505-menus"
+    },
+    "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635511-bundleversion": {
+      "abstract": [
+        {
+          "text": "The version number of the extension Safari uses to check for updates.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635511-bundleversion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bundleVersion",
+      "type": "topic",
+      "url": "/documentation/safariextensions/safariextension/1635511-bundleversion"
+    },
+    "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635517-addcontentscript": {
+      "abstract": [
+        {
+          "text": "Adds a content script from a string.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635517-addcontentscript",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addContentScript",
+      "type": "topic",
+      "url": "/documentation/safariextensions/safariextension/1635517-addcontentscript"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/building-a-safari-app-extension": {
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/building-a-safari-app-extension",
+      "kind": "article",
+      "role": "article",
+      "title": "Building a Safari app extension",
+      "type": "topic",
+      "url": "/documentation/safariservices/building-a-safari-app-extension"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/converting-a-legacy-safari-extension-to-a-safari-app-extension": {
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/converting-a-legacy-safari-extension-to-a-safari-app-extension",
+      "kind": "article",
+      "role": "article",
+      "title": "Converting a legacy Safari extension to a Safari app extension",
+      "type": "topic",
+      "url": "/documentation/safariservices/converting-a-legacy-safari-extension-to-a-safari-app-extension"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/safari-web-extensions": {
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/safari-web-extensions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Safari web extensions",
+      "type": "topic",
+      "url": "/documentation/safariservices/safari-web-extensions"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "1668295",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635402-bars",
+        "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635423-baseuri",
+        "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635450-globalpage",
+        "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635463-toolbaritems"
+      ],
+      "kind": "taskGroup",
+      "title": "Working with Extensions"
+    },
+    {
+      "anchor": "1676069",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635425-companion"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing Extension Companions"
+    },
+    {
+      "anchor": "1668382",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635505-menus",
+        "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635398-createmenu",
+        "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635354-removemenu"
+      ],
+      "kind": "taskGroup",
+      "title": "Working with Menus"
+    },
+    {
+      "anchor": "1668452",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635377-popovers",
+        "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635366-createpopover",
+        "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635493-removepopover"
+      ],
+      "kind": "taskGroup",
+      "title": "Working with Popovers"
+    },
+    {
+      "anchor": "1668509",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635517-addcontentscript",
+        "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635361-addcontentscriptfromurl",
+        "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635460-addcontentstylesheet",
+        "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635352-addcontentstylesheetfromurl",
+        "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635480-removecontentscript",
+        "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635374-removecontentscripts",
+        "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635426-removecontentstylesheet",
+        "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635422-removecontentstylesheets"
+      ],
+      "kind": "taskGroup",
+      "title": "Adding and Removing Scripts and Style Sheets"
+    },
+    {
+      "anchor": "1676234",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635342-setcontentblocker"
+      ],
+      "kind": "taskGroup",
+      "title": "Loading Content-Blocking Rules"
+    },
+    {
+      "anchor": "1668639",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635337-displayversion",
+        "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635511-bundleversion"
+      ],
+      "kind": "taskGroup",
+      "title": "Determining Version Numbers"
+    },
+    {
+      "anchor": "1668682",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635348-settings",
+        "doc://com.apple.documentation/documentation/safariextensions/safariextension/1635444-securesettings"
+      ],
+      "kind": "taskGroup",
+      "title": "Storing Settings"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/safariextensions/safariextension"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

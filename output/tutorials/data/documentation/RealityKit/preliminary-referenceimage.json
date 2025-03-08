@@ -1,0 +1,411 @@
+{
+  "abstract": [
+    {
+      "text": "A schema that defines the properties of an image in the physical environment.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit",
+        "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-usd-assets",
+        "doc://com.apple.RealityKit/documentation/RealityKit/usdz-schemas-for-ar"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/preliminary-referenceimage"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "role": "collectionGroup",
+    "title": "Preliminary_ReferenceImage"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This schema defines the criteria that the runtime uses to recognize an image in the physical environment, including pixel data and width.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When RealityKit opens a USDZ file that defines a reference image, it instantiates an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/AnchorEntity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with a component type  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/AnchoringComponent/Target-swift.enum/image(group:name:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Declaration",
+          "level": 3,
+          "text": "Declaration",
+          "type": "heading"
+        },
+        {
+          "code": [
+            "class Preliminary_ReferenceImage \"Preliminary_ReferenceImage\" (",
+            "    inherits = </Typed>",
+            ")"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Define-a-reference-image",
+          "level": 3,
+          "text": "Define a reference image",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example defines a prim named ",
+              "type": "text"
+            },
+            {
+              "code": "ImageReference",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that instructs the runtime to scan for an image described by ",
+              "type": "text"
+            },
+            {
+              "code": "image.png",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "def Preliminary_ReferenceImage \"ImageReference\"",
+            "{",
+            "    uniform asset image = @image.png@",
+            "    uniform double physicalWidth = 12",
+            "}"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/image": {
+      "abstract": [
+        {
+          "text": "An image file for which the runtime should search.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/image",
+      "kind": "article",
+      "role": "article",
+      "title": "image",
+      "type": "topic",
+      "url": "/documentation/realitykit/image"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/physicalwidth": {
+      "abstract": [
+        {
+          "text": "An image’s width in centimeters.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/physicalwidth",
+      "kind": "article",
+      "role": "article",
+      "title": "physicalWidth",
+      "type": "topic",
+      "url": "/documentation/realitykit/physicalwidth"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/placing-a-prim-in-the-real-world": {
+      "abstract": [
+        {
+          "text": "Anchor a prim to a real-world object that the runtime recognizes in the physical environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/placing-a-prim-in-the-real-world",
+      "kind": "article",
+      "role": "article",
+      "title": "Placing a prim in the real world",
+      "type": "topic",
+      "url": "/documentation/realitykit/placing-a-prim-in-the-real-world"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/preliminary-anchoringapi": {
+      "abstract": [
+        {
+          "text": "A schema that defines the placement of a prim and its children at a real-world location.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/preliminary-anchoringapi",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Preliminary_AnchoringAPI",
+      "type": "topic",
+      "url": "/documentation/realitykit/preliminary-anchoringapi"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-usd-assets": {
+      "abstract": [
+        {
+          "text": "Import and use 3D scenes by importing USD files.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-usd-assets",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "USD Assets",
+      "type": "topic",
+      "url": "/documentation/realitykit/realitykit-usd-assets"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/usdz-schemas-for-ar": {
+      "abstract": [
+        {
+          "text": "Add augmented reality functionality to your 3D content using USDZ schemas.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/usdz-schemas-for-ar",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "USDZ schemas for AR",
+      "type": "topic",
+      "url": "/documentation/realitykit/usdz-schemas-for-ar"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/AnchorEntity": {
+      "abstract": [
+        {
+          "text": "An anchor that tethers entities to a scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnchorEntity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/AnchorEntity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AnchorEntity",
+      "type": "topic",
+      "url": "/documentation/RealityKit/AnchorEntity"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/AnchoringComponent/Target-swift.enum/image(group:name:)": {
+      "abstract": [
+        {
+          "text": "An anchor point attached to the image specified by a group and a name in AR Resources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "image"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "group"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/AnchoringComponent/Target-swift.enum/image(group:name:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AnchoringComponent.Target.image(group:name:)",
+      "type": "topic",
+      "url": "/documentation/RealityKit/AnchoringComponent/Target-swift.enum/image(group:name:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Anchoring",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/placing-a-prim-in-the-real-world",
+        "doc://com.apple.RealityKit/documentation/RealityKit/preliminary-anchoringapi"
+      ],
+      "title": "Anchoring"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Properties",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/image",
+        "doc://com.apple.RealityKit/documentation/RealityKit/physicalwidth"
+      ],
+      "title": "Properties"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/preliminary-referenceimage"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

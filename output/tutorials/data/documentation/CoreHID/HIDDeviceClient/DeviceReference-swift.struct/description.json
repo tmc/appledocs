@@ -1,0 +1,448 @@
+{
+  "abstract": [
+    {
+      "text": "A textual representation of this instance.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.CoreHID/documentation/CoreHID",
+        "doc://com.apple.CoreHID/documentation/CoreHID/HIDDeviceClient",
+        "doc://com.apple.CoreHID/documentation/CoreHID/HIDDeviceClient/DeviceReference-swift.struct"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.CoreHID/documentation/CoreHID/HIDDeviceClient/DeviceReference-swift.struct/description"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "CoreHID",
+    "externalID": "s:7CoreHID15HIDDeviceClientC15DeviceReferenceV11descriptionSSvp",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "var"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "description"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:SS",
+        "text": "String"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core HID"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "property",
+    "title": "description"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "nonisolated"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "description"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:SS",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:SS",
+              "text": "String"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Calling this property directly is discouraged. Instead, convert an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "instance of any type to a string by using the ",
+              "type": "text"
+            },
+            {
+              "code": "String(describing:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "initializer. This initializer works with any type, and uses the custom",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "description",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property for types that conform to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "CustomStringConvertible",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct Point: CustomStringConvertible {",
+            "    let x: Int, y: Int",
+            "",
+            "    var description: String {",
+            "        return \"(\\(x), \\(y))\"",
+            "    }",
+            "}",
+            "",
+            "let p = Point(x: 21, y: 30)",
+            "let s = String(describing: p)",
+            "print(s)",
+            "// Prints \"(21, 30)\""
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The conversion of ",
+              "type": "text"
+            },
+            {
+              "code": "p",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to a string in the assignment to ",
+              "type": "text"
+            },
+            {
+              "code": "s",
+              "type": "codeVoice"
+            },
+            {
+              "text": " uses the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "Point",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type’s ",
+              "type": "text"
+            },
+            {
+              "code": "description",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.CoreHID/documentation/CoreHID": {
+      "abstract": [
+        {
+          "text": "Interact with keyboards, mice, and other human interface devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.CoreHID/documentation/CoreHID",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core HID",
+      "type": "topic",
+      "url": "/documentation/corehid"
+    },
+    "doc://com.apple.CoreHID/documentation/CoreHID/HIDDeviceClient": {
+      "abstract": [
+        {
+          "text": "A client of a physical or virtual HID compatible peripheral.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HIDDeviceClient"
+        }
+      ],
+      "identifier": "doc://com.apple.CoreHID/documentation/CoreHID/HIDDeviceClient",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HIDDeviceClient"
+        }
+      ],
+      "role": "symbol",
+      "title": "HIDDeviceClient",
+      "type": "topic",
+      "url": "/documentation/corehid/hiddeviceclient"
+    },
+    "doc://com.apple.CoreHID/documentation/CoreHID/HIDDeviceClient/DeviceReference-swift.struct": {
+      "abstract": [
+        {
+          "text": "A reference to a HID device on the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DeviceReference"
+        }
+      ],
+      "identifier": "doc://com.apple.CoreHID/documentation/CoreHID/HIDDeviceClient/DeviceReference-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DeviceReference"
+        }
+      ],
+      "role": "symbol",
+      "title": "HIDDeviceClient.DeviceReference",
+      "type": "topic",
+      "url": "/documentation/corehid/hiddeviceclient/devicereference-swift.struct"
+    },
+    "doc://com.apple.CoreHID/documentation/CoreHID/HIDDeviceClient/DeviceReference-swift.struct/description": {
+      "abstract": [
+        {
+          "text": "A textual representation of this instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "description"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.CoreHID/documentation/CoreHID/HIDDeviceClient/DeviceReference-swift.struct/description",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "description",
+      "type": "topic",
+      "url": "/documentation/corehid/hiddeviceclient/devicereference-swift.struct/description"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:SS": {
+      "abstract": [
+        {
+          "text": "A Unicode string value that is a collection of characters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SS",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "String",
+      "type": "topic",
+      "url": "/documentation/Swift/String"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/corehid/hiddeviceclient/devicereference-swift.struct/description"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

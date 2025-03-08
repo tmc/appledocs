@@ -1,0 +1,1190 @@
+{
+  "abstract": [
+    {
+      "text": "Track the user’s face in an app that displays an AR experience with the rear camera.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.arkit/documentation/ARKit",
+        "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios",
+        "doc://com.apple.arkit/documentation/ARKit/content-anchors"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.arkit/documentation/ARKit",
+        "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios",
+        "doc://com.apple.arkit/documentation/ARKit/data-management"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.arkit/documentation/ARKit/combining-user-face-tracking-and-world-tracking"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "ARKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Combining user face-tracking and world tracking"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When tracking users’ faces in a world-tracking session, ARKit incorporates information from both the front and rear camera feeds in the AR experience. In addition to tracking the physical environment using the rear camera, ARKit uses the front camera to deliver an anchor that provides the position and expression of the user’s face.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To demonstrate applying the user’s face while world-tracking, this sample app lets the user place robot heads that reflect the user’s facial expression.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "world-and-face-screenshot",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-and-start-the-session",
+          "level": 2,
+          "text": "Configure and start the session",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This app tracks the user’s face in a world-tracking session on iOS 13 and iPad OS 13 or later, on devices with a front TrueDepth camera that return ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/supportsUserFaceTracking",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". To prevent the app from running an unsupported configuration, check whether the iOS device supports simultaneous world and user face-tracking.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard ARWorldTrackingConfiguration.supportsUserFaceTracking else {",
+            "    //swiftlint:disable:next line_length",
+            "    fatalError(\"This sample code requires iOS 13 / iPad OS 13, and an iOS device with a front TrueDepth camera. Note: 2020 iPads do not support user face-tracking while world tracking.\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the device running the app doesn’t support user face-tracking in a world-tracking session, the sample project will stop. In your app, consider gracefully degrading the AR experience in this case, such as by presenting the user with an error message and continuing the experience without it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app sets the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/userFaceTrackingEnabled",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": " on the world-tracking configuration when app loads the view controller.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "configuration.userFaceTrackingEnabled = true"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app then starts the session by running the configuration when the view controller is about to appear onscreen.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "override func viewWillAppear(_ animated: Bool) {",
+            "    super.viewWillAppear(animated)",
+            "    arView.session.run(configuration)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Preview-virtual-content-in-the-physical-environment",
+          "level": 2,
+          "text": "Preview virtual content in the physical environment",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app checks whether a robot head preview exists and creates one if not. ARKit calls the implementation of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSessionDelegate/session(_:didUpdate:)-9v2kw",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " every frame, which makes it a good location for a periodic check.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func session(_ session: ARSession, didUpdate frame: ARFrame) {",
+            "    if headPreview == nil, case .normal = frame.camera.trackingState {",
+            "        addHeadPreview()",
+            "    }",
+            "    //..."
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Detect-changes-in-the-users-expression",
+          "level": 2,
+          "text": "Detect changes in the user’s expression",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "ARKit provides the app with an updated anchor when the user changes their expression, position, or orientation with respect to the world. If there’s an active robot head preview, the app applies these changes to the head.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func session(_ session: ARSession, didUpdate anchors: [ARAnchor]) {",
+            "    anchors.compactMap { $0 as? ARFaceAnchor }.forEach { headPreview?.update(with: $0) }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Inspect-expression-information",
+          "level": 2,
+          "text": "Inspect expression information",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the robot head’s ",
+              "type": "text"
+            },
+            {
+              "code": "update(with faceAnchor:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function, the app reads the user’s current expression by interpreting the anchor’s ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "blend shapes",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let blendShapes = faceAnchor.blendShapes"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Blend shapes are ",
+              "type": "text"
+            },
+            {
+              "code": "Float",
+              "type": "codeVoice"
+            },
+            {
+              "text": " values normalized within the range ",
+              "type": "text"
+            },
+            {
+              "code": "[0..1]",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", with ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " representing the facial feature’s rest position, and ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " representing the opposite––the feature in its most pronounced state. To begin processing the values, the app stores them locally by accessing the anchor’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFaceAnchor/blendShapes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " array.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard let eyeBlinkLeft = blendShapes[.eyeBlinkLeft] as? Float,",
+            "    let eyeBlinkRight = blendShapes[.eyeBlinkRight] as? Float,",
+            "    let eyeBrowLeft = blendShapes[.browOuterUpLeft] as? Float,",
+            "    let eyeBrowRight = blendShapes[.browOuterUpRight] as? Float,",
+            "    let jawOpen = blendShapes[.jawOpen] as? Float,",
+            "    let upperLip = blendShapes[.mouthUpperUpLeft] as? Float,",
+            "    let tongueOut = blendShapes[.tongueOut] as? Float",
+            "    else { return }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "React-to-the-users-expression",
+          "level": 2,
+          "text": "React to the user’s expression",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Blend shape values can apply in unique ways depending on an app’s requirements. The sample app uses blend shapes to make the robot head appear to mimic the user’s expression, such as applying the brow and lip values to offset the robot’s brow and lip positions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "eyebrowLeftEntity.position.y = originalEyebrowY + 0.03 * eyeBrowLeft",
+            "eyebrowRightEntity.position.y = originalEyebrowY + 0.03 * eyeBrowRight",
+            "tongueEntity.position.z = 0.1 * tongueOut",
+            "jawEntity.position.y = originalJawY - jawHeight * jawOpen",
+            "upperLipEntity.position.y = originalUpperLipY + 0.05 * upperLip"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The entity for the robot’s eye opens or closes when the sample app applies the corresponding blend shape value as a scale factor.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "eyeLeftEntity.scale.z = 1 - eyeBlinkLeft",
+            "eyeRightEntity.scale.z = 1 - eyeBlinkRight"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Position-the-robot-head",
+          "level": 2,
+          "text": "Position the robot head",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to capturing the user’s expression using the front camera, ARKit records the position of the user’s face with respect to the world. By design, the user’s face anchor is always located behind the rear camera. To serve the goal of mimicking the user with the robot head, the sample app applies the face anchor’s position to make the robot head always visible. First, it sets the robot head’s initial position equal to that of the camera.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let camera = AnchorEntity(.camera)",
+            "arView.scene.addAnchor(camera)",
+            "",
+            "// Attach a robot head to the camera anchor.",
+            "let robotHead = RobotHead()",
+            "camera.addChild(robotHead)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then the app offsets its z-position in the same amount as the camera’s distance from the user’s face.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let cameraTransform = parent.transformMatrix(relativeTo: nil)",
+            "let faceTransformFromCamera = simd_mul(simd_inverse(cameraTransform), faceAnchor.transform)",
+            "self.position.z = -faceTransformFromCamera.columns.3.z"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Orient-the-robot-head",
+          "level": 2,
+          "text": "Orient the robot head",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app also uses the anchor’s orientation to direct the front of the robot’s head continually toward the camera. It starts by accessing the anchor’s orientation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let rotationEulers = faceTransformFromCamera.eulerAngles"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then it adds ",
+              "type": "text"
+            },
+            {
+              "code": "pi",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to the ",
+              "type": "text"
+            },
+            {
+              "code": "y",
+              "type": "codeVoice"
+            },
+            {
+              "text": "-Euler angle to turn it on the y-axis.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let mirroredRotation = Transform(pitch: rotationEulers.x, yaw: -rotationEulers.y + .pi, roll: rotationEulers.z)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To effect the change, the app applies the updated Euler angles to the robot head’s orientation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "self.orientation = mirroredRotation.rotation"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Capture-the-expression-by-placing-the-head",
+          "level": 2,
+          "text": "Capture the expression by placing the head",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To demonstrate the variety of expressions tracked during the session, the sample app places the robot head in the physical environment when the user taps the screen. When the app initially previews the expressions, it positions the robot head at a fixed offset from the camera. When the user taps the screen, the app reanchors the robot head by updating its position to its current world location.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@objc",
+            "func handleTap(recognizer: UITapGestureRecognizer) {",
+            "    guard let robotHeadPreview = headPreview, robotHeadPreview.isEnabled, robotHeadPreview.appearance == .tracked else {",
+            "        return",
+            "    }",
+            "    let headWorldTransform = robotHeadPreview.transformMatrix(relativeTo: nil)",
+            "    robotHeadPreview.anchor?.reanchor(.world(transform: headWorldTransform))",
+            "    robotHeadPreview.appearance = .anchored",
+            "    // ..."
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Setting the ",
+              "type": "text"
+            },
+            {
+              "code": "headPreview",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " prevents the app from updating the facial expression ",
+              "type": "text"
+            },
+            {
+              "code": "session(didUpdate anchors:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which freezes that expression on the placed robot head.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "self.headPreview = nil"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When ARKit calls ",
+              "type": "text"
+            },
+            {
+              "code": "session(didUpdate frame:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " again, the app checks whether a robot head preview exists, and creates one if not.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func session(_ session: ARSession, didUpdate frame: ARFrame) {",
+            "    if headPreview == nil, case .normal = frame.camera.trackingState {",
+            "        addHeadPreview()",
+            "    }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the app sets ",
+              "type": "text"
+            },
+            {
+              "code": "headPreview",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", it creates another robot head preview, continuing the user’s ability to place objects and archive additional facial expressions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "For more detail about placing virtual content in the real world, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.arkit/documentation/ARKit/placing-objects-and-handling-3d-interaction",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "5fb729747479/CombiningUserFaceTrackingAndWorldTracking.zip": {
+      "checksum": "5fb729747479a82bdda4fb226cb9834b30ea1ed50c80b4ccecd17838d3a3bb7436533f0def38f25ebbc5cf1883d0d6dfd28a0291fb5de40f53caad576aeabf8d",
+      "identifier": "5fb729747479/CombiningUserFaceTrackingAndWorldTracking.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/5fb729747479/CombiningUserFaceTrackingAndWorldTracking.zip"
+    },
+    "doc://com.apple.arkit/documentation/ARKit": {
+      "abstract": [
+        {
+          "text": "Integrate hardware sensing features to produce augmented reality apps and games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ARKit",
+      "type": "topic",
+      "url": "/documentation/arkit"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARFaceAnchor": {
+      "abstract": [
+        {
+          "text": "An anchor for a unique face that is visible in the front-facing camera.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARFaceAnchor"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFaceAnchor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARFaceAnchor"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARFaceAnchor",
+      "type": "topic",
+      "url": "/documentation/arkit/arfaceanchor"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARFaceAnchor/blendShapes": {
+      "abstract": [
+        {
+          "text": "A dictionary of named coefficients representing the detected facial expression in terms of the movement of specific facial features.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "blendShapes"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARFaceAnchor",
+          "text": "ARFaceAnchor"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@ARBlendShapeLocation",
+          "text": "BlendShapeLocation"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNumber",
+          "text": "NSNumber"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFaceAnchor/blendShapes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "blendShapes"
+        }
+      ],
+      "role": "symbol",
+      "title": "blendShapes",
+      "type": "topic",
+      "url": "/documentation/arkit/arfaceanchor/blendshapes"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSessionDelegate/session(_:didUpdate:)-9v2kw": {
+      "abstract": [
+        {
+          "text": "Provides a newly captured camera image and accompanying AR information to the delegate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "session"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARSession",
+          "text": "ARSession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didUpdate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARFrame",
+          "text": "ARFrame"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSessionDelegate/session(_:didUpdate:)-9v2kw",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "session:didUpdateFrame:"
+        }
+      ],
+      "role": "symbol",
+      "title": "session(_:didUpdate:)",
+      "type": "topic",
+      "url": "/documentation/arkit/arsessiondelegate/session(_:didupdate:)-9v2kw"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/supportsUserFaceTracking": {
+      "abstract": [
+        {
+          "text": "A Boolean value that tells you whether the iOS device supports tracking the user’s face during a world-tracking session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "supportsUserFaceTracking"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/supportsUserFaceTracking",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "supportsUserFaceTracking"
+        }
+      ],
+      "role": "symbol",
+      "title": "supportsUserFaceTracking",
+      "type": "topic",
+      "url": "/documentation/arkit/arworldtrackingconfiguration/supportsuserfacetracking"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/userFaceTrackingEnabled": {
+      "abstract": [
+        {
+          "text": "A flag that determines whether ARKit tracks the user’s face in a world-tracking session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "userFaceTrackingEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/userFaceTrackingEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "userFaceTrackingEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "userFaceTrackingEnabled",
+      "type": "topic",
+      "url": "/documentation/arkit/arworldtrackingconfiguration/userfacetrackingenabled"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios": {
+      "abstract": [
+        {
+          "text": "Integrate iOS device camera and motion features to produce augmented reality experiences in your app or game.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ARKit in iOS",
+      "type": "topic",
+      "url": "/documentation/arkit/arkit-in-ios"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/content-anchors": {
+      "abstract": [
+        {
+          "text": "Identify items in the physical environment, including planar surfaces, images, physical objects, body positions, and faces.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/content-anchors",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Content Anchors",
+      "type": "topic",
+      "url": "/documentation/arkit/content-anchors"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/data-management": {
+      "abstract": [
+        {
+          "text": "Obtain detailed information about skeletal and face geometry, and saved world data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/data-management",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Data Management",
+      "type": "topic",
+      "url": "/documentation/arkit/data-management"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/placing-objects-and-handling-3d-interaction": {
+      "abstract": [
+        {
+          "text": "Place virtual content at tracked, real-world locations, and enable the user to interact with virtual content by using gestures.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/placing-objects-and-handling-3d-interaction",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Placing objects and handling 3D interaction",
+      "type": "topic",
+      "url": "/documentation/arkit/placing-objects-and-handling-3d-interaction"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/tracking-and-visualizing-faces": {
+      "abstract": [
+        {
+          "text": "Detect faces in a front-camera AR experience, overlay virtual content, and animate facial expressions in real-time.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/tracking-and-visualizing-faces",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Tracking and visualizing faces",
+      "type": "topic",
+      "url": "/documentation/arkit/tracking-and-visualizing-faces"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "world-and-face-screenshot": {
+      "alt": "Screenshot of three virtual objects placed in the physical environment, each reflecting a different expression that mimic the user’s expression at the time of placing the object.",
+      "identifier": "world-and-face-screenshot",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2369ecab3e3cb3842a11e26fca969754/world-and-face-screenshot.jpg"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "5fb729747479/CombiningUserFaceTrackingAndWorldTracking.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Face-Tracking",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/tracking-and-visualizing-faces",
+        "doc://com.apple.arkit/documentation/ARKit/ARFaceAnchor"
+      ],
+      "title": "Face Tracking"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSessionDelegate~1session(_:didUpdate:)-9v2kw/title",
+          "value": "session:didUpdateFrame:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSessionDelegate~1session(_:didUpdate:)-9v2kw/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "session:didUpdateFrame:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFaceAnchor/title",
+          "value": "ARFaceAnchor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFaceAnchor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARFaceAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFaceAnchor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARFaceAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFaceAnchor~1blendShapes/title",
+          "value": "blendShapes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFaceAnchor~1blendShapes/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "blendShapes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1userFaceTrackingEnabled/title",
+          "value": "userFaceTrackingEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1userFaceTrackingEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "userFaceTrackingEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1supportsUserFaceTracking/title",
+          "value": "supportsUserFaceTracking"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1supportsUserFaceTracking/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "supportsUserFaceTracking"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/arkit/combining-user-face-tracking-and-world-tracking"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

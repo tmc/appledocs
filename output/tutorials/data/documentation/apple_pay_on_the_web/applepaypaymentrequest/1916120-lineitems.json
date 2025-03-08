@@ -1,0 +1,359 @@
+{
+  "abstract": [
+    {
+      "text": "A set of line items that explain recurring payments and additional charges and discounts.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web",
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api",
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypaymentrequest"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypaymentrequest/1916120-lineitems"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1916120,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "structp/ApplePayPaymentRequest/lineItems",
+    "modules": [
+      {
+        "name": "Apple Pay JS"
+      }
+    ],
+    "parent": {
+      "title": "ApplePayPaymentRequest"
+    },
+    "platforms": [
+      {
+        "current": "18.0",
+        "introducedAt": "10.0",
+        "name": "Safari Desktop"
+      },
+      {
+        "current": "18.0",
+        "introducedAt": "10.0",
+        "name": "Safari Mobile"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "structp",
+    "title": "lineItems"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Safari Desktop",
+            "Safari Mobile"
+          ],
+          "tokens": [
+            {
+              "kind": "typeIdentifier",
+              "text": "sequence"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaylineitem",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "struct/ApplePayLineItem",
+              "text": "ApplePayLineItem"
+            },
+            {
+              "kind": "text",
+              "text": "> "
+            },
+            {
+              "kind": "identifier",
+              "text": "lineItems"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaylineitem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypaymentrequest/1916120-lineitems",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " to explain additional charges, discounts, and pending costs. Provide the total separately, in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypaymentrequest/1916119-total",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. Line items aren’t required in a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypaymentrequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", but can’t be empty if they’re present. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following listing shows line items that include a subtotal, free shipping, and estimated tax.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "\"lineItems\": [",
+            "    {",
+            "        \"label\": \"Bag Subtotal\",",
+            "        \"type\": \"final\",",
+            "        \"amount\": \"35.00\"",
+            "    },",
+            "    {",
+            "        \"label\": \"Free Shipping\",",
+            "        \"amount\": \"0.00\",",
+            "        \"type\": \"final\"",
+            "    },",
+            "    {",
+            "        \"label\": \"Estimated Tax\",",
+            "        \"amount\": \"3.06\",",
+            "        \"type\": \"final\"",
+            "    }",
+            "]"
+          ],
+          "metadata": {
+            "anchor": "2851999",
+            "title": "Listing 1"
+          },
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The resulting payment sheet looks like:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2936386",
+              "metadata": {
+                "anchor": "2936386",
+                "title": "Figure 1"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Pay on the Web",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Apple Pay JS API",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/apple_pay_js_api"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaylineitem": {
+      "abstract": [
+        {
+          "text": "A line item in a payment request—for example, total, tax, discount, or grand total.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaylineitem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ApplePayLineItem",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepaylineitem"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypaymentrequest": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypaymentrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ApplePayPaymentRequest",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepaypaymentrequest"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypaymentrequest/1916119-total": {
+      "abstract": [
+        {
+          "text": "A line item that represents the total for the payment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypaymentrequest/1916119-total",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "total",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepaypaymentrequest/1916119-total"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypaymentrequest/1916120-lineitems": {
+      "abstract": [
+        {
+          "text": "A set of line items that explain recurring payments and additional charges and discounts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypaymentrequest/1916120-lineitems",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "lineItems",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepaypaymentrequest/1916120-lineitems"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypaymentrequest/1916120-lineitems#2851999": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypaymentrequest/1916120-lineitems#2851999",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/apple_pay_on_the_web/applepaypaymentrequest/1916120-lineitems#2851999"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "link-media-2936386": {
+      "identifier": "link-media-2936386",
+      "title": "Figure 1",
+      "type": "link",
+      "url": "/documentation/apple_pay_on_the_web/applepaypaymentrequest/1916120-lineitems#2936386"
+    },
+    "media-2936386": {
+      "alt": "An Apple Pay payment sheet that shows card and billing information, shipping information, a shipping method, contact information, and the three line items shown in the related code listing which include a Bag Subtotal of $35, Free Shipping, and Estimated Tax of $3.06. The total is $38.06.",
+      "identifier": "media-2936386",
+      "title": "Figure 1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c0cf5edc9c/8de82100-40d5-433f-943e-13750f8cdb1b.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypaymentrequest/1916119-total",
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaylineitem"
+      ],
+      "title": "Setting the total and summary line items"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/apple_pay_on_the_web/applepaypaymentrequest/1916120-lineitems"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

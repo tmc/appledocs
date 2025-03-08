@@ -1,0 +1,335 @@
+{
+  "abstract": [
+    {
+      "text": "The characteristics of an image the runtime should scan for in order to attach a prim.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit",
+        "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-usd-assets",
+        "doc://com.apple.RealityKit/documentation/RealityKit/usdz-schemas-for-ar",
+        "doc://com.apple.RealityKit/documentation/RealityKit/preliminary-anchoringapi"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/preliminary-imageanchoring-referenceimage"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "preliminary:imageAnchoring:referenceImage"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An asset assigns this property a prim with type ",
+              "type": "text"
+            },
+            {
+              "code": "Preliminary_ReferenceImage",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The runtime searches for an image described by this property in the physical environment. If the runtime finds a match, it places a prim at the image’s real-world location. When a runtime places a prim in the physical environment, the prim’s children also attach to that location.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The runtime employs the information contained in this property only when ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/preliminary-anchoring-type",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is ",
+              "type": "text"
+            },
+            {
+              "code": "image",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Declaration",
+          "level": 3,
+          "text": "Declaration",
+          "type": "heading"
+        },
+        {
+          "code": [
+            "rel preliminary:imageAnchoring:referenceImage"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Anchor-a-cube-to-an-image",
+          "level": 3,
+          "text": "Anchor a cube to an image",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example demonstrates how an asset defines a reference image (",
+              "type": "text"
+            },
+            {
+              "code": "ImageReference",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") that the runtime should look for in the physical environment. The asset includes a cube that assigns an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/preliminary-referenceimage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/preliminary-imageanchoring-referenceimage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property, instructing the runtime to anchor it to a real-world object that matches the image criteria.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "def Cube \"ImageAnchoredCube\" (",
+            "    prepend apiSchemas = [ \"Preliminary_AnchoringAPI\" ]",
+            ")",
+            "{",
+            "    uniform token preliminary:anchoring:type = \"image\"",
+            "    rel preliminary:imageAnchoring:referenceImage = <ImageReference>",
+            "    ...",
+            "",
+            "    def Preliminary_ReferenceImage \"ImageReference\"",
+            "    {",
+            "      uniform asset image = @image.png@",
+            "      uniform double physicalWidth = 0.12",
+            "    }",
+            "}"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/preliminary-anchoring-type": {
+      "abstract": [
+        {
+          "text": "A option that specifies the type of anchor.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/preliminary-anchoring-type",
+      "kind": "article",
+      "role": "article",
+      "title": "preliminary:anchoring:type",
+      "type": "topic",
+      "url": "/documentation/realitykit/preliminary-anchoring-type"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/preliminary-anchoringapi": {
+      "abstract": [
+        {
+          "text": "A schema that defines the placement of a prim and its children at a real-world location.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/preliminary-anchoringapi",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Preliminary_AnchoringAPI",
+      "type": "topic",
+      "url": "/documentation/realitykit/preliminary-anchoringapi"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/preliminary-imageanchoring-referenceimage": {
+      "abstract": [
+        {
+          "text": "The characteristics of an image the runtime should scan for in order to attach a prim.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/preliminary-imageanchoring-referenceimage",
+      "kind": "article",
+      "role": "article",
+      "title": "preliminary:imageAnchoring:referenceImage",
+      "type": "topic",
+      "url": "/documentation/realitykit/preliminary-imageanchoring-referenceimage"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/preliminary-planeanchoring-alignment": {
+      "abstract": [
+        {
+          "text": "An option that specifies the orientation of a plane.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/preliminary-planeanchoring-alignment",
+      "kind": "article",
+      "role": "article",
+      "title": "preliminary:planeAnchoring:alignment",
+      "type": "topic",
+      "url": "/documentation/realitykit/preliminary-planeanchoring-alignment"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/preliminary-referenceimage": {
+      "abstract": [
+        {
+          "text": "A schema that defines the properties of an image in the physical environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/preliminary-referenceimage",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Preliminary_ReferenceImage",
+      "type": "topic",
+      "url": "/documentation/realitykit/preliminary-referenceimage"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-usd-assets": {
+      "abstract": [
+        {
+          "text": "Import and use 3D scenes by importing USD files.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-usd-assets",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "USD Assets",
+      "type": "topic",
+      "url": "/documentation/realitykit/realitykit-usd-assets"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/usdz-schemas-for-ar": {
+      "abstract": [
+        {
+          "text": "Add augmented reality functionality to your 3D content using USDZ schemas.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/usdz-schemas-for-ar",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "USDZ schemas for AR",
+      "type": "topic",
+      "url": "/documentation/realitykit/usdz-schemas-for-ar"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/preliminary-anchoring-type",
+        "doc://com.apple.RealityKit/documentation/RealityKit/preliminary-planeanchoring-alignment"
+      ],
+      "title": "Properties"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/preliminary-imageanchoring-referenceimage"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

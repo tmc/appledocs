@@ -1,0 +1,564 @@
+{
+  "abstract": [
+    {
+      "text": "A component description record.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.qtff/documentation/quicktime-file-format",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Component_detect_atom"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.qtff/documentation/quicktime-file-format/Component_detect_atom/Component_description"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "__docc_universal_symbol_reference_$Component_detect_atom_Component_description",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "preciseIdentifier": "__docc_universal_symbol_reference_$Component_detect_atom_Component_description",
+        "text": "Component description"
+      }
+    ],
+    "modules": [
+      {
+        "name": "quicktime-file-format",
+        "relatedModules": []
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "preciseIdentifier": "__docc_universal_symbol_reference_$Component_detect_atom_Component_description",
+        "text": "Component description"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Data field",
+    "symbolKind": "property",
+    "title": "Component description"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Describes a class of components by their attributes. Fields that are set to ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " are treated as “don’t care.”",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct ComponentDescription {",
+            "\tOSType componentType;",
+            "\tOSType componentSubType;",
+            "\tOSType componentManufacturer;",
+            "\tunsigned long componentFlags;",
+            "\tunsigned long componentFlagsMask;",
+            "};"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A four-character code that identifies the type of component.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "componentType",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A four-character code that identifies the subtype of the component. For example, the subtype of an image compressor component indicates the compression algorithm employed by the compressor. A value of ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "0",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " matches any subtype.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "componentSubType",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A four-character code that identifies the manufacturer of the component. Components provided by Apple have a manufacturer value of ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "'appl'",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ". A value of ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "0",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " matches any manufacturer.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "componentManufacturer",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A 32-bit field that contains flags describing required component capabilities. Set the high-order 8 bits to ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "0",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ". The low-order 24 bits are specific to each component type. These flags can be used to indicate the presence of features or capabilities in a given component.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "componentFlags",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A 32-bit field that indicates which flags in the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "componentFlags",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " field are relevant to this operation. For each flag in the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "componentFlags",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " field that is to be considered as a search criterion, set the corresponding bit in this field to ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "1",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ". To ignore a flag, set the bit to ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "0",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "componentFlagsMask",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "anchor": "Movie-importer-component-flags",
+          "level": 2,
+          "text": "Movie importer component flags",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Set this bit if a movie import component must be able to create a movie from a file without having to write to a separate disk file. Examples include MPEG and AIFF import components.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "canMovieImportInPlace",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Set this bit if the component’s subtype is a file extension instead of a Macintosh file type. For example, if you require an import component that opens files with an extension of ",
+                        "type": "text"
+                      },
+                      {
+                        "code": ".doc",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", set this flag and set your component subtype to ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "'DOC '",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "movieImportSubTypeIsFileExtension",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Set this bit if a movie import component must import files.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "canMovieImportFiles",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format": {
+      "abstract": [
+        {
+          "text": "An object-oriented file format for the storage and exchange of digital media between devices, applications, and operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "QuickTime File Format",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Component_detect_atom": {
+      "abstract": [
+        {
+          "text": "A component detect atom specifies a QuickTime component, such as a particular video decompressor, required to play the movie.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Component_detect_atom",
+          "text": "Component detect atom ('rmcd')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Component_detect_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Component detect atom ('rmcd')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/component_detect_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Component_detect_atom/Component_description": {
+      "abstract": [
+        {
+          "text": "A component description record.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Component_detect_atom_Component_description",
+          "text": "Component description"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Component_detect_atom/Component_description",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Component description",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/component_detect_atom/component_description"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Component_detect_atom/Flags": {
+      "abstract": [
+        {
+          "text": "A 32-bit integer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Component_detect_atom_Flags",
+          "text": "Flags"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Component_detect_atom/Flags",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Flags",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/component_detect_atom/flags"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Component_detect_atom/Minimum_version": {
+      "abstract": [
+        {
+          "text": "An unsigned 32-bit integer containing the minimum required version of the specified component.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Component_detect_atom_Minimum_version",
+          "text": "Minimum version"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Component_detect_atom/Minimum_version",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Minimum version",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/component_detect_atom/minimum_version"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Component_detect_atom/Size": {
+      "abstract": [
+        {
+          "text": "The number of bytes in this component detect atom.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Component_detect_atom_Size",
+          "text": "Size"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Component_detect_atom/Size",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Size",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/component_detect_atom/size"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Component_detect_atom/Type": {
+      "abstract": [
+        {
+          "text": "The type of this atom.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Component_detect_atom_Type",
+          "text": "Type"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Component_detect_atom/Type",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Type",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/component_detect_atom/type"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Data-fields",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Component_detect_atom/Size",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Component_detect_atom/Type",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Component_detect_atom/Flags",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Component_detect_atom/Minimum_version"
+      ],
+      "title": "Data fields"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quicktime-file-format/component_detect_atom/component_description"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

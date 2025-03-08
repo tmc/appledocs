@@ -1,0 +1,538 @@
+{
+  "abstract": [
+    {
+      "text": "Reads an immutable value stored by the plug-in authorization mechanism.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.security/documentation/Security",
+        "doc://com.apple.security/documentation/Security/AuthorizationCallbacks"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/GetImmutableHintValue"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@AuthorizationCallbacks@FI@GetImmutableHintValue",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "GetImmutableHintValue"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Security"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "GetImmutableHintValue"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "10.4",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "property",
+    "title": "GetImmutableHintValue"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:*FI(#*$@S@__OpaqueAuthorizationEngine#*1C#**1$@S@AuthorizationValue)",
+              "text": "int (*)(struct __OpaqueAuthorizationEngine *, const char *, const struct AuthorizationValue **)"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "GetImmutableHintValue"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An opaque handle that is passed to your plug-in when the authorization engine calls your ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.security/documentation/Security/AuthorizationPluginInterface/MechanismCreate",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " function.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "inEngine"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A key indicating which value you want to retrieve. This key must correspond to one you specified when you used the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/SetHintValue",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " function to store a hint value.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "inKey"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "On input, allocate a pointer to an ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.security/documentation/Security/AuthorizationValue",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " structure. On output, the structure contains the size of the data and a pointer to the data. Because your ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.security/documentation/Security/AuthorizationValue",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " structure does not own the data, you must not deallocate the structure or the data pointed to by the structure.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "outValue"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A result code. Possible results are ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/errAuthorizationSuccess",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " (no error) and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/errAuthorizationInternal",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " (Security Server internal error).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This function behaves like ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/GetHintValue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", except that the hint is immutable.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.security/documentation/Security": {
+      "abstract": [
+        {
+          "text": "Secure the data your app manages, and control access to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Security",
+      "type": "topic",
+      "url": "/documentation/security"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationCallbacks": {
+      "abstract": [
+        {
+          "text": "The interface implemented by the Security Server.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationCallbacks"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCallbacks",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AuthorizationCallbacks",
+      "type": "topic",
+      "url": "/documentation/security/authorizationcallbacks"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/GetHintValue": {
+      "abstract": [
+        {
+          "text": "Reads a value stored by the plug-in authorization mechanism.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "GetHintValue"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/GetHintValue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetHintValue",
+      "type": "topic",
+      "url": "/documentation/security/authorizationcallbacks/gethintvalue"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/GetImmutableHintValue": {
+      "abstract": [
+        {
+          "text": "Reads an immutable value stored by the plug-in authorization mechanism.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "GetImmutableHintValue"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/GetImmutableHintValue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetImmutableHintValue",
+      "type": "topic",
+      "url": "/documentation/security/authorizationcallbacks/getimmutablehintvalue"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/SetHintValue": {
+      "abstract": [
+        {
+          "text": "Stores data needed during authorization as a key-value pair.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SetHintValue"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/SetHintValue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetHintValue",
+      "type": "topic",
+      "url": "/documentation/security/authorizationcallbacks/sethintvalue"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationPluginInterface/MechanismCreate": {
+      "abstract": [
+        {
+          "text": "Creates an authorization mechanism.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MechanismCreate"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationPluginInterface/MechanismCreate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MechanismCreate",
+      "type": "topic",
+      "url": "/documentation/security/authorizationplugininterface/mechanismcreate"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationValue": {
+      "abstract": [
+        {
+          "text": "A structure used to pass data between the authorization engine and the plug-in mechanism.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationValue"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationValue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AuthorizationValue",
+      "type": "topic",
+      "url": "/documentation/security/authorizationvalue"
+    },
+    "doc://com.apple.security/documentation/Security/errAuthorizationInternal": {
+      "abstract": [
+        {
+          "text": "An unrecognized internal error occurred.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "errAuthorizationInternal"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/errAuthorizationInternal",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "errAuthorizationInternal"
+        }
+      ],
+      "role": "symbol",
+      "title": "errAuthorizationInternal",
+      "type": "topic",
+      "url": "/documentation/security/errauthorizationinternal"
+    },
+    "doc://com.apple.security/documentation/Security/errAuthorizationSuccess": {
+      "abstract": [
+        {
+          "text": "The operation completed successfully.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "errAuthorizationSuccess"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/errAuthorizationSuccess",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "errAuthorizationSuccess"
+        }
+      ],
+      "role": "symbol",
+      "title": "errAuthorizationSuccess",
+      "type": "topic",
+      "url": "/documentation/security/errauthorizationsuccess"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1errAuthorizationInternal/title",
+          "value": "errAuthorizationInternal"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1errAuthorizationInternal/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "errAuthorizationInternal"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1errAuthorizationSuccess/title",
+          "value": "errAuthorizationSuccess"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1errAuthorizationSuccess/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "errAuthorizationSuccess"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/security/authorizationcallbacks/getimmutablehintvalue"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

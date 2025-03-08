@@ -1,0 +1,359 @@
+{
+  "abstract": [
+    {
+      "text": "Provide additional information about a QuickTime VR movie using custom atoms.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.qtff/documentation/quicktime-file-format",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Deprecated_atoms",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/QuickTime_VR_file_format"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Adding_custom_atoms_in_a_QuickTime_VR_movie"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "QuickTime File Format"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Adding custom atoms in a QuickTime VR movie"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you author a QuickTime VR movie, you may choose to add custom atoms to either the VR world or node information atom containers. Those atoms can be extracted within an application to provide additional information that the application may use.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Information that pertains to the entire scene might be stored in a custom atom within the VR world atom container. Node-specific information could be stored in the individual node information atom containers or as sibling atoms to the node location atoms within the VR world.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Custom hot spot atoms should be stored as siblings to the hot spot information atoms in the node information atom container. Generally, its atom type is the same as the custom hot spot type. You can set up an intercept procedure in your application in order to process clicks on the custom hot spots.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you use custom atoms, you should install your hot spot intercept procedure when you open the movie. The following listing is an example of such an intercept procedure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "QTVRInterceptProc MyProc = NewQTVRInterceptProc (MyHotSpot);",
+            "QTVRInstallInterceptProc (qtvr, kQTVRTriggerHotSpotSelector, myProc,  0, 0);",
+            " ",
+            "pascal void MyHotSpot (QTVRInstance qtvr, QTVRInterceptPtr qtvrMsg,",
+            "                        SInt32 refCon, Boolean *cancel)",
+            "{",
+            "    UInt32 hotSpotID = (UInt32) qtvrMsg->parameter[0];",
+            "    QTAtomContainer nodeInfo =",
+            "            (QTAtomContainer) qtvrMsg->parameter[1];",
+            "    QTAtom hotSpotAtom = (QTAtom) qtvrMsg->parameter[2];",
+            "    OSType hotSpotType;",
+            "    CustomData myCustomData;",
+            "    QTAtom myAtom;",
+            " ",
+            "    QTVRGetHotSpotType (qtvr, hotSpotID, &hotSpotType);",
+            "    if (hotSpotType != kMyAtomType) return;",
+            " ",
+            "    // It's our type of hot spot - don't let anyone else handle  it",
+            "    *cancel = true;",
+            " ",
+            "    // Find our custom atom",
+            "    myAtom = QTFindChildByID (nodeInfo, hotSpotAtom, kMyAtomType,  1, nil);",
+            "    if (myAtom != 0) {",
+            "        OSErr err;",
+            "        // Copy the custom data into our structure",
+            "        err = QTCopyAtomDataToPtr (nodeInfo, myAtom, false,",
+            "                        sizeof(CustomData), &myCustomData, nil);",
+            "        if (err == noErr)",
+            "            // Do something with it",
+            "            DoMyHotSpotStuff (hotSpotID, &myCustomData);",
+            "    }",
+            "}"
+          ],
+          "syntax": "c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your intercept procedure is called for clicks on any hot spot. You should check to see if it is your type of hot spot and, if so, extract the custom hot spot atom and do whatever is appropriate for your hot spot type (",
+              "type": "text"
+            },
+            {
+              "code": "DoMyHotSpotStuff",
+              "type": "codeVoice"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you no longer need the intercept procedure you should call ",
+              "type": "text"
+            },
+            {
+              "code": "QTVRInstallInterceptProc",
+              "type": "codeVoice"
+            },
+            {
+              "text": " again with the same selector and a nil procedure pointer and then call ",
+              "type": "text"
+            },
+            {
+              "code": "DisposeRoutineDescriptor",
+              "type": "codeVoice"
+            },
+            {
+              "text": " on ",
+              "type": "text"
+            },
+            {
+              "code": "myProc",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple reserves all hot spot and atom types with lowercase letters. Your custom hot spot type should contain all uppercase letters.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Adding_atom_containers_in_a_QuickTime_VR_Movie": {
+      "abstract": [
+        {
+          "text": "Add node information to your QuickTime VR world.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Adding_atom_containers_in_a_QuickTime_VR_Movie",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding atom containers in a QuickTime VR Movie",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/adding_atom_containers_in_a_quicktime_vr_movie"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Deprecated_atoms": {
+      "abstract": [
+        {
+          "text": "Review unsupported atoms.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Deprecated_atoms",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Deprecated atoms",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/deprecated_atoms"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Getting_the_name_of_a_QuickTime_VR_node": {
+      "abstract": [
+        {
+          "text": "Retrieve information from a QuickTime VR node with QuickTime atom container functions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Getting_the_name_of_a_QuickTime_VR_node",
+      "kind": "article",
+      "role": "article",
+      "title": "Getting the name of a QuickTime VR node",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/getting_the_name_of_a_quicktime_vr_node"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Multinode_movies": {
+      "abstract": [
+        {
+          "text": "Store any number of object and panoramic nodes in a multinode QuickTime VR movie.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Multinode_movies",
+      "kind": "article",
+      "role": "article",
+      "title": "Multinode movies",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/multinode_movies"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Optimizing_QuickTime_VR_movies_for_web_playback": {
+      "abstract": [
+        {
+          "text": "Prevent having to download an entire movie before starting playback.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Optimizing_QuickTime_VR_movies_for_web_playback",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Optimizing QuickTime VR movies for web playback",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/optimizing_quicktime_vr_movies_for_web_playback"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/QuickTime_VR_file_format": {
+      "abstract": [
+        {
+          "text": "A file format used to store a QuickTime VR movie on disk.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/QuickTime_VR_file_format",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "QuickTime VR file format",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/quicktime_vr_file_format"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Single-node_object_movies": {
+      "abstract": [
+        {
+          "text": "Store a QTVR track, an object track, and an object image track in a single-node object movie.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Single-node_object_movies",
+      "kind": "article",
+      "role": "article",
+      "title": "Single-node object movies",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/single-node_object_movies"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Single-node_panoramic_movies": {
+      "abstract": [
+        {
+          "text": "Store a QTVR track, a panorama track, and a panorama image track in a single-node panoramic movie.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Single-node_panoramic_movies",
+      "kind": "article",
+      "role": "article",
+      "title": "Single-node panoramic movies",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/single-node_panoramic_movies"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format": {
+      "abstract": [
+        {
+          "text": "An object-oriented file format for the storage and exchange of digital media between devices, applications, and operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "QuickTime File Format",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Storing-QuickTime-VR-files",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Single-node_panoramic_movies",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Single-node_object_movies",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Multinode_movies",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Getting_the_name_of_a_QuickTime_VR_node",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Adding_atom_containers_in_a_QuickTime_VR_Movie",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Optimizing_QuickTime_VR_movies_for_web_playback"
+      ],
+      "title": "Storing QuickTime VR files"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quicktime-file-format/adding_custom_atoms_in_a_quicktime_vr_movie"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

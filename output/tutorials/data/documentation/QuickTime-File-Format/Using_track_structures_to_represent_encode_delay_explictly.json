@@ -1,0 +1,526 @@
+{
+  "abstract": [
+    {
+      "text": "Represent encoder delay explicitly with an edit list atom and sample group structures.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.qtff/documentation/quicktime-file-format",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Media_data_atom_types",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sound_media",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Appendix_G_Audio_priming_handling_encoder_delay_in_AAC"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Using_track_structures_to_represent_encode_delay_explictly"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "QuickTime File Format"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Using track structures to represent encoder delay explicitly"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In QuickTime movie files (.mov) and related MPEG-4 files, AAC encoded audio is carried in a sound track as a series of media samples—each media sample corresponding to an AAC encoded audio packet. A track uses an edit list (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Edit_list_atom",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") to indicate the range of time from the media samples to present. The edit list atom along with additional atoms known as Sample Group Structures, introduced in the Sample group structures section below, can now be used to explicitly represent encoder delay.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A complete implementation using the sample group structures is required to explicitly represent the placement of the source signal in the encoded track. An incomplete implementation will result in unspecified interpretation by Apple software and tools. In the absence of the sample group structures, the classic solution of expecting an implicit encoding delay of 2112 samples and the edit list to start at the beginning of encoder delay will be assumed as described in the previous section.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Edit-list-atom",
+          "level": 2,
+          "text": "Edit list atom",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Edit_atom",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Edit_list_atom",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for details of edit lists in track atom structures.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A sound track of AAC encoded audio uses an edit list to indicate the placement of the source signal in the time represented by the encoded AAC packets. The media time field of the edit list must indicate the first sample to be presented and will correspond in time to the first audio sample following the encoder delay in that track. The edit list track duration field should be set to the duration of the source waveform in media samples. The edit list must not extend into the encoder delay or into any remainder samples of the encoded sound track. Note that for a single waveform encoded into a sound track, the sound track requires only a single edit list atom with one entry.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Track duration uses the movie timescale instead of the media timescale used by media time. If the media timescale and movie timescale differ, the track duration may not be sample accurate.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Sample-group-structures",
+          "level": 2,
+          "text": "Sample group structures",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This implementation of sample group structures in QuickTime is designed to be compatible with the ISO Sample Group Structures definition and allow for future generalization. A full description of ISO 14996-12 Sample Group Structures is not required in order to provide explicit encoder delay representation. A short description of the more general characteristics of these structures is included in the descriptions below, followed by the information required for use with QuickTime.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Sample group structures of roll-group type with a constant roll distance are used to represent decoder dependencies for AAC encoded media. The sample group structures are intended to serve two purposes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To indicate the amount of decoder delay in AAC packets",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To signal to readers parsing QuickTime movies that the sound track includes explicit information for encoder delay and remainder samples for the AAC packets encoded in the file",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The effect of using sample group structures in the track in this manner is that the edit list’s media time and track duration fields do not include encoder delay, as specified above in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Edit_list_atom",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Two sample group structure atoms are used to represent the amount of encoder delay and remainder samples which must be trimmed: ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_group_description_atom",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sample-to-group_atom",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Appendix_G_Audio_priming_handling_encoder_delay_in_AAC": {
+      "abstract": [
+        {
+          "text": "Position a source audio signal in a sound track to handle encoder delay.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Appendix_G_Audio_priming_handling_encoder_delay_in_AAC",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio priming-handling encoder delay in AAC",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/appendix_g_audio_priming_handling_encoder_delay_in_aac"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Background_AAC_encoding": {
+      "abstract": [
+        {
+          "text": "AAC requires data beyond the source PCM audio samples in order to correctly encode and decode audio samples due to the nature of the encoding algorithm.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Background_AAC_encoding",
+      "kind": "article",
+      "role": "article",
+      "title": "AAC encoding background",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/background_aac_encoding"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Example_representing_encoder_delay_explicitly": {
+      "abstract": [
+        {
+          "text": "Review an example that represents the temporal position of 5 seconds of 48kHz PCM audio encoded in a 48kHz AAC sound track.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Example_representing_encoder_delay_explicitly",
+      "kind": "article",
+      "role": "article",
+      "title": "Representing encoder delay explicitly",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/example_representing_encoder_delay_explicitly"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Historical_solution_implicit_encoder_delay": {
+      "abstract": [
+        {
+          "text": "Implicit encoder delay uses the most common delay of 2112 audio samples.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Historical_solution_implicit_encoder_delay",
+      "kind": "article",
+      "role": "article",
+      "title": "Historical solution for implicit encoder delay",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/historical_solution_implicit_encoder_delay"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Media_data_atom_types": {
+      "abstract": [
+        {
+          "text": "Store different types of media data, including video, sound, subtitles, and more.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Media_data_atom_types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Media data atom types",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/media_data_atom_types"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sound_media": {
+      "abstract": [
+        {
+          "text": "Store compressed and uncompressed audio data in QuickTime movies.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sound_media",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Sound media",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sound_media"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Summary_using_track_structures_to_represent_encoder_delay": {
+      "abstract": [
+        {
+          "text": "Use sample group structures to represent encoder delay for AAC sound tracks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Summary_using_track_structures_to_represent_encoder_delay",
+      "kind": "article",
+      "role": "article",
+      "title": "Representing encoder delay with track structures",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/summary_using_track_structures_to_represent_encoder_delay"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/The_timing_and_synchronization_problem": {
+      "abstract": [
+        {
+          "text": "Trim the silent priming samples to preserve correct synchronization.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/The_timing_and_synchronization_problem",
+      "kind": "article",
+      "role": "article",
+      "title": "The timing and synchronization problem",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/the_timing_and_synchronization_problem"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format": {
+      "abstract": [
+        {
+          "text": "An object-oriented file format for the storage and exchange of digital media between devices, applications, and operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "QuickTime File Format",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Edit_atom": {
+      "abstract": [
+        {
+          "text": "An atom that defines the portions of the media that are to be used to build up a track for a movie.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Edit_atom",
+          "text": "Edit atom ('edts')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Edit_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Edit atom ('edts')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/edit_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Edit_list_atom": {
+      "abstract": [
+        {
+          "text": "An atom that maps from a time in a movie to a time in a media, and ultimately to media data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Edit_list_atom",
+          "text": "Edit list atom ('elst')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Edit_list_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Edit list atom ('elst')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/edit_list_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Sample-to-group_atom": {
+      "abstract": [
+        {
+          "text": "An atom that associates a sample with a sample group description.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Sample-to-group_atom",
+          "text": "Sample-to-group atom ('sbpd')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sample-to-group_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sample-to-group atom ('sbpd')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sample-to-group_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_group_description_atom": {
+      "abstract": [
+        {
+          "text": "An atom that gives information about the characteristics of sample groups.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Sample_group_description_atom",
+          "text": "Sample group description atom ('sgpd')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_group_description_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sample group description atom ('sgpd')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sample_group_description_atom"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Handling-encoder-delay",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Background_AAC_encoding",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/The_timing_and_synchronization_problem",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Historical_solution_implicit_encoder_delay",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Example_representing_encoder_delay_explicitly",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Summary_using_track_structures_to_represent_encoder_delay"
+      ],
+      "title": "Handling encoder delay"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Sample-group-structures",
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Sample_group_description_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Sample-to-group_atom"
+      ],
+      "title": "Sample group structures"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quicktime-file-format/using_track_structures_to_represent_encode_delay_explictly"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

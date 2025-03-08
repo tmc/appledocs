@@ -1,0 +1,400 @@
+{
+  "abstract": [
+    {
+      "text": "Metadata that partitions an asset into scene-based units.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit",
+        "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-usd-assets",
+        "doc://com.apple.RealityKit/documentation/RealityKit/usdz-schemas-for-ar"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/scenelibrary"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "sceneLibrary"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Set a prim’s ",
+              "type": "text"
+            },
+            {
+              "code": "kind",
+              "type": "codeVoice"
+            },
+            {
+              "text": " metadata to ",
+              "type": "text"
+            },
+            {
+              "code": "sceneLibrary",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to create a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "scene.",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " Partitioning an asset’s contents into multiple scenes offers the following benefits:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Prims segment content into distinct parts that have differing utilities and lifetimes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Unlike USD ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://graphics.pixar.com/usd/docs/Authoring-Variants.html",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", you can mark each scene active or inactive independently.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Actions can operate on scenes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The runtime doesn’t support multiple active scenes in a single file. When a USDZ file loads, the runtime displays the first active scene. The runtime ignores nested scenes. If an asset doesn’t define a scene, the runtime loads the full file contents as a single scene.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Define a scene using the ",
+              "type": "text"
+            },
+            {
+              "code": "def",
+              "type": "codeVoice"
+            },
+            {
+              "text": " keyword to specify the asset’s active scene –– that is, the one that the runtime makes visible on load. Use the ",
+              "type": "text"
+            },
+            {
+              "code": "over",
+              "type": "codeVoice"
+            },
+            {
+              "text": " keyword to specify inactive scenes –– those that are invisible on load. The runtime doesn’t display inactive scenes. The advantage of inactive scenes is that you can activate one in an editor during development, and an app can transition to an inactive scene during the AR experience.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This specification is backward compatible because of the way traditional USD runtimes skip ",
+              "type": "text"
+            },
+            {
+              "code": "over",
+              "type": "codeVoice"
+            },
+            {
+              "text": " definitions. A runtime that doesn’t support the ",
+              "type": "text"
+            },
+            {
+              "code": "sceneLibrary",
+              "type": "codeVoice"
+            },
+            {
+              "text": " metadata displays only the first active scene.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Declaration",
+          "level": 3,
+          "text": "Declaration",
+          "type": "heading"
+        },
+        {
+          "code": [
+            "kind = \"sceneLibrary\""
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Partition-content-into-scenes",
+          "level": 3,
+          "text": "Partition content into scenes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example demonstrates a scene template on which you can base your asset.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "def Xform \"Root\" (",
+            "    # Because you can apply `kind` to any type of prim, that allows any prim to be a scene.",
+            "    kind = \"sceneLibrary\"",
+            ")",
+            "{",
+            "    # `PrimaryScene` is immediately active due to the `def` keyword.",
+            "    def Xform \"PrimaryScene\" (",
+            "        # `sceneName` can be any human-readable string.",
+            "        sceneName = \"Primary Scene\"",
+            "    )",
+            "    {",
+            "    }",
+            "",
+            "    # `SecondaryScene` is inactive due to the over keyword.",
+            "    over Xform \"SecondaryScene\" (",
+            "        sceneName = \"Secondary Scene\"",
+            "    )",
+            "    {",
+            "    }",
+            "}",
+            ""
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "code": "sceneName",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property to refer to a scene to load it or transition to it from another scene.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/preferrediblversion": {
+      "abstract": [
+        {
+          "text": "Metadata that determines the lighting environment of virtual content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/preferrediblversion",
+      "kind": "article",
+      "role": "article",
+      "title": "preferredIblVersion",
+      "type": "topic",
+      "url": "/documentation/realitykit/preferrediblversion"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-usd-assets": {
+      "abstract": [
+        {
+          "text": "Import and use 3D scenes by importing USD files.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-usd-assets",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "USD Assets",
+      "type": "topic",
+      "url": "/documentation/realitykit/realitykit-usd-assets"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/usdz-schemas-for-ar": {
+      "abstract": [
+        {
+          "text": "Add augmented reality functionality to your 3D content using USDZ schemas.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/usdz-schemas-for-ar",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "USDZ schemas for AR",
+      "type": "topic",
+      "url": "/documentation/realitykit/usdz-schemas-for-ar"
+    },
+    "doc://com.apple.documentation/documentation/ARKit/specifying-a-lighting-environment-in-ar-quick-look": {
+      "abstract": [
+        {
+          "text": "Add metadata to your USDZ file to specify its lighting characteristics.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ARKit/specifying-a-lighting-environment-in-ar-quick-look",
+      "kind": "article",
+      "role": "article",
+      "title": "Specifying a lighting environment in AR Quick Look",
+      "type": "topic",
+      "url": "/documentation/ARKit/specifying-a-lighting-environment-in-ar-quick-look"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://graphics.pixar.com/usd/docs/Authoring-Variants.html": {
+      "identifier": "https://graphics.pixar.com/usd/docs/Authoring-Variants.html",
+      "title": "Variant Sets",
+      "titleInlineContent": [
+        {
+          "text": "Variant Sets",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://graphics.pixar.com/usd/docs/Authoring-Variants.html"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Scenes-and-lighting",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/ARKit/specifying-a-lighting-environment-in-ar-quick-look",
+        "doc://com.apple.RealityKit/documentation/RealityKit/preferrediblversion"
+      ],
+      "title": "Scenes and lighting"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/scenelibrary"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

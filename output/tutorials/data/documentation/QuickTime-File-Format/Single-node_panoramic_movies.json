@@ -1,0 +1,253 @@
+{
+  "abstract": [
+    {
+      "text": "Store a QTVR track, a panorama track, and a panorama image track in a single-node panoramic movie.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.qtff/documentation/quicktime-file-format",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Deprecated_atoms",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/QuickTime_VR_file_format"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Single-node_panoramic_movies"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "QuickTime File Format"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Single-node panoramic movies"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Every panoramic movie contains at least three tracks: a QTVR track, a panorama track, and a panorama image track.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a single-node panoramic movie, the QTVR track contains just one sample. There is a corresponding sample in the panorama track, whose time and duration are the same as the time and duration of the sample in the QTVR track. The time base of the movie is used to locate the proper video samples in the panorama image track. For a panoramic movie, the video sample for the first diced frame of a node’s panoramic image is located at the same time as the corresponding QTVR and panorama track samples. The total duration of all the video samples is the same as the duration of the corresponding QTVR sample and the panorama sample.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A panoramic movie can contain an optional hot spot image track and any number of standard QuickTime tracks. A panoramic movie can also contain panoramic image tracks with a lower resolution. The video samples in these low-resolution image tracks must be located at the same time and must have the same total duration as the QTVR track. Likewise, the video samples for a hot spot image track, if one exists, must be located at the same time and must have the same total duration as the QTVR track.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Adding_atom_containers_in_a_QuickTime_VR_Movie": {
+      "abstract": [
+        {
+          "text": "Add node information to your QuickTime VR world.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Adding_atom_containers_in_a_QuickTime_VR_Movie",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding atom containers in a QuickTime VR Movie",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/adding_atom_containers_in_a_quicktime_vr_movie"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Adding_custom_atoms_in_a_QuickTime_VR_movie": {
+      "abstract": [
+        {
+          "text": "Provide additional information about a QuickTime VR movie using custom atoms.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Adding_custom_atoms_in_a_QuickTime_VR_movie",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding custom atoms in a QuickTime VR movie",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/adding_custom_atoms_in_a_quicktime_vr_movie"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Deprecated_atoms": {
+      "abstract": [
+        {
+          "text": "Review unsupported atoms.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Deprecated_atoms",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Deprecated atoms",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/deprecated_atoms"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Getting_the_name_of_a_QuickTime_VR_node": {
+      "abstract": [
+        {
+          "text": "Retrieve information from a QuickTime VR node with QuickTime atom container functions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Getting_the_name_of_a_QuickTime_VR_node",
+      "kind": "article",
+      "role": "article",
+      "title": "Getting the name of a QuickTime VR node",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/getting_the_name_of_a_quicktime_vr_node"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Multinode_movies": {
+      "abstract": [
+        {
+          "text": "Store any number of object and panoramic nodes in a multinode QuickTime VR movie.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Multinode_movies",
+      "kind": "article",
+      "role": "article",
+      "title": "Multinode movies",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/multinode_movies"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Optimizing_QuickTime_VR_movies_for_web_playback": {
+      "abstract": [
+        {
+          "text": "Prevent having to download an entire movie before starting playback.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Optimizing_QuickTime_VR_movies_for_web_playback",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Optimizing QuickTime VR movies for web playback",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/optimizing_quicktime_vr_movies_for_web_playback"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/QuickTime_VR_file_format": {
+      "abstract": [
+        {
+          "text": "A file format used to store a QuickTime VR movie on disk.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/QuickTime_VR_file_format",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "QuickTime VR file format",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/quicktime_vr_file_format"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Single-node_object_movies": {
+      "abstract": [
+        {
+          "text": "Store a QTVR track, an object track, and an object image track in a single-node object movie.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Single-node_object_movies",
+      "kind": "article",
+      "role": "article",
+      "title": "Single-node object movies",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/single-node_object_movies"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format": {
+      "abstract": [
+        {
+          "text": "An object-oriented file format for the storage and exchange of digital media between devices, applications, and operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "QuickTime File Format",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Storing-QuickTime-VR-files",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Single-node_object_movies",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Multinode_movies",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Getting_the_name_of_a_QuickTime_VR_node",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Adding_custom_atoms_in_a_QuickTime_VR_movie",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Adding_atom_containers_in_a_QuickTime_VR_Movie",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Optimizing_QuickTime_VR_movies_for_web_playback"
+      ],
+      "title": "Storing QuickTime VR files"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quicktime-file-format/single-node_panoramic_movies"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

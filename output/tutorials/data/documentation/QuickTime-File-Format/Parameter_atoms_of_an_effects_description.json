@@ -1,0 +1,544 @@
+{
+  "abstract": [
+    {
+      "text": "Customize your effect with parameter atoms.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.qtff/documentation/quicktime-file-format",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Structuring_movie_data_and_features",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Creating_an_effect_description"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Parameter_atoms_of_an_effects_description"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "QuickTime File Format"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Parameter atoms of an effects description"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to the required atoms, the effects description contains a variable number of parameter atoms. The number and types of parameter atoms vary from effect to effect. For example, the cross fade effect has only one parameter, while the general convolution filter effect has nine. Some effects have no parameters at all, and do not require any parameter atoms.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can obtain the list of parameter atoms for a given effect by calling the effect component using ",
+              "type": "text"
+            },
+            {
+              "code": "ImageCodecGetParameterList",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The parameter description atoms it returns include default settings for each parameter in the form of parameter atoms that you can insert into your effect description.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "QTInsertChild",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function is used to add these parameters to the effect description, as seen in the code example in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Required_atoms_of_an_effects_description",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Consider, for instance, the push effect. Its effect description contains a ",
+              "type": "text"
+            },
+            {
+              "code": "kParameterWhatName",
+              "type": "codeVoice"
+            },
+            {
+              "text": " atom, two ",
+              "type": "text"
+            },
+            {
+              "code": "kEffectSourceName",
+              "type": "codeVoice"
+            },
+            {
+              "text": " atoms, and two parameter atoms, one of which is a tween.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "kParameterWhatName",
+              "type": "codeVoice"
+            },
+            {
+              "text": " atom specifies that this is a ",
+              "type": "text"
+            },
+            {
+              "code": "'push'",
+              "type": "codeVoice"
+            },
+            {
+              "text": " effect.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The two ",
+              "type": "text"
+            },
+            {
+              "code": "kEffectSourceName",
+              "type": "codeVoice"
+            },
+            {
+              "text": " atoms specify the two sources that this effect will use, in this case ",
+              "type": "text"
+            },
+            {
+              "code": "'srcA'",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "'srcB'",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The names correspond to entries in the effect track’s input map.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "'pcnt'",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter atom defines which frames of the effect are shown. This parameter contains a tween entry, so that the value of this parameter is interpolated as the effect runs. The interpolation of the ",
+              "type": "text"
+            },
+            {
+              "code": "'pcnt'",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter causes consecutive frames of the effect to be rendered, creating the push effect.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "'from'",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter determines the direction of the push. This parameter is set from an enumeration list, with ",
+              "type": "text"
+            },
+            {
+              "code": "2",
+              "type": "codeVoice"
+            },
+            {
+              "text": " being defined as the bottom of the screen.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this example, the source ",
+              "type": "text"
+            },
+            {
+              "code": "'srcB'",
+              "type": "codeVoice"
+            },
+            {
+              "text": " will push in from the bottom, covering the source ",
+              "type": "text"
+            },
+            {
+              "code": "'srcA'",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "'pcnt'",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter is normally tweened from ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "100",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", so that the effect renders completely, from ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "100",
+              "type": "codeVoice"
+            },
+            {
+              "text": " percent. In this example, the ",
+              "type": "text"
+            },
+            {
+              "code": "'pcnt'",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter is tweened from ",
+              "type": "text"
+            },
+            {
+              "code": "25",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "75",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", so the effect will start ",
+              "type": "text"
+            },
+            {
+              "code": "25",
+              "type": "codeVoice"
+            },
+            {
+              "text": " percent of the way through (with ",
+              "type": "text"
+            },
+            {
+              "code": "'srcB'",
+              "type": "codeVoice"
+            },
+            {
+              "text": " already partly on screen) and finish ",
+              "type": "text"
+            },
+            {
+              "code": "75",
+              "type": "codeVoice"
+            },
+            {
+              "text": " percent of the way through (with part of ",
+              "type": "text"
+            },
+            {
+              "code": "'srcA'",
+              "type": "codeVoice"
+            },
+            {
+              "text": " still visible).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An important property of effect parameters is that most can be tweened (and some must be tweened). Tweening is QuickTime’s general purpose interpolation mechanism (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Tween_media",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information). For many parameters, it is desirable to allow the value of the parameter to change as the effect executes. In the example shown in preceeding figure, the ",
+              "type": "text"
+            },
+            {
+              "code": "'pcnt'",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter must be a tween. This parameter controls which frame of the effect is rendered at any given time, so it must change for the effect to progress. The ",
+              "type": "text"
+            },
+            {
+              "code": "'from'",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter is not a tween in the example above, but it could be if we wanted the direction of the push to change during the course of the effect.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Creating_an_effect_description": {
+      "abstract": [
+        {
+          "text": "Tell QuickTime which effect to execute and control how the effect behaves at runtime with an effect description.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Creating_an_effect_description",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Creating an effect description",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/creating_an_effect_description"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Creating_an_input_map": {
+      "abstract": [
+        {
+          "text": "Describe and name sources with an input map.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Creating_an_input_map",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating an input map",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/creating_an_input_map"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Required_atoms_of_an_effects_description": {
+      "abstract": [
+        {
+          "text": "Specify the required atoms for your effects description.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Required_atoms_of_an_effects_description",
+      "kind": "article",
+      "role": "article",
+      "title": "Required atoms of an effects description",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/required_atoms_of_an_effects_description"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Structure_of_an_effect_description": {
+      "abstract": [
+        {
+          "text": "An effect description is the sole media sample for an effect track.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Structure_of_an_effect_description",
+      "kind": "article",
+      "role": "article",
+      "title": "Structure of an effect description",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/structure_of_an_effect_description"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Structuring_movie_data_and_features": {
+      "abstract": [
+        {
+          "text": "Build movies with compressed or reference data, and add features like effect descriptions and alternate subtitle tracks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Structuring_movie_data_and_features",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Structuring movie data and features",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/structuring_movie_data_and_features"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Tween_media": {
+      "abstract": [
+        {
+          "text": "Store pairs of values to be interpolated between in QuickTime movies using tween media.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Tween_media",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Tween media",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/tween_media"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format": {
+      "abstract": [
+        {
+          "text": "An object-oriented file format for the storage and exchange of digital media between devices, applications, and operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "QuickTime File Format",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Effect-descriptions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Structure_of_an_effect_description",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Required_atoms_of_an_effects_description",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Creating_an_input_map"
+      ],
+      "title": "Effect descriptions"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quicktime-file-format/parameter_atoms_of_an_effects_description"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

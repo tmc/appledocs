@@ -1,0 +1,835 @@
+{
+  "abstract": [
+    {
+      "text": "An atom that expresses profiles or feature codes for features that occur in the movie.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "Profile atoms are deprecated in the QuickTime file format. The information that follows documents existing content containing profile atoms and should not be used for new development.",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.qtff/documentation/quicktime-file-format"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.qtff/documentation/quicktime-file-format/Profile_atom"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "__docc_universal_symbol_reference_$Profile_atom",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "preciseIdentifier": "__docc_universal_symbol_reference_$Profile_atom",
+        "text": "Profile atom ('prfl')"
+      }
+    ],
+    "modules": [
+      {
+        "name": "quicktime-file-format",
+        "relatedModules": []
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "preciseIdentifier": "__docc_universal_symbol_reference_$Profile_atom",
+        "text": "Profile atom ('prfl')"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": true,
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Atom",
+    "symbolKind": "class",
+    "title": "Profile atom ('prfl')"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "code": "'prfl'",
+                        "type": "codeVoice"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Atom type",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Movie atom (",
+                        "type": "text"
+                      },
+                      {
+                        "code": "'moov'",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ") or track atom (",
+                        "type": "text"
+                      },
+                      {
+                        "code": "'trak'",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ")",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Container",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "No",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Mandatory",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Zero or one",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Quantity",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At the movie level, the profile atom must occur within the movie atom before the movie header atom. A reader may stop the search for the profile atom once the profile atom or the movie header atom is found. Because new atoms may be introduced into the movie atom (type ",
+              "type": "text"
+            },
+            {
+              "code": "'moov'",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") in the future, a reader must not expect the first child atom of the movie atom to be either the profile (type ",
+              "type": "text"
+            },
+            {
+              "code": "'prfl'",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") or the movie header (",
+              "type": "text"
+            },
+            {
+              "code": "'mvhd'",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") atom. This rule allows for new atoms in the future but still accommodates readers that do not want to perform an exhaustive enumeration of all the child atoms in a movie atom.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The profile atom expresses profiles or feature codes for features that occur in the movie. The list is not necessarily exhaustive, and there may be multiple profile values recorded for the same profile code. For example, if there are two independent sequences of MPEG-4 video in the movie, using different profile-level IDs, both might be recorded here.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each feature is either universal or is documented in a specific specification, identified by a brand as used in the file type atom. The only brands that should occur in a given profile atom are the universal brand or brands that occur in the file type atom in the same file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Feature value ranges should in general never include an unknown point; if the value of a feature is unknown, the feature should be absent from the profile atom.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Feature values should be deducible by fairly simple inspection of the rest of the movie: for example, extracting the profile-level ID from a video header, or calculations using information from the sample table (for example, overall average bit rate by summing the sample sizes and the sample durations). It is not appropriate to have features which cannot be computed, or only computed with difficulty (e.g. a buffer model estimation which requires emulating a video decoder on the entire bit stream). The algorithm to extract or deduce the feature value from the rest of the file must be defined.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Empty slots in the profile atom structure must be filled with zeroes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If there are multiple parts of the file to which the same feature apply, yet they have different feature values, then either there must be entries for each occurrence or none at all. For example, if there are two MPEG-4 visual sequences, using different visual profiles, there are either two profile entries in the profile table (one for each sequence) or none at all. Features must not be partially documented.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Profile atoms may also occur at the track level. A track-level profile atom must occur within the track atom before the track header atom (",
+              "type": "text"
+            },
+            {
+              "code": "'tkhd'",
+              "type": "codeVoice"
+            },
+            {
+              "text": "). A reader should stop searching for a track’s profile atom if either the profile or the track header atom is found, ignoring any other atoms present.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A track profile atom should only summarize features within that track. If track profile atoms exist, a movie profile atom can be built largely by copying feature entries from the profile atom of the movie’s tracks to the profile atom at the movie level. It is possible to have multiple track profiles with different values which must be resolved to a single value for the movie as whole, however—such as multiple video tracks with different maximum bit rates—so not all features can be copied directly from the track to the movie profile. Additionally, the movie profile may summarize features that cannot occur at the track level, such as total movie bit rate.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When building a movie profile, you must include either all instances of a track-level feature or no instances of that feature. For example, if you have multiple video tracks that use different codecs, you must either include an entry at the movie level for each codec, or put no codec feature entries at the movie level at all.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following table shows the layout of the profile atom.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Data field",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Bytes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Profile_atom/Size",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "4",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Profile_atom/Type",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " = ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "'prfl'",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "4",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Profile_atom/Version",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "1",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Profile_atom/Flags",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "3",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Profile_atom/Number_of_feature_entries",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "4",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Profile_atom/Feature_entries",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "n",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " x 32",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Syntax",
+          "level": 2,
+          "text": "Syntax",
+          "type": "heading"
+        },
+        {
+          "code": [
+            "aligned(8) class ProfileAtom",
+            "    extends FullAtom('prfl') {",
+            "    unsigned int(32) feature-record-count;",
+            "    for (i=1; i<feature-record-count; i++) {",
+            "        unsigned int(32) reserved = 0;",
+            "        unsigned int(32) part-ID;",
+            "        unsigned int(32) feature-code;",
+            "        unsigned int(32) feature-value",
+            "    }",
+            "}"
+          ],
+          "syntax": "c",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Semantics",
+          "level": 2,
+          "text": "Semantics",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The profile atom is a full atom, so it has an 8-bit version and 24 bits of flags. For this specification, the version is ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and the flags have the value ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". A reader compliant with this specification should treat any profile atom with a nonzero version value as if it did not exist.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on setting feature entries, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Profile_atom/Feature_entries",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/About_this_appendix": {
+      "abstract": [],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/About_this_appendix",
+      "kind": "article",
+      "role": "article",
+      "title": "About this appendix",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/about_this_appendix"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Universal_features": {
+      "abstract": [
+        {
+          "text": "Features that you include in any file that includes a profile atom.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Universal_features",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Universal features",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/universal_features"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format": {
+      "abstract": [
+        {
+          "text": "An object-oriented file format for the storage and exchange of digital media between devices, applications, and operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "QuickTime File Format",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Profile_atom": {
+      "abstract": [
+        {
+          "text": "An atom that expresses profiles or feature codes for features that occur in the movie.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Profile_atom",
+          "text": "Profile atom ('prfl')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Profile_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Profile atom ('prfl')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/profile_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Profile_atom/Feature_entries": {
+      "abstract": [
+        {
+          "text": "A list of feature entries.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Profile_atom_Feature_entries",
+          "text": "Feature entries"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Profile_atom/Feature_entries",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Feature entries",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/profile_atom/feature_entries"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Profile_atom/Flags": {
+      "abstract": [
+        {
+          "text": "An 8-bit integer with flags.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Profile_atom_Flags",
+          "text": "Flags"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Profile_atom/Flags",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Flags",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/profile_atom/flags"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Profile_atom/Number_of_feature_entries": {
+      "abstract": [
+        {
+          "text": "A 32-bit integer that indicates how many feature entries are in the atom.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Profile_atom_Number_of_feature_entries",
+          "text": "Number of feature entries"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Profile_atom/Number_of_feature_entries",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Number of feature entries",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/profile_atom/number_of_feature_entries"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Profile_atom/Size": {
+      "abstract": [
+        {
+          "text": "A 32-bit integer that specifies the number of bytes in this atom.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Profile_atom_Size",
+          "text": "Size"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Profile_atom/Size",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Size",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/profile_atom/size"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Profile_atom/Type": {
+      "abstract": [
+        {
+          "text": "A 32-bit integer that identifies the atom type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Profile_atom_Type",
+          "text": "Type"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Profile_atom/Type",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Type",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/profile_atom/type"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Profile_atom/Version": {
+      "abstract": [
+        {
+          "text": "An 8-bit integer that holds the version.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Profile_atom_Version",
+          "text": "Version"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Profile_atom/Version",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Version",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/profile_atom/version"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Building-a-profile-atom",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/About_this_appendix",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Universal_features"
+      ],
+      "title": "Building a profile atom"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Data-fields",
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Profile_atom/Size",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Profile_atom/Type",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Profile_atom/Version",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Profile_atom/Flags",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Profile_atom/Number_of_feature_entries",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Profile_atom/Feature_entries"
+      ],
+      "title": "Data fields"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quicktime-file-format/profile_atom"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

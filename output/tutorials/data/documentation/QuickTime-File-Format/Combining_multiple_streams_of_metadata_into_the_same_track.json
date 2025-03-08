@@ -1,0 +1,284 @@
+{
+  "abstract": [
+    {
+      "text": "Introduce new metadata samples with the union of all metadata values from combined tracks.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.qtff/documentation/quicktime-file-format",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Media_data_atom_types",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Timed_metadata_media"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Combining_multiple_streams_of_metadata_into_the_same_track"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "QuickTime File Format"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Combining multiple streams of metadata into the same track"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because two “streams” or tracks of metadata values might occur where the time ranges for one stream does not coincide with those of the other stream, a convention is recommended if both streams of metadata values are combined into a single new metadata track (typically because of some production process). At any point in the timeline where a metadata value comes into scope or goes out of scope, new metadata samples should be introduced with the union of all metadata values present for the time range, replacing the existing overlapped samples for that portion of the media time range.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, this figure shows the results of combining the metadata from two metadata tracks:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "combining-metadata-streams",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The combined timed metadata media samples from time t1 to t2 contain both the A and B metadata values. This is done so that for any time t, it is possible to determine all applicable metadata values without needing to scan through all timed metadata media tracks in backward or forward directions.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the new combined track, a single timed metadata sample description containing the keys A and B may be used. Creating sample descriptions for each combination (A, B, {A,B}) is possible but discouraged as this makes the determination of whether a key is in the tracks more complex.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "combining-metadata-streams": {
+      "alt": "A diagram with two axes, where the horiztonal axis shows time marked with t0, t1, t2, and t3, and the vertical axis has labels for tracks, which are Metadata 1, Metadata 2, and Metadata track (bundled). A track labeled A is at the top of the diagram, aligned with the label Metadata 1, and extends from t0 to t2. A track labeled B, aligned with the label Metadata 2, is below the track labeled B, extends from t1 to t3, and has an arrow pointing to the track labeled {A, B} below it. There are three tracks below the tracked labeled B, all aligned with the label Metadata track (bundled). The track labeled A extends from t0 to t1. The track labeled {A, B} extends from t1 to t2. The track labeled B extends from t2 to t3.",
+      "identifier": "combining-metadata-streams",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ffc09588348aaf5d109d93ef8dc2b9d6/combining-metadata-streams@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c1fb75a11c138edd5c126bf900c64f37/combining-metadata-streams~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Constant-size_timed_metadata_sample_data": {
+      "abstract": [
+        {
+          "text": "Create metadata tracks with samples that have the same size.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Constant-size_timed_metadata_sample_data",
+      "kind": "article",
+      "role": "article",
+      "title": "Constant-size timed metadata sample data",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/constant-size_timed_metadata_sample_data"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Media_data_atom_types": {
+      "abstract": [
+        {
+          "text": "Store different types of media data, including video, sound, subtitles, and more.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Media_data_atom_types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Media data atom types",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/media_data_atom_types"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Movie-level_relationships_among_tracks": {
+      "abstract": [
+        {
+          "text": "Handling tracks with more than one associated metadata track.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Movie-level_relationships_among_tracks",
+      "kind": "article",
+      "role": "article",
+      "title": "Movie-level relationships among tracks",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/movie-level_relationships_among_tracks"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Overview_of_timed_metadata": {
+      "abstract": [
+        {
+          "text": "Synchronize metadata references to media tracks for particular media time periods with timed metadata.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Overview_of_timed_metadata",
+      "kind": "article",
+      "role": "article",
+      "title": "Overview of timed metadata",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/overview_of_timed_metadata"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Timed_metadata_media": {
+      "abstract": [
+        {
+          "text": "Store timed metadata in QuickTime movies with a track structure.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Timed_metadata_media",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Timed metadata media",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/timed_metadata_media"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Timed_metadata_sample_data_format": {
+      "abstract": [
+        {
+          "text": "A concatenation of one or more atoms that structure a timed metadata media sample.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Timed_metadata_sample_data_format",
+      "kind": "article",
+      "role": "article",
+      "title": "Timed metadata sample data format",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/timed_metadata_sample_data_format"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Timed_metadata_sample_descriptions": {
+      "abstract": [
+        {
+          "text": "An atom that defines how to interpret timed metadata media samples.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Timed_metadata_sample_descriptions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Timed metadata sample description",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/timed_metadata_sample_descriptions"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format": {
+      "abstract": [
+        {
+          "text": "An object-oriented file format for the storage and exchange of digital media between devices, applications, and operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "QuickTime File Format",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Storing-timed-metadata-media",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Overview_of_timed_metadata",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Timed_metadata_sample_descriptions",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Timed_metadata_sample_data_format",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Constant-size_timed_metadata_sample_data",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Movie-level_relationships_among_tracks"
+      ],
+      "title": "Storing timed metadata media"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quicktime-file-format/combining_multiple_streams_of_metadata_into_the_same_track"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

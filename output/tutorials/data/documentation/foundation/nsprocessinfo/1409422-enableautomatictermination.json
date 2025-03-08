@@ -1,0 +1,348 @@
+{
+  "abstract": [
+    {
+      "text": "Enables automatic termination for the application.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/task_management",
+        "doc://com.apple.documentation/documentation/foundation/nsprocessinfo"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/processes_and_threads",
+        "doc://com.apple.documentation/documentation/foundation/nsprocessinfo"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsprocessinfo/1409422-enableautomatictermination"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1409422,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSProcessInfo(im)enableAutomaticTermination:",
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "NSProcessInfo"
+    },
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.7",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "instm",
+    "title": "enableAutomaticTermination:"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "keyword",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            },
+            {
+              "kind": "identifier",
+              "text": "enableAutomaticTermination:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " *"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            },
+            {
+              "kind": "internalParam",
+              "text": "reason"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The reason why automatic termination is being enabled.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "reason"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This method decrements the automatic termination counter. When the counter is ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the application is eligible for automatic termination.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The reason parameter is used to track why an application is or is not automatically terminable and can be inspected by debugging tools. For example, you could pass the string ",
+              "type": "text"
+            },
+            {
+              "code": "@\"file transfer in progress\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if you disable automatic termination before transferring a file over the network. When you reenable automatic termination after the transfer is complete using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsprocessinfo/1409422-enableautomatictermination",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you should pass the matching string. A given reason can be used more than once at the same time; for example, if two files were being transferred at the same time, automatic termination could be disabled for each, passing the same reason string.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsprocessinfo": {
+      "abstract": [
+        {
+          "text": "A collection of information about the current process.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsprocessinfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSProcessInfo",
+      "type": "topic",
+      "url": "/documentation/foundation/nsprocessinfo"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsprocessinfo/1407578-automaticterminationsupportenabl": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the app supports automatic termination.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsprocessinfo/1407578-automaticterminationsupportenabl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "automaticTerminationSupportEnabled",
+      "type": "topic",
+      "url": "/documentation/foundation/nsprocessinfo/1407578-automaticterminationsupportenabl"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsprocessinfo/1409422-enableautomatictermination": {
+      "abstract": [
+        {
+          "text": "Enables automatic termination for the application.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "enableAutomaticTermination:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsprocessinfo/1409422-enableautomatictermination",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "enableAutomaticTermination:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsprocessinfo/1409422-enableautomatictermination"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsprocessinfo/1417402-disableautomatictermination": {
+      "abstract": [
+        {
+          "text": "Disables automatic termination for the application.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "disableAutomaticTermination:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsprocessinfo/1417402-disableautomatictermination",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "disableAutomaticTermination:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsprocessinfo/1417402-disableautomatictermination"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSString",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/processes_and_threads": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/processes_and_threads",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Processes and Threads",
+      "type": "topic",
+      "url": "/documentation/foundation/processes_and_threads"
+    },
+    "doc://com.apple.documentation/documentation/foundation/task_management": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/task_management",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Task Management",
+      "type": "topic",
+      "url": "/documentation/foundation/task_management"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsprocessinfo/1417402-disableautomatictermination",
+        "doc://com.apple.documentation/documentation/foundation/nsprocessinfo/1407578-automaticterminationsupportenabl"
+      ],
+      "title": "Controlling Automatic Termination"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsprocessinfo/1409422-enableautomatictermination"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/processinfo/1409422-enableautomatictermination"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

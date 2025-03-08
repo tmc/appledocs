@@ -1,0 +1,671 @@
+{
+  "abstract": [
+    {
+      "text": "Extend video sample descriptions by appending other atoms.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.qtff/documentation/quicktime-file-format",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Media_data_atom_types",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Video_media"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Video_sample_description_extensions"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "QuickTime File Format"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Video sample description extensions"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "These atoms are placed after the color table, if one is present. These extensions to the sample description may contain display hints for the decompressor or may simply carry additional information associated with the images. The following table lists the currently defined extensions to video sample descriptions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Extension type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "'gama'",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A 32-bit fixed-point number indicating the gamma level at which the image was captured. The decompressor can use this value to gamma-correct at display time.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "'fiel'",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Two 8-bit integers that define field handling. This information is used by applications to modify decompressed image data or by decompressor components to determine field display order. This extension is mandatory for all uncompressed Y´CbCr data formats. The first byte specifies the field count, and may be set to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "2",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". A value of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is used for progressive-scan images; a value of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "2",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " indicates interlaced images. When the field count is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "2",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", the second byte specifies the field ordering: which field contains the topmost scan-line, which field should be displayed earliest, and which is stored first in each sample. Each sample consists of two distinct compressed images, each coding one field: the field with the topmost scan-line, T, and the other field, B. The following defines the permitted variants: ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " – There is only one field. ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " – T is displayed earliest, T is stored first in the file. ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "6",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " – B is displayed earliest, B is stored first in the file. ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "9",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " – B is displayed earliest, T is stored first in the file. ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "14",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " – T is displayed earliest, B is stored first in the file.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "'mjqt'",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The default quantization table for a Motion-JPEG data stream.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "'mjht'",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The default Huffman table for a Motion-JPEG data stream.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "'esds'",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An MPEG-4 elementary stream descriptor atom. This extension is required for MPEG-4 video. For details, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/MPEG-4_elementary_stream_descriptor_atom",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "'avcC'",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An H.264 AVCConfigurationBox. This extension is required for H.264 video as defined in ISO/IEC 14496-15. For details, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/AVC_decoder_configuration_atom",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "'pasp'",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Pixel aspect ratio. This extension is mandatory for video formats that use non-square pixels. For details, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Pixel_aspect_ratio",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "'colr'",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Color parameters—an image description extension required for all uncompressed Y´CbCr video types. For details, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Color_parameter_atom",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "'clap'",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Clean aperture—spatial relationship of Y´CbCr components relative to a canonical image center. This allows accurate alignment for compositing of video images captured using different systems. This is a mandatory extension for all uncompressed Y´CbCr data formats. For details, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Clean_aperture",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Media_data_atom_types": {
+      "abstract": [
+        {
+          "text": "Store different types of media data, including video, sound, subtitles, and more.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Media_data_atom_types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Media data atom types",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/media_data_atom_types"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Video_media": {
+      "abstract": [
+        {
+          "text": "Store compressed and uncompressed image data in QuickTime movies.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Video_media",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Video media",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/video_media"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Video_sample_data": {
+      "abstract": [
+        {
+          "text": "Store video sample data in different formats, depending on the type of compression you use.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Video_sample_data",
+      "kind": "article",
+      "role": "article",
+      "title": "Video sample data",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/video_sample_data"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format": {
+      "abstract": [
+        {
+          "text": "An object-oriented file format for the storage and exchange of digital media between devices, applications, and operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "QuickTime File Format",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/AVC_decoder_configuration_atom": {
+      "abstract": [
+        {
+          "text": "A required extension to the video sample description for H.264 video.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$AVC_decoder_configuration_atom",
+          "text": "AVC decoder configuration atom ('avcC')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/AVC_decoder_configuration_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVC decoder configuration atom ('avcC')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/avc_decoder_configuration_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Clean_aperture": {
+      "abstract": [
+        {
+          "text": "An extension that defines the relationship between the pixels in a stored image and a canonical rectangular region of a video system from which it was captured or to which it will be displayed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Clean_aperture",
+          "text": "Clean aperture ('clap')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Clean_aperture",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Clean aperture ('clap')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/clean_aperture"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Color_parameter_atom": {
+      "abstract": [
+        {
+          "text": "A required extension for uncompressed Y´CbCr data formats.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Color_parameter_atom",
+          "text": "Color parameter atom ('colr')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Color_parameter_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Color parameter atom ('colr')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/color_parameter_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/MPEG-4_elementary_stream_descriptor_atom": {
+      "abstract": [
+        {
+          "text": "A required extension to the video sample description for MPEG-4 video.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$MPEG-4_elementary_stream_descriptor_atom",
+          "text": "MPEG-4 elementary stream descriptor atom ('esds')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/MPEG-4_elementary_stream_descriptor_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPEG-4 elementary stream descriptor atom ('esds')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/mpeg-4_elementary_stream_descriptor_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Pixel_aspect_ratio": {
+      "abstract": [
+        {
+          "text": "An extension that specifies the height-to-width ratio of pixels found in the video sample.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Pixel_aspect_ratio",
+          "text": "Pixel aspect ratio ('pasp')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Pixel_aspect_ratio",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Pixel aspect ratio ('pasp')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/pixel_aspect_ratio"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Video_sample_description": {
+      "abstract": [
+        {
+          "text": "An atom that contains information that defines how to interpret video media data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Video_sample_description",
+          "text": "Video sample description ('stsd')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Video_sample_description",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Video sample description ('stsd')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/video_sample_description"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Storing-video-data",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Video_sample_description",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Video_sample_data"
+      ],
+      "title": "Storing video data"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Extending-video-sample-descriptions",
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Pixel_aspect_ratio",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/MPEG-4_elementary_stream_descriptor_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/AVC_decoder_configuration_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Color_parameter_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Clean_aperture"
+      ],
+      "title": "Extending video sample descriptions"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quicktime-file-format/video_sample_description_extensions"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

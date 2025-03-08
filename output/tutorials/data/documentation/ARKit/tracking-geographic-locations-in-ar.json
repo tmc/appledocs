@@ -1,0 +1,2666 @@
+{
+  "abstract": [
+    {
+      "text": "Track specific geographic areas of interest and render them in an AR experience.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.arkit/documentation/ARKit",
+        "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios",
+        "doc://com.apple.arkit/documentation/ARKit/content-anchors"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.arkit/documentation/ARKit/tracking-geographic-locations-in-ar"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "ARKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Tracking geographic locations in AR"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this sample app, the user marks spots on a map or camera feed to create a collection of anchors they view in augmented reality (AR). By rendering those anchors as virtual content in an AR view, the user can see a nearby anchor through the camera feed, move to its physical location, and continue to move to any subsequent anchors in the collection. If a virtual anchor that the user is moving toward isn’t visible in the camera feed, the user can refer to its pin in the map view and advance until the virtual anchor becomes visible.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Geotracking configuration (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARGeoTrackingConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") combines GPS, the device’s compass, and world-tracking features in AR to track specific geographic locations. By giving ARKit a latitude and longitude (and optionally, altitude), the sample app declares interest in a specific location on the map.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "During a geotracking session, ARKit marks this location in the form of a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "location anchor",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARGeoAnchor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") and continually refines its position in the camera feed as the user moves about. ARKit provides the location anchor’s coordinates with respect to the scene, which allows the app to render virtual content at its real-world location or trigger other interactions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, when the user approaches a location anchor, an app may reveal a virtual signpost that explains a historic event that occurred there. Or, to form a street route, an app could render a virtual anchor in a series of location anchors that connect.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "arkit-3d-interaction-hero-image",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "ARKit supports geotracking only with the device’s rear camera.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Configure-the-sample-code-project",
+          "level": 2,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app demonstrates geotracking coaching, which requires iOS 15. The Xcode project defines a deployment target of iOS 15, accordingly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Geotracking requires a device with A12 Bionic chip or later, and cellular (GPS) capability. Set the project’s run destination to a device. ARKit doesn’t support iOS Simulator.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Ensure-device-support",
+          "level": 2,
+          "text": "Ensure device support",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At the application entry point (see the sample project’s ",
+              "type": "text"
+            },
+            {
+              "code": "AppDelegate.swift",
+              "type": "codeVoice"
+            },
+            {
+              "text": "), the sample app prevents running an unsupported configuration by checking whether the device supports geotracking.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if !ARGeoTrackingConfiguration.isSupported {",
+            "    let storyboard = UIStoryboard(name: \"Main\", bundle: nil)",
+            "    window?.rootViewController = storyboard.instantiateViewController(withIdentifier: \"unsupportedDeviceMessage\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the device doesn’t support geotracking, the sample project stops. Optionally, an app can present an error message and continue the session at a limited capacity without geotracking.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Display-an-AR-view-and-map-view",
+          "level": 2,
+          "text": "Display an AR view and map view",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As an AR app, the sample project renders location anchors using an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/ARView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". To reinforce the correspondence between geographic locations and positions in the session’s local space, the sample project also displays a map view ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MapKit/MKMapView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that marks the anchors from a top-down perspective. The app displays both views simultaneously by using a stack view (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIStackView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") with the camera feed on top. See the sample’s ",
+              "type": "text"
+            },
+            {
+              "code": "View Controller Scene",
+              "type": "codeVoice"
+            },
+            {
+              "text": " within the project’s ",
+              "type": "text"
+            },
+            {
+              "code": "Main.storyboard",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Check-availability-and-run-a-session",
+          "level": 2,
+          "text": "Check availability and run a session",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To place location anchors with precision, geotracking requires a better understanding of the user’s geographic location than is possible with GPS alone. Based on a particular GPS coordinate, ARKit downloads batches of imagery that depict the physical environment in that area and assist the session with determining the user’s precise geographic location.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "localization imagery",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " captures the view mostly from public streets and routes accessible by car. As a result, geotracking doesn’t support areas within the city that are gated or accessible only to pedestrians, as ARKit lacks localization imagery there.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because localization imagery depicts specific regions on the map, geotracking only supports areas where Apple has collected localization imagery in advance. Before starting a session, the sample project checks whether geotracking supports the user’s location by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARGeoTrackingConfiguration/checkAvailability(completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "ARGeoTrackingConfiguration.checkAvailability { (available, error) in",
+            "    if !available {",
+            "        let errorDescription = error?.localizedDescription ?? \"\"",
+            "        let recommendation = \"Please try again in an area where geotracking is supported.\"",
+            "        let restartSession = UIAlertAction(title: \"Restart Session\", style: .default) { (_) in",
+            "            self.restartSession()",
+            "        }",
+            "        self.alertUser(withTitle: \"Geotracking unavailable\",",
+            "                       message: \"\\(errorDescription)\\n\\(recommendation)\",",
+            "                       actions: [restartSession])",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "ARKit requires a network connection to download localization imagery. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARGeoTrackingConfiguration/checkAvailability(completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function will return ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if a network connection is unavailable. If geotracking is available, the sample project runs a session.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let geoTrackingConfig = ARGeoTrackingConfiguration()",
+            "geoTrackingConfig.planeDetection = [.horizontal]",
+            "arView.session.run(geoTrackingConfig, options: .removeExistingAnchors)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If geotracking is unavailable in the user’s current location, an app can suggest an alternative area if ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.arkit/documentation/ARKit/ARGeoTrackingConfiguration/checkAvailability(at:completionHandler:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " returns ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " for a nearby location.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Coach-the-User-for-Geotracking-Status",
+          "level": 2,
+          "text": "Coach the User for Geotracking Status",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To begin a geotracking session, the framework undergoes several geotracking states. At any point, the session can require action from the user to progress to the next state. To instruct the user on what to do, the sample project uses a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARCoachingOverlayView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARCoachingOverlayView/Goal-swift.enum/geoTracking",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " goal.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func setupCoachingOverlay() {",
+            "    coachingOverlay.delegate = self",
+            "    arView.addSubview(coachingOverlay)",
+            "    coachingOverlay.goal = .geoTracking"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Instruct-the-user-based-on-geotracking-state",
+          "level": 2,
+          "text": "Instruct the user based on geotracking state",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the app localizes and begins a geotracking session, the sample app monitors the geotracking state and instructs the user by presenting text with a label.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "self.trackingStateLabel.text = text"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As the user moves along a street, the framework continues to download localization imagery as needed to maintain a precise understanding of the user’s position in the world. If the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARGeoTrackingStatus/StateReason-swift.enum/geoDataNotLoaded",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " state reason occurs after the session localized, it may indicate a network issue arose. If this state reason persists for some time, an app may ask the user to check the internet connection.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "While the session runs, the status reason ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARGeoTrackingStatus/StateReason-swift.enum/notAvailableAtLocation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " occurs if the user crosses into an area where ARKit lacks geotracking support. To enable the session to continue, the sample project presents text to guide the user back to a supported area.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "case .notAvailableAtLocation: return \"Geotracking is unavailable here. Please return to your previous location to continue\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Coach-the-user-as-the-session-runs",
+          "level": 2,
+          "text": "Coach the user as the session runs",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A geotracking session maps geographic coordinates to ARKit’s world-tracking local space, which requires basic world-tracking support. If environmental circumstances impair the device’s world-tracking condition, the geotracking coaching overlay alerts the user and displays instructions to resolve the problem.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, if the user travels too quickly, the device’s camera feed may not contain sufficient features that ARKit requires to model the environment. In this case:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The framework sets world-tracking state to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARCamera/TrackingState-swift.enum/limited(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The geotracking session observes the world-tracking status change and sets the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARGeoTrackingStatus",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " reason to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARGeoTrackingStatus/StateReason-swift.enum/worldTrackingUnstable",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Coaching overlay activates and displays the text: “Slow down”.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app reacts by disabling the user interface until the user complies with the coaching.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func coachingOverlayViewWillActivate(_ coachingOverlayView: ARCoachingOverlayView) {",
+            "    mapView.isUserInteractionEnabled = false",
+            "    undoButton.isEnabled = false",
+            "    hideUIForCoaching(true)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "ARKit dismisses the coaching overlay when the tracking status improves. To resume the user’s ability to interact with the app, the sample project reenables the user interface.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func coachingOverlayViewDidDeactivate(_ coachingOverlayView: ARCoachingOverlayView) {",
+            "    mapView.isUserInteractionEnabled = true",
+            "    undoButton.isEnabled = true",
+            "    hideUIForCoaching(false)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-an-anchor-when-the-user-taps-the-map",
+          "level": 2,
+          "text": "Create an anchor when the user taps the map",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample project acquires the user’s geographic coordinate (",
+              "type": "text"
+            },
+            {
+              "code": "CLLocationCoordinate2D",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") from the map view at the screen location where the user tapped.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func handleTapOnMapView(_ sender: UITapGestureRecognizer) {",
+            "    let point = sender.location(in: mapView)",
+            "    let location = mapView.convert(point, toCoordinateFrom: mapView)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With the user’s latitude and longitude, the sample project creates a location anchor.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "geoAnchor = ARGeoAnchor(coordinate: location)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because the map view returns a 2D coordinate with no altitude, the sample calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARGeoAnchor/init(coordinate:altitude:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which defaults the location anchor’s altitude to ground level.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To begin tracking the anchor, the sample project adds it to the session.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "arView.session.add(anchor: geoAnchor)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample project listens for the location anchor in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSessionDelegate/session(_:didAdd:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and visualizes it in AR by adding a placemark entity to the scene.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func session(_ session: ARSession, didAdd anchors: [ARAnchor]) {",
+            "    for geoAnchor in anchors.compactMap({ $0 as? ARGeoAnchor }) {",
+            "        // Effect a spatial-based delay to avoid blocking the main thread.",
+            "        DispatchQueue.main.asyncAfter(deadline: .now() + (distanceFromDevice(geoAnchor.coordinate) / 10)) {",
+            "            // Add an AR placemark visualization for the geo anchor.",
+            "            self.arView.scene.addAnchor(Entity.placemarkEntity(for: geoAnchor))"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To establish visual correspondence in the map view, the sample project adds an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MapKit/MKOverlay",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that represents the anchor on the map.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let anchorIndicator = AnchorIndicator(center: geoAnchor.coordinate)",
+            "self.mapView.addOverlay(anchorIndicator)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-an-anchor-when-the-user-taps-the-ar-view",
+          "level": 2,
+          "text": "Create an anchor when the user taps the ar view",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the user taps the camera feed, the sample project casts a ray at the screen-tap location to determine its intersection with a real-world surface.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if let result = arView.raycast(from: point, allowing: .estimatedPlane, alignment: .any).first {"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The raycast result’s translation describes the intersection’s position in ARKit’s local coordinate space. To convert that point to a geographic location, the sample project calls the session-provided utility ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSession/getGeoLocation(forPoint:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "arView.session.getGeoLocation(forPoint: worldPosition) { (location, altitude, error) in"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, the sample project creates a location anchor with the result. Because the result includes altitude, the sample project calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARGeoAnchor/init(coordinate:altitude:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "] anchor initializer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "For more on raycasting, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/ARKit/environmental-analysis",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Assess-geotracking-accuracy",
+          "level": 2,
+          "text": "Assess geotracking accuracy",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To ensure the best possible user experience, an app must monitor and react to the geotracking ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARGeoTrackingStatus/accuracy-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". When possible, the sample project displays the accuracy as part of its state messaging to the user. The session populates accuracy in its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFrame/geoTrackingStatus",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in state ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARGeoTrackingStatus/State-swift.enum/localized",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if geoTrackingStatus.state == .localized {",
+            "    text += \"Accuracy: \\(geoTrackingStatus.accuracy.description)\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An app renders location anchors using an asset that’s less exact if geotracking is off by a small distance, such as when accuracy is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARGeoTrackingStatus/Accuracy-swift.enum/low",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For example, the sample app renders a location anchor as a large ball several meters in the air rather than an arrow that rests its point on a real-world surface.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Center-the-map-as-the-user-moves",
+          "level": 2,
+          "text": "Center the map as the user moves",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample project uses updates from ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreLocation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to center the user in the map view. When the user moves around, Core Location notifies the delegate of any updates in geographic position. The sample project monitors this event by implementing the relevant callback.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the user’s position changes, the sample project pans the map to center the user.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let camera = MKMapCamera(lookingAtCenter: location.coordinate,",
+            "                         fromDistance: CLLocationDistance(250),",
+            "                         pitch: 0,",
+            "                         heading: mapView.camera.heading)",
+            "mapView.setCamera(camera, animated: false)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "218a9a85284c/TrackingGeographicLocationsInAr.zip": {
+      "checksum": "218a9a85284c45451865b11971a6aa650cb234cbbff7bbeef858e76ad56318a8b1d648fce0a698c7d2b943388e59bc8ab09f4aab287648493259b8d6ce7426db",
+      "identifier": "218a9a85284c/TrackingGeographicLocationsInAr.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/218a9a85284c/TrackingGeographicLocationsInAr.zip"
+    },
+    "arkit-3d-interaction-hero-image": {
+      "alt": "Figure of an AR app showing two views. The upper view displays a camera feed that captures a busy city intersection. A series of floating blue buoys form a path leading the user to turn right. In the lower view, a top-down map provides an alternate view of the same scene. Dots on the map correspond to the buoys seen in the camera feed, which appear to lead the user through the city.",
+      "identifier": "arkit-3d-interaction-hero-image",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3147e58a789e9fe8068eb9257a9f7c0c/arkit-3d-interaction-hero-image.png"
+        }
+      ]
+    },
+    "doc://com.apple.arkit/documentation/ARKit": {
+      "abstract": [
+        {
+          "text": "Integrate hardware sensing features to produce augmented reality apps and games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ARKit",
+      "type": "topic",
+      "url": "/documentation/arkit"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARCamera/TrackingState-swift.enum/limited(_:)": {
+      "abstract": [
+        {
+          "text": "Tracking is available, but the quality of results is questionable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "limited"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARCamera",
+          "text": "ARCamera"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So8ARCameraC5ARKitE13TrackingStateO",
+          "text": "TrackingState"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So8ARCameraC5ARKitE13TrackingStateO6ReasonO",
+          "text": "Reason"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARCamera/TrackingState-swift.enum/limited(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ARCamera.TrackingState.limited(_:)",
+      "type": "topic",
+      "url": "/documentation/arkit/arcamera/trackingstate-swift.enum/limited(_:)"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARCoachingOverlayView": {
+      "abstract": [
+        {
+          "text": "A view that displays standardized onboarding instructions to direct users toward a specific goal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARCoachingOverlayView"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARCoachingOverlayView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARCoachingOverlayView"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARCoachingOverlayView",
+      "type": "topic",
+      "url": "/documentation/arkit/arcoachingoverlayview"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARCoachingOverlayView/Goal-swift.enum/geoTracking": {
+      "abstract": [
+        {
+          "text": "A goal that specifies your app requires a precise geographic location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "geoTracking"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARCoachingOverlayView/Goal-swift.enum/geoTracking",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARCoachingGoalGeoTracking"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARCoachingOverlayView.Goal.geoTracking",
+      "type": "topic",
+      "url": "/documentation/arkit/arcoachingoverlayview/goal-swift.enum/geotracking"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARFrame/geoTrackingStatus": {
+      "abstract": [
+        {
+          "text": "The session’s condition with respect to geographic tracking at the time the session captured the frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "geoTrackingStatus"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARGeoTrackingStatus",
+          "text": "ARGeoTrackingStatus"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFrame/geoTrackingStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "geoTrackingStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "geoTrackingStatus",
+      "type": "topic",
+      "url": "/documentation/arkit/arframe/geotrackingstatus"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARGeoAnchor": {
+      "abstract": [
+        {
+          "text": "An anchor that identifies a geographic location using latitude, longitude, and altitude data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARGeoAnchor"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARGeoAnchor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARGeoAnchor"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARGeoAnchor",
+      "type": "topic",
+      "url": "/documentation/arkit/argeoanchor"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARGeoAnchor/init(coordinate:altitude:)": {
+      "abstract": [
+        {
+          "text": "Initializes a location anchor with the given coordinate and altitude.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "coordinate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CLLocationCoordinate2D",
+          "text": "CLLocationCoordinate2D"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "altitude"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CLLocationDistance",
+          "text": "CLLocationDistance"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARGeoAnchor/init(coordinate:altitude:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(coordinate:altitude:)",
+      "type": "topic",
+      "url": "/documentation/arkit/argeoanchor/init(coordinate:altitude:)"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARGeoTrackingConfiguration": {
+      "abstract": [
+        {
+          "text": "A configuration that tracks locations with GPS, map data, and a device’s compass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARGeoTrackingConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARGeoTrackingConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARGeoTrackingConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARGeoTrackingConfiguration",
+      "type": "topic",
+      "url": "/documentation/arkit/argeotrackingconfiguration"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARGeoTrackingConfiguration/checkAvailability(at:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Determines if geotracking supports a particular location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "checkAvailability"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CLLocationCoordinate2D",
+          "text": "CLLocationCoordinate2D"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARGeoTrackingConfiguration/checkAvailability(at:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "checkAvailabilityAtCoordinate:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "checkAvailability(at:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/arkit/argeotrackingconfiguration/checkavailability(at:completionhandler:)"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARGeoTrackingConfiguration/checkAvailability(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Determines if geotracking supports the user’s current location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "checkAvailability"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARGeoTrackingConfiguration/checkAvailability(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "checkAvailabilityWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "checkAvailability(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/arkit/argeotrackingconfiguration/checkavailability(completionhandler:)"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARGeoTrackingStatus": {
+      "abstract": [
+        {
+          "text": "The state, accuracy, and reason that are possible for geo-tracking’s current condition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARGeoTrackingStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARGeoTrackingStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARGeoTrackingStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARGeoTrackingStatus",
+      "type": "topic",
+      "url": "/documentation/arkit/argeotrackingstatus"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARGeoTrackingStatus/Accuracy-swift.enum/low": {
+      "abstract": [
+        {
+          "text": "Geo-tracking accuracy is low.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "low"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARGeoTrackingStatus/Accuracy-swift.enum/low",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARGeoTrackingAccuracyLow"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARGeoTrackingStatus.Accuracy.low",
+      "type": "topic",
+      "url": "/documentation/arkit/argeotrackingstatus/accuracy-swift.enum/low"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARGeoTrackingStatus/State-swift.enum/localized": {
+      "abstract": [
+        {
+          "text": "Geo tracking is localized.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "localized"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARGeoTrackingStatus/State-swift.enum/localized",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARGeoTrackingStateLocalized"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARGeoTrackingStatus.State.localized",
+      "type": "topic",
+      "url": "/documentation/arkit/argeotrackingstatus/state-swift.enum/localized"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARGeoTrackingStatus/StateReason-swift.enum/geoDataNotLoaded": {
+      "abstract": [
+        {
+          "text": "A state in which the framework downloads localization imagery.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "geoDataNotLoaded"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARGeoTrackingStatus/StateReason-swift.enum/geoDataNotLoaded",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARGeoTrackingStateReasonGeoDataNotLoaded"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARGeoTrackingStatus.StateReason.geoDataNotLoaded",
+      "type": "topic",
+      "url": "/documentation/arkit/argeotrackingstatus/statereason-swift.enum/geodatanotloaded"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARGeoTrackingStatus/StateReason-swift.enum/notAvailableAtLocation": {
+      "abstract": [
+        {
+          "text": "The location doesn’t provide geotracking.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "notAvailableAtLocation"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARGeoTrackingStatus/StateReason-swift.enum/notAvailableAtLocation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARGeoTrackingStateReasonNotAvailableAtLocation"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARGeoTrackingStatus.StateReason.notAvailableAtLocation",
+      "type": "topic",
+      "url": "/documentation/arkit/argeotrackingstatus/statereason-swift.enum/notavailableatlocation"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARGeoTrackingStatus/StateReason-swift.enum/worldTrackingUnstable": {
+      "abstract": [
+        {
+          "text": "The position or motion of the device makes geotracking unstable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "worldTrackingUnstable"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARGeoTrackingStatus/StateReason-swift.enum/worldTrackingUnstable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARGeoTrackingStateReasonWorldTrackingUnstable"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARGeoTrackingStatus.StateReason.worldTrackingUnstable",
+      "type": "topic",
+      "url": "/documentation/arkit/argeotrackingstatus/statereason-swift.enum/worldtrackingunstable"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARGeoTrackingStatus/accuracy-swift.property": {
+      "abstract": [
+        {
+          "text": "The accuracy of geo tracking at the time the session captured the frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accuracy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARGeoTrackingStatus",
+          "text": "ARGeoTrackingStatus"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ARGeoTrackingAccuracy",
+          "text": "Accuracy"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARGeoTrackingStatus/accuracy-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "accuracy"
+        }
+      ],
+      "role": "symbol",
+      "title": "accuracy",
+      "type": "topic",
+      "url": "/documentation/arkit/argeotrackingstatus/accuracy-swift.property"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSession/getGeoLocation(forPoint:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Converts a position in the framework’s local coordinate system to latitude, longitude and altitude.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getGeoLocation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forPoint"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@simd_float3",
+          "text": "simd_float3"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CLLocationCoordinate2D",
+          "text": "CLLocationCoordinate2D"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CLLocationDistance",
+          "text": "CLLocationDistance"
+        },
+        {
+          "kind": "text",
+          "text": ", (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSession/getGeoLocation(forPoint:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getGeoLocationForPoint:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "getGeoLocation(forPoint:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/arkit/arsession/getgeolocation(forpoint:completionhandler:)"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSessionDelegate/session(_:didAdd:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that one or more anchors have been added to the session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "session"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARSession",
+          "text": "ARSession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didAdd"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARAnchor",
+          "text": "ARAnchor"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSessionDelegate/session(_:didAdd:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "session:didAddAnchors:"
+        }
+      ],
+      "role": "symbol",
+      "title": "session(_:didAdd:)",
+      "type": "topic",
+      "url": "/documentation/arkit/arsessiondelegate/session(_:didadd:)"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios": {
+      "abstract": [
+        {
+          "text": "Integrate iOS device camera and motion features to produce augmented reality experiences in your app or game.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ARKit in iOS",
+      "type": "topic",
+      "url": "/documentation/arkit/arkit-in-ios"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/content-anchors": {
+      "abstract": [
+        {
+          "text": "Identify items in the physical environment, including planar surfaces, images, physical objects, body positions, and faces.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/content-anchors",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Content Anchors",
+      "type": "topic",
+      "url": "/documentation/arkit/content-anchors"
+    },
+    "doc://com.apple.documentation/documentation/ARKit/environmental-analysis": {
+      "abstract": [
+        {
+          "text": "Analyze the video from the cameras and the accompanying data, and use ray-casting and depth-map information to determine the location of items.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ARKit/environmental-analysis",
+      "kind": "article",
+      "role": "article",
+      "title": "Environmental Analysis",
+      "type": "topic",
+      "url": "/documentation/ARKit/environmental-analysis"
+    },
+    "doc://com.apple.documentation/documentation/CoreLocation": {
+      "abstract": [
+        {
+          "text": "Obtain the geographic location and orientation of a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreLocation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Location",
+      "type": "topic",
+      "url": "/documentation/CoreLocation"
+    },
+    "doc://com.apple.documentation/documentation/MapKit/MKMapView": {
+      "abstract": [
+        {
+          "text": "An embeddable map interface, similar to the one that the Maps app provides.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKMapView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MapKit/MKMapView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MKMapView",
+      "type": "topic",
+      "url": "/documentation/MapKit/MKMapView"
+    },
+    "doc://com.apple.documentation/documentation/MapKit/MKOverlay": {
+      "abstract": [
+        {
+          "text": "An interface for associating content with a specific map region.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKOverlay"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MKAnnotation",
+          "text": "MKAnnotation"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MapKit/MKOverlay",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MKOverlay",
+      "type": "topic",
+      "url": "/documentation/MapKit/MKOverlay"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/ARView": {
+      "abstract": [
+        {
+          "text": "A view that enables you to display an AR experience with RealityKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@objc"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/ARView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ARView",
+      "type": "topic",
+      "url": "/documentation/RealityKit/ARView"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIStackView": {
+      "abstract": [
+        {
+          "text": "A streamlined interface for laying out a collection of views in either a column or a row.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIStackView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIStackView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIStackView",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIStackView"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "218a9a85284c/TrackingGeographicLocationsInAr.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Geotracking",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/ARGeoAnchor"
+      ],
+      "title": "Geotracking"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Geotracking",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/ARGeoAnchor"
+              ],
+              "title": "Geotracking"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARGeoTrackingStatus~1State-swift.enum~1localized/title",
+          "value": "ARGeoTrackingStateLocalized"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARGeoTrackingStatus~1State-swift.enum~1localized/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARGeoTrackingStateLocalized"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARGeoTrackingConfiguration/title",
+          "value": "ARGeoTrackingConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARGeoTrackingConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARGeoTrackingConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARGeoTrackingConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARGeoTrackingConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARCoachingOverlayView~1Goal-swift.enum~1geoTracking/title",
+          "value": "ARCoachingGoalGeoTracking"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARCoachingOverlayView~1Goal-swift.enum~1geoTracking/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARCoachingGoalGeoTracking"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSessionDelegate~1session(_:didAdd:)/title",
+          "value": "session:didAddAnchors:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSessionDelegate~1session(_:didAdd:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "session:didAddAnchors:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARGeoAnchor/title",
+          "value": "ARGeoAnchor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARGeoAnchor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARGeoAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARGeoAnchor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARGeoAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MapKit~1MKOverlay/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MKOverlay"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)MKAnnotation",
+              "text": "MKAnnotation"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARGeoTrackingStatus~1StateReason-swift.enum~1worldTrackingUnstable/title",
+          "value": "ARGeoTrackingStateReasonWorldTrackingUnstable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARGeoTrackingStatus~1StateReason-swift.enum~1worldTrackingUnstable/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARGeoTrackingStateReasonWorldTrackingUnstable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARCoachingOverlayView/title",
+          "value": "ARCoachingOverlayView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARCoachingOverlayView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARCoachingOverlayView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARCoachingOverlayView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARCoachingOverlayView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARGeoTrackingConfiguration~1checkAvailability(completionHandler:)/title",
+          "value": "checkAvailabilityWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARGeoTrackingConfiguration~1checkAvailability(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "checkAvailabilityWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession~1getGeoLocation(forPoint:completionHandler:)/title",
+          "value": "getGeoLocationForPoint:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession~1getGeoLocation(forPoint:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getGeoLocationForPoint:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame~1geoTrackingStatus/title",
+          "value": "geoTrackingStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame~1geoTrackingStatus/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "geoTrackingStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIStackView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIStackView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIView",
+              "text": "UIView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARGeoTrackingStatus~1StateReason-swift.enum~1geoDataNotLoaded/title",
+          "value": "ARGeoTrackingStateReasonGeoDataNotLoaded"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARGeoTrackingStatus~1StateReason-swift.enum~1geoDataNotLoaded/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARGeoTrackingStateReasonGeoDataNotLoaded"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARGeoTrackingStatus~1accuracy-swift.property/title",
+          "value": "accuracy"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARGeoTrackingStatus~1accuracy-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "accuracy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARGeoTrackingStatus~1Accuracy-swift.enum~1low/title",
+          "value": "ARGeoTrackingAccuracyLow"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARGeoTrackingStatus~1Accuracy-swift.enum~1low/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARGeoTrackingAccuracyLow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARGeoTrackingStatus~1StateReason-swift.enum~1notAvailableAtLocation/title",
+          "value": "ARGeoTrackingStateReasonNotAvailableAtLocation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARGeoTrackingStatus~1StateReason-swift.enum~1notAvailableAtLocation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARGeoTrackingStateReasonNotAvailableAtLocation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MapKit~1MKMapView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MKMapView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIView",
+              "text": "UIView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARGeoTrackingStatus/title",
+          "value": "ARGeoTrackingStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARGeoTrackingStatus/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARGeoTrackingStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARGeoTrackingStatus/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARGeoTrackingStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARGeoTrackingConfiguration~1checkAvailability(at:completionHandler:)/title",
+          "value": "checkAvailabilityAtCoordinate:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARGeoTrackingConfiguration~1checkAvailability(at:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "checkAvailabilityAtCoordinate:completionHandler:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/arkit/tracking-geographic-locations-in-ar"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/arkit/tracking-geographic-locations-in-ar"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1507 @@
+{
+  "abstract": [
+    {
+      "text": "Options that define a graph's padding. ",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/convolutional_neural_network_kernels",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnndefaultpadding"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 2867168,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@E@MPSNNPaddingMethod",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "struct "
+      },
+      {
+        "kind": "identifier",
+        "text": "MPSNNPaddingMethod"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Metal Performance Shaders"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "11.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "11.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.13",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "11.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "MPSNNPaddingMethod"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MPSNNPaddingMethod"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " must make automatic decisions about how big to make the result of each filter node. This is typically determined by a combination of input image size, size of the filter window (for example, convolution weights), filter stride, and a description of how much extra space beyond the edges of the image to allow the filter read. By knowing the properties of the filter, you can then infer the size of the result image. Most of this information is known to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " as part of its normal operation. However, the amount of padding to add and where to add it is a matter of choice left to you. Different neural network frameworks such as TensorFlow and Caffe make different choices here. Depending on where your network was trained, you will need to adjust the policies used by MPS during inference. In the event that the padding method is not simply described by this enumeration, you may provide you own custom policy definition by overriding the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpadding/2867167-destinationimagedescriptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method in a custom ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpadding",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " child class. Common values that influence the size of the result image by adjusting the amount of padding added to the source images: ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/2867574-validonly",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " Result values are only produced for the area that is guaranteed to have all of its input values defined (i.e. not off the edge).  This produces the smallest result image   ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/2867069-sizesame",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " The result image is the same size as the input image. If the stride is not 1, then the result is scaled accordingly.   ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/2867100-sizefull",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " Result values are produced for any position for which at least one input value is defined (i.e. not off the edge).   ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/2866952-custom",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " The sizing and centering policy is given by the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpadding/2867167-destinationimagedescriptor",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".   ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Except possibly when ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/2866952-custom",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is used, the area within the source image that is read will be centered on the source image. Even so, at times the area can not be perfectly centered because the source image has odd size and the region read has even size, or vice versa. In such cases, you may use the following values to select where to put the extra padding: ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "none",
+          "metadata": {
+            "anchor": "2891082",
+            "title": "Table 1"
+          },
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/2867575-topleft",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Leftover padding is added to the top or left side of image as appropriate. \t",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/2866951-addremaindertobottomright",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Leftover padding is added to the bottom or right side of image as appropriate.\t",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here again, different external frameworks may use different policies. \u2028",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In some cases, Caffe introduces the notion of a region beyond the padding which is invalid. This can happen when the padding is set to a width narrower than what is needed for a destination size. In such cases, ",
+              "type": "text"
+            },
+            {
+              "code": "MPSCNNPaddingMethodExcludeEdges",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is used to adjust normalization factors for filter weights (particularly in pooling) such that invalid regions beyond the padding are not counted towards the filter area. Currently, only pooling supports this feature. Other filters ignore it. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "\u2028The size and a add remainder policies always appear together in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". There is no provision for a size policy without a remainder policy or vice versa. It is, in practice, used as a bit field. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "\u2028Most MPS neural network filters are considered forward filters. Some (for example, convolution transpose and unpooling) are considered reverse filters. For the reverse filters, the image stride is measured in destination values rather than source values and has the effect of enlarging the image rather than reducing it. When a reverse filter is used to \"undo\" the effects of a forward filter, the size policy should be the opposite of the forward padding method. For example, if the forward filter used ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/2867574-validonly",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "code": " | ",
+              "type": "codeVoice"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/2867575-topleft",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the reverse filter should use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/2867100-sizefull",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " | ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/2867575-topleft",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Some consideration of the geometry of inputs and outputs will reveal why this is so. It is usually not important to adjust the centering method because the size of the reverse result generally doesn't suffer from centering asymmetries. That is: the size would usually be given by: \u2028",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "static int DestSizeReverse( int sourceSize, int stride, int filterWindowSize, Style style ) {",
+            "    // style = {-1,0,1} for valid-only, same, full",
+            "    return (sourceSize-1) * stride + 1 + style  * (filterWindowSize-1);  ",
+            "} \u2028"
+          ],
+          "metadata": {
+            "anchor": "2891083",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "so the result size is exactly the one needed for the source size and there are no centering problems. In some cases where the reverse pass is intended to completely reverse a forward pass, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object produced by the forward pass should be used to determine the size of the reverse pass result image. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "\u2028Tensorflow does not appear to provide a full padding method, but instead appears to use its valid-only padding mode for reverse filters to in effect achieve what is called ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/2867100-sizefull",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " here. \u2028 \u2028",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "2891084",
+          "level": 3,
+          "text": "Walkthrough of Operation of Padding Policy",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Most ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnkernel",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects have two types of encode calls. There is one for which you must pass in a preallocated ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to receive the results. This is for manual configuration. It assumes you know what you are doing, and asks you to correctly set a diversity of properties to correctly position image inputs and size results. It does not use the padding policy. You must size the result correctly, set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnkernel/1648911-cliprect",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnkernel/1648835-offset",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and other properties as needed yourself. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Layered on top of that is usually another flavor of encode call that returns a destination image instead from the left hand side of the function. It is designed to automatically configure itself based on the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnfilternode/2866496-paddingpolicy",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". When this more automated encode method is called, it invokes a method in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpskernel",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that looks at the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " bitfield of the policy. Based on the information therein and the size of the input images and other filter properties, it determines the size of the output, sets the offset property, and returns an appropriate ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagedescriptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for the destination image. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/2866952-custom",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " bit in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ", then the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpadding/2867167-destinationimagedescriptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method is called. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagedescriptor",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " prepared earlier is passed in as the last parameter. You can use this descriptor or modify as needed. In addition, you can adjust any properties of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpskernel",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " with which it will be used. If, for example, the descriptor is not the right ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagefeaturechannelformat",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you can change it, or make your own ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagedescriptor",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " based on the one handed to you. This is your opportunity to customize the configuration of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpskernel",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ". In some cases (for example, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnndefaultpadding/2867164-fortensorflowaveragepooling",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") you might change other properties such as the filter edging mode, or adjust the offset that was already set for you. When the kernel is fully configured, return the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagedescriptor",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagedescriptor",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " is then passed to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnkernel/2865650-destinationimageallocator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to allocate the image. You might provide such an allocator if you want to use your own custom ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLHeap",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " rather than the MPS internal heap. The allocator can be set either directly in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnkernel",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " or through the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnimagenode/2866490-imageallocator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It is intended that most of the time, default values for padding method and destination image allocator should be good enough. Only minimal additional configuration should be required, apart from occasional adjustments to set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " when something other than default padding for the object is needed. If you find yourself encumbered by frequent adjustments of this kind, you might find it to your advantage to subclass ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnfilternode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnkernel",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " objects to adjust the default padding policy and allocator at initialization time. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/OptionSet": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/OptionSet",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OptionSet",
+      "type": "topic",
+      "url": "/documentation/swift/optionset"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Sendable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Sendable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/swift/sendable"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal Performance Shaders",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/convolutional_neural_network_kernels": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/convolutional_neural_network_kernels",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Convolutional Neural Network Kernels",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/convolutional_neural_network_kernels"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnkernel": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnkernel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNKernel",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnkernel"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnkernel/1648835-offset": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnkernel/1648835-offset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "offset",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnkernel/1648835-offset"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnkernel/1648911-cliprect": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnkernel/1648911-cliprect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "clipRect",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnkernel/1648911-cliprect"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnkernel/2865650-destinationimageallocator": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnkernel/2865650-destinationimageallocator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "destinationImageAllocator",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnkernel/2865650-destinationimageallocator"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSImage",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimage"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagedescriptor": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagedescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSImageDescriptor",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimagedescriptor"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagefeaturechannelformat": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagefeaturechannelformat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSImageFeatureChannelFormat",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimagefeaturechannelformat"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpskernel": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpskernel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSKernel",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpskernel"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnndefaultpadding": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnndefaultpadding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSNNDefaultPadding",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnndefaultpadding"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnndefaultpadding/2867164-fortensorflowaveragepooling": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnndefaultpadding/2867164-fortensorflowaveragepooling",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "forTensorflowAveragePooling()",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnndefaultpadding/2867164-fortensorflowaveragepooling"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnfilternode": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnfilternode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSNNFilterNode",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnnfilternode"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnfilternode/2866496-paddingpolicy": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnfilternode/2866496-paddingpolicy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "paddingPolicy",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnnfilternode/2866496-paddingpolicy"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnngraph",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSNNGraph",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnngraph"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnimagenode/2866490-imageallocator": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnimagenode/2866490-imageallocator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "imageAllocator",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnnimagenode/2866490-imageallocator"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpadding": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpadding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSNNPadding",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnnpadding"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpadding/2867167-destinationimagedescriptor": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpadding/2867167-destinationimagedescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "destinationImageDescriptor(forSourceImages:sourceStates:for:suggestedDescriptor:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnnpadding/2867167-destinationimagedescriptor"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSNNPaddingMethod",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnnpaddingmethod"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod#2891082": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod#2891082",
+      "kind": "article",
+      "role": "table",
+      "title": "Table 1",
+      "type": "section",
+      "url": "/documentation/metalperformanceshaders/mpsnnpaddingmethod#2891082"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod#2891083": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod#2891083",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/metalperformanceshaders/mpsnnpaddingmethod#2891083"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/2866951-addremaindertobottomright": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "addRemainderToBottomRight"
+        },
+        {
+          "kind": "text",
+          "text": ": MPSNNPaddingMethod"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/2866951-addremaindertobottomright",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addRemainderToBottomRight",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnnpaddingmethod/2866951-addremaindertobottomright"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/2866952-custom": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "custom"
+        },
+        {
+          "kind": "text",
+          "text": ": MPSNNPaddingMethod"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/2866952-custom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "custom",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnnpaddingmethod/2866952-custom"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/2867003-size_reserved": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "size_reserved"
+        },
+        {
+          "kind": "text",
+          "text": ": MPSNNPaddingMethod"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/2867003-size_reserved",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "size_reserved",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnnpaddingmethod/2867003-size_reserved"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/2867015-alignmask": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "alignMask"
+        },
+        {
+          "kind": "text",
+          "text": ": MPSNNPaddingMethod"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/2867015-alignmask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "alignMask",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnnpaddingmethod/2867015-alignmask"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/2867040-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "rawValue"
+        },
+        {
+          "kind": "text",
+          "text": ": UInt)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/2867040-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(rawValue:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnnpaddingmethod/2867040-init"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/2867061-addremaindertobottomleft": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "addRemainderToBottomLeft"
+        },
+        {
+          "kind": "text",
+          "text": ": MPSNNPaddingMethod"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/2867061-addremaindertobottomleft",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addRemainderToBottomLeft",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnnpaddingmethod/2867061-addremaindertobottomleft"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/2867062-alignbottomright": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "alignBottomRight"
+        },
+        {
+          "kind": "text",
+          "text": ": MPSNNPaddingMethod"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/2867062-alignbottomright",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "alignBottomRight",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnnpaddingmethod/2867062-alignbottomright"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/2867069-sizesame": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "sizeSame"
+        },
+        {
+          "kind": "text",
+          "text": ": MPSNNPaddingMethod"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/2867069-sizesame",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sizeSame",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnnpaddingmethod/2867069-sizesame"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/2867095-sizemask": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "sizeMask"
+        },
+        {
+          "kind": "text",
+          "text": ": MPSNNPaddingMethod"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/2867095-sizemask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sizeMask",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnnpaddingmethod/2867095-sizemask"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/2867100-sizefull": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "sizeFull"
+        },
+        {
+          "kind": "text",
+          "text": ": MPSNNPaddingMethod"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/2867100-sizefull",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sizeFull",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnnpaddingmethod/2867100-sizefull"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/2867108-addremaindertomask": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "addRemainderToMask"
+        },
+        {
+          "kind": "text",
+          "text": ": MPSNNPaddingMethod"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/2867108-addremaindertomask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addRemainderToMask",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnnpaddingmethod/2867108-addremaindertomask"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/2867109-aligntopleft": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "alignTopLeft"
+        },
+        {
+          "kind": "text",
+          "text": ": MPSNNPaddingMethod"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/2867109-aligntopleft",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "alignTopLeft",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnnpaddingmethod/2867109-aligntopleft"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/2867116-align_reserved": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "align_reserved"
+        },
+        {
+          "kind": "text",
+          "text": ": MPSNNPaddingMethod"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/2867116-align_reserved",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "align_reserved",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnnpaddingmethod/2867116-align_reserved"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/2867161-addremaindertotopright": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "addRemainderToTopRight"
+        },
+        {
+          "kind": "text",
+          "text": ": MPSNNPaddingMethod"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/2867161-addremaindertotopright",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addRemainderToTopRight",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnnpaddingmethod/2867161-addremaindertotopright"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/2867573-centered": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "centered"
+        },
+        {
+          "kind": "text",
+          "text": ": MPSNNPaddingMethod"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/2867573-centered",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "centered",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnnpaddingmethod/2867573-centered"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/2867574-validonly": {
+      "abstract": [
+        {
+          "text": "A padding method where result values are only produced for the area that is guaranteed to have all of its input values defined   ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "validOnly"
+        },
+        {
+          "kind": "text",
+          "text": ": MPSNNPaddingMethod"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/2867574-validonly",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "validOnly",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnnpaddingmethod/2867574-validonly"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/2867575-topleft": {
+      "abstract": [
+        {
+          "text": "A padding method where leftover padding is added to the top or left side of image as appropriate.\t  ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "topLeft"
+        },
+        {
+          "kind": "text",
+          "text": ": MPSNNPaddingMethod"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/2867575-topleft",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "topLeft",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnnpaddingmethod/2867575-topleft"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/2890785-excludeedges": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "excludeEdges"
+        },
+        {
+          "kind": "text",
+          "text": ": MPSNNPaddingMethod"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/2890785-excludeedges",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "excludeEdges",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnnpaddingmethod/2890785-excludeedges"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/3020690-customwhitelistfornodefusion": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "customWhitelistForNodeFusion"
+        },
+        {
+          "kind": "text",
+          "text": ": MPSNNPaddingMethod"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/3020690-customwhitelistfornodefusion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "customWhitelistForNodeFusion",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnnpaddingmethod/3020690-customwhitelistfornodefusion"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/3763056-customallowfornodefusion": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "customAllowForNodeFusion"
+        },
+        {
+          "kind": "text",
+          "text": ": MPSNNPaddingMethod"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/3763056-customallowfornodefusion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "customAllowForNodeFusion",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnnpaddingmethod/3763056-customallowfornodefusion"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsstate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSState",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsstate"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLHeap": {
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLHeap",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLHeap",
+      "type": "topic",
+      "url": "/documentation/metal/mtlheap"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/OptionSet",
+        "doc://com.apple.Swift/documentation/Swift/Sendable"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "2868971",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/2867040-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Initializers"
+    },
+    {
+      "anchor": "2868972",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/2867061-addremaindertobottomleft",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/2866951-addremaindertobottomright",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/2867108-addremaindertomask",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/2867161-addremaindertotopright",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/2867062-alignbottomright",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/2867015-alignmask",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/2867109-aligntopleft",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/2867116-align_reserved",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/2866952-custom",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/2867100-sizefull",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/2867095-sizemask",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/2867069-sizesame",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/2867003-size_reserved",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/2890785-excludeedges",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/2867573-centered",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/3763056-customallowfornodefusion",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/3020690-customwhitelistfornodefusion",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/2867575-topleft",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpaddingmethod/2867574-validonly"
+      ],
+      "kind": "taskGroup",
+      "title": "Type Properties"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/metalperformanceshaders/mpsnnpaddingmethod"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/metalperformanceshaders/mpsnnpaddingmethod"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

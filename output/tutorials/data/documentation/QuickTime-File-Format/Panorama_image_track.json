@@ -1,0 +1,235 @@
+{
+  "abstract": [
+    {
+      "text": "Store the panoramic image for a panoramic node.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.qtff/documentation/quicktime-file-format",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Deprecated_atoms",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Panorama_tracks"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Panorama_image_track"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "QuickTime File Format"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Panorama image track"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The actual panoramic image for a panoramic node is contained in a panorama image track, which is a standard QuickTime video track. The track reference to this track is stored in the ",
+              "type": "text"
+            },
+            {
+              "code": "imageRefTrackIndex",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field of the panorama sample atom.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "QuickTime VR 2.1 required the original panoramic image to be rotated 90 degrees counterclockwise. This orientation has changed in QuickTime VR 2.2, however, as discussed later in this section.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The rotated image is diced into smaller frames, and each diced frame is then compressed and added to the video track as a video sample. Frames can be compressed using any spatial compressor; however, temporal compression is not allowed for panoramic image tracks.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "QuickTime VR 2.2 does not require the original panoramic image to be rotated 90 degrees counterclockwise, as was the case in QuickTime VR 2.1. The rotated image is still diced into smaller frames, and each diced frame is then compressed and added to the video track as a video sample.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In QuickTime 3.0, a panorama sample atom (which contains information about a single panorama) contains the ",
+              "type": "text"
+            },
+            {
+              "code": "panoType",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field, which indicates whether the diced panoramic image is oriented horizontally or vertically.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Cylindrical_panoramas": {
+      "abstract": [
+        {
+          "text": "Store cylindrical panoramas with horizontal orientation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Cylindrical_panoramas",
+      "kind": "article",
+      "role": "article",
+      "title": "Cylindrical panoramas",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/cylindrical_panoramas"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Deprecated_atoms": {
+      "abstract": [
+        {
+          "text": "Review unsupported atoms.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Deprecated_atoms",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Deprecated atoms",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/deprecated_atoms"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Panorama_tracks": {
+      "abstract": [
+        {
+          "text": "A track that contains information about the panoramic nodes in a scene.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Panorama_tracks",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Panorama tracks",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/panorama_tracks"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format": {
+      "abstract": [
+        {
+          "text": "An object-oriented file format for the storage and exchange of digital media between devices, applications, and operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "QuickTime File Format",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Panorama_sample_atom": {
+      "abstract": [
+        {
+          "text": "An atom that describes a single panorama.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Panorama_sample_atom",
+          "text": "Panorama sample atom ('pdat')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Panorama_sample_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Panorama sample atom ('pdat')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/panorama_sample_atom"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Storing-panorama-tracks",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Panorama_sample_atom",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Cylindrical_panoramas"
+      ],
+      "title": "Storing panorama tracks"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quicktime-file-format/panorama_image_track"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

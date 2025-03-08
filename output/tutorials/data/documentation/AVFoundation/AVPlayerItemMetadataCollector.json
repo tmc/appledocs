@@ -1,0 +1,1751 @@
+{
+  "abstract": [
+    {
+      "text": "An object used to capture the date range metadata defined for an HTTP Live Streaming asset.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avfoundation/documentation/AVFoundation"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemMetadataCollector"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)AVPlayerItemMetadataCollector",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "AVPlayerItemMetadataCollector"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AVFoundation"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "AVPlayerItemMetadataCollector"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.3",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.3",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.11.3",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.2",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.3",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "AVPlayerItemMetadataCollector"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVPlayerItemMetadataCollector"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use the HLS ",
+              "type": "text"
+            },
+            {
+              "code": "#EXT-X-DATERANGE",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tag to define date range metadata in a media playlist. This tag is useful for defining timed metadata for interstitial regions such as advertisements, but can be used to define any timed metadata needed by your stream. To access this metadata when the stream is played using an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you create an instance of ",
+              "type": "text"
+            },
+            {
+              "code": "AVPlayerItemMetadataCollector",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", configure its delegate object (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemMetadataCollectorPushDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "), and add it as a media data collector to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " (see example).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "class PlaybackController: NSObject, AVPlayerItemMetadataCollectorPushDelegate {",
+                    "    ",
+                    "    let player = AVPlayer()",
+                    "    var playerItem: AVPlayerItem!",
+                    "    var metadataCollector: AVPlayerItemMetadataCollector!",
+                    "    ",
+                    "    func prepareToPlay(url: URL) {",
+                    "        metadataCollector = AVPlayerItemMetadataCollector()",
+                    "        metadataCollector.setDelegate(self, queue: DispatchQueue.main)",
+                    "        ",
+                    "        playerItem = AVPlayerItem(url: url)",
+                    "        playerItem.add(metadataCollector)",
+                    "        ",
+                    "        player.replaceCurrentItem(with: playerItem)",
+                    "    }",
+                    "    ",
+                    "    func metadataCollector(_ metadataCollector: AVPlayerItemMetadataCollector,",
+                    "                           didCollect metadataGroups: [AVDateRangeMetadataGroup],",
+                    "                           indexesOfNewGroups: IndexSet,",
+                    "                           indexesOfModifiedGroups: IndexSet) {",
+                    "        // Process metadata",
+                    "    }",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "// Adopts AVPlayerItemMetadataCollectorPushDelegate",
+                    "@implementation PlaybackController",
+                    " ",
+                    "- (void)prepareToPlay:(NSURL *)url {",
+                    "    self.metadataCollector = [[AVPlayerItemMetadataCollector alloc] init];",
+                    "    [self.metadataCollector setDelegate:self queue:dispatch_get_main_queue()];",
+                    " ",
+                    "    self.playerItem = [AVPlayerItem playerItemWithURL:url];",
+                    "    [self.playerItem addMediaDataCollector:self.metadataCollector];",
+                    " ",
+                    "    self.player = [AVPlayer playerWithPlayerItem:self.playerItem];",
+                    "}",
+                    " ",
+                    "- (void)metadataCollector:(AVPlayerItemMetadataCollector *)metadataCollector",
+                    "didCollectDateRangeMetadataGroups:(NSArray<AVDateRangeMetadataGroup *> *)metadataGroups",
+                    "       indexesOfNewGroups:(NSIndexSet *)indexesOfNewGroups",
+                    "  indexesOfModifiedGroups:(NSIndexSet *)indexesOfModifiedGroups {",
+                    "    // Process metadata",
+                    "}",
+                    " ",
+                    "@end"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Creating an ",
+              "type": "text"
+            },
+            {
+              "code": "AVPlayerItemMetadataCollector",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as shown in the example, will capture all ",
+              "type": "text"
+            },
+            {
+              "code": "#EXT-X-DATERANGE",
+              "type": "codeVoice"
+            },
+            {
+              "text": " metadata defined in your stream. If you would like to filter the output to only the metadata of interest, you can create an instance to filter by identifier and/or classifying labels using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemMetadataCollector/init(identifiers:classifyingLabels:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initializer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.avfoundation/documentation/AVFoundation": {
+      "abstract": [
+        {
+          "text": "Work with audiovisual assets, control device cameras, process audio, and configure system audio interactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFoundation",
+      "type": "topic",
+      "url": "/documentation/avfoundation"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVDateRangeMetadataGroup": {
+      "abstract": [
+        {
+          "text": "A collection of metadata items that are valid for use within a specific date range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVDateRangeMetadataGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVDateRangeMetadataGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVDateRangeMetadataGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVDateRangeMetadataGroup",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avdaterangemetadatagroup"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataGroup": {
+      "abstract": [
+        {
+          "text": "A collection of metadata items associated with a timeline segment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVMetadataGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVMetadataGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVMetadataGroup",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmetadatagroup"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableDateRangeMetadataGroup": {
+      "abstract": [
+        {
+          "text": "A mutable collection of metadata items that are valid for use within a specific range of dates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVMutableDateRangeMetadataGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableDateRangeMetadataGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVMutableDateRangeMetadataGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVMutableDateRangeMetadataGroup",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutabledaterangemetadatagroup"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableTimedMetadataGroup": {
+      "abstract": [
+        {
+          "text": "A mutable collection of metadata items that are valid for use during a specific time range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVMutableTimedMetadataGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableTimedMetadataGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVMutableTimedMetadataGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVMutableTimedMetadataGroup",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutabletimedmetadatagroup"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayer": {
+      "abstract": [
+        {
+          "text": "An object that provides the interface to control the player’s transport behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayer"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVPlayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVPlayer",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayer"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem": {
+      "abstract": [
+        {
+          "text": "An object that models the timing and presentation state of an asset during playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayerItem"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVPlayerItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVPlayerItem",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayeritem"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemMediaDataCollector": {
+      "abstract": [
+        {
+          "text": "The abstract base for media data collectors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayerItemMediaDataCollector"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemMediaDataCollector",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVPlayerItemMediaDataCollector"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVPlayerItemMediaDataCollector",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayeritemmediadatacollector"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemMetadataCollector": {
+      "abstract": [
+        {
+          "text": "An object used to capture the date range metadata defined for an HTTP Live Streaming asset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayerItemMetadataCollector"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemMetadataCollector",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVPlayerItemMetadataCollector"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVPlayerItemMetadataCollector",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayeritemmetadatacollector"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemMetadataCollector/delegate": {
+      "abstract": [
+        {
+          "text": "Accesses the metadata collector’s delegate object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)AVPlayerItemMetadataCollectorPushDelegate",
+          "text": "AVPlayerItemMetadataCollectorPushDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemMetadataCollector/delegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayeritemmetadatacollector/delegate"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemMetadataCollector/delegateQueue": {
+      "abstract": [
+        {
+          "text": "The dispatch queue on which the delegate’s methods are called.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegateQueue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@dispatch_queue_t",
+          "text": "dispatch_queue_t"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemMetadataCollector/delegateQueue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delegateQueue"
+        }
+      ],
+      "role": "symbol",
+      "title": "delegateQueue",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayeritemmetadatacollector/delegatequeue"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemMetadataCollector/init(identifiers:classifyingLabels:)": {
+      "abstract": [
+        {
+          "text": "Creates a metadata collector to access a stream’s metadata groups matching the specified array of identifiers and classifying labels.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "identifiers"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "classifyingLabels"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemMetadataCollector/init(identifiers:classifyingLabels:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithIdentifiers:classifyingLabels:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(identifiers:classifyingLabels:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayeritemmetadatacollector/init(identifiers:classifyinglabels:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemMetadataCollector/setDelegate(_:queue:)": {
+      "abstract": [
+        {
+          "text": "Sets the delegate and a dispatch queue on which the delegate will be called.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setDelegate"
+        },
+        {
+          "kind": "text",
+          "text": "((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)AVPlayerItemMetadataCollectorPushDelegate",
+          "text": "AVPlayerItemMetadataCollectorPushDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "queue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@dispatch_queue_t",
+          "text": "dispatch_queue_t"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemMetadataCollector/setDelegate(_:queue:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setDelegate:queue:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setDelegate(_:queue:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayeritemmetadatacollector/setdelegate(_:queue:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemMetadataCollectorPushDelegate": {
+      "abstract": [
+        {
+          "text": "A protocol you implement to receive metadata callbacks from a player item metadata collector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayerItemMetadataCollectorPushDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemMetadataCollectorPushDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVPlayerItemMetadataCollectorPushDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVPlayerItemMetadataCollectorPushDelegate",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avplayeritemmetadatacollectorpushdelegate"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVTimedMetadataGroup": {
+      "abstract": [
+        {
+          "text": "A collection of metadata items that are valid for use during a specific time range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVTimedMetadataGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVTimedMetadataGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVTimedMetadataGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVTimedMetadataGroup",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avtimedmetadatagroup"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/presenting-chapter-markers": {
+      "abstract": [
+        {
+          "text": "Add chapter markers to enable users to quickly navigate your content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/presenting-chapter-markers",
+      "kind": "article",
+      "role": "article",
+      "title": "Presenting Chapter Markers",
+      "type": "topic",
+      "url": "/documentation/avfoundation/presenting-chapter-markers"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemMediaDataCollector"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Timed-metadata",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/presenting-chapter-markers",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataGroup",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVTimedMetadataGroup",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableTimedMetadataGroup",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVDateRangeMetadataGroup",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableDateRangeMetadataGroup",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemMediaDataCollector"
+      ],
+      "title": "Timed metadata"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-Metadata-Collector",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemMetadataCollector/init(identifiers:classifyingLabels:)"
+      ],
+      "title": "Creating a Metadata Collector"
+    },
+    {
+      "anchor": "Accessing-the-Delegate-and-Callback-Queue",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemMetadataCollector/setDelegate(_:queue:)",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemMetadataCollector/delegate",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemMetadataCollectorPushDelegate",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemMetadataCollector/delegateQueue"
+      ],
+      "title": "Accessing the Delegate and Callback Queue"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.3",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.3",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.11.3",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.2",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "2.3",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "AVPlayerItemMetadataCollector"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerItemMetadataCollector"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerItemMetadataCollector"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.avfoundation/documentation/AVFoundation"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-Metadata-Collector",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemMetadataCollector/init(identifiers:classifyingLabels:)"
+              ],
+              "title": "Creating a Metadata Collector"
+            },
+            {
+              "anchor": "Accessing-the-Delegate-and-Callback-Queue",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemMetadataCollector/setDelegate(_:queue:)",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemMetadataCollector/delegate",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemMetadataCollectorPushDelegate",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemMetadataCollector/delegateQueue"
+              ],
+              "title": "Accessing the Delegate and Callback Queue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemMediaDataCollector"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Timed-metadata",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/presenting-chapter-markers",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMetadataGroup",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVTimedMetadataGroup",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableTimedMetadataGroup",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVDateRangeMetadataGroup",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableDateRangeMetadataGroup",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemMediaDataCollector"
+              ],
+              "title": "Timed metadata"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "AVPlayerItemMetadataCollector"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPlayerItemMediaDataCollector",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)AVPlayerItemMediaDataCollector",
+                    "text": "AVPlayerItemMediaDataCollector"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItem/title",
+          "value": "AVPlayerItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVTimedMetadataGroup/title",
+          "value": "AVTimedMetadataGroup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVTimedMetadataGroup/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVTimedMetadataGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVTimedMetadataGroup/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVTimedMetadataGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItemMetadataCollector/title",
+          "value": "AVPlayerItemMetadataCollector"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItemMetadataCollector/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerItemMetadataCollector"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItemMetadataCollector/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerItemMetadataCollector"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItemMetadataCollector~1init(identifiers:classifyingLabels:)/title",
+          "value": "initWithIdentifiers:classifyingLabels:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItemMetadataCollector~1init(identifiers:classifyingLabels:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithIdentifiers:classifyingLabels:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItemMetadataCollector~1delegateQueue/title",
+          "value": "delegateQueue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItemMetadataCollector~1delegateQueue/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "delegateQueue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayer/title",
+          "value": "AVPlayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItemMetadataCollector~1delegate/title",
+          "value": "delegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItemMetadataCollector~1delegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "delegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItemMetadataCollector~1setDelegate(_:queue:)/title",
+          "value": "setDelegate:queue:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItemMetadataCollector~1setDelegate(_:queue:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setDelegate:queue:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableTimedMetadataGroup/title",
+          "value": "AVMutableTimedMetadataGroup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableTimedMetadataGroup/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMutableTimedMetadataGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableTimedMetadataGroup/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMutableTimedMetadataGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataGroup/title",
+          "value": "AVMetadataGroup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataGroup/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMetadataGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMetadataGroup/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMetadataGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItemMediaDataCollector/title",
+          "value": "AVPlayerItemMediaDataCollector"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItemMediaDataCollector/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerItemMediaDataCollector"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItemMediaDataCollector/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerItemMediaDataCollector"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableDateRangeMetadataGroup/title",
+          "value": "AVMutableDateRangeMetadataGroup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableDateRangeMetadataGroup/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMutableDateRangeMetadataGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableDateRangeMetadataGroup/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMutableDateRangeMetadataGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItemMetadataCollectorPushDelegate/title",
+          "value": "AVPlayerItemMetadataCollectorPushDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItemMetadataCollectorPushDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerItemMetadataCollectorPushDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPlayerItemMetadataCollectorPushDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerItemMetadataCollectorPushDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDateRangeMetadataGroup/title",
+          "value": "AVDateRangeMetadataGroup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDateRangeMetadataGroup/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVDateRangeMetadataGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDateRangeMetadataGroup/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVDateRangeMetadataGroup"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avfoundation/avplayeritemmetadatacollector"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/avfoundation/avplayeritemmetadatacollector"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

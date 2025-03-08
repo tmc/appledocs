@@ -1,0 +1,400 @@
+{
+  "abstract": [
+    {
+      "text": "Use this entry point to deform a geometry’s surface or alter its vertex attributes.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/scenekit",
+        "doc://com.apple.documentation/documentation/scenekit/scnshadable",
+        "doc://com.apple.documentation/documentation/scenekit/scnshadermodifierentrypoint"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/scenekit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/scenekit/scnshadermodifierentrypoint/1524108-geometry"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1524108,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@SCNShaderModifierEntryPointGeometry",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "static let "
+      },
+      {
+        "kind": "identifier",
+        "text": "geometry"
+      },
+      {
+        "kind": "text",
+        "text": ": SCNShaderModifierEntryPoint"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SceneKit"
+      }
+    ],
+    "parent": {
+      "title": "SCNShaderModifierEntryPoint"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "8.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "8.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.9",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Property",
+    "symbolKind": "structdata",
+    "title": "geometry"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "static"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "let"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "geometry"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/scenekit/scnshadermodifierentrypoint",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@SCNShaderModifierEntryPoint",
+              "text": "SCNShaderModifierEntryPoint"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Shader modifiers for this entry point execute in the vertex processing stage.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The geometry entry point declares the following structure:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct SCNShaderGeometry {",
+            "   vec3 position;",
+            "   vec3 normal;",
+            "   vec4 tangent;",
+            "   vec2 texcoords[kSCNTexcoordCount];",
+            "} _geometry;"
+          ],
+          "metadata": {
+            "anchor": "2557246",
+            "title": "Listing 1"
+          },
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your shader modifier reads from this structure and writes new values to the same structure to alter the geometric properties of each vertex in a geometry.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "position",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "normal",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "tangent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " fields are expressed in model space. You can use SceneKit’s uniforms (such as ",
+              "type": "text"
+            },
+            {
+              "code": "u_modelViewTransform",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") to operate in a different coordinate space, but you must convert back to model space before writing results.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "kSCNTexcoordCount",
+              "type": "codeVoice"
+            },
+            {
+              "text": " variable is a constant integer corresponding to the geometry’s number of texture coordinate sources. Each set of coordinates in the ",
+              "type": "text"
+            },
+            {
+              "code": "texcoords",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field contains raw values from the geometry—SceneKit applies the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterialProperty/contentsTransform",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " transformation (if any) after the geometry shader modifier completes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The below shader modifier produces an animated sinusoidal deformation:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "uniform float Amplitude = 0.1;",
+            " ",
+            "_geometry.position +=",
+            "    _geometry.normal *",
+            "    (Amplitude*_geometry.position.y*_geometry.position.x) *",
+            "    sin(1.0 * u_time);"
+          ],
+          "metadata": {
+            "anchor": "2557248",
+            "title": "Listing 2"
+          },
+          "syntax": "occ",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/scenekit": {
+      "identifier": "doc://com.apple.documentation/documentation/scenekit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SceneKit",
+      "type": "topic",
+      "url": "/documentation/scenekit"
+    },
+    "doc://com.apple.documentation/documentation/scenekit/scnshadable": {
+      "identifier": "doc://com.apple.documentation/documentation/scenekit/scnshadable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SCNShadable",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnshadable"
+    },
+    "doc://com.apple.documentation/documentation/scenekit/scnshadermodifierentrypoint": {
+      "identifier": "doc://com.apple.documentation/documentation/scenekit/scnshadermodifierentrypoint",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SCNShaderModifierEntryPoint",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnshadermodifierentrypoint"
+    },
+    "doc://com.apple.documentation/documentation/scenekit/scnshadermodifierentrypoint/1524108-geometry#2557246": {
+      "identifier": "doc://com.apple.documentation/documentation/scenekit/scnshadermodifierentrypoint/1524108-geometry#2557246",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/scenekit/scnshadermodifierentrypoint/1524108-geometry#2557246"
+    },
+    "doc://com.apple.documentation/documentation/scenekit/scnshadermodifierentrypoint/1524108-geometry#2557248": {
+      "identifier": "doc://com.apple.documentation/documentation/scenekit/scnshadermodifierentrypoint/1524108-geometry#2557248",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/scenekit/scnshadermodifierentrypoint/1524108-geometry#2557248"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterialProperty/contentsTransform": {
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterialProperty/contentsTransform",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "contentsTransform",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnmaterialproperty/contentstransform"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNShadable/shaderModifiers": {
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNShadable/shaderModifiers",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "shaderModifiers",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnshadable/shadermodifiers"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "documentation/scenekit/scnshadermodifierentrypointgeometry"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/scenekit/scnshadermodifierentrypoint/1524108-geometry"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

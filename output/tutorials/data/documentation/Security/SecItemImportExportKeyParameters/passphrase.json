@@ -1,0 +1,978 @@
+{
+  "abstract": [
+    {
+      "text": "The password to use during key import or export.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.security/documentation/Security",
+        "doc://com.apple.security/documentation/Security/SecItemImportExportKeyParameters"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.security/documentation/Security/SecItemImportExportKeyParameters/passphrase"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@SA@SecItemImportExportKeyParameters@FI@passphrase",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "var"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "passphrase"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:s9UnmanagedV",
+        "text": "Unmanaged"
+      },
+      {
+        "kind": "text",
+        "text": "<"
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@T@CFTypeRef",
+        "text": "CFTypeRef"
+      },
+      {
+        "kind": "text",
+        "text": ">?"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Security"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "passphrase"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "property",
+    "title": "passphrase"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "passphrase"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:s9UnmanagedV",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:s9UnmanagedV",
+              "text": "Unmanaged"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@CFTypeRef",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFTypeRef",
+              "text": "CFTypeRef"
+            },
+            {
+              "kind": "text",
+              "text": ">?"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You may specify either a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfstring",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfdata",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance for the passphrase. The PKCS12 format requires passwords in Unicode format, and passing in a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfstring",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as the password is the surest way to meet this requirement  (and ensure compatibility with other implementations). If you supply a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfdata",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance as the password for a PKCS12 export operation, the data is assumed to be in UTF8 form and converted as appropriate.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When importing or exporting keys (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecKey",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects) in one of the wrapped formats (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecExternalFormat/formatWrappedOpenSSL",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecExternalFormat/formatWrappedSSH",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecExternalFormat/formatWrappedPKCS8",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") or in PKCS12 format, you must either explicitly specify the passphrase field or set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecKeyImportExportFlags/securePassphrase",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " bit the flags field (to prompt the user to enter the password).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/corefoundation/cfdata": {
+      "abstract": [
+        {
+          "text": "A reference to an immutable CFData object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFData"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfdata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFData",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfdata"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfstring": {
+      "abstract": [
+        {
+          "text": "A reference to a CFString object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFString",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfstring"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.security/documentation/Security": {
+      "abstract": [
+        {
+          "text": "Secure the data your app manages, and control access to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Security",
+      "type": "topic",
+      "url": "/documentation/security"
+    },
+    "doc://com.apple.security/documentation/Security/SecExternalFormat/formatWrappedOpenSSL": {
+      "abstract": [
+        {
+          "text": "Format for wrapped symmetric and private keys. OpenSSL is an open-source toolkit for Secure Sockets Layer (SSL) and Transport Layer Security (TLS).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "formatWrappedOpenSSL"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecExternalFormat/formatWrappedOpenSSL",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecFormatWrappedOpenSSL"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecExternalFormat.formatWrappedOpenSSL",
+      "type": "topic",
+      "url": "/documentation/security/secexternalformat/formatwrappedopenssl"
+    },
+    "doc://com.apple.security/documentation/Security/SecExternalFormat/formatWrappedPKCS8": {
+      "abstract": [
+        {
+          "text": "Format for wrapped symmetric and private keys. PKCS8 is the Private-Key Information Syntax Standard from RSA Security.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "formatWrappedPKCS8"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecExternalFormat/formatWrappedPKCS8",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecFormatWrappedPKCS8"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecExternalFormat.formatWrappedPKCS8",
+      "type": "topic",
+      "url": "/documentation/security/secexternalformat/formatwrappedpkcs8"
+    },
+    "doc://com.apple.security/documentation/Security/SecExternalFormat/formatWrappedSSH": {
+      "abstract": [
+        {
+          "text": "OpenSSH 1 format for wrapped symmetric and private keys.  OpenSSH is an OpenBSD implementation of the Secure Shell (SSH) protocol.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "formatWrappedSSH"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecExternalFormat/formatWrappedSSH",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecFormatWrappedSSH"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecExternalFormat.formatWrappedSSH",
+      "type": "topic",
+      "url": "/documentation/security/secexternalformat/formatwrappedssh"
+    },
+    "doc://com.apple.security/documentation/Security/SecItemImportExportKeyParameters": {
+      "abstract": [
+        {
+          "text": "The import/export parameter structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecItemImportExportKeyParameters"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecItemImportExportKeyParameters",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecItemImportExportKeyParameters"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecItemImportExportKeyParameters",
+      "type": "topic",
+      "url": "/documentation/security/secitemimportexportkeyparameters"
+    },
+    "doc://com.apple.security/documentation/Security/SecItemImportExportKeyParameters/passphrase": {
+      "abstract": [
+        {
+          "text": "The password to use during key import or export.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "passphrase"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeRef",
+          "text": "CFTypeRef"
+        },
+        {
+          "kind": "text",
+          "text": ">?"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecItemImportExportKeyParameters/passphrase",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "passphrase"
+        }
+      ],
+      "role": "symbol",
+      "title": "passphrase",
+      "type": "topic",
+      "url": "/documentation/security/secitemimportexportkeyparameters/passphrase"
+    },
+    "doc://com.apple.security/documentation/Security/SecKey": {
+      "abstract": [
+        {
+          "text": "An object that represents a cryptographic key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKey"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKey",
+      "type": "topic",
+      "url": "/documentation/security/seckey"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeyImportExportFlags/securePassphrase": {
+      "abstract": [
+        {
+          "text": "A flag that indicates the user should be prompted for a passphrase on import or export.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "securePassphrase"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SecKeyImportExportFlags",
+          "text": "SecKeyImportExportFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeyImportExportFlags/securePassphrase",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecKeySecurePassphrase"
+        }
+      ],
+      "role": "symbol",
+      "title": "securePassphrase",
+      "type": "topic",
+      "url": "/documentation/security/seckeyimportexportflags/securepassphrase"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@CFTypeRef": {
+      "abstract": [
+        {
+          "text": "An untyped \"generic\" reference to any Core Foundation object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFTypeRef"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@CFTypeRef",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFTypeRef",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cftyperef"
+    },
+    "doc://com.externally.resolved.symbol/s:s9UnmanagedV": {
+      "abstract": [
+        {
+          "text": "A type for propagating an unmanaged object reference.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Instance"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Instance"
+        },
+        {
+          "kind": "text",
+          "text": " : AnyObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s9UnmanagedV",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Unmanaged",
+      "type": "topic",
+      "url": "/documentation/Swift/Unmanaged"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "passphrase"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "passphrase"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.security/documentation/Security",
+                "doc://com.apple.security/documentation/Security/SecItemImportExportKeyParameters"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:@T@CFTypeRef",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@T@CFTypeRef",
+                    "text": "CFTypeRef"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "passphrase"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1corefoundation~1cfdata/title",
+          "value": "CFDataRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecItemImportExportKeyParameters/title",
+          "value": "SecItemImportExportKeyParameters"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecItemImportExportKeyParameters/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecItemImportExportKeyParameters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecItemImportExportKeyParameters/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecItemImportExportKeyParameters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKey/title",
+          "value": "SecKeyRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeyRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKey/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeyRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1corefoundation~1cfstring/title",
+          "value": "CFStringRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecExternalFormat~1formatWrappedSSH/title",
+          "value": "kSecFormatWrappedSSH"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecExternalFormat~1formatWrappedSSH/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecFormatWrappedSSH"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeyImportExportFlags~1securePassphrase/title",
+          "value": "kSecKeySecurePassphrase"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeyImportExportFlags~1securePassphrase/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecKeySecurePassphrase"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecExternalFormat~1formatWrappedOpenSSL/title",
+          "value": "kSecFormatWrappedOpenSSL"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecExternalFormat~1formatWrappedOpenSSL/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecFormatWrappedOpenSSL"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecExternalFormat~1formatWrappedPKCS8/title",
+          "value": "kSecFormatWrappedPKCS8"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecExternalFormat~1formatWrappedPKCS8/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecFormatWrappedPKCS8"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecItemImportExportKeyParameters~1passphrase/title",
+          "value": "passphrase"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecItemImportExportKeyParameters~1passphrase/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "passphrase"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/security/secitemimportexportkeyparameters/passphrase"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/security/secitemimportexportkeyparameters/passphrase"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

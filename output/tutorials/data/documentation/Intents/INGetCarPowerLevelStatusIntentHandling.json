@@ -1,0 +1,1366 @@
+{
+  "abstract": [
+    {
+      "text": "The handler interface for requesting a car’s current power level.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.sirikit/documentation/Intents"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.sirikit/documentation/Intents/INGetCarPowerLevelStatusIntentHandling"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)INGetCarPowerLevelStatusIntentHandling",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "INGetCarPowerLevelStatusIntentHandling"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Intents"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "INGetCarPowerLevelStatusIntentHandling"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.3",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.3",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "3.2",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "INGetCarPowerLevelStatusIntentHandling"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "INGetCarPowerLevelStatusIntentHandling"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObjectProtocol"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the methods of the ",
+              "type": "text"
+            },
+            {
+              "code": "INGetCarPowerLevelStatusIntentHandling",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol to resolve, confirm, and handle requests for the current power level of one of the user’s electric vehicles. Adopt this protocol in an object of your Intents extension that can access the vehicle’s power level.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Siri delivers an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikit/documentation/Intents/INGetCarPowerLevelStatusIntent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to your handler when the user asks for the power level of a particular vehicle. The provided intent object can contain the car’s name (if available). Maps delivers the same intent to your handler when requesting information about the electric vehicle for route planning and navigation purposes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "During an active navigation session, Maps frequently asks for the vehicle’s power level status using ",
+              "type": "text"
+            },
+            {
+              "code": "INGetCarPowerLevelStatusIntent",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". When the navigation session begins, Maps may ask you to notify it about abrupt changes in the vehicle’s power level by calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikit/documentation/Intents/INGetCarPowerLevelStatusIntentHandling/startSendingUpdates(for:to:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of your handler.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the observer the method provides to deliver updates to Maps. For more information on providing updates using the observer, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikit/documentation/Intents/INGetCarPowerLevelStatusIntentResponseObserver",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.sirikit/documentation/Intents": {
+      "abstract": [
+        {
+          "text": "Empower people to customize interactions for your app on their device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Intents",
+      "type": "topic",
+      "url": "/documentation/intents"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INCarCommandsDomainHandling": {
+      "abstract": [
+        {
+          "text": "An interface for adopting all the handling protocols in the car commands domain.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INCarCommandsDomainHandling"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INCarCommandsDomainHandling",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INCarCommandsDomainHandling"
+        }
+      ],
+      "role": "symbol",
+      "title": "INCarCommandsDomainHandling",
+      "type": "topic",
+      "url": "/documentation/intents/incarcommandsdomainhandling"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INGetCarPowerLevelStatusIntent": {
+      "abstract": [
+        {
+          "text": "A request for the current power level of the user’s car.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INGetCarPowerLevelStatusIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INGetCarPowerLevelStatusIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INGetCarPowerLevelStatusIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "INGetCarPowerLevelStatusIntent",
+      "type": "topic",
+      "url": "/documentation/intents/ingetcarpowerlevelstatusintent"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INGetCarPowerLevelStatusIntentHandling": {
+      "abstract": [
+        {
+          "text": "The handler interface for requesting a car’s current power level.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INGetCarPowerLevelStatusIntentHandling"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INGetCarPowerLevelStatusIntentHandling",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INGetCarPowerLevelStatusIntentHandling"
+        }
+      ],
+      "role": "symbol",
+      "title": "INGetCarPowerLevelStatusIntentHandling",
+      "type": "topic",
+      "url": "/documentation/intents/ingetcarpowerlevelstatusintenthandling"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INGetCarPowerLevelStatusIntentHandling/confirm(intent:completion:)": {
+      "abstract": [
+        {
+          "text": "Confirms that you can access the car’s power level.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "confirm"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "intent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INGetCarPowerLevelStatusIntent",
+          "text": "INGetCarPowerLevelStatusIntent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INGetCarPowerLevelStatusIntentResponse",
+          "text": "INGetCarPowerLevelStatusIntentResponse"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INGetCarPowerLevelStatusIntentHandling/confirm(intent:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "confirmGetCarPowerLevelStatus:completion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "confirm(intent:completion:)",
+      "type": "topic",
+      "url": "/documentation/intents/ingetcarpowerlevelstatusintenthandling/confirm(intent:completion:)"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INGetCarPowerLevelStatusIntentHandling/handle(intent:completion:)": {
+      "abstract": [
+        {
+          "text": "Accesses and returns the car’s current power level status.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "handle"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "intent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INGetCarPowerLevelStatusIntent",
+          "text": "INGetCarPowerLevelStatusIntent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INGetCarPowerLevelStatusIntentResponse",
+          "text": "INGetCarPowerLevelStatusIntentResponse"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INGetCarPowerLevelStatusIntentHandling/handle(intent:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "handleGetCarPowerLevelStatus:completion:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "handle(intent:completion:)",
+      "type": "topic",
+      "url": "/documentation/intents/ingetcarpowerlevelstatusintenthandling/handle(intent:completion:)"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INGetCarPowerLevelStatusIntentHandling/resolveCarName(for:with:)": {
+      "abstract": [
+        {
+          "text": "Resolves the name of the user’s car.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "resolveCarName"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INGetCarPowerLevelStatusIntent",
+          "text": "INGetCarPowerLevelStatusIntent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INSpeakableStringResolutionResult",
+          "text": "INSpeakableStringResolutionResult"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INGetCarPowerLevelStatusIntentHandling/resolveCarName(for:with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "resolveCarNameForGetCarPowerLevelStatus:withCompletion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "resolveCarName(for:with:)",
+      "type": "topic",
+      "url": "/documentation/intents/ingetcarpowerlevelstatusintenthandling/resolvecarname(for:with:)"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INGetCarPowerLevelStatusIntentHandling/startSendingUpdates(for:to:)": {
+      "abstract": [
+        {
+          "text": "Starts the delivery of regular power level updates for a particular electric vehicle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startSendingUpdates"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INGetCarPowerLevelStatusIntent",
+          "text": "INGetCarPowerLevelStatusIntent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)INGetCarPowerLevelStatusIntentResponseObserver",
+          "text": "INGetCarPowerLevelStatusIntentResponseObserver"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INGetCarPowerLevelStatusIntentHandling/startSendingUpdates(for:to:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startSendingUpdatesForGetCarPowerLevelStatus:toObserver:"
+        }
+      ],
+      "role": "symbol",
+      "title": "startSendingUpdates(for:to:)",
+      "type": "topic",
+      "url": "/documentation/intents/ingetcarpowerlevelstatusintenthandling/startsendingupdates(for:to:)"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INGetCarPowerLevelStatusIntentHandling/stopSendingUpdates(for:)": {
+      "abstract": [
+        {
+          "text": "Stops the delivery of regular power level updates for a particular electric vehicle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stopSendingUpdates"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INGetCarPowerLevelStatusIntent",
+          "text": "INGetCarPowerLevelStatusIntent"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INGetCarPowerLevelStatusIntentHandling/stopSendingUpdates(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "stopSendingUpdatesForGetCarPowerLevelStatus:"
+        }
+      ],
+      "role": "symbol",
+      "title": "stopSendingUpdates(for:)",
+      "type": "topic",
+      "url": "/documentation/intents/ingetcarpowerlevelstatusintenthandling/stopsendingupdates(for:)"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INGetCarPowerLevelStatusIntentResponse": {
+      "abstract": [
+        {
+          "text": "Your app’s response to a request for the vehicle power level.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INGetCarPowerLevelStatusIntentResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INGetCarPowerLevelStatusIntentResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INGetCarPowerLevelStatusIntentResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "INGetCarPowerLevelStatusIntentResponse",
+      "type": "topic",
+      "url": "/documentation/intents/ingetcarpowerlevelstatusintentresponse"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INGetCarPowerLevelStatusIntentResponseObserver": {
+      "abstract": [
+        {
+          "text": "The interface for providing updates of a vehicle’s power level.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INGetCarPowerLevelStatusIntentResponseObserver"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INGetCarPowerLevelStatusIntentResponseObserver",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INGetCarPowerLevelStatusIntentResponseObserver"
+        }
+      ],
+      "role": "symbol",
+      "title": "INGetCarPowerLevelStatusIntentResponseObserver",
+      "type": "topic",
+      "url": "/documentation/intents/ingetcarpowerlevelstatusintentresponseobserver"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INCarCommandsDomainHandling"
+      ],
+      "kind": "relationships",
+      "title": "Inherited By",
+      "type": "inheritedBy"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Get-Car-Power-Level-Status",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INGetCarPowerLevelStatusIntent",
+        "doc://com.apple.sirikit/documentation/Intents/INGetCarPowerLevelStatusIntentResponse",
+        "doc://com.apple.sirikit/documentation/Intents/INGetCarPowerLevelStatusIntentResponseObserver"
+      ],
+      "title": "Get Car Power Level Status"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Resolving-the-Intent-Parameters",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INGetCarPowerLevelStatusIntentHandling/resolveCarName(for:with:)"
+      ],
+      "title": "Resolving the Intent Parameters"
+    },
+    {
+      "anchor": "Confirming-the-Response",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INGetCarPowerLevelStatusIntentHandling/confirm(intent:completion:)"
+      ],
+      "title": "Confirming the Response"
+    },
+    {
+      "anchor": "Handling-the-Intent",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INGetCarPowerLevelStatusIntentHandling/handle(intent:completion:)"
+      ],
+      "title": "Handling the Intent"
+    },
+    {
+      "anchor": "Providing-Power-Level-Status-Updates",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INGetCarPowerLevelStatusIntentHandling/startSendingUpdates(for:to:)",
+        "doc://com.apple.sirikit/documentation/Intents/INGetCarPowerLevelStatusIntentHandling/stopSendingUpdates(for:)"
+      ],
+      "title": "Providing Power Level Status Updates"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.3",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.3",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "3.2",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "INGetCarPowerLevelStatusIntentHandling"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INGetCarPowerLevelStatusIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INGetCarPowerLevelStatusIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.sirikit/documentation/Intents"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Resolving-the-Intent-Parameters",
+              "identifiers": [
+                "doc://com.apple.sirikit/documentation/Intents/INGetCarPowerLevelStatusIntentHandling/resolveCarName(for:with:)"
+              ],
+              "title": "Resolving the Intent Parameters"
+            },
+            {
+              "anchor": "Confirming-the-Response",
+              "identifiers": [
+                "doc://com.apple.sirikit/documentation/Intents/INGetCarPowerLevelStatusIntentHandling/confirm(intent:completion:)"
+              ],
+              "title": "Confirming the Response"
+            },
+            {
+              "anchor": "Handling-the-Intent",
+              "identifiers": [
+                "doc://com.apple.sirikit/documentation/Intents/INGetCarPowerLevelStatusIntentHandling/handle(intent:completion:)"
+              ],
+              "title": "Handling the Intent"
+            },
+            {
+              "anchor": "Providing-Power-Level-Status-Updates",
+              "identifiers": [
+                "doc://com.apple.sirikit/documentation/Intents/INGetCarPowerLevelStatusIntentHandling/startSendingUpdates(for:to:)",
+                "doc://com.apple.sirikit/documentation/Intents/INGetCarPowerLevelStatusIntentHandling/stopSendingUpdates(for:)"
+              ],
+              "title": "Providing Power Level Status Updates"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.sirikit/documentation/Intents/INCarCommandsDomainHandling"
+              ],
+              "kind": "relationships",
+              "title": "Inherited By",
+              "type": "inheritedBy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Get-Car-Power-Level-Status",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.sirikit/documentation/Intents/INGetCarPowerLevelStatusIntent",
+                "doc://com.apple.sirikit/documentation/Intents/INGetCarPowerLevelStatusIntentResponse",
+                "doc://com.apple.sirikit/documentation/Intents/INGetCarPowerLevelStatusIntentResponseObserver"
+              ],
+              "title": "Get Car Power Level Status"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "INGetCarPowerLevelStatusIntentHandling"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " <"
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(pl)NSObject",
+                    "text": "NSObject"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ">"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INGetCarPowerLevelStatusIntentHandling~1confirm(intent:completion:)/title",
+          "value": "confirmGetCarPowerLevelStatus:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INGetCarPowerLevelStatusIntentHandling~1confirm(intent:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "confirmGetCarPowerLevelStatus:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCarCommandsDomainHandling/title",
+          "value": "INCarCommandsDomainHandling"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCarCommandsDomainHandling/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCarCommandsDomainHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCarCommandsDomainHandling/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCarCommandsDomainHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INGetCarPowerLevelStatusIntentHandling~1stopSendingUpdates(for:)/title",
+          "value": "stopSendingUpdatesForGetCarPowerLevelStatus:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INGetCarPowerLevelStatusIntentHandling~1stopSendingUpdates(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "stopSendingUpdatesForGetCarPowerLevelStatus:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INGetCarPowerLevelStatusIntentHandling~1handle(intent:completion:)/title",
+          "value": "handleGetCarPowerLevelStatus:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INGetCarPowerLevelStatusIntentHandling~1handle(intent:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "handleGetCarPowerLevelStatus:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INGetCarPowerLevelStatusIntentResponse/title",
+          "value": "INGetCarPowerLevelStatusIntentResponse"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INGetCarPowerLevelStatusIntentResponse/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INGetCarPowerLevelStatusIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INGetCarPowerLevelStatusIntentResponse/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INGetCarPowerLevelStatusIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INGetCarPowerLevelStatusIntentHandling~1startSendingUpdates(for:to:)/title",
+          "value": "startSendingUpdatesForGetCarPowerLevelStatus:toObserver:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INGetCarPowerLevelStatusIntentHandling~1startSendingUpdates(for:to:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "startSendingUpdatesForGetCarPowerLevelStatus:toObserver:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INGetCarPowerLevelStatusIntentHandling~1resolveCarName(for:with:)/title",
+          "value": "resolveCarNameForGetCarPowerLevelStatus:withCompletion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INGetCarPowerLevelStatusIntentHandling~1resolveCarName(for:with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "resolveCarNameForGetCarPowerLevelStatus:withCompletion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INGetCarPowerLevelStatusIntent/title",
+          "value": "INGetCarPowerLevelStatusIntent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INGetCarPowerLevelStatusIntent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INGetCarPowerLevelStatusIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INGetCarPowerLevelStatusIntent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INGetCarPowerLevelStatusIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INGetCarPowerLevelStatusIntentHandling/title",
+          "value": "INGetCarPowerLevelStatusIntentHandling"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INGetCarPowerLevelStatusIntentHandling/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INGetCarPowerLevelStatusIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INGetCarPowerLevelStatusIntentHandling/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INGetCarPowerLevelStatusIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INGetCarPowerLevelStatusIntentResponseObserver/title",
+          "value": "INGetCarPowerLevelStatusIntentResponseObserver"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INGetCarPowerLevelStatusIntentResponseObserver/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INGetCarPowerLevelStatusIntentResponseObserver"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INGetCarPowerLevelStatusIntentResponseObserver/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INGetCarPowerLevelStatusIntentResponseObserver"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/intents/ingetcarpowerlevelstatusintenthandling"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/intents/ingetcarpowerlevelstatusintenthandling"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

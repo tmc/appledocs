@@ -1,0 +1,275 @@
+{
+  "abstract": [
+    {
+      "text": "Trim the silent priming samples to preserve correct synchronization.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.qtff/documentation/quicktime-file-format",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Media_data_atom_types",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sound_media",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Appendix_G_Audio_priming_handling_encoder_delay_in_AAC"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.qtff/documentation/QuickTime-File-Format/The_timing_and_synchronization_problem"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "QuickTime File Format"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "The timing and synchronization problem"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If an audio playback system attempting to synchronize AAC encoded audio and video does not compensate for encoder delay (that is, does not discard the silent priming samples), the audio and video will be out of synchronization. In the example above, it will be off by 2112 samples—The audio will be 2112 samples behind the video because the first real audio sample is actually the 2113th sample after the beginning of the decoded PCM data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Therefore, a playback system must trim the silent priming samples to preserve correct synchronization. This trimming by the playback system should be done in two places:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When playback first begins",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When the playback position is moved to another location. For example, the user skips ahead or back to another part of the media and begins playback from that new location.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Appendix_G_Audio_priming_handling_encoder_delay_in_AAC": {
+      "abstract": [
+        {
+          "text": "Position a source audio signal in a sound track to handle encoder delay.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Appendix_G_Audio_priming_handling_encoder_delay_in_AAC",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio priming-handling encoder delay in AAC",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/appendix_g_audio_priming_handling_encoder_delay_in_aac"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Background_AAC_encoding": {
+      "abstract": [
+        {
+          "text": "AAC requires data beyond the source PCM audio samples in order to correctly encode and decode audio samples due to the nature of the encoding algorithm.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Background_AAC_encoding",
+      "kind": "article",
+      "role": "article",
+      "title": "AAC encoding background",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/background_aac_encoding"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Example_representing_encoder_delay_explicitly": {
+      "abstract": [
+        {
+          "text": "Review an example that represents the temporal position of 5 seconds of 48kHz PCM audio encoded in a 48kHz AAC sound track.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Example_representing_encoder_delay_explicitly",
+      "kind": "article",
+      "role": "article",
+      "title": "Representing encoder delay explicitly",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/example_representing_encoder_delay_explicitly"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Historical_solution_implicit_encoder_delay": {
+      "abstract": [
+        {
+          "text": "Implicit encoder delay uses the most common delay of 2112 audio samples.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Historical_solution_implicit_encoder_delay",
+      "kind": "article",
+      "role": "article",
+      "title": "Historical solution for implicit encoder delay",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/historical_solution_implicit_encoder_delay"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Media_data_atom_types": {
+      "abstract": [
+        {
+          "text": "Store different types of media data, including video, sound, subtitles, and more.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Media_data_atom_types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Media data atom types",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/media_data_atom_types"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sound_media": {
+      "abstract": [
+        {
+          "text": "Store compressed and uncompressed audio data in QuickTime movies.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sound_media",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Sound media",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sound_media"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Summary_using_track_structures_to_represent_encoder_delay": {
+      "abstract": [
+        {
+          "text": "Use sample group structures to represent encoder delay for AAC sound tracks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Summary_using_track_structures_to_represent_encoder_delay",
+      "kind": "article",
+      "role": "article",
+      "title": "Representing encoder delay with track structures",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/summary_using_track_structures_to_represent_encoder_delay"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Using_track_structures_to_represent_encode_delay_explictly": {
+      "abstract": [
+        {
+          "text": "Represent encoder delay explicitly with an edit list atom and sample group structures.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Using_track_structures_to_represent_encode_delay_explictly",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Using track structures to represent encoder delay explicitly",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/using_track_structures_to_represent_encode_delay_explictly"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format": {
+      "abstract": [
+        {
+          "text": "An object-oriented file format for the storage and exchange of digital media between devices, applications, and operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "QuickTime File Format",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Handling-encoder-delay",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Background_AAC_encoding",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Historical_solution_implicit_encoder_delay",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Using_track_structures_to_represent_encode_delay_explictly",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Example_representing_encoder_delay_explicitly",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Summary_using_track_structures_to_represent_encoder_delay"
+      ],
+      "title": "Handling encoder delay"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quicktime-file-format/the_timing_and_synchronization_problem"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

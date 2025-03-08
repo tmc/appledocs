@@ -1,0 +1,954 @@
+{
+  "abstract": [
+    {
+      "text": "Properties for Apple I/O audio units (sometimes called output units).",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-unit-properties"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1534116-i_o_audio_unit_properties"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Audio Toolbox"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "I/O Audio Unit Properties"
+  },
+  "references": {
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox": {
+      "abstract": [
+        {
+          "text": "Record or play audio, convert formats, parse audio streams, and configure your audio session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Audio Toolbox",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1389633-aunetsend-parameters": {
+      "abstract": [],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1389633-aunetsend-parameters",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "AUNetSend Parameters",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1389633-aunetsend-parameters"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1389891-net-status-audio-unit-parameters": {
+      "abstract": [],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1389891-net-status-audio-unit-parameters",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Net Status Audio Unit Parameters",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1389891-net-status-audio-unit-parameters"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1389916-output_unit_parameters": {
+      "abstract": [],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1389916-output_unit_parameters",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Output Unit Parameters",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1389916-output_unit_parameters"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1389920-aunetreceive-parameters": {
+      "abstract": [],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1389920-aunetreceive-parameters",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "AUNetReceive Parameters",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1389920-aunetreceive-parameters"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1534109-aunetreceive-properties": {
+      "abstract": [],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1534109-aunetreceive-properties",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "AUNetReceive Properties",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1534109-aunetreceive-properties"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1534207-aunetsend-properties": {
+      "abstract": [],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1534207-aunetsend-properties",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "AUNetSend Properties",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1534207-aunetsend-properties"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1534212-aunetsendpresetformat-properties": {
+      "abstract": [],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1534212-aunetsendpresetformat-properties",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "AUNetSendPresetFormat Properties",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1534212-aunetsendpresetformat-properties"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1585807-i_o_audio_unit_function_selector": {
+      "abstract": [
+        {
+          "text": "Audio unit component selectors, specific to I/O audio units, that correspond to functions in the audio unit API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1585807-i_o_audio_unit_function_selector",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "I/O Audio Unit Function Selectors",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1585807-i_o_audio_unit_function_selector"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1621038-inter-app-audio-unit-property-ids": {
+      "abstract": [],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1621038-inter-app-audio-unit-property-ids",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Inter-App Audio Unit Property IDs",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1621038-inter-app-audio-unit-property-ids"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1621039-inter-app-output-unit-property-ids": {
+      "abstract": [],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1621039-inter-app-output-unit-property-ids",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Inter-App Output Unit Property IDs",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1621039-inter-app-output-unit-property-ids"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioOutputUnitMIDICallbacks": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioOutputUnitMIDICallbacks"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioOutputUnitMIDICallbacks",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioOutputUnitMIDICallbacks"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioOutputUnitMIDICallbacks",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiooutputunitmidicallbacks"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioOutputUnitStartAtTimeParams": {
+      "abstract": [
+        {
+          "text": "A timestamp for scheduled starting of an I/O audio unit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioOutputUnitStartAtTimeParams"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioOutputUnitStartAtTimeParams",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioOutputUnitStartAtTimeParams"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioOutputUnitStartAtTimeParams",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiooutputunitstartattimeparams"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-unit-properties": {
+      "abstract": [
+        {
+          "text": "Obtain information about the built-in mixers, equalizers, filters, effects, and other Audio Unit app extensions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-unit-properties",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Unit Properties",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audio-unit-properties"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioOutputUnitProperty_ChannelMap": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioOutputUnitProperty_ChannelMap"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioUnitPropertyID",
+          "text": "AudioUnitPropertyID"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioOutputUnitProperty_ChannelMap",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioOutputUnitProperty_ChannelMap"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioOutputUnitProperty_ChannelMap",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiooutputunitproperty_channelmap"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioOutputUnitProperty_CurrentDevice": {
+      "abstract": [
+        {
+          "text": "A read/write audio device ID object, of type ",
+          "type": "text"
+        },
+        {
+          "code": "AudioDeviceID",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", valid on the audio unit global scope.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioOutputUnitProperty_CurrentDevice"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioUnitPropertyID",
+          "text": "AudioUnitPropertyID"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioOutputUnitProperty_CurrentDevice",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioOutputUnitProperty_CurrentDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioOutputUnitProperty_CurrentDevice",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiooutputunitproperty_currentdevice"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioOutputUnitProperty_EnableIO": {
+      "abstract": [
+        {
+          "text": "Specifies whether audio I/O is enabled for an I/O unit bus-scope combination.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioOutputUnitProperty_EnableIO"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioUnitPropertyID",
+          "text": "AudioUnitPropertyID"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioOutputUnitProperty_EnableIO",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioOutputUnitProperty_EnableIO"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioOutputUnitProperty_EnableIO",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiooutputunitproperty_enableio"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioOutputUnitProperty_HasIO": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioOutputUnitProperty_HasIO"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioUnitPropertyID",
+          "text": "AudioUnitPropertyID"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioOutputUnitProperty_HasIO",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioOutputUnitProperty_HasIO"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioOutputUnitProperty_HasIO",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiooutputunitproperty_hasio"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioOutputUnitProperty_IsRunning": {
+      "abstract": [
+        {
+          "text": "Indicates whether an audio unit is running (",
+          "type": "text"
+        },
+        {
+          "code": "TRUE",
+          "type": "codeVoice"
+        },
+        {
+          "text": ") or not (",
+          "type": "text"
+        },
+        {
+          "code": "FALSE",
+          "type": "codeVoice"
+        },
+        {
+          "text": ").",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioOutputUnitProperty_IsRunning"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioUnitPropertyID",
+          "text": "AudioUnitPropertyID"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioOutputUnitProperty_IsRunning",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioOutputUnitProperty_IsRunning"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioOutputUnitProperty_IsRunning",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiooutputunitproperty_isrunning"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioOutputUnitProperty_OSWorkgroup": {
+      "abstract": [
+        {
+          "text": "The workgroup associated with the audio device underlying this Audio Unit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "kAudioOutputUnitProperty_OSWorkgroup"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioOutputUnitProperty_OSWorkgroup",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kAudioOutputUnitProperty_OSWorkgroup",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiooutputunitproperty_osworkgroup"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioOutputUnitProperty_SetInputCallback": {
+      "abstract": [
+        {
+          "text": "A read/write ",
+          "type": "text"
+        },
+        {
+          "code": "AURenderCallbackStruct",
+          "type": "codeVoice"
+        },
+        {
+          "text": " data structure valid on the audio unit global scope. When an output unit has been enabled for input operation, this callback can be used to provide a single callback to the host application from the input I/O proc, in order to notify the host that input is available and may be obtained by calling the ",
+          "type": "text"
+        },
+        {
+          "code": "AudioUnitRender",
+          "type": "codeVoice"
+        },
+        {
+          "text": " function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioOutputUnitProperty_SetInputCallback"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioUnitPropertyID",
+          "text": "AudioUnitPropertyID"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioOutputUnitProperty_SetInputCallback",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioOutputUnitProperty_SetInputCallback"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioOutputUnitProperty_SetInputCallback",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiooutputunitproperty_setinputcallback"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioOutputUnitProperty_StartTime": {
+      "abstract": [
+        {
+          "text": "A write-only ",
+          "type": "text"
+        },
+        {
+          "code": "AudioOutputUnitStartAtTimeParams",
+          "type": "codeVoice"
+        },
+        {
+          "text": " data structure valid on the audio unit global scope. When this property is set on an output unit, it will cause the next Start request (but no subsequent Starts) to use the AudioDeviceStartAtTime function, using the specified timestamp, passing false for ",
+          "type": "text"
+        },
+        {
+          "code": "inRequestedStartTimeIsInput",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioOutputUnitProperty_StartTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioUnitPropertyID",
+          "text": "AudioUnitPropertyID"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioOutputUnitProperty_StartTime",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioOutputUnitProperty_StartTime"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioOutputUnitProperty_StartTime",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiooutputunitproperty_starttime"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioOutputUnitProperty_StartTimestampsAtZero": {
+      "abstract": [
+        {
+          "text": "A read/write ",
+          "type": "text"
+        },
+        {
+          "code": "UInt32",
+          "type": "codeVoice"
+        },
+        {
+          "text": " value valid on the audio unit global scope.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioOutputUnitProperty_StartTimestampsAtZero"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioUnitPropertyID",
+          "text": "AudioUnitPropertyID"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioOutputUnitProperty_StartTimestampsAtZero",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioOutputUnitProperty_StartTimestampsAtZero"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioOutputUnitProperty_StartTimestampsAtZero",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiooutputunitproperty_starttimestampsatzero"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "InputOutput",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1621039-inter-app-output-unit-property-ids",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1621038-inter-app-audio-unit-property-ids",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1389916-output_unit_parameters",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1534109-aunetreceive-properties",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1534207-aunetsend-properties",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1389633-aunetsend-parameters",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1389920-aunetreceive-parameters",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1534212-aunetsendpresetformat-properties",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1389891-net-status-audio-unit-parameters",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1585807-i_o_audio_unit_function_selector",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioOutputUnitMIDICallbacks",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioOutputUnitStartAtTimeParams"
+      ],
+      "title": "Input/Output"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Properties",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioOutputUnitProperty_ChannelMap",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioOutputUnitProperty_CurrentDevice",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioOutputUnitProperty_EnableIO",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioOutputUnitProperty_HasIO",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioOutputUnitProperty_SetInputCallback",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioOutputUnitProperty_StartTime",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioOutputUnitProperty_StartTimestampsAtZero",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioOutputUnitProperty_IsRunning"
+      ],
+      "title": "Properties"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Properties",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioOutputUnitProperty_ChannelMap",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioOutputUnitProperty_CurrentDevice",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioOutputUnitProperty_EnableIO",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioOutputUnitProperty_HasIO",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioOutputUnitProperty_SetInputCallback",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioOutputUnitProperty_StartTime",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioOutputUnitProperty_StartTimestampsAtZero",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioOutputUnitProperty_IsRunning",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioOutputUnitProperty_OSWorkgroup"
+              ],
+              "title": "Properties"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "InputOutput",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1621039-inter-app-output-unit-property-ids",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1621038-inter-app-audio-unit-property-ids",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1389916-output_unit_parameters",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1534109-aunetreceive-properties",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1534207-aunetsend-properties",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1389633-aunetsend-parameters",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1389920-aunetreceive-parameters",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1534212-aunetsendpresetformat-properties",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1389891-net-status-audio-unit-parameters",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1585807-i_o_audio_unit_function_selector",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioOutputUnitMIDICallbacks",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioOutputUnitStartAtTimeParams"
+              ],
+              "title": "Input/Output"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioOutputUnitProperty_CurrentDevice/title",
+          "value": "kAudioOutputUnitProperty_CurrentDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioOutputUnitProperty_CurrentDevice/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioOutputUnitProperty_CurrentDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioOutputUnitProperty_SetInputCallback/title",
+          "value": "kAudioOutputUnitProperty_SetInputCallback"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioOutputUnitProperty_SetInputCallback/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioOutputUnitProperty_SetInputCallback"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioOutputUnitProperty_HasIO/title",
+          "value": "kAudioOutputUnitProperty_HasIO"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioOutputUnitProperty_HasIO/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioOutputUnitProperty_HasIO"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioOutputUnitProperty_StartTime/title",
+          "value": "kAudioOutputUnitProperty_StartTime"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioOutputUnitProperty_StartTime/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioOutputUnitProperty_StartTime"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioOutputUnitProperty_EnableIO/title",
+          "value": "kAudioOutputUnitProperty_EnableIO"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioOutputUnitProperty_EnableIO/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioOutputUnitProperty_EnableIO"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioOutputUnitProperty_ChannelMap/title",
+          "value": "kAudioOutputUnitProperty_ChannelMap"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioOutputUnitProperty_ChannelMap/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioOutputUnitProperty_ChannelMap"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioOutputUnitMIDICallbacks/title",
+          "value": "AudioOutputUnitMIDICallbacks"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioOutputUnitMIDICallbacks/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioOutputUnitMIDICallbacks"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioOutputUnitMIDICallbacks/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioOutputUnitMIDICallbacks"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioOutputUnitProperty_StartTimestampsAtZero/title",
+          "value": "kAudioOutputUnitProperty_StartTimestampsAtZero"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioOutputUnitProperty_StartTimestampsAtZero/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioOutputUnitProperty_StartTimestampsAtZero"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioOutputUnitProperty_IsRunning/title",
+          "value": "kAudioOutputUnitProperty_IsRunning"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioOutputUnitProperty_IsRunning/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioOutputUnitProperty_IsRunning"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioOutputUnitStartAtTimeParams/title",
+          "value": "AudioOutputUnitStartAtTimeParams"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioOutputUnitStartAtTimeParams/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioOutputUnitStartAtTimeParams"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioOutputUnitStartAtTimeParams/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioOutputUnitStartAtTimeParams"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/audiotoolbox/1534116-i_o_audio_unit_properties"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/audiotoolbox/1534116-i_o_audio_unit_properties"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

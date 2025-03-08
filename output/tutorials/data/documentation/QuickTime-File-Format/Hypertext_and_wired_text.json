@@ -1,0 +1,321 @@
+{
+  "abstract": [
+    {
+      "text": "Store hypertext in a text track sample atom.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.qtff/documentation/quicktime-file-format",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Media_data_atom_types",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Text_media"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Hypertext_and_wired_text"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "QuickTime File Format"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Hypertext and wired text"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Hypertext is used as an action that takes you to a Web URL; like a Web URL, it appears blue and underlined. Hypertext is stored in a text track sample atom stream as type ",
+              "type": "text"
+            },
+            {
+              "code": "'htxt'",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The same mechanism is used to store wired actions linked to text strings. A text string can be wired to act as a hypertext link when clicked or to perform any defined QuickTime wired action when clicked. For details on wired actions, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Wired_action_grammar",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The data stored is a ",
+              "type": "text"
+            },
+            {
+              "code": "QTAtomContainer",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The root atom of hypertext in this container is a wired-text atom of type ",
+              "type": "text"
+            },
+            {
+              "code": "'wtxt'",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". This is the parent for all individual hypertext objects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For each hypertext item, the parent atom is of type ",
+              "type": "text"
+            },
+            {
+              "code": "'htxt'",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". This is the atom container atom type. Two children of this atom that define the offset of the hypertext in the text stream are:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "kRangeStart         strt // unsigned long",
+            "kRangeEnd           end  // unsigned long"
+          ],
+          "syntax": "c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Child atoms of the parent atom are the events of type ",
+              "type": "text"
+            },
+            {
+              "code": "kQTEventType",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and the ID of the event type. The children of these event atoms follow the same format as other wired events.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "kQTEventType, (kQTEventMouseClick, kQTEventMouseClickEnd,",
+            "                    kQTEventMouseClickEndTriggerButton,",
+            "                    kQTEventMouseEnter, kQTEventMouseExit)",
+            "...",
+            "kTextWiredObjectsAtomType, 1",
+            "    kHyperTextItemAtomType, 1..n",
+            "         kRangeStart, 1",
+            "            long",
+            "        kRangeEnd, 1",
+            "            long",
+            " ",
+            "    kAction     // The known range of track movie sprite actions",
+            " "
+          ],
+          "syntax": "c",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Media_data_atom_types": {
+      "abstract": [
+        {
+          "text": "Store different types of media data, including video, sound, subtitles, and more.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Media_data_atom_types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Media data atom types",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/media_data_atom_types"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Text_media": {
+      "abstract": [
+        {
+          "text": "Store text data in QuickTime movies.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Text_media",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Text media",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/text_media"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Text_sample_data": {
+      "abstract": [
+        {
+          "text": "An atom that contains text data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Text_sample_data",
+      "kind": "article",
+      "role": "article",
+      "title": "Text sample data",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/text_sample_data"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Wired_action_grammar": {
+      "abstract": [
+        {
+          "text": "Embed QT event handlers in their media samples.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Wired_action_grammar",
+      "kind": "article",
+      "role": "article",
+      "title": "Wired action grammar",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/wired_action_grammar"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format": {
+      "abstract": [
+        {
+          "text": "An object-oriented file format for the storage and exchange of digital media between devices, applications, and operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "QuickTime File Format",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Text_media_information_atom": {
+      "abstract": [
+        {
+          "text": "An atom that contains information about text media.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Text_media_information_atom",
+          "text": "Text media information atom ('text')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Text_media_information_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Text media information atom ('text')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/text_media_information_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Text_sample_description": {
+      "abstract": [
+        {
+          "text": "An atom that defines how to interpret text media data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Text_sample_description",
+          "text": "Text sample description"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Text_sample_description",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Text sample description",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/text_sample_description"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Storing-text-data",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Text_sample_description",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Text_media_information_atom",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Text_sample_data"
+      ],
+      "title": "Storing text data"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quicktime-file-format/hypertext_and_wired_text"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

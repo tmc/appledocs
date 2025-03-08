@@ -1,0 +1,503 @@
+{
+  "abstract": [
+    {
+      "text": "Create new atoms and insert them in a QT atom container.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.qtff/documentation/quicktime-file-format",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Storing_and_sharing_media_with_QuickTime_files",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Creating_copying_and_disposing_of_atom_containers"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Creating_new_atoms"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "QuickTime File Format"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating new atoms"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use the ",
+              "type": "text"
+            },
+            {
+              "code": "QTInsertChild",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function to create new atoms and insert them in a QT atom container. The ",
+              "type": "text"
+            },
+            {
+              "code": "QTInsertChild",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function creates a new child atom for a parent atom. The caller specifies an atom type and atom ID for the new atom. If you specify a value of ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for the atom ID, ",
+              "type": "text"
+            },
+            {
+              "code": "QTInsertChild",
+              "type": "codeVoice"
+            },
+            {
+              "text": " assigns a unique ID to the atom.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "QTInsertChild",
+              "type": "codeVoice"
+            },
+            {
+              "text": " inserts the atom in the parent’s child list at the index specified by the index parameter; any existing atoms at the same index or greater are moved toward the end of the child list. If you specify a value of ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for the index parameter, ",
+              "type": "text"
+            },
+            {
+              "code": "QTInsertChild",
+              "type": "codeVoice"
+            },
+            {
+              "text": " inserts the atom at the end of the child list.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The code sample in the following listing creates a new QT atom container and calls ",
+              "type": "text"
+            },
+            {
+              "code": "QTInsertChild",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to add an atom. The resulting QT atom container is shown in the following figure. The offset value ",
+              "type": "text"
+            },
+            {
+              "code": "10",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is returned in the ",
+              "type": "text"
+            },
+            {
+              "code": "firstAtom",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "QTAtom firstAtom;",
+            "QTAtomContainer container;",
+            "OSErr err",
+            "err = QTNewAtomContainer (&container);",
+            "if (!err)",
+            "    err = QTInsertChild (container, kParentAtomIsContainer, 'abcd',",
+            "        1000, 1, 0, nil, &firstAtom);"
+          ],
+          "syntax": "c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following figure shows a QT atom container after you insert an atom.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "qt-after-inserting-atom",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code sample calls ",
+              "type": "text"
+            },
+            {
+              "code": "QTInsertChild",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to create a second child atom. Because a value of ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is specified for the index parameter, the second atom is inserted in front of the first atom in the child list; the index of the first atom is changed to ",
+              "type": "text"
+            },
+            {
+              "code": "2",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The resulting QT atom container is shown in the following figure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "QTAtom secondAtom;",
+            " ",
+            "FailOSErr (QTInsertChild (container, kParentAtomIsContainer, 'abcd',",
+            "    2000, 1, 0, nil, &secondAtom));"
+          ],
+          "syntax": "c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following figure shows a QT atom container after you insert a second atom.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "qt-after-inserting-second-atom",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can call the ",
+              "type": "text"
+            },
+            {
+              "code": "QTFindChildByID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function to retrieve the changed offset of the first atom that was inserted, as shown in the following example. In this example, the ",
+              "type": "text"
+            },
+            {
+              "code": "QTFindChildByID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function returns an offset of ",
+              "type": "text"
+            },
+            {
+              "code": "20",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "firstAtom = QTFindChildByID (container, kParentAtomIsContainer,  'abcd',",
+            "    1000, nil);"
+          ],
+          "syntax": "c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following listing shows how the ",
+              "type": "text"
+            },
+            {
+              "code": "QTInsertChild",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function inserts a leaf atom into the atom container sprite. The new leaf atom contains a sprite image index as its data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if ((propertyAtom = QTFindChildByIndex (sprite, kParentAtomIsContainer,",
+            "    kSpritePropertyImageIndex, 1, nil)) == 0)",
+            " ",
+            "    FailOSErr (QTInsertChild (sprite, kParentAtomIsContainer,",
+            "        kSpritePropertyImageIndex, 1, 1, sizeof(short),&imageIndex,",
+            "        nil));"
+          ],
+          "syntax": "c",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Copying_existing_atoms": {
+      "abstract": [
+        {
+          "text": "Copy existing atoms within an atom container.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Copying_existing_atoms",
+      "kind": "article",
+      "role": "article",
+      "title": "Copying existing atoms",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/copying_existing_atoms"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Creating_copying_and_disposing_of_atom_containers": {
+      "abstract": [
+        {
+          "text": "Manage atoms in atom containers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Creating_copying_and_disposing_of_atom_containers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Creating, copying, and disposing of atom containers",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/creating_copying_and_disposing_of_atom_containers"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Modifying_atoms": {
+      "abstract": [
+        {
+          "text": "Modify attributes or data associated with an atom in an atom container.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Modifying_atoms",
+      "kind": "article",
+      "role": "article",
+      "title": "Modifying atoms",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/modifying_atoms"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Removing_atoms_from_an_atom_container": {
+      "abstract": [
+        {
+          "text": "Remove atoms from an atom container.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Removing_atoms_from_an_atom_container",
+      "kind": "article",
+      "role": "article",
+      "title": "Removing atoms from an atom container",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/removing_atoms_from_an_atom_container"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Retrieving_atoms_from_an_atom_container": {
+      "abstract": [
+        {
+          "text": "Retrieve information about the types of a parent atom’s children, search for a specific atom, and retrieve a leaf atom’s data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Retrieving_atoms_from_an_atom_container",
+      "kind": "article",
+      "role": "article",
+      "title": "Retrieving atoms from an atom container",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/retrieving_atoms_from_an_atom_container"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Storing_and_sharing_media_with_QuickTime_files": {
+      "abstract": [
+        {
+          "text": "Build QuickTime files with atoms, QT atoms, and atom containers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Storing_and_sharing_media_with_QuickTime_files",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Storing and sharing media with QuickTime files",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/storing_and_sharing_media_with_quicktime_files"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format": {
+      "abstract": [
+        {
+          "text": "An object-oriented file format for the storage and exchange of digital media between devices, applications, and operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "QuickTime File Format",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format"
+    },
+    "qt-after-inserting-atom": {
+      "alt": "A diagram that shows a box with the caption “QT atom container”, with an arrow pointing down to a box below it. The box below contains two sections stacked vertically. The first section contains the caption “‘abcd’”, and the second section contains the caption “1000”. Below the bottom box are the captions “Index = 1” and “Offset = 10”.",
+      "identifier": "qt-after-inserting-atom",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d6e4df36838c40b7c3561800bb6a4a1a/qt-after-inserting-atom@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d3a189d61fc21776c16c5a2feeb94ce7/qt-after-inserting-atom~dark@2x.png"
+        }
+      ]
+    },
+    "qt-after-inserting-second-atom": {
+      "alt": "A diagram that shows a box with the caption “QT atom container”, with an arrow that splits in the middle pointing down to two horizontally-aligned boxes below it. The box below and on the left contains two sections stacked vertically. The first section contains the caption “‘abcd’”, and the second section contains the caption “2000”. Below the bottom box are the captions “Index = 1” and “Offset = 10”. The box below and on the right contains two sections stacked vertically. The first section contains the caption “‘abcd’”, and the second section contains the caption “1000”. Below the bottom box are the captions “Index = 2” and “Offset = 20”.",
+      "identifier": "qt-after-inserting-second-atom",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0b4d759558d70784127e59a5a45a0261/qt-after-inserting-second-atom@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/57f06551f21add76f069d06b2a7c860a/qt-after-inserting-second-atom~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Managing-atoms",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Copying_existing_atoms",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Retrieving_atoms_from_an_atom_container",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Modifying_atoms",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Removing_atoms_from_an_atom_container"
+      ],
+      "title": "Managing atoms"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quicktime-file-format/creating_new_atoms"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}
