@@ -1,0 +1,1053 @@
+{
+  "abstract": [
+    {
+      "text": "A skeleton consists of a hierarchy of joints. Each joint defines a coordinate space.",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "Portions of a model may be thought of as having a position in a joint’s local space.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit",
+        "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/Skeleton"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "RealityKit",
+    "externalID": "s:17RealityFoundation12MeshResourceCAAE8SkeletonV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "Skeleton"
+      }
+    ],
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Skeleton"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "MeshResource.Skeleton"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "Skeleton"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each joint in a skeleton has a name, which usually determines the joint’s parent. For",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "example, the legs of a human body might include these joints:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "root",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "root/hips_joint",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "root/hips_joint/left_upLeg_joint",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "root/hips_joint/left_upLeg_joint/left_leg_joint",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "root/hips_joint/right_upLeg_joint",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "root/hips_joint/right_upLeg_joint/right_leg_joint",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "etc.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Models with skinned animation are authored in a fixed pose (the “bind pose”). The position",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of a vertex in a particular joint’s local space is a function of the vertex’s position in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the bind pose and an “inverse bind pose” matrix which transforms from the bind pose (model",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "space) to the joint’s local space.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When unanimated, the pose of a skinned model is defined by the rest pose of each joint. This",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "transform is relative to the joint’s parent. Usually, the rest pose of a model is the same",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as its bind pose.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/MeshJointInfluence": {
+      "abstract": [
+        {
+          "text": "A binding to a joint, which consists of the joint’s index and the weight of that joint’s",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "influence on a vertex.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MeshJointInfluence"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/MeshJointInfluence",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MeshJointInfluence"
+        }
+      ],
+      "role": "symbol",
+      "title": "MeshJointInfluence",
+      "type": "topic",
+      "url": "/documentation/realitykit/meshjointinfluence"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource": {
+      "abstract": [
+        {
+          "text": "A high-level representation of a collection of vertices and edges that",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "define a shape.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MeshResource"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MeshResource"
+        }
+      ],
+      "role": "symbol",
+      "title": "MeshResource",
+      "type": "topic",
+      "url": "/documentation/realitykit/meshresource"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/JointInfluences": {
+      "abstract": [
+        {
+          "text": "A buffer of vertex-joint influences which bind the mesh part’s vertices to a skeleton via a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "skinning deformation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "JointInfluences"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/JointInfluences",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "JointInfluences"
+        }
+      ],
+      "role": "symbol",
+      "title": "MeshResource.JointInfluences",
+      "type": "topic",
+      "url": "/documentation/realitykit/meshresource/jointinfluences"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/Skeleton": {
+      "abstract": [
+        {
+          "text": "A skeleton consists of a hierarchy of joints. Each joint defines a coordinate space.",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Portions of a model may be thought of as having a position in a joint’s local space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Skeleton"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/Skeleton",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Skeleton"
+        }
+      ],
+      "role": "symbol",
+      "title": "MeshResource.Skeleton",
+      "type": "topic",
+      "url": "/documentation/realitykit/meshresource/skeleton"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/Skeleton/ID-swift.typealias": {
+      "abstract": [
+        {
+          "text": "A type representing the stable identity of the entity associated with",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "an instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ID"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/Skeleton/ID-swift.typealias",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ID"
+        }
+      ],
+      "role": "symbol",
+      "title": "MeshResource.Skeleton.ID",
+      "type": "topic",
+      "url": "/documentation/realitykit/meshresource/skeleton/id-swift.typealias"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/Skeleton/Joint": {
+      "abstract": [
+        {
+          "text": "A named joint in a ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/Skeleton",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Joint"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/Skeleton/Joint",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Joint"
+        }
+      ],
+      "role": "symbol",
+      "title": "MeshResource.Skeleton.Joint",
+      "type": "topic",
+      "url": "/documentation/realitykit/meshresource/skeleton/joint"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/Skeleton/id-swift.property": {
+      "abstract": [
+        {
+          "text": "The unique identifier of this skeleton. This acts as a stable identity for this object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "id"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/Skeleton/id-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "id",
+      "type": "topic",
+      "url": "/documentation/realitykit/meshresource/skeleton/id-swift.property"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/Skeleton/init(id:jointNames:inverseBindPoseMatrices:restPoseTransforms:parentIndices:)": {
+      "abstract": [
+        {
+          "text": "Creates a skeleton from arrays which define its joints. Returns ",
+          "type": "text"
+        },
+        {
+          "code": "nil",
+          "type": "codeVoice"
+        },
+        {
+          "text": " if there was an",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "issue converting the parameters to a valid skeleton.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "id"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "jointNames"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "inverseBindPoseMatrices"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@simd_float4x4",
+          "text": "simd_float4x4"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "restPoseTransforms"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation9TransformV",
+          "text": "Transform"
+        },
+        {
+          "kind": "text",
+          "text": "]?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "parentIndices"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": "?]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/Skeleton/init(id:jointNames:inverseBindPoseMatrices:restPoseTransforms:parentIndices:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(id:jointNames:inverseBindPoseMatrices:restPoseTransforms:parentIndices:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/meshresource/skeleton/init(id:jointnames:inversebindposematrices:restposetransforms:parentindices:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/Skeleton/init(id:joints:)": {
+      "abstract": [
+        {
+          "text": "Creates a skeleton from an array of joints.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "id"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "joints"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation12MeshResourceC",
+          "text": "MeshResource"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation12MeshResourceCAAE8SkeletonV",
+          "text": "Skeleton"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation12MeshResourceCAAE8SkeletonV5JointV",
+          "text": "Joint"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/Skeleton/init(id:joints:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(id:joints:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/meshresource/skeleton/init(id:joints:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/Skeleton/joints": {
+      "abstract": [
+        {
+          "text": "The joints which define this skeleton’s hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "joints"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation12MeshResourceC",
+          "text": "MeshResource"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation12MeshResourceCAAE8SkeletonV",
+          "text": "Skeleton"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation12MeshResourceCAAE8SkeletonV5JointV",
+          "text": "Joint"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/Skeleton/joints",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "joints",
+      "type": "topic",
+      "url": "/documentation/realitykit/meshresource/skeleton/joints"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/MeshSkeletonCollection": {
+      "abstract": [
+        {
+          "text": "An object that holds a collection of skeletons used by a mesh resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MeshSkeletonCollection"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/MeshSkeletonCollection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MeshSkeletonCollection"
+        }
+      ],
+      "role": "symbol",
+      "title": "MeshSkeletonCollection",
+      "type": "topic",
+      "url": "/documentation/realitykit/meshskeletoncollection"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:s12IdentifiableP": {
+      "abstract": [
+        {
+          "text": "A class of types whose instances hold the value of an entity with stable identity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Identifiable"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12IdentifiableP2IDQa",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s12IdentifiableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Identifiable",
+      "type": "topic",
+      "url": "/documentation/Swift/Identifiable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s12IdentifiableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Mesh-skeletons",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/Skeleton/Joint",
+        "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/Skeleton/ID-swift.typealias",
+        "doc://com.apple.RealityKit/documentation/RealityKit/MeshSkeletonCollection",
+        "doc://com.apple.RealityKit/documentation/RealityKit/MeshJointInfluence",
+        "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/JointInfluences"
+      ],
+      "title": "Mesh skeletons"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Structures",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/Skeleton/Joint"
+      ],
+      "title": "Structures"
+    },
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/Skeleton/init(id:jointNames:inverseBindPoseMatrices:restPoseTransforms:parentIndices:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/Skeleton/init(id:joints:)"
+      ],
+      "title": "Initializers"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/Skeleton/id-swift.property",
+        "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/Skeleton/joints"
+      ],
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "Type-Aliases",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource/Skeleton/ID-swift.typealias"
+      ],
+      "title": "Type Aliases"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/meshresource/skeleton"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

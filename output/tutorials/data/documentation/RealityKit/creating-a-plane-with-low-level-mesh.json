@@ -1,0 +1,1325 @@
+{
+  "abstract": [
+    {
+      "text": "Create a low-level mesh and set its vertex positions and normals to form a plane.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit",
+        "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-models-and-meshes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/creating-a-plane-with-low-level-mesh"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating a plane with low-level mesh"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A plane mesh is an excellent starting point for a variety of interactive applications, such as a cloth or water simulation.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "However, to achieve these dynamic effects you need to modify the mesh’s vertices in every frame, which is inefficient without direct access to the underlying GPU buffers.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelMesh",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " addresses this inefficiency by allowing you to create a custom vertex format and vertex buffer layout, which you can update in real time on the GPU by dispatching Metal compute shaders.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Construct a plane mesh by defining a custom vertex structure and creating a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelMesh",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with enough vertex and index capacity to store the vertices.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Position the vertices of the mesh in the shape of a plane by filling in the index and vertex buffers with data.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/generating-interactive-geometry-with-realitykit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for further applications of this mesh, including a terrain editor and water simulation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Define-a-custom-vertex-structure",
+          "level": 2,
+          "text": "Define a custom vertex structure",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Start by defining a custom vertex structure in a ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/metal/Metal-Shading-Language-Specification.pdf",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " header file:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct PlaneVertex {",
+            "    simd_float3 position;",
+            "    simd_float3 normal;",
+            "};"
+          ],
+          "syntax": "cpp",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this example, the vertex has a 3D position and a 3D normal vector, but you can further customize your vertex structure with different names and additional data, such as color and UV data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Make ",
+              "type": "text"
+            },
+            {
+              "code": "PlaneVertex",
+              "type": "codeVoice"
+            },
+            {
+              "text": " accessible in both Swift files and Metal files by referencing it in a bridging file.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/passing-structured-data-to-a-metal-compute-function#Import-the-struct-in-a-bridging-header",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information about bridging files.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Define-a-plane-mesh-structure",
+          "level": 2,
+          "text": "Define a plane mesh structure",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Define a structure that constructs the plane low-level mesh with size and dimensions:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct PlaneMesh {",
+            "    /// The plane low-level mesh.",
+            "    var mesh: LowLevelMesh!",
+            "    /// The size of the plane mesh.",
+            "    let size: SIMD2<Float>",
+            "    /// The number of vertices in each dimension of the plane mesh.",
+            "    let dimensions: SIMD2<UInt32>",
+            "    /// The maximum offset depth for the vertices of the plane mesh.",
+            "    ///",
+            "    /// Use this to ensure the bounds of the plane encompass its vertices, even if they are offset.",
+            "    let maxVertexDepth: Float",
+            "    ",
+            "    ...",
+            "    ",
+            "    /// Initializes the plane mesh by creating a low-level mesh and filling its vertex and index buffers",
+            "    /// to form a plane with given size and dimensions.",
+            "    init(size: SIMD2<Float>, dimensions: SIMD2<UInt32>, maxVertexDepth: Float = 1) throws {",
+            "        self.size = size",
+            "        self.dimensions = dimensions",
+            "        self.maxVertexDepth = maxVertexDepth",
+            "        ",
+            "        // Create the low-level mesh.",
+            "        self.mesh = try createMesh()",
+            "",
+            "        // Fill the mesh's vertex buffer with data.",
+            "        initializeVertexData()",
+            "        ",
+            "        // Fill the mesh's index buffer with data.",
+            "        initializeIndexData()",
+            "        ",
+            "        // Initialize the mesh parts.",
+            "        initializeMeshParts()",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "See the following sections for the implementation details of each of the methods in the structure’s initializer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-the-low-level-mesh",
+          "level": 2,
+          "text": "Create the low-level mesh",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Start by specifying the layout of the vertex data with a ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/realitykit/lowlevelmesh/attribute",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " array and a ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/realitykit/lowlevelmesh/layout",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " array:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// Creates a low-level mesh with `PlaneVertex` vertices.",
+            "private func createMesh() throws -> LowLevelMesh {",
+            "    // Define the vertex attributes of `PlaneVertex`.",
+            "    let positionAttributeOffset = MemoryLayout.offset(of: \\PlaneVertex.position) ?? 0",
+            "    let normalAttributeOffset = MemoryLayout.offset(of: \\PlaneVertex.normal) ?? 16",
+            "    ",
+            "    let positionAttribute = LowLevelMesh.Attribute(semantic: .position, format: .float3, offset: positionAttributeOffset)",
+            "    let normalAttribute = LowLevelMesh.Attribute(semantic: .normal, format: .float3, offset: normalAttributeOffset)",
+            "    ",
+            "    let vertexAttributes = [positionAttribute, normalAttribute]",
+            "    ",
+            "    // Define the vertex layouts of `PlaneVertex`.",
+            "    let vertexLayouts = [LowLevelMesh.Layout(bufferIndex: 0, bufferStride: MemoryLayout<PlaneVertex>.stride)]"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "These arrays define which properties in your custom vertex structure represent the different components of the vertex, such as position, normal, color, and so on, as well as their memory layout.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, derive the number of vertices and indices in the mesh from its dimensions:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "    // Derive the vertex and index count from the dimensions.",
+            "    let vertexCount = Int(dimensions.x * dimensions.y)",
+            "    let indicesPerTriangle = 3",
+            "    let trianglesPerCell = 2",
+            "    let cellCount = Int((dimensions.x - 1) * (dimensions.y - 1))",
+            "    let indexCount = indicesPerTriangle * trianglesPerCell * cellCount"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, create the low-level mesh by describing its vertex capacity, attributes, layouts, and index capacity:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "    // Create a low-level mesh with the necessary `PlaneVertex` capacity.",
+            "    let meshDescriptor = LowLevelMesh.Descriptor(vertexCapacity: vertexCount,",
+            "                                                 vertexAttributes: vertexAttributes,",
+            "                                                 vertexLayouts: vertexLayouts,",
+            "                                                 indexCapacity: indexCount)",
+            "    return try LowLevelMesh(descriptor: meshDescriptor)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Initialize-the-data-in-the-meshs-vertex-and-index-buffers",
+          "level": 2,
+          "text": "Initialize the data in the mesh’s vertex and index buffers",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Prepare the mesh for rendering by filling in its vertex and index buffers with data on the CPU, as in the following image:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "creating-a-plane-with-low-level-mesh-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You can also fill in the data on the GPU by running a Metal compute shader (see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/generating-interactive-geometry-with-realitykit",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ").",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Start by defining a helper method that converts a two-dimensional vertex coordinate to a one-dimensional vertex buffer array index:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// Converts a 2D vertex coordinate to a 1D vertex buffer index.",
+            "private func vertexIndex(_ xCoord: UInt32, _ yCoord: UInt32) -> UInt32 {",
+            "    xCoord + dimensions.x * yCoord",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, initialize the vertices of the low-level mesh by setting their normal directions and positioning them to form a plane with the given size:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// Initialize the vertices of the mesh, positioning them to form an xy-plane with the given size.",
+            "private func initializeVertexData() {",
+            "    // Initialize mesh vertex positions and normals.",
+            "    mesh.withUnsafeMutableBytes(bufferIndex: 0) { rawBytes in",
+            "        // Convert `rawBytes` into a `PlaneVertex` buffer pointer.",
+            "        let vertices = rawBytes.bindMemory(to: PlaneVertex.self)",
+            "        ",
+            "        // Define the normal direction for the vertices.",
+            "        let normalDirection: SIMD3<Float> = [0, 0, 1]",
+            "",
+            "        // Iterate through each vertex.",
+            "        for xCoord in 0..<dimensions.x {",
+            "            for yCoord in 0..<dimensions.y {",
+            "                // Remap the x and y vertex coordinates to the range [0, 1].",
+            "                let xCoord01 = Float(xCoord) / Float(dimensions.x - 1)",
+            "                let yCoord01 = Float(yCoord) / Float(dimensions.y - 1)",
+            "                ",
+            "                // Derive the vertex position from the remapped vertex coordinates and the size.",
+            "                let xPosition = size.x * xCoord01 - size.x / 2",
+            "                let yPosition = size.y * yCoord01 - size.y / 2",
+            "                let zPosition = Float(0)",
+            "                ",
+            "                // Get the current vertex from the vertex coordinates and set its position and normal.",
+            "                let vertexIndex = Int(vertexIndex(xCoord, yCoord))",
+            "                vertices[vertexIndex].position = [xPosition, yPosition, zPosition]",
+            "                vertices[vertexIndex].normal = normalDirection",
+            "            }",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Loop over the vertices within the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/realitykit/lowlevelmesh/withunsafemutablebytes(bufferindex:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " callback for best performance, as calling this method repeatedly is costly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, fill the index buffer by iterating through each cell in the mesh and adding the vertices of the two triangles that make up the cell in a counterclockwise winding order:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// Initializes the indices of the mesh two triangles at a time for each cell in the mesh.",
+            "private func initializeIndexData() {",
+            "    mesh.withUnsafeMutableIndices { rawIndices in",
+            "        // Convert `rawIndices` into a UInt32 pointer.",
+            "        guard var indices = rawIndices.baseAddress?.assumingMemoryBound(to: UInt32.self) else { return }",
+            "        ",
+            "        // Iterate through each cell.",
+            "        for xCoord in 0..<dimensions.x - 1 {",
+            "            for yCoord in 0..<dimensions.y - 1 {",
+            "                /*",
+            "                   Each cell in the plane mesh consists of two triangles:",
+            "                    ",
+            "                              topLeft     topRight",
+            "                                     |\\ ̅ ̅|",
+            "                     1st Triangle--> | \\ | <-- 2nd Triangle",
+            "                                     | ̲ ̲\\|",
+            "                  +y       bottomLeft     bottomRight",
+            "                   ^",
+            "                   |",
+            "                   *---> +x",
+            "                 ",
+            "                 */",
+            "                let bottomLeft = vertexIndex(xCoord, yCoord)",
+            "                let bottomRight = vertexIndex(xCoord + 1, yCoord)",
+            "                let topLeft = vertexIndex(xCoord, yCoord + 1)",
+            "                let topRight = vertexIndex(xCoord + 1, yCoord + 1)",
+            "                ",
+            "                // Create the 1st triangle with a counterclockwise winding order.",
+            "                indices[0] = bottomLeft",
+            "                indices[1] = bottomRight",
+            "                indices[2] = topLeft",
+            "                ",
+            "                // Create the 2nd triangle with a counterclockwise winding order.",
+            "                indices[3] = topLeft",
+            "                indices[4] = bottomRight",
+            "                indices[5] = topRight",
+            "                ",
+            "                indices += 6",
+            "            }",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Loop over the indices within the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/realitykit/lowlevelmesh/withunsafemutableindices(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " callback for best performance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The winding order of the vertices in a triangle determine which side of the triangle is the front. RealityKit considers a counterclockwise winding order to be front-facing.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Initialize-the-mesh-parts",
+          "level": 2,
+          "text": "Initialize the mesh parts",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Initialize the mesh parts by specifying the mesh’s index count, topology, and bounds:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// Initializes mesh parts, indicating topology and bounds.",
+            "func initializeMeshParts() {",
+            "    // Create a bounding box that encompasses the plane's size and max vertex depth.",
+            "    let bounds = BoundingBox(min: [-size.x / 2, -size.y / 2, 0],",
+            "                             max: [size.x / 2, size.y / 2, maxVertexDepth])",
+            "    ",
+            "    mesh.parts.replaceAll([LowLevelMesh.Part(indexCount: mesh.descriptor.indexCapacity,",
+            "                                             topology: .triangle,",
+            "                                             bounds: bounds)])",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this example, the ",
+              "type": "text"
+            },
+            {
+              "code": "maxVertexDepth",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property specifies the maximum offset depth for the vertices.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The mesh’s bounding box relies on this value to ensure it will encompass the vertices at all times, even if they are offset from their original positions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "RealityKit uses ",
+                  "type": "text"
+                },
+                {
+                  "code": "bounds",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " to determine whether or not to cull an object during rendering.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Therefore, it’s essential that the bounds you define are large enough to contain all of the vertices of your mesh; otherwise, RealityKit may not render it correctly.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Create-an-entity-with-the-low-level-mesh",
+          "level": 2,
+          "text": "Create an entity with the low-level mesh",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "View ",
+              "type": "text"
+            },
+            {
+              "code": "PlaneMesh",
+              "type": "codeVoice"
+            },
+            {
+              "text": "’s low-level mesh by creating a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " from it and adding that to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelComponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " of an entity in the scene:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "RealityView { content in",
+            "    // Create a plane mesh.",
+            "    if let planeMesh = try? PlaneMesh(size: [1, 1], dimensions: [16, 16]),",
+            "       let mesh = try? MeshResource(from: planeMesh.mesh) {",
+            "        // Create an entity with the plane mesh.",
+            "        let planeEntity = Entity()",
+            "        let planeModel = ModelComponent(mesh: mesh, materials: [SimpleMaterial()])",
+            "        planeEntity.components.set(planeModel)",
+            "        ",
+            "        // Add the plane entity to the scene.",
+            "        content.add(planeEntity)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following image shows the result of rendering a ",
+              "type": "text"
+            },
+            {
+              "code": "PlaneMesh",
+              "type": "codeVoice"
+            },
+            {
+              "text": "’s low-level mesh in the scene:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "creating-a-plane-with-low-level-mesh-2",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "creating-a-plane-with-low-level-mesh-1": {
+      "alt": "A screenshot of a wireframe rendering of the plane mesh with 16 vertices in each dimension, floating in a kitchen scene. Lines connect the vertices to form 512 triangles.",
+      "identifier": "creating-a-plane-with-low-level-mesh-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/687b1928fabe0483380ad3d7ebe60f70/creating-a-plane-with-low-level-mesh-1.jpg"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2bbcfea5c6dc18b0437d5a987a340205/creating-a-plane-with-low-level-mesh-1~dark.jpg"
+        }
+      ]
+    },
+    "creating-a-plane-with-low-level-mesh-2": {
+      "alt": "A screenshot of a flat plane mesh floating in a kitchen scene. The plane appears light gray.",
+      "identifier": "creating-a-plane-with-low-level-mesh-2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b5ffd7673f3a52999377fc9bb30a4fd1/creating-a-plane-with-low-level-mesh-2.jpg"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/71597805e761aa84ae07b419a74034f9/creating-a-plane-with-low-level-mesh-2~dark.jpg"
+        }
+      ]
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelMesh": {
+      "abstract": [
+        {
+          "text": "A container for vertex data that you can use to create and update meshes using your own format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LowLevelMesh"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelMesh",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LowLevelMesh"
+        }
+      ],
+      "role": "symbol",
+      "title": "LowLevelMesh",
+      "type": "topic",
+      "url": "/documentation/realitykit/lowlevelmesh"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelMesh/Attribute": {
+      "abstract": [
+        {
+          "text": "An object that determines how to store vertex attribute data in memory and map it to",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "RealityKit shader attributes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Attribute"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelMesh/Attribute",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Attribute"
+        }
+      ],
+      "role": "symbol",
+      "title": "LowLevelMesh.Attribute",
+      "type": "topic",
+      "url": "/documentation/realitykit/lowlevelmesh/attribute"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelMesh/Descriptor-swift.struct": {
+      "abstract": [
+        {
+          "text": "An object that describes the data format and layout of the buffers in a low-level mesh.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Descriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelMesh/Descriptor-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Descriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "LowLevelMesh.Descriptor",
+      "type": "topic",
+      "url": "/documentation/realitykit/lowlevelmesh/descriptor-swift.struct"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelMesh/Layout": {
+      "abstract": [
+        {
+          "text": "An object that describes a set of attributes that share a buffer index, offset,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and stride.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Layout"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelMesh/Layout",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Layout"
+        }
+      ],
+      "role": "symbol",
+      "title": "LowLevelMesh.Layout",
+      "type": "topic",
+      "url": "/documentation/realitykit/lowlevelmesh/layout"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelMesh/Part": {
+      "abstract": [
+        {
+          "text": "An object that describes a range of primitives to display, and their material index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Part"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelMesh/Part",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Part"
+        }
+      ],
+      "role": "symbol",
+      "title": "LowLevelMesh.Part",
+      "type": "topic",
+      "url": "/documentation/realitykit/lowlevelmesh/part"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelMesh/PartsCollection": {
+      "abstract": [
+        {
+          "text": "An object that holds a mutable collection low-level mesh parts.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PartsCollection"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelMesh/PartsCollection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PartsCollection"
+        }
+      ],
+      "role": "symbol",
+      "title": "LowLevelMesh.PartsCollection",
+      "type": "topic",
+      "url": "/documentation/realitykit/lowlevelmesh/partscollection"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelMesh/VertexSemantic": {
+      "abstract": [
+        {
+          "text": "Designates the intended usage of a vertex attribute.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VertexSemantic"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelMesh/VertexSemantic",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VertexSemantic"
+        }
+      ],
+      "role": "symbol",
+      "title": "LowLevelMesh.VertexSemantic",
+      "type": "topic",
+      "url": "/documentation/realitykit/lowlevelmesh/vertexsemantic"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource": {
+      "abstract": [
+        {
+          "text": "A high-level representation of a collection of vertices and edges that",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "define a shape.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MeshResource"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MeshResource"
+        }
+      ],
+      "role": "symbol",
+      "title": "MeshResource",
+      "type": "topic",
+      "url": "/documentation/realitykit/meshresource"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ModelComponent": {
+      "abstract": [
+        {
+          "text": "A component that contains a mesh and materials for the visual appearance of an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ModelComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ModelComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "ModelComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/modelcomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/creating-a-spatial-drawing-app-with-realitykit": {
+      "abstract": [
+        {
+          "text": "Use low-level mesh and texture APIs to achieve fast updates to a person’s brush",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "strokes by integrating RealityKit with ARKit and SwiftUI.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/creating-a-spatial-drawing-app-with-realitykit",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating a spatial drawing app with RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit/creating-a-spatial-drawing-app-with-realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/generating-interactive-geometry-with-realitykit": {
+      "abstract": [
+        {
+          "text": "Create an interactive mesh with low-level mesh and low-level texture.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/generating-interactive-geometry-with-realitykit",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Generating interactive geometry with RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit/generating-interactive-geometry-with-realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-models-and-meshes": {
+      "abstract": [
+        {
+          "text": "Display virtual objects in your scene with mesh-based models.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-models-and-meshes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Models and meshes",
+      "type": "topic",
+      "url": "/documentation/realitykit/scene-content-models-and-meshes"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/passing-structured-data-to-a-metal-compute-function#Import-the-struct-in-a-bridging-header": {
+      "abstract": [
+        {
+          "text": "Send nontexture data from Swift to your Metal shaders using a shared header file.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/passing-structured-data-to-a-metal-compute-function#Import-the-struct-in-a-bridging-header",
+      "kind": "article",
+      "role": "article",
+      "title": "Passing Structured Data to a Metal Compute Function",
+      "type": "topic",
+      "url": "/documentation/RealityKit/passing-structured-data-to-a-metal-compute-function"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/documentation/realitykit/lowlevelmesh/attribute": {
+      "identifier": "https://developer.apple.com/documentation/realitykit/lowlevelmesh/attribute",
+      "title": "LowLevelMesh.Attribute",
+      "titleInlineContent": [
+        {
+          "code": "LowLevelMesh.Attribute",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/realitykit/lowlevelmesh/attribute"
+    },
+    "https://developer.apple.com/documentation/realitykit/lowlevelmesh/layout": {
+      "identifier": "https://developer.apple.com/documentation/realitykit/lowlevelmesh/layout",
+      "title": "LowLevelMesh.Layout",
+      "titleInlineContent": [
+        {
+          "code": "LowLevelMesh.Layout",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/realitykit/lowlevelmesh/layout"
+    },
+    "https://developer.apple.com/documentation/realitykit/lowlevelmesh/withunsafemutablebytes(bufferindex:_:)": {
+      "identifier": "https://developer.apple.com/documentation/realitykit/lowlevelmesh/withunsafemutablebytes(bufferindex:_:)",
+      "title": "withUnsafeMutableBytes",
+      "titleInlineContent": [
+        {
+          "code": "withUnsafeMutableBytes",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/realitykit/lowlevelmesh/withunsafemutablebytes(bufferindex:_:)"
+    },
+    "https://developer.apple.com/documentation/realitykit/lowlevelmesh/withunsafemutableindices(_:)": {
+      "identifier": "https://developer.apple.com/documentation/realitykit/lowlevelmesh/withunsafemutableindices(_:)",
+      "title": "withUnsafeMutableIndices",
+      "titleInlineContent": [
+        {
+          "code": "withUnsafeMutableIndices",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/realitykit/lowlevelmesh/withunsafemutableindices(_:)"
+    },
+    "https://developer.apple.com/metal/Metal-Shading-Language-Specification.pdf": {
+      "identifier": "https://developer.apple.com/metal/Metal-Shading-Language-Specification.pdf",
+      "title": "Metal Shading Language",
+      "titleInlineContent": [
+        {
+          "text": "Metal Shading Language",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/metal/Metal-Shading-Language-Specification.pdf"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Updatable-meshes",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/creating-a-spatial-drawing-app-with-realitykit",
+        "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelMesh",
+        "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelMesh/Descriptor-swift.struct",
+        "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelMesh/Part",
+        "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelMesh/Layout",
+        "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelMesh/Attribute",
+        "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelMesh/VertexSemantic",
+        "doc://com.apple.RealityKit/documentation/RealityKit/LowLevelMesh/PartsCollection"
+      ],
+      "title": "Updatable meshes"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/creating-a-plane-with-low-level-mesh"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

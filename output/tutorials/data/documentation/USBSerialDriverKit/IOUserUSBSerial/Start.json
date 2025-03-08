@@ -1,0 +1,582 @@
+{
+  "abstract": [
+    {
+      "text": "Starts the service for the specified provider.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.usbserialdriverkit/documentation/USBSerialDriverKit",
+        "doc://com.apple.usbserialdriverkit/documentation/USBSerialDriverKit/IOUserUSBSerial"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.usbserialdriverkit/documentation/USBSerialDriverKit/IOUserUSBSerial/Start"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IOUserUSBSerial@F@Start#*$@S@IOService#",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "Start"
+      }
+    ],
+    "modules": [
+      {
+        "name": "USBSerialDriverKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Start"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "19.0",
+        "name": "DriverKit"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "Start"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "Unsupported OS: driverkit"
+          ],
+          "tokens": [
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@kern_return_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@kern_return_t",
+              "text": "kern_return_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "Start"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@S@IOService",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@IOService",
+              "text": "IOService"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "provider"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The provider object that matches the current service. Cast this object to the class you expect. The system retains this object for the duration of your ",
+                  "type": "text"
+                },
+                {
+                  "code": "start",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " method. The system continues to retain the object if your service starts successfully, releasing it only after calling your service’s ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/SerialDriverKit/IOUserSerial/Stop",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " method.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "provider"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/kioreturnsuccess",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on success, or another value if an error occurs. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/error_codes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After successfully matching the specified ",
+              "type": "text"
+            },
+            {
+              "code": "provider",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to your driver’s service, the system instantiates your service object and calls this method. Use this method to perform any additional configuration of your driver. For example, you might store a reference to the specified provider object for later use. When your service is configured, call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180701-registerservice",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to let the system know that your service is running. Always call ",
+              "type": "text"
+            },
+            {
+              "code": "super",
+              "type": "codeVoice"
+            },
+            {
+              "text": " early in your implementation of this method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You don’t need to open a communications channel to your device in this method. The system calls your service’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SerialDriverKit/IOUserSerial/HwActivate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method separately to activate your hardware.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/SerialDriverKit/IOUserSerial/HwActivate": {
+      "abstract": [
+        {
+          "text": "Opens the communication channel to the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@kern_return_t",
+          "text": "kern_return_t"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HwActivate"
+        },
+        {
+          "kind": "text",
+          "text": "();"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SerialDriverKit/IOUserSerial/HwActivate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "HwActivate",
+      "type": "topic",
+      "url": "/documentation/SerialDriverKit/IOUserSerial/HwActivate"
+    },
+    "doc://com.apple.documentation/documentation/SerialDriverKit/IOUserSerial/Stop": {
+      "abstract": [
+        {
+          "text": "Stops the service associated with the specified provider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@kern_return_t",
+          "text": "kern_return_t"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Stop"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@IOService",
+          "text": "IOService"
+        },
+        {
+          "kind": "text",
+          "text": " * "
+        },
+        {
+          "kind": "internalParam",
+          "text": "provider"
+        },
+        {
+          "kind": "text",
+          "text": ");"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SerialDriverKit/IOUserSerial/Stop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Stop",
+      "type": "topic",
+      "url": "/documentation/SerialDriverKit/IOUserSerial/Stop"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/error_codes": {
+      "abstract": [
+        {
+          "text": "Determine the reason an operation fails.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/error_codes",
+      "kind": "article",
+      "role": "article",
+      "title": "Error Codes",
+      "type": "topic",
+      "url": "/documentation/driverkit/error_codes"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/kioreturnsuccess": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/kioreturnsuccess",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kIOReturnSuccess",
+      "type": "topic",
+      "url": "/documentation/driverkit/kioreturnsuccess"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/3180701-registerservice": {
+      "abstract": [
+        {
+          "text": "Starts the registration process for the service and performs any additional matching.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180701-registerservice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RegisterService",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/3180701-registerservice"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.usbserialdriverkit/documentation/USBSerialDriverKit": {
+      "abstract": [
+        {
+          "text": "Develop drivers for serial USB devices connected to your Mac.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usbserialdriverkit/documentation/USBSerialDriverKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "USBSerialDriverKit",
+      "type": "topic",
+      "url": "/documentation/usbserialdriverkit"
+    },
+    "doc://com.apple.usbserialdriverkit/documentation/USBSerialDriverKit/IOUserUSBSerial": {
+      "abstract": [
+        {
+          "text": "A service that manages a serial connection to a USB device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUserUSBSerial"
+        }
+      ],
+      "identifier": "doc://com.apple.usbserialdriverkit/documentation/USBSerialDriverKit/IOUserUSBSerial",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserUSBSerial",
+      "type": "topic",
+      "url": "/documentation/usbserialdriverkit/iouserusbserial"
+    },
+    "doc://com.apple.usbserialdriverkit/documentation/USBSerialDriverKit/IOUserUSBSerial/Start": {
+      "abstract": [
+        {
+          "text": "Starts the service for the specified provider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "Start"
+        }
+      ],
+      "identifier": "doc://com.apple.usbserialdriverkit/documentation/USBSerialDriverKit/IOUserUSBSerial/Start",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Start",
+      "type": "topic",
+      "url": "/documentation/usbserialdriverkit/iouserusbserial/start"
+    },
+    "doc://com.apple.usbserialdriverkit/documentation/USBSerialDriverKit/IOUserUSBSerial/Stop": {
+      "abstract": [
+        {
+          "text": "Stops the service that matches the specified provider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "Stop"
+        }
+      ],
+      "identifier": "doc://com.apple.usbserialdriverkit/documentation/USBSerialDriverKit/IOUserUSBSerial/Stop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Stop",
+      "type": "topic",
+      "url": "/documentation/usbserialdriverkit/iouserusbserial/stop"
+    },
+    "doc://com.apple.usbserialdriverkit/documentation/USBSerialDriverKit/IOUserUSBSerial/free": {
+      "abstract": [
+        {
+          "text": "Performs any final cleanup for the service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "free"
+        }
+      ],
+      "identifier": "doc://com.apple.usbserialdriverkit/documentation/USBSerialDriverKit/IOUserUSBSerial/free",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/usbserialdriverkit/iouserusbserial/free"
+    },
+    "doc://com.apple.usbserialdriverkit/documentation/USBSerialDriverKit/IOUserUSBSerial/init": {
+      "abstract": [
+        {
+          "text": "Handles the basic initialization of the service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "identifier": "doc://com.apple.usbserialdriverkit/documentation/USBSerialDriverKit/IOUserUSBSerial/init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/usbserialdriverkit/iouserusbserial/init"
+    },
+    "doc://com.apple.usbserialdriverkit/documentation/USBSerialDriverKit/IOUserUSBSerial/initWith": {
+      "abstract": [
+        {
+          "text": "Initializes the private data structures associated with this class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "initWith"
+        }
+      ],
+      "identifier": "doc://com.apple.usbserialdriverkit/documentation/USBSerialDriverKit/IOUserUSBSerial/initWith",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWith",
+      "type": "topic",
+      "url": "/documentation/usbserialdriverkit/iouserusbserial/initwith"
+    },
+    "doc://com.externally.resolved.symbol/c:@S@IOService": {
+      "abstract": [
+        {
+          "text": "The base class for managing the setup and registration of your driver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@S@IOService",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOService",
+      "type": "topic",
+      "url": "/documentation/driverkit/ioservice"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@kern_return_t": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@kern_return_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kern_return_t",
+      "type": "topic",
+      "url": "/documentation/kernel/kern_return_t"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Configuring-the-Service",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.usbserialdriverkit/documentation/USBSerialDriverKit/IOUserUSBSerial/init",
+        "doc://com.apple.usbserialdriverkit/documentation/USBSerialDriverKit/IOUserUSBSerial/Stop",
+        "doc://com.apple.usbserialdriverkit/documentation/USBSerialDriverKit/IOUserUSBSerial/free",
+        "doc://com.apple.usbserialdriverkit/documentation/USBSerialDriverKit/IOUserUSBSerial/initWith"
+      ],
+      "title": "Configuring the Service"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/usbserialdriverkit/iouserusbserial/start"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,1 +1,1430 @@
-{"identifier":{"url":"doc://com.apple.RealityKit/documentation/RealityKit/manipulating-reality-composer-scenes-from-code","interfaceLanguage":"swift"},"metadata":{"modules":[{"name":"RealityKit"}],"role":"article","title":"Manipulating Reality Composer scenes from code","roleHeading":"Article"},"abstract":[{"type":"text","text":"Make programmatic changes to your scenes at runtime."}],"primaryContentSections":[{"content":[{"text":"Overview","type":"heading","level":2,"anchor":"Overview"},{"type":"paragraph","inlineContent":[{"type":"text","text":"Although "},{"type":"emphasis","inlineContent":[{"text":"Reality Composer","type":"text"}]},{"type":"text","text":" behaviors provide a way to add interactivity to your"},{"type":"text","text":" "},{"type":"text","text":"scene without writing code, there are times when the only way to implement functionality"},{"type":"text","text":" "},{"type":"text","text":"is to make changes from code. You can manipulate the objects in your scene in many"},{"type":"text","text":" "},{"type":"text","text":"different ways, including hiding or duplicating them, or changing their location,"},{"type":"text","text":" "},{"type":"text","text":"orientation, and scale."}]},{"text":"Access scene objects","type":"heading","level":3,"anchor":"Access-scene-objects"},{"type":"paragraph","inlineContent":[{"type":"text","text":"To retrieve specific objects from a scene, first assign each object a name in Reality"},{"type":"text","text":" "},{"type":"text","text":"Composer, using the Properties inspector. If you give an object a unique name, Xcode"},{"type":"text","text":" "},{"type":"text","text":"automatically creates an accessor property during code generation. For example, if"},{"type":"text","text":" "},{"type":"text","text":"you have an object called Steel Box in a scene named Box that’s contained in a file"},{"type":"text","text":" "},{"type":"text","text":"called "},{"type":"codeVoice","code":"Experience.reality"},{"type":"text","text":", you can get a reference to that object by using code"},{"type":"text","text":" "},{"type":"text","text":"like this:"}]},{"type":"codeListing","syntax":"swift","code":["if let boxScene = try? Experience.loadBox() {","    let box = boxScene.steelBox","    // Do something with box.","}"]},{"type":"paragraph","inlineContent":[{"type":"text","text":"If you give multiple objects in a scene the same name, the generated property returns"},{"type":"text","text":" "},{"type":"text","text":"an array containing all of the objects that share that name."}]},{"type":"paragraph","inlineContent":[{"text":"If you need to load a named object without using generated code, such as when working","type":"text"},{"text":" ","type":"text"},{"text":"with downloaded reality files or loading objects created at runtime, you can use","type":"text"},{"text":" ","type":"text"},{"text":"the ","type":"text"},{"isActive":true,"type":"reference","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/Scene/findEntity(named:)"},{"text":" function on the scene entity.","type":"text"}]},{"type":"codeListing","syntax":"swift","code":["if let boxScene = try? Experience.loadBox() {","    if let box = boxScene.findEntity(named: \"Steel Box\") {}","        // Do something with box","    }","}"]},{"text":"Hide and show entities","type":"heading","level":3,"anchor":"Hide-and-show-entities"},{"type":"paragraph","inlineContent":[{"text":"In addition to hiding and showing objects in your scene using behaviors, as described","type":"text"},{"text":" ","type":"text"},{"text":"in ","type":"text"},{"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/bringing-a-reality-composer-scene-to-life","isActive":true,"type":"reference"},{"text":", you can also use code to hide","type":"text"},{"text":" ","type":"text"},{"text":"and show them, by using the ","type":"text"},{"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/Entity/isEnabled","isActive":true,"type":"reference"},{"text":" property. If you set","type":"text"},{"text":" ","type":"text"},{"text":"an object’s ","type":"text"},{"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/Entity/isEnabled","isActive":true,"type":"reference"},{"text":" property to ","type":"text"},{"identifier":"doc://com.apple.documentation/documentation/swift/false","isActive":true,"type":"reference"},{"text":",","type":"text"},{"text":" ","type":"text"},{"text":"ARKit doesn’t render it and it doesn’t participate in the scene’s physics simulation.","type":"text"},{"text":" ","type":"text"},{"text":"If you set it back to ","type":"text"},{"identifier":"doc://com.apple.documentation/documentation/swift/true","isActive":true,"type":"reference"},{"text":", ARKit","type":"text"},{"type":"text","text":" "},{"type":"text","text":"starts rendering the object again and it resumes participating in the physics simulation."}]},{"type":"aside","style":"note","name":"Note","content":[{"inlineContent":[{"type":"text","text":"Child objects of the "},{"type":"reference","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/Entity/isEnabled","isActive":true},{"type":"text","text":" property inherit its"},{"type":"text","text":" "},{"type":"text","text":"settings, so disabling "},{"type":"reference","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/Entity/isEnabled","isActive":true},{"type":"text","text":" also disables all of its children."}],"type":"paragraph"}]},{"text":"Transform a scene object","type":"heading","level":3,"anchor":"Transform-a-scene-object"},{"type":"paragraph","inlineContent":[{"type":"text","text":"You can transform (move, rotate, or scale) objects in a scene by using the "},{"type":"reference","isActive":true,"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/Entity/transform"},{"type":"text","text":" "},{"type":"text","text":"property of the "},{"type":"reference","isActive":true,"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/Entity"},{"type":"text","text":"."}]},{"type":"paragraph","inlineContent":[{"type":"text","text":"To move an object, change the "},{"isActive":true,"type":"reference","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/Transform/translation"},{"type":"text","text":" value of the transform."},{"type":"text","text":" "},{"type":"text","text":"For example, to move a scene object 10 cm along the x-axis, use this:"}]},{"type":"codeListing","syntax":"swift","code":["myEntity.transform.translation += SIMD3<Float>(10, 0, 0)"]},{"type":"paragraph","inlineContent":[{"type":"text","text":"Similarly, to scale an object, modify the "},{"type":"reference","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/Transform/scale","isActive":true},{"type":"text","text":" of the entity’s "},{"type":"reference","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/Entity/transform","isActive":true},{"type":"text","text":" property."},{"type":"text","text":" "},{"type":"text","text":"For example, you can double the size of an object in your scene like this:"}]},{"type":"codeListing","syntax":"swift","code":["myEntity.transform.scale *= 2"]},{"type":"paragraph","inlineContent":[{"text":"To rotate an object, make changes to the ","type":"text"},{"isActive":true,"type":"reference","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/Transform/rotation"},{"text":" property","type":"text"},{"text":" ","type":"text"},{"text":"of its ","type":"text"},{"isActive":true,"type":"reference","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/Entity/transform"},{"text":". This code shows you how to rotate an object","type":"text"},{"text":" ","type":"text"},{"text":"in your scene by 90° on the z-axis:","type":"text"}]},{"type":"codeListing","syntax":"swift","code":["// Calculate 90° as radians.","let radians = 90.0 * Float.pi / 180.0","","// Create a quaternion that represents a 90° rotation on the z-axis","// and add it to the existing rotation value.","anchorEntity.transform.rotation += simd_quatf(angle: radians, ","                                              axis: SIMD3<Float>(0,0,1))"]},{"text":"Clone an entity","type":"heading","level":3,"anchor":"Clone-an-entity"},{"type":"paragraph","inlineContent":[{"text":"If you need to create multiple copies of the same object at runtime, avoid loading","type":"text"},{"text":" ","type":"text"},{"text":"the entity multiple times, which can cause performance issues. Instead, load a single","type":"text"},{"text":" ","type":"text"},{"text":"copy of the entity before you need it, but don’t add it to your scene. When you need","type":"text"},{"text":" ","type":"text"},{"text":"a new instance, call the ","type":"text"},{"isActive":true,"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/Entity/clone(recursive:)","type":"reference"},{"text":" function on the","type":"text"},{"text":" ","type":"text"},{"text":"loaded entity, and then add the clone as a child of a scene anchor.","type":"text"}]},{"type":"paragraph","inlineContent":[{"text":"Here’s an example of cloning an anchored entity and adding it to your ","type":"text"},{"type":"reference","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/ARView","isActive":true},{"text":":","type":"text"}]},{"type":"codeListing","syntax":"swift","code":["let copy = myEntity.clone(recursive: true)"]},{"text":"Add force to an object","type":"heading","level":3,"anchor":"Add-force-to-an-object"},{"type":"paragraph","inlineContent":[{"type":"text","text":"If an object in a scene participates in the physics simulation, you can add force"},{"type":"text","text":" "},{"type":"text","text":"to that object from code by using the "},{"type":"reference","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/ModelEntity/addForce(_:relativeTo:)","isActive":true},{"type":"text","text":" "},{"type":"text","text":"method. Provide a vector representing the amount and direction of force to add to"},{"type":"text","text":" "},{"type":"text","text":"the object as the first parameter. Here’s an example of applying force to an object"},{"type":"text","text":" "},{"type":"text","text":"to make it fly away from the camera:"}]},{"type":"codeListing","syntax":"swift","code":["// Adjusting the forceMultiplier value changes the amount of force applied.","let forceMultiplier = simd_float3(repeating: 10)","ball.addForce(simd_float3(x: cameraForwardVector.x,","                          y: cameraForwardVector.y,","                          z: cameraForwardVector.z) * forceMultiplier,","              relativeTo: nil)"]}],"kind":"content"}],"seeAlsoSections":[{"generated":true,"title":"Scene creation","anchor":"Scene-creation","identifiers":["doc://com.apple.RealityKit/documentation/RealityKit/creating-3d-content-with-reality-composer","doc://com.apple.RealityKit/documentation/RealityKit/loading-reality-composer-files-using-generated-code","doc://com.apple.RealityKit/documentation/RealityKit/loading-reality-composer-files-manually-without-generated-code","doc://com.apple.RealityKit/documentation/RealityKit/adding-elements-to-a-3d-scene","doc://com.apple.RealityKit/documentation/RealityKit/configuring-elements-in-a-scene","doc://com.apple.RealityKit/documentation/RealityKit/arranging-elements-in-a-scene","doc://com.apple.RealityKit/documentation/RealityKit/adding-procedural-assets-to-a-scene","doc://com.apple.RealityKit/documentation/RealityKit/improving-the-accessibility-of-realitykit-apps"]}],"schemaVersion":{"major":0,"minor":3,"patch":0},"kind":"article","hierarchy":{"paths":[["doc://com.apple.documentation/documentation/technologies","doc://com.apple.RealityKit/documentation/RealityKit","doc://com.apple.RealityKit/documentation/RealityKit/realitykit-reality-composer"],["doc://com.apple.documentation/documentation/technologies","doc://com.apple.RealityKit/documentation/RealityKit","doc://com.apple.RealityKit/documentation/RealityKit/realitykit-reality-composer","doc://com.apple.RealityKit/documentation/RealityKit/creating-3d-content-with-reality-composer"]]},"sections":[],"variants":[{"traits":[{"interfaceLanguage":"swift"}],"paths":["/documentation/realitykit/manipulating-reality-composer-scenes-from-code"]}],"references":{"doc://com.apple.RealityKit/documentation/RealityKit":{"url":"/documentation/realitykit","abstract":[{"text":"Simulate and render 3D content for use in your augmented reality apps.","type":"text"}],"kind":"symbol","type":"topic","role":"collection","title":"RealityKit","identifier":"doc://com.apple.RealityKit/documentation/RealityKit"},"doc://com.apple.RealityKit/documentation/RealityKit/Transform/rotation":{"title":"rotation","fragments":[{"text":"var","kind":"keyword"},{"text":" ","kind":"text"},{"text":"rotation","kind":"identifier"},{"text":": ","kind":"text"},{"text":"simd_quatf","kind":"typeIdentifier","preciseIdentifier":"c:@SA@simd_quatf"}],"type":"topic","abstract":[{"text":"The rotation of the entity specified as a unit quaternion.","type":"text"}],"kind":"symbol","role":"symbol","url":"/documentation/realitykit/transform/rotation","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/Transform/rotation"},"doc://com.apple.RealityKit/documentation/RealityKit/Entity/transform":{"abstract":[{"type":"text","text":"The transform of an entity relative to its parent."}],"fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"transform"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"Transform","preciseIdentifier":"s:17RealityFoundation9TransformV"}],"type":"topic","role":"symbol","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/Entity/transform","title":"transform","kind":"symbol","url":"/documentation/realitykit/entity/transform"},"doc://com.apple.RealityKit/documentation/RealityKit/improving-the-accessibility-of-realitykit-apps":{"title":"Improving the Accessibility of RealityKit Apps","url":"/documentation/realitykit/improving-the-accessibility-of-realitykit-apps","type":"topic","abstract":[{"type":"text","text":"Incorporate assistive technologies in your augmented reality app."}],"kind":"article","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/improving-the-accessibility-of-realitykit-apps","role":"article"},"doc://com.apple.RealityKit/documentation/RealityKit/realitykit-reality-composer":{"abstract":[{"type":"text","text":"A visual editor for RealityKit AR scenes."}],"kind":"article","title":"Reality Composer","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/realitykit-reality-composer","role":"collectionGroup","type":"topic","url":"/documentation/realitykit/realitykit-reality-composer"},"doc://com.apple.RealityKit/documentation/RealityKit/adding-elements-to-a-3d-scene":{"role":"article","url":"/documentation/realitykit/adding-elements-to-a-3d-scene","abstract":[{"type":"text","text":"Add assets to your scene from Reality Composer’s library, or import custom assets."}],"title":"Adding elements to a 3D scene","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/adding-elements-to-a-3d-scene","kind":"article","type":"topic"},"doc://com.apple.RealityKit/documentation/RealityKit/Entity":{"navigatorTitle":[{"text":"Entity","kind":"identifier"}],"url":"/documentation/realitykit/entity","fragments":[{"text":"class","kind":"keyword"},{"text":" ","kind":"text"},{"text":"Entity","kind":"identifier"}],"abstract":[{"text":"An element of a RealityKit scene to which you attach components that provide","type":"text"},{"text":" ","type":"text"},{"type":"text","text":"appearance and behavior characteristics for the entity."}],"kind":"symbol","type":"topic","role":"symbol","title":"Entity","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/Entity"},"doc://com.apple.RealityKit/documentation/RealityKit/Transform/translation":{"title":"translation","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/Transform/translation","abstract":[{"text":"The position of the entity along the x, y, and z axes.","type":"text"}],"type":"topic","kind":"symbol","role":"symbol","fragments":[{"text":"var","kind":"keyword"},{"text":" ","kind":"text"},{"text":"translation","kind":"identifier"},{"text":": ","kind":"text"},{"text":"SIMD3","preciseIdentifier":"s:s5SIMD3V","kind":"typeIdentifier"},{"text":"<","kind":"text"},{"text":"Float","preciseIdentifier":"s:Sf","kind":"typeIdentifier"},{"text":">","kind":"text"}],"url":"/documentation/realitykit/transform/translation"},"doc://com.apple.RealityKit/documentation/RealityKit/Entity/clone(recursive:)":{"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/Entity/clone(recursive:)","type":"topic","abstract":[{"text":"Duplicates an entity to create a new entity.","type":"text"}],"kind":"symbol","url":"/documentation/realitykit/entity/clone(recursive:)","fragments":[{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"clone"},{"kind":"text","text":"("},{"kind":"externalParam","text":"recursive"},{"kind":"text","text":": "},{"kind":"typeIdentifier","preciseIdentifier":"s:Sb","text":"Bool"},{"kind":"text","text":") -> "},{"kind":"typeIdentifier","text":"Self"}],"role":"symbol","title":"clone(recursive:)"},"doc://com.apple.RealityKit/documentation/RealityKit/Scene/findEntity(named:)":{"type":"topic","title":"findEntity(named:)","role":"symbol","url":"/documentation/realitykit/scene/findentity(named:)","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/Scene/findEntity(named:)","kind":"symbol","fragments":[{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"text":"findEntity","kind":"identifier"},{"text":"(","kind":"text"},{"text":"named","kind":"externalParam"},{"text":": ","kind":"text"},{"text":"String","preciseIdentifier":"s:SS","kind":"typeIdentifier"},{"text":") -> ","kind":"text"},{"text":"Entity","preciseIdentifier":"s:17RealityFoundation6EntityC","kind":"typeIdentifier"},{"text":"?","kind":"text"}],"abstract":[{"text":"Searches the scene’s anchor entity hierarchies for an entity with the","type":"text"},{"text":" ","type":"text"},{"text":"given name.","type":"text"}]},"doc://com.apple.RealityKit/documentation/RealityKit/bringing-a-reality-composer-scene-to-life":{"role":"article","type":"topic","url":"/documentation/realitykit/bringing-a-reality-composer-scene-to-life","kind":"article","abstract":[{"type":"text","text":"Add animation and handle user input by using behaviors, triggers, and actions."}],"title":"Bringing a Reality Composer scene to life","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/bringing-a-reality-composer-scene-to-life"},"doc://com.apple.RealityKit/documentation/RealityKit/loading-reality-composer-files-manually-without-generated-code":{"type":"topic","abstract":[{"text":"Load Reality Composer files that aren’t part of your Xcode project.","type":"text"}],"title":"Loading Reality Composer files manually without generated code","url":"/documentation/realitykit/loading-reality-composer-files-manually-without-generated-code","kind":"article","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/loading-reality-composer-files-manually-without-generated-code","role":"article"},"doc://com.apple.documentation/documentation/swift/false":{"type":"topic","kind":"symbol","abstract":[{"text":"A false value.","type":"text"}],"url":"/documentation/swift/false","role":"symbol","identifier":"doc://com.apple.documentation/documentation/swift/false","title":"false"},"doc://com.apple.RealityKit/documentation/RealityKit/arranging-elements-in-a-scene":{"role":"article","url":"/documentation/realitykit/arranging-elements-in-a-scene","title":"Arranging elements in a scene","kind":"article","type":"topic","abstract":[{"text":"Manipulate objects to complete your Reality Composer scene.","type":"text"}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/arranging-elements-in-a-scene"},"doc://com.apple.documentation/documentation/technologies":{"url":"/documentation/technologies","abstract":[{"text":"","type":"text"}],"kind":"technologies","type":"topic","role":"overview","title":"Technologies","identifier":"doc://com.apple.documentation/documentation/technologies"},"doc://com.apple.RealityKit/documentation/RealityKit/ARView":{"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/ARView","kind":"symbol","type":"topic","role":"symbol","title":"ARView","navigatorTitle":[{"text":"ARView","kind":"identifier"}],"url":"/documentation/realitykit/arview","fragments":[{"kind":"keyword","text":"class"},{"text":" ","kind":"text"},{"text":"ARView","kind":"identifier"}],"abstract":[{"text":"A view that enables you to display an AR experience with RealityKit.","type":"text"}]},"doc://com.apple.RealityKit/documentation/RealityKit/Entity/isEnabled":{"fragments":[{"text":"var","kind":"keyword"},{"text":" ","kind":"text"},{"text":"isEnabled","kind":"identifier"},{"text":": ","kind":"text"},{"text":"Bool","kind":"typeIdentifier","preciseIdentifier":"s:Sb"}],"role":"symbol","type":"topic","abstract":[{"type":"text","text":"A Boolean that you set to enable or disable the entity and its"},{"text":" ","type":"text"},{"text":"descendants.","type":"text"}],"title":"isEnabled","kind":"symbol","url":"/documentation/realitykit/entity/isenabled","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/Entity/isEnabled"},"doc://com.apple.RealityKit/documentation/RealityKit/creating-3d-content-with-reality-composer":{"title":"Creating 3D Content with Reality Composer","role":"collectionGroup","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/creating-3d-content-with-reality-composer","url":"/documentation/realitykit/creating-3d-content-with-reality-composer","abstract":[{"text":"Assemble assets into a dynamic 3D composition that you can add to a scene in your","type":"text"},{"type":"text","text":" "},{"text":"app, or share with AR Quick Look.","type":"text"}],"kind":"article","type":"topic"},"doc://com.apple.RealityKit/documentation/RealityKit/ModelEntity/addForce(_:relativeTo:)":{"abstract":[{"type":"text","text":"Applies a force to the physics body at its center of mass."}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/ModelEntity/addForce(_:relativeTo:)","url":"/documentation/realitykit/modelentity/addforce(_:relativeto:)","title":"addForce(_:relativeTo:)","fragments":[{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"text":"addForce","kind":"identifier"},{"text":"(","kind":"text"},{"text":"SIMD3","preciseIdentifier":"s:s5SIMD3V","kind":"typeIdentifier"},{"text":"<","kind":"text"},{"text":"Float","preciseIdentifier":"s:Sf","kind":"typeIdentifier"},{"kind":"text","text":">, "},{"kind":"externalParam","text":"relativeTo"},{"kind":"text","text":": "},{"kind":"typeIdentifier","preciseIdentifier":"s:17RealityFoundation6EntityC","text":"Entity"},{"text":"?)","kind":"text"}],"kind":"symbol","type":"topic","role":"symbol"},"doc://com.apple.RealityKit/documentation/RealityKit/configuring-elements-in-a-scene":{"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/configuring-elements-in-a-scene","url":"/documentation/realitykit/configuring-elements-in-a-scene","role":"article","kind":"article","abstract":[{"type":"text","text":"Define the appearance and behavior of objects in a scene."}],"title":"Configuring elements in a scene","type":"topic"},"doc://com.apple.RealityKit/documentation/RealityKit/loading-reality-composer-files-using-generated-code":{"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/loading-reality-composer-files-using-generated-code","url":"/documentation/realitykit/loading-reality-composer-files-using-generated-code","role":"article","kind":"article","abstract":[{"text":"Leverage automatically generated code to load scenes from Xcode.","type":"text"}],"title":"Loading Reality Composer files using generated code","type":"topic"},"doc://com.apple.documentation/documentation/swift/true":{"abstract":[{"text":"A true value.","type":"text"}],"title":"true","role":"symbol","type":"topic","kind":"symbol","url":"/documentation/swift/true","identifier":"doc://com.apple.documentation/documentation/swift/true"},"doc://com.apple.RealityKit/documentation/RealityKit/Transform/scale":{"abstract":[{"text":"The scaling factor applied to the entity.","type":"text"}],"fragments":[{"text":"var","kind":"keyword"},{"text":" ","kind":"text"},{"text":"scale","kind":"identifier"},{"text":": ","kind":"text"},{"text":"SIMD3","preciseIdentifier":"s:s5SIMD3V","kind":"typeIdentifier"},{"text":"<","kind":"text"},{"text":"Float","preciseIdentifier":"s:Sf","kind":"typeIdentifier"},{"text":">","kind":"text"}],"kind":"symbol","title":"scale","type":"topic","role":"symbol","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/Transform/scale","url":"/documentation/realitykit/transform/scale"},"doc://com.apple.RealityKit/documentation/RealityKit/adding-procedural-assets-to-a-scene":{"abstract":[{"text":"Create procedurally generated shape primitives to your Reality Composer scene.","type":"text"}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/adding-procedural-assets-to-a-scene","title":"Adding procedural assets to a scene","url":"/documentation/realitykit/adding-procedural-assets-to-a-scene","kind":"article","role":"article","type":"topic"}},"legalNotices":{"copyright":"Copyright &copy; 2025 Apple Inc. All rights reserved.","termsOfUse":"https://www.apple.com/legal/internet-services/terms/site.html","privacyPolicy":"https://www.apple.com/privacy/privacy-policy"}}
+{
+  "abstract": [
+    {
+      "text": "Make programmatic changes to your scenes at runtime.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit",
+        "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-reality-composer"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit",
+        "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-reality-composer",
+        "doc://com.apple.RealityKit/documentation/RealityKit/creating-3d-content-with-reality-composer"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/manipulating-reality-composer-scenes-from-code"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Manipulating Reality Composer scenes from code"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Although ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Reality Composer",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " behaviors provide a way to add interactivity to your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "scene without writing code, there are times when the only way to implement functionality",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "is to make changes from code. You can manipulate the objects in your scene in many",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "different ways, including hiding or duplicating them, or changing their location,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "orientation, and scale.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Access-scene-objects",
+          "level": 3,
+          "text": "Access scene objects",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To retrieve specific objects from a scene, first assign each object a name in Reality",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Composer, using the Properties inspector. If you give an object a unique name, Xcode",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "automatically creates an accessor property during code generation. For example, if",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you have an object called Steel Box in a scene named Box that’s contained in a file",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "called ",
+              "type": "text"
+            },
+            {
+              "code": "Experience.reality",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", you can get a reference to that object by using code",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "like this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if let boxScene = try? Experience.loadBox() {",
+            "    let box = boxScene.steelBox",
+            "    // Do something with box.",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you give multiple objects in a scene the same name, the generated property returns",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "an array containing all of the objects that share that name.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you need to load a named object without using generated code, such as when working",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with downloaded reality files or loading objects created at runtime, you can use",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Scene/findEntity(named:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function on the scene entity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if let boxScene = try? Experience.loadBox() {",
+            "    if let box = boxScene.findEntity(named: \"Steel Box\") {}",
+            "        // Do something with box",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Hide-and-show-entities",
+          "level": 3,
+          "text": "Hide and show entities",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to hiding and showing objects in your scene using behaviors, as described",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/bringing-a-reality-composer-scene-to-life",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you can also use code to hide",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and show them, by using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/isEnabled",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. If you set",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "an object’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/isEnabled",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/false",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "ARKit doesn’t render it and it doesn’t participate in the scene’s physics simulation.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If you set it back to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ARKit",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "starts rendering the object again and it resumes participating in the physics simulation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Child objects of the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/isEnabled",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " property inherit its",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "settings, so disabling ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/isEnabled",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " also disables all of its children.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Transform-a-scene-object",
+          "level": 3,
+          "text": "Transform a scene object",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can transform (move, rotate, or scale) objects in a scene by using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/transform",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "property of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To move an object, change the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Transform/translation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " value of the transform.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, to move a scene object 10 cm along the x-axis, use this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "myEntity.transform.translation += SIMD3<Float>(10, 0, 0)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Similarly, to scale an object, modify the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Transform/scale",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " of the entity’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/transform",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, you can double the size of an object in your scene like this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "myEntity.transform.scale *= 2"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To rotate an object, make changes to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Transform/rotation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/transform",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". This code shows you how to rotate an object",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in your scene by 90° on the z-axis:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Calculate 90° as radians.",
+            "let radians = 90.0 * Float.pi / 180.0",
+            "",
+            "// Create a quaternion that represents a 90° rotation on the z-axis",
+            "// and add it to the existing rotation value.",
+            "anchorEntity.transform.rotation += simd_quatf(angle: radians, ",
+            "                                              axis: SIMD3<Float>(0,0,1))"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Clone-an-entity",
+          "level": 3,
+          "text": "Clone an entity",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you need to create multiple copies of the same object at runtime, avoid loading",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the entity multiple times, which can cause performance issues. Instead, load a single",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "copy of the entity before you need it, but don’t add it to your scene. When you need",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a new instance, call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/clone(recursive:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function on the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "loaded entity, and then add the clone as a child of a scene anchor.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here’s an example of cloning an anchored entity and adding it to your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ARView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let copy = myEntity.clone(recursive: true)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Add-force-to-an-object",
+          "level": 3,
+          "text": "Add force to an object",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If an object in a scene participates in the physics simulation, you can add force",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to that object from code by using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelEntity/addForce(_:relativeTo:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method. Provide a vector representing the amount and direction of force to add to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the object as the first parameter. Here’s an example of applying force to an object",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to make it fly away from the camera:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Adjusting the forceMultiplier value changes the amount of force applied.",
+            "let forceMultiplier = simd_float3(repeating: 10)",
+            "ball.addForce(simd_float3(x: cameraForwardVector.x,",
+            "                          y: cameraForwardVector.y,",
+            "                          z: cameraForwardVector.z) * forceMultiplier,",
+            "              relativeTo: nil)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ARView": {
+      "abstract": [
+        {
+          "text": "A view that enables you to display an AR experience with RealityKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARView"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ARView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARView"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARView",
+      "type": "topic",
+      "url": "/documentation/realitykit/arview"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity": {
+      "abstract": [
+        {
+          "text": "An element of a RealityKit scene to which you attach components that provide",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "appearance and behavior characteristics for the entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Entity"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Entity"
+        }
+      ],
+      "role": "symbol",
+      "title": "Entity",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/clone(recursive:)": {
+      "abstract": [
+        {
+          "text": "Duplicates an entity to create a new entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "clone"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "recursive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/clone(recursive:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "clone(recursive:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/clone(recursive:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/isEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean that you set to enable or disable the entity and its",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "descendants.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/isEnabled",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isEnabled",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/isenabled"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/transform": {
+      "abstract": [
+        {
+          "text": "The transform of an entity relative to its parent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "transform"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation9TransformV",
+          "text": "Transform"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/transform",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "transform",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/transform"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ModelEntity/addForce(_:relativeTo:)": {
+      "abstract": [
+        {
+          "text": "Applies a force to the physics body at its center of mass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addForce"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5SIMD3V",
+          "text": "SIMD3"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "relativeTo"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation6EntityC",
+          "text": "Entity"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelEntity/addForce(_:relativeTo:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addForce(_:relativeTo:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/modelentity/addforce(_:relativeto:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Scene/findEntity(named:)": {
+      "abstract": [
+        {
+          "text": "Searches the scene’s anchor entity hierarchies for an entity with the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "given name.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "findEntity"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "named"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation6EntityC",
+          "text": "Entity"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Scene/findEntity(named:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "findEntity(named:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/scene/findentity(named:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Transform/rotation": {
+      "abstract": [
+        {
+          "text": "The rotation of the entity specified as a unit quaternion.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rotation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@simd_quatf",
+          "text": "simd_quatf"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Transform/rotation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "rotation",
+      "type": "topic",
+      "url": "/documentation/realitykit/transform/rotation"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Transform/scale": {
+      "abstract": [
+        {
+          "text": "The scaling factor applied to the entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scale"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5SIMD3V",
+          "text": "SIMD3"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Transform/scale",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scale",
+      "type": "topic",
+      "url": "/documentation/realitykit/transform/scale"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Transform/translation": {
+      "abstract": [
+        {
+          "text": "The position of the entity along the x, y, and z axes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "translation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5SIMD3V",
+          "text": "SIMD3"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Transform/translation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "translation",
+      "type": "topic",
+      "url": "/documentation/realitykit/transform/translation"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/adding-elements-to-a-3d-scene": {
+      "abstract": [
+        {
+          "text": "Add assets to your scene from Reality Composer’s library, or import custom assets.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/adding-elements-to-a-3d-scene",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding elements to a 3D scene",
+      "type": "topic",
+      "url": "/documentation/realitykit/adding-elements-to-a-3d-scene"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/adding-procedural-assets-to-a-scene": {
+      "abstract": [
+        {
+          "text": "Create procedurally generated shape primitives to your Reality Composer scene.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/adding-procedural-assets-to-a-scene",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding procedural assets to a scene",
+      "type": "topic",
+      "url": "/documentation/realitykit/adding-procedural-assets-to-a-scene"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/arranging-elements-in-a-scene": {
+      "abstract": [
+        {
+          "text": "Manipulate objects to complete your Reality Composer scene.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/arranging-elements-in-a-scene",
+      "kind": "article",
+      "role": "article",
+      "title": "Arranging elements in a scene",
+      "type": "topic",
+      "url": "/documentation/realitykit/arranging-elements-in-a-scene"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/bringing-a-reality-composer-scene-to-life": {
+      "abstract": [
+        {
+          "text": "Add animation and handle user input by using behaviors, triggers, and actions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/bringing-a-reality-composer-scene-to-life",
+      "kind": "article",
+      "role": "article",
+      "title": "Bringing a Reality Composer scene to life",
+      "type": "topic",
+      "url": "/documentation/realitykit/bringing-a-reality-composer-scene-to-life"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/configuring-elements-in-a-scene": {
+      "abstract": [
+        {
+          "text": "Define the appearance and behavior of objects in a scene.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/configuring-elements-in-a-scene",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring elements in a scene",
+      "type": "topic",
+      "url": "/documentation/realitykit/configuring-elements-in-a-scene"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/creating-3d-content-with-reality-composer": {
+      "abstract": [
+        {
+          "text": "Assemble assets into a dynamic 3D composition that you can add to a scene in your",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "app, or share with AR Quick Look.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/creating-3d-content-with-reality-composer",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Creating 3D Content with Reality Composer",
+      "type": "topic",
+      "url": "/documentation/realitykit/creating-3d-content-with-reality-composer"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/improving-the-accessibility-of-realitykit-apps": {
+      "abstract": [
+        {
+          "text": "Incorporate assistive technologies in your augmented reality app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/improving-the-accessibility-of-realitykit-apps",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving the Accessibility of RealityKit Apps",
+      "type": "topic",
+      "url": "/documentation/realitykit/improving-the-accessibility-of-realitykit-apps"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/loading-reality-composer-files-manually-without-generated-code": {
+      "abstract": [
+        {
+          "text": "Load Reality Composer files that aren’t part of your Xcode project.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/loading-reality-composer-files-manually-without-generated-code",
+      "kind": "article",
+      "role": "article",
+      "title": "Loading Reality Composer files manually without generated code",
+      "type": "topic",
+      "url": "/documentation/realitykit/loading-reality-composer-files-manually-without-generated-code"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/loading-reality-composer-files-using-generated-code": {
+      "abstract": [
+        {
+          "text": "Leverage automatically generated code to load scenes from Xcode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/loading-reality-composer-files-using-generated-code",
+      "kind": "article",
+      "role": "article",
+      "title": "Loading Reality Composer files using generated code",
+      "type": "topic",
+      "url": "/documentation/realitykit/loading-reality-composer-files-using-generated-code"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-reality-composer": {
+      "abstract": [
+        {
+          "text": "A visual editor for RealityKit AR scenes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-reality-composer",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Reality Composer",
+      "type": "topic",
+      "url": "/documentation/realitykit/realitykit-reality-composer"
+    },
+    "doc://com.apple.documentation/documentation/swift/false": {
+      "abstract": [
+        {
+          "text": "A false value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "false",
+      "type": "topic",
+      "url": "/documentation/swift/false"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Scene-creation",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/creating-3d-content-with-reality-composer",
+        "doc://com.apple.RealityKit/documentation/RealityKit/loading-reality-composer-files-using-generated-code",
+        "doc://com.apple.RealityKit/documentation/RealityKit/loading-reality-composer-files-manually-without-generated-code",
+        "doc://com.apple.RealityKit/documentation/RealityKit/adding-elements-to-a-3d-scene",
+        "doc://com.apple.RealityKit/documentation/RealityKit/configuring-elements-in-a-scene",
+        "doc://com.apple.RealityKit/documentation/RealityKit/arranging-elements-in-a-scene",
+        "doc://com.apple.RealityKit/documentation/RealityKit/adding-procedural-assets-to-a-scene",
+        "doc://com.apple.RealityKit/documentation/RealityKit/improving-the-accessibility-of-realitykit-apps"
+      ],
+      "title": "Scene creation"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/manipulating-reality-composer-scenes-from-code"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

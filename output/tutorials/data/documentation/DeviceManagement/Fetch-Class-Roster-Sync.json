@@ -1,0 +1,375 @@
+{
+  "abstract": [
+    {
+      "text": "Get updates about the list of classes the server manages.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Fetch-Class-Roster-Sync"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:dep:post:roster-class-sync",
+    "modules": [
+      {
+        "name": "Device Management"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Fetch Class Roster Sync"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "name": "Device Assignment Services"
+      },
+      {
+        "beta": false,
+        "name": "VPP License Management"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Sync the List of Classes"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "POST"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://mdmenrollment.apple.com/"
+        },
+        {
+          "kind": "path",
+          "text": "roster/class/sync"
+        }
+      ]
+    },
+    {
+      "bodyContentType": [
+        {
+          "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/RosterRequest",
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "mdm-services:dep:RosterRequest",
+          "text": "RosterRequest"
+        }
+      ],
+      "content": [
+        {
+          "inlineContent": [
+            {
+              "text": "The object containing the request information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "restBody",
+      "mimeType": "application/json",
+      "parameters": [],
+      "title": "HTTP Body"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The request was successful. The server returns a list of classes.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/RosterClassResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "mdm-services:dep:RosterClassResponse",
+              "text": "RosterClassResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The server was unable to process the request.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "reason": "Bad Request",
+          "status": 400,
+          "type": []
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sync service uses a cursor that is returned by the full class-roster service. It returns a list of all modifications (additions or deletions) made since the cursor date, for up to 7 days.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This service may return the same class more than once. You can identify duplicates by matching their ",
+              "type": "text"
+            },
+            {
+              "code": "unique_identifier",
+              "type": "codeVoice"
+            },
+            {
+              "text": " values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement": {
+      "abstract": [
+        {
+          "text": "Manage your organization’s devices remotely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Fetch-Class-Roster": {
+      "abstract": [
+        {
+          "text": "Obtain a list of classes the server manages.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Fetch-Class-Roster",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Fetch Class Roster"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get the List of Classes",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/fetch-class-roster"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Fetch-Class-Roster-Sync": {
+      "abstract": [
+        {
+          "text": "Get updates about the list of classes the server manages.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Fetch-Class-Roster-Sync",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Fetch Class Roster Sync"
+        }
+      ],
+      "role": "symbol",
+      "title": "Sync the List of Classes",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/fetch-class-roster-sync"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/RosterClass": {
+      "abstract": [
+        {
+          "text": "A class’s properties and their values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "RosterClass"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/RosterClass",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RosterClass"
+        }
+      ],
+      "role": "symbol",
+      "title": "RosterClass",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/rosterclass"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/RosterClassResponse": {
+      "abstract": [
+        {
+          "text": "The response that contains a list of classes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "RosterClassResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/RosterClassResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RosterClassResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "RosterClassResponse",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/rosterclassresponse"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/RosterRequest": {
+      "abstract": [
+        {
+          "text": "The request for a list of classes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "RosterRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/RosterRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RosterRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "RosterRequest",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/rosterrequest"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Class-Management",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/RosterClass",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Fetch-Class-Roster"
+      ],
+      "title": "Class Management"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicemanagement/fetch-class-roster-sync"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

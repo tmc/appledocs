@@ -1,0 +1,2881 @@
+{
+  "abstract": [
+    {
+      "text": "An object that you use to create a new composition from existing assets.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avfoundation/documentation/AVFoundation"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)AVMutableComposition",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "AVMutableComposition"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AVFoundation"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "AVMutableComposition"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "4.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "4.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.7",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "AVMutableComposition"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVMutableComposition"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this object to add and remove composition tracks, and add, remove, and scale their time ranges. You can make an immutable snapshot of a mutable composition for playback and inspection as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Use a mutable composition object you create.",
+            "let mutableComposition = AVMutableComposition()",
+            "        ",
+            "guard let composition = mutableComposition.copy() as? AVComposition else { return }",
+            "        ",
+            "// Create a player item to inspect and play the composition.",
+            "let playerItem = AVPlayerItem(asset: composition)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.avfoundation/documentation/AVFoundation": {
+      "abstract": [
+        {
+          "text": "Work with audiovisual assets, control device cameras, process audio, and configure system audio interactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFoundation",
+      "type": "topic",
+      "url": "/documentation/avfoundation"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsynchronousKeyValueLoading": {
+      "abstract": [
+        {
+          "text": "A protocol that defines the interface to load media data asynchronously.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAsynchronousKeyValueLoading"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsynchronousKeyValueLoading",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAsynchronousKeyValueLoading"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAsynchronousKeyValueLoading",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avasynchronouskeyvalueloading"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVComposition": {
+      "abstract": [
+        {
+          "text": "An object that combines and arranges media from multiple assets into a single composite asset that you can play or process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVComposition"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVComposition",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVComposition"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVComposition",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcomposition"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition": {
+      "abstract": [
+        {
+          "text": "An object that you use to create a new composition from existing assets.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVMutableComposition"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVMutableComposition"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVMutableComposition",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablecomposition"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/addMutableTrack(withMediaType:preferredTrackID:)": {
+      "abstract": [
+        {
+          "text": "Adds an empty track to a composition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addMutableTrack"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withMediaType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVMediaType",
+          "text": "AVMediaType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "preferredTrackID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMPersistentTrackID",
+          "text": "CMPersistentTrackID"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVMutableCompositionTrack",
+          "text": "AVMutableCompositionTrack"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/addMutableTrack(withMediaType:preferredTrackID:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addMutableTrackWithMediaType:preferredTrackID:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addMutableTrack(withMediaType:preferredTrackID:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablecomposition/addmutabletrack(withmediatype:preferredtrackid:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/addTracks(for:preferredStartingTrackID:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addTracks"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9Cinematic11CNAssetInfoC",
+          "text": "CNAssetInfo"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "preferredStartingTrackID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMPersistentTrackID",
+          "text": "CMPersistentTrackID"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9Cinematic17CNCompositionInfoC",
+          "text": "CNCompositionInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/addTracks(for:preferredStartingTrackID:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addTracks(for:preferredStartingTrackID:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablecomposition/addtracks(for:preferredstartingtrackid:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/addTracksForCinematicAssetInfo:preferredStartingTrackID:": {
+      "abstract": [
+        {
+          "text": "Adds a group of empty tracks associated with a cinematic asset to a mutable composition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "addTracksForCinematicAssetInfo:preferredStartingTrackID:"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/addTracksForCinematicAssetInfo:preferredStartingTrackID:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addTracksForCinematicAssetInfo:preferredStartingTrackID:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addTracksForCinematicAssetInfo:preferredStartingTrackID:",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablecomposition/addtracksforcinematicassetinfo:preferredstartingtrackid:"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/composition": {
+      "abstract": [
+        {
+          "text": "Returns a new mutable composition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "composition"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/composition",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "composition"
+        }
+      ],
+      "role": "symbol",
+      "title": "composition",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablecomposition/composition"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/init(urlAssetInitializationOptions:)": {
+      "abstract": [
+        {
+          "text": "Creates a mutable composition that uses the specified initialization options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "urlAssetInitializationOptions"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/init(urlAssetInitializationOptions:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "compositionWithURLAssetInitializationOptions:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(urlAssetInitializationOptions:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablecomposition/init(urlassetinitializationoptions:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/insertEmptyTimeRange(_:)": {
+      "abstract": [
+        {
+          "text": "Adds or extends an empty time range within all tracks of the composition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "insertEmptyTimeRange"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTimeRange",
+          "text": "CMTimeRange"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/insertEmptyTimeRange(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "insertEmptyTimeRange:"
+        }
+      ],
+      "role": "symbol",
+      "title": "insertEmptyTimeRange(_:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablecomposition/insertemptytimerange(_:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/insertTimeRange(_:of:at:)": {
+      "abstract": [
+        {
+          "text": "Inserts all the tracks within a given time range of a specified asset into the composition.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "insertTimeRange"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTimeRange",
+          "text": "CMTimeRange"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAsset",
+          "text": "AVAsset"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/insertTimeRange(_:of:at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "insertTimeRange:ofAsset:atTime:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "insertTimeRange(_:of:at:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablecomposition/inserttimerange(_:of:at:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/insertTimeRange(_:of:at:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Inserts all tracks of an asset for a time range into a composition.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "insertTimeRange"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTimeRange",
+          "text": "CMTimeRange"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAsset",
+          "text": "AVAsset"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/insertTimeRange(_:of:at:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "insertTimeRange:ofAsset:atTime:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "insertTimeRange(_:of:at:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablecomposition/inserttimerange(_:of:at:completionhandler:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/insertTimeRange(_:of:at:isolation:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "insertTimeRange"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTimeRange",
+          "text": "CMTimeRange"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAsset",
+          "text": "AVAsset"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isolation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "isolated"
+        },
+        {
+          "kind": "text",
+          "text": " (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ScA",
+          "text": "Actor"
+        },
+        {
+          "kind": "text",
+          "text": ")?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/insertTimeRange(_:of:at:isolation:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "insertTimeRange(_:of:at:isolation:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablecomposition/inserttimerange(_:of:at:isolation:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/loadTrack(withTrackID:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Loads a track that contains the specified identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadTrack"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withTrackID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMPersistentTrackID",
+          "text": "CMPersistentTrackID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVMutableCompositionTrack",
+          "text": "AVMutableCompositionTrack"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/loadTrack(withTrackID:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "loadTrackWithTrackID:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "loadTrack(withTrackID:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablecomposition/loadtrack(withtrackid:completionhandler:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/loadTracks(withMediaCharacteristic:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Loads tracks that contain media of a specified characteristic.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadTracks"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withMediaCharacteristic"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVMediaCharacteristic",
+          "text": "AVMediaCharacteristic"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVMutableCompositionTrack",
+          "text": "AVMutableCompositionTrack"
+        },
+        {
+          "kind": "text",
+          "text": "]?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/loadTracks(withMediaCharacteristic:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "loadTracksWithMediaCharacteristic:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "loadTracks(withMediaCharacteristic:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablecomposition/loadtracks(withmediacharacteristic:completionhandler:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/loadTracks(withMediaType:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Loads tracks that contain media of a specified type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadTracks"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withMediaType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVMediaType",
+          "text": "AVMediaType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVMutableCompositionTrack",
+          "text": "AVMutableCompositionTrack"
+        },
+        {
+          "kind": "text",
+          "text": "]?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/loadTracks(withMediaType:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "loadTracksWithMediaType:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "loadTracks(withMediaType:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablecomposition/loadtracks(withmediatype:completionhandler:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/mutableTrack(compatibleWith:)": {
+      "abstract": [
+        {
+          "text": "Returns a composition track into which you can insert any time range of the specified asset track.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mutableTrack"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "compatibleWith"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAssetTrack",
+          "text": "AVAssetTrack"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVMutableCompositionTrack",
+          "text": "AVMutableCompositionTrack"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/mutableTrack(compatibleWith:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mutableTrackCompatibleWithTrack:"
+        }
+      ],
+      "role": "symbol",
+      "title": "mutableTrack(compatibleWith:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablecomposition/mutabletrack(compatiblewith:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/naturalSize": {
+      "abstract": [
+        {
+          "text": "The encoded or authored size of the visual portion of the asset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "naturalSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGSize",
+          "text": "CGSize"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/naturalSize",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "naturalSize"
+        }
+      ],
+      "role": "symbol",
+      "title": "naturalSize",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablecomposition/naturalsize"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/removeTimeRange(_:)": {
+      "abstract": [
+        {
+          "text": "Removes a specified time range from all tracks of the composition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeTimeRange"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTimeRange",
+          "text": "CMTimeRange"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/removeTimeRange(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeTimeRange:"
+        }
+      ],
+      "role": "symbol",
+      "title": "removeTimeRange(_:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablecomposition/removetimerange(_:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/removeTrack(_:)": {
+      "abstract": [
+        {
+          "text": "Removes a specified track from the composition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeTrack"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCompositionTrack",
+          "text": "AVCompositionTrack"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/removeTrack(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeTrack:"
+        }
+      ],
+      "role": "symbol",
+      "title": "removeTrack(_:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablecomposition/removetrack(_:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/scaleTimeRange(_:toDuration:)": {
+      "abstract": [
+        {
+          "text": "Changes the duration of all tracks in a given time range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scaleTimeRange"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTimeRange",
+          "text": "CMTimeRange"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "toDuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/scaleTimeRange(_:toDuration:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "scaleTimeRange:toDuration:"
+        }
+      ],
+      "role": "symbol",
+      "title": "scaleTimeRange(_:toDuration:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablecomposition/scaletimerange(_:toduration:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/track(withTrackID:)": {
+      "abstract": [
+        {
+          "text": "Returns a track that contains the specified identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "track"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withTrackID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMPersistentTrackID",
+          "text": "CMPersistentTrackID"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVMutableCompositionTrack",
+          "text": "AVMutableCompositionTrack"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/track(withTrackID:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "trackWithTrackID:"
+        }
+      ],
+      "role": "symbol",
+      "title": "track(withTrackID:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablecomposition/track(withtrackid:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/tracks": {
+      "abstract": [
+        {
+          "text": "The tracks that a composition contains.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tracks"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVMutableCompositionTrack",
+          "text": "AVMutableCompositionTrack"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/tracks",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tracks"
+        }
+      ],
+      "role": "symbol",
+      "title": "tracks",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablecomposition/tracks"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/tracks(withMediaCharacteristic:)": {
+      "abstract": [
+        {
+          "text": "Returns tracks that contain media of a specified characteristic.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tracks"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withMediaCharacteristic"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVMediaCharacteristic",
+          "text": "AVMediaCharacteristic"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVMutableCompositionTrack",
+          "text": "AVMutableCompositionTrack"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/tracks(withMediaCharacteristic:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tracksWithMediaCharacteristic:"
+        }
+      ],
+      "role": "symbol",
+      "title": "tracks(withMediaCharacteristic:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablecomposition/tracks(withmediacharacteristic:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/tracks(withMediaType:)": {
+      "abstract": [
+        {
+          "text": "Returns tracks that contain media of a specified type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tracks"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withMediaType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVMediaType",
+          "text": "AVMediaType"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVMutableCompositionTrack",
+          "text": "AVMutableCompositionTrack"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/tracks(withMediaType:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tracksWithMediaType:"
+        }
+      ],
+      "role": "symbol",
+      "title": "tracks(withMediaType:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablecomposition/tracks(withmediatype:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableCompositionTrack": {
+      "abstract": [
+        {
+          "text": "A mutable track in a composition that you use to insert, remove, and scale track segments without affecting their low-level representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVMutableCompositionTrack"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableCompositionTrack",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVMutableCompositionTrack"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVMutableCompositionTrack",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmutablecompositiontrack"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPartialAsyncProperty/tracks-92p4a": {
+      "abstract": [
+        {
+          "text": "The tracks that a composition contains.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Root",
+            "type": "codeVoice"
+          },
+          {
+            "text": " inherits ",
+            "type": "text"
+          },
+          {
+            "code": "AVMutableComposition",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tracks"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:12AVFoundation15AVAsyncPropertyC",
+          "text": "AVAsyncProperty"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Root"
+        },
+        {
+          "kind": "text",
+          "text": ", ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVMutableCompositionTrack",
+          "text": "AVMutableCompositionTrack"
+        },
+        {
+          "kind": "text",
+          "text": "]>"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPartialAsyncProperty/tracks-92p4a",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tracks",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avpartialasyncproperty/tracks-92p4a"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSMutableCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that mutable objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSMutableCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSMutableCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMutableCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablecopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVComposition"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAsynchronousKeyValueLoading",
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSMutableCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Mutable-compositions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableCompositionTrack"
+      ],
+      "title": "Mutable compositions"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-Composition",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/init(urlAssetInitializationOptions:)"
+      ],
+      "title": "Creating a Composition"
+    },
+    {
+      "anchor": "Loading-Tracks",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVPartialAsyncProperty/tracks-92p4a",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/loadTrack(withTrackID:completionHandler:)",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/loadTracks(withMediaType:completionHandler:)",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/loadTracks(withMediaCharacteristic:completionHandler:)"
+      ],
+      "title": "Loading Tracks"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Prefer loading tracks asynchronously using the methods in Loading Tracks.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Accessing-Tracks",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/tracks",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/track(withTrackID:)",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/tracks(withMediaType:)",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/tracks(withMediaCharacteristic:)"
+      ],
+      "title": "Accessing Tracks"
+    },
+    {
+      "anchor": "Managing-Composition-Tracks",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/mutableTrack(compatibleWith:)",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/addMutableTrack(withMediaType:preferredTrackID:)",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/removeTrack(_:)"
+      ],
+      "title": "Managing Composition Tracks"
+    },
+    {
+      "anchor": "Managing-Cinematic-Tracks",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/addTracks(for:preferredStartingTrackID:)"
+      ],
+      "title": "Managing Cinematic Tracks"
+    },
+    {
+      "anchor": "Managing-Time-Ranges",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/removeTimeRange(_:)",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/scaleTimeRange(_:toDuration:)",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/insertEmptyTimeRange(_:)",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/insertTimeRange(_:of:at:completionHandler:)",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/insertTimeRange(_:of:at:)"
+      ],
+      "title": "Managing Time Ranges"
+    },
+    {
+      "anchor": "Configuring-Video-Size",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/naturalSize"
+      ],
+      "title": "Configuring Video Size"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/insertTimeRange(_:of:at:isolation:)"
+      ],
+      "title": "Instance Methods"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "4.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "4.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.7",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "AVMutableComposition"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMutableComposition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMutableComposition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.avfoundation/documentation/AVFoundation"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-Composition",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/composition",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/init(urlAssetInitializationOptions:)"
+              ],
+              "title": "Creating a Composition"
+            },
+            {
+              "anchor": "Loading-Tracks",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/loadTrack(withTrackID:completionHandler:)",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/loadTracks(withMediaType:completionHandler:)",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/loadTracks(withMediaCharacteristic:completionHandler:)"
+              ],
+              "title": "Loading Tracks"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Prefer loading tracks asynchronously using the methods in Loading Tracks.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Accessing-Tracks",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/tracks",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/track(withTrackID:)",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/tracks(withMediaType:)",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/tracks(withMediaCharacteristic:)"
+              ],
+              "title": "Accessing Tracks"
+            },
+            {
+              "anchor": "Managing-Composition-Tracks",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/mutableTrack(compatibleWith:)",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/addMutableTrack(withMediaType:preferredTrackID:)",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/removeTrack(_:)"
+              ],
+              "title": "Managing Composition Tracks"
+            },
+            {
+              "anchor": "Managing-Time-Ranges",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/removeTimeRange(_:)",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/scaleTimeRange(_:toDuration:)",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/insertEmptyTimeRange(_:)",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/insertTimeRange(_:of:at:completionHandler:)",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/insertTimeRange(_:of:at:)"
+              ],
+              "title": "Managing Time Ranges"
+            },
+            {
+              "anchor": "Configuring-Video-Size",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/naturalSize"
+              ],
+              "title": "Configuring Video Size"
+            },
+            {
+              "anchor": "Instance-Methods",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableComposition/addTracksForCinematicAssetInfo:preferredStartingTrackID:"
+              ],
+              "title": "Instance Methods"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVComposition"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Mutable-compositions",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVMutableCompositionTrack"
+              ],
+              "title": "Mutable compositions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "AVMutableComposition"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVComposition",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)AVComposition",
+                    "text": "AVComposition"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableComposition~1removeTimeRange(_:)/title",
+          "value": "removeTimeRange:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableComposition~1removeTimeRange(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeTimeRange:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableComposition~1loadTracks(withMediaCharacteristic:completionHandler:)/title",
+          "value": "loadTracksWithMediaCharacteristic:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableComposition~1loadTracks(withMediaCharacteristic:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "loadTracksWithMediaCharacteristic:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableComposition~1naturalSize/title",
+          "value": "naturalSize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableComposition~1naturalSize/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "naturalSize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableComposition~1track(withTrackID:)/title",
+          "value": "trackWithTrackID:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableComposition~1track(withTrackID:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "trackWithTrackID:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableComposition~1mutableTrack(compatibleWith:)/title",
+          "value": "mutableTrackCompatibleWithTrack:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableComposition~1mutableTrack(compatibleWith:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "mutableTrackCompatibleWithTrack:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVComposition/title",
+          "value": "AVComposition"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVComposition/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVComposition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVComposition/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVComposition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableComposition~1scaleTimeRange(_:toDuration:)/title",
+          "value": "scaleTimeRange:toDuration:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableComposition~1scaleTimeRange(_:toDuration:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "scaleTimeRange:toDuration:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableComposition~1tracks/title",
+          "value": "tracks"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableComposition~1tracks/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "tracks"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableComposition~1loadTracks(withMediaType:completionHandler:)/title",
+          "value": "loadTracksWithMediaType:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableComposition~1loadTracks(withMediaType:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "loadTracksWithMediaType:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableComposition~1tracks(withMediaCharacteristic:)/title",
+          "value": "tracksWithMediaCharacteristic:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableComposition~1tracks(withMediaCharacteristic:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "tracksWithMediaCharacteristic:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableComposition~1removeTrack(_:)/title",
+          "value": "removeTrack:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableComposition~1removeTrack(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeTrack:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableComposition~1insertTimeRange(_:of:at:)/title",
+          "value": "insertTimeRange:ofAsset:atTime:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableComposition~1insertTimeRange(_:of:at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "insertTimeRange:ofAsset:atTime:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableComposition~1insertTimeRange(_:of:at:completionHandler:)/title",
+          "value": "insertTimeRange:ofAsset:atTime:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableComposition~1insertTimeRange(_:of:at:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "insertTimeRange:ofAsset:atTime:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAsynchronousKeyValueLoading/title",
+          "value": "AVAsynchronousKeyValueLoading"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAsynchronousKeyValueLoading/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAsynchronousKeyValueLoading"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAsynchronousKeyValueLoading/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAsynchronousKeyValueLoading"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableComposition~1tracks(withMediaType:)/title",
+          "value": "tracksWithMediaType:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableComposition~1tracks(withMediaType:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "tracksWithMediaType:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableCompositionTrack/title",
+          "value": "AVMutableCompositionTrack"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableCompositionTrack/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMutableCompositionTrack"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableCompositionTrack/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMutableCompositionTrack"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableComposition~1init(urlAssetInitializationOptions:)/title",
+          "value": "compositionWithURLAssetInitializationOptions:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableComposition~1init(urlAssetInitializationOptions:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "compositionWithURLAssetInitializationOptions:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableComposition/title",
+          "value": "AVMutableComposition"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableComposition/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMutableComposition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableComposition/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMutableComposition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableComposition~1insertEmptyTimeRange(_:)/title",
+          "value": "insertEmptyTimeRange:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableComposition~1insertEmptyTimeRange(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "insertEmptyTimeRange:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableComposition~1addMutableTrack(withMediaType:preferredTrackID:)/title",
+          "value": "addMutableTrackWithMediaType:preferredTrackID:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableComposition~1addMutableTrack(withMediaType:preferredTrackID:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addMutableTrackWithMediaType:preferredTrackID:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableComposition~1loadTrack(withTrackID:completionHandler:)/title",
+          "value": "loadTrackWithTrackID:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMutableComposition~1loadTrack(withTrackID:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "loadTrackWithTrackID:completionHandler:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avfoundation/avmutablecomposition"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/avfoundation/avmutablecomposition"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

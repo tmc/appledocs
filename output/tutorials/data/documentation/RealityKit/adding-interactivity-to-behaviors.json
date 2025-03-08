@@ -1,0 +1,1222 @@
+{
+  "abstract": [
+    {
+      "text": "Define what a behavior does by using actions.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit",
+        "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-reality-composer"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit",
+        "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-reality-composer",
+        "doc://com.apple.RealityKit/documentation/RealityKit/building-custom-behaviors"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit",
+        "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-reality-composer",
+        "doc://com.apple.RealityKit/documentation/RealityKit/creating-3d-content-with-reality-composer",
+        "doc://com.apple.RealityKit/documentation/RealityKit/building-custom-behaviors"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/adding-interactivity-to-behaviors"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Adding interactivity to behaviors"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Reality Composer provides many actions that you can use as building blocks when constructing",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a behavior’s action sequence. Common actions include moving objects in your scene,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "animating objects in a variety of ways, playing sounds, adding force to objects that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "participate in the physics simulation, and transitioning to a completely different",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "scene. You can also call functions written in Xcode to accomplish additional tasks",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "beyond what the built-in actions can do.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Move-rotate-or-scale-an-object-from-a-behavior",
+          "level": 3,
+          "text": "Move, rotate, or scale an object from a behavior",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Behaviors can transform objects to a specific location, rotation, and scale using",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the Move, Rotate, Scale To action, which animates objects smoothly to a specified",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "world position, orientation, and size. The end result of using a Move, Rotate, Scale",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To action is the same regardless of its targets’ starting transform values. For example,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "if you create a behavior with a Move, Rotate, Scale To action configured with a scale",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "value of 0.5, all of its targeted objects end up with a scale value of 0.5, regardless",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of what their starting scale value was.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "adding-interactivity-to-behaviors-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Behaviors can also transform objects relative to their starting position, orientation,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and size using the Move, Rotate, Scale By action. With this action, the values you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "enter into the transform fields are applied to the objects’ current transform values",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "instead of being used as absolute values. As a result, a Move, Rotate, Scale By action",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "has a different effect when run against objects with different starting transform",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "values. The action’s position and rotation values are added to an object’s starting",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "position and rotation values, while its scale value is multiplied by the object’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "starting scale value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, a Move, Rotate, Scale By action with a Location X value of 5 cm results",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in each of its target objects moving 5 centimeters from its starting position along",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the scene’s X-axis. Similarly, configuring a Move, Rotate, Scale By action with a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "scale value of 0.5, and running it against an object with a starting scale value",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of 10.0, results in an object with a scale value of 5.0 when the action finishes.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "That same action run against an object with a starting scale value of 2.0, however,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "results in an object with a scale value of 1.0 after the behavior runs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "adding-interactivity-to-behaviors-2",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With both of these actions, you can enter the move, rotate, or scale amount into",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the action’s text fields, or use the manipulator to make the transform changes visually",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the scene. With the Behaviors pane visible and a behavior selected, clicking or",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "tapping a Move, Rotate, Scale By or Move, Rotate, Scale To action puts the scene",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "into interactive mode, as shown in the following figure. Interactive mode lets you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "use the manipulator to transform the object to the desired location, orientation,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and scale. While in interactive mode, the scene view shows both the starting and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "ending location, orientation, and scale.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "adding-interactivity-to-behaviors-3",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Draw-attention-to-an-object",
+          "level": 3,
+          "text": "Draw attention to an object",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To draw attention to an object, use the Emphasize action, which causes one or more",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "objects in your scene to animate in place in a variety of ways, such as shaking,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "flipping, jiggling, spinning, or bouncing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-force-to-an-object",
+          "level": 3,
+          "text": "Add force to an object",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Behaviors can add forces to any object in your scene that participates in the physics",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "simulation, by using the Add Force action to simulate the effects of being pushed,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "kicked, tossed, or blown by wind. Once you’ve selected the object or objects that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the force applies to, a manipulator that represents the direction and intensity of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the force to be added appears in your scene. To change the direction of the force,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "move the blue cone or rotate the blue ring. To change the amount of force to apply,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "use the Velocity slider on the action.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "adding-interactivity-to-behaviors-4",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Play-sounds-from-a-behavior",
+          "level": 3,
+          "text": "Play sounds from a behavior",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are three actions that play audio files in Reality Composer scenes: Play Sound,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Play Ambience, and Play Music. All three actions function similarly, but are designed",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for slightly different purposes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Play Sound",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " action plays a sound as if it were coming from a specific object",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "in your scene. The volume of the sound changes based on the camera position relative",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "to the object, and whether the camera is pointed toward or away from it. When the",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "user is near the object, the sound plays louder, and when the user is far from the",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "object, the sound is softer.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Play Ambience",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " action plays sounds anchored to your scene. These sounds track",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "change in orientation but don’t attenuate, so the volume of an ambient sound doesn’t",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "change based on the user’s position relative to any object in the scene. Play Ambience",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "actions are designed for playing background noise that sounds as if it’s coming from",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "far away.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Play Music",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " action plays sounds at a constant volume, completely independent",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "of the user’s position and orientation, and is designed for playing background music",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "and voice narration.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Transition-to-another-scene",
+          "level": 3,
+          "text": "Transition to another scene",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For games and complex AR experiences, you might choose to split up your app’s content",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "into multiple scenes to keep things better organized and to reduce load time and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the amount of memory required. You might, for example, choose to have a separate",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "scene for every level in a game.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To switch to a different scene, use a Change Scene action, specifying the new scene",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you wish to load. To reset the current scene to its starting state, select the current",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "scene instead of a different scene.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Call-code-from-a-behavior",
+          "level": 3,
+          "text": "Call code from a behavior",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To call code you’ve written in Xcode from a behavior, use the Notify action. Notify",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "actions have a single configurable parameter called Identifier that is used to uniquely",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "identify the notification this action sends. By default, a Notify action’s identifier",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "is the same as the behavior name, but you can change it to any string value that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "makes sense for your project. Xcode’s code generation uses the identifier value to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "automatically create a notification that you use to respond to this action.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "adding-interactivity-to-behaviors-5",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To write code that responds to a Notify action, first write a code function that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "takes an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " parameter. This function should contain the code that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you want your behavior to call:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "    func handleTapOnEntity(_ entity: Entity?) {",
+            "        guard let entity = entity else { return }        ",
+            "        // Do something with entity...",
+            "    }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once you have your function, you register it as the action’s ",
+              "type": "text"
+            },
+            {
+              "code": "onAction",
+              "type": "codeVoice"
+            },
+            {
+              "text": " handler.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Because the Notify action in the preceding figure specifies an identifier value of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "Tapped",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", Xcode automatically creates an action called ",
+              "type": "text"
+            },
+            {
+              "code": "tapped",
+              "type": "codeVoice"
+            },
+            {
+              "text": " on the class representing",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "its scene. Assign the new function as the generated action’s ",
+              "type": "text"
+            },
+            {
+              "code": "onAction",
+              "type": "codeVoice"
+            },
+            {
+              "text": " handler to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "call that function whenever the behavior is triggered.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "    // Register an onAction handler for the notification",
+            "    // action you created in Reality Composer",
+            "    boxAnchor.actions.tapped.onAction = handleTapOnEntity(_:)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "adding-interactivity-to-behaviors-1": {
+      "alt": "Screenshot showing the Move, Rotate, Scale To action",
+      "identifier": "adding-interactivity-to-behaviors-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b7dac6038abbd75ab7c67a65dfb8eb6e/adding-interactivity-to-behaviors-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/dd8537864af1708aea3b68186eb5092e/adding-interactivity-to-behaviors-1~dark@2x.png"
+        }
+      ]
+    },
+    "adding-interactivity-to-behaviors-2": {
+      "alt": "Screenshot showing the Move, Rotate, Scale By action",
+      "identifier": "adding-interactivity-to-behaviors-2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1de942cd5e9a0ef7dd8cb0e4b47a0f7d/adding-interactivity-to-behaviors-2@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8db3ae6733eac30174daafb4d0ad8ac3/adding-interactivity-to-behaviors-2~dark@2x.png"
+        }
+      ]
+    },
+    "adding-interactivity-to-behaviors-3": {
+      "alt": "Screenshot of a Reality Composer window with a behavior’s Move, Rotate, Scale By action selected.",
+      "identifier": "adding-interactivity-to-behaviors-3",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e4b01be7d836bd7dc7c32e3b902429ff/adding-interactivity-to-behaviors-3.png"
+        }
+      ]
+    },
+    "adding-interactivity-to-behaviors-4": {
+      "alt": "Screenshot of a Reality Composer window with an Add Force action selected and showing the Add Force manipulator in the scene view.",
+      "identifier": "adding-interactivity-to-behaviors-4",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/76793b5bbc4b303884ab9b7a7d6b7894/adding-interactivity-to-behaviors-4.png"
+        }
+      ]
+    },
+    "adding-interactivity-to-behaviors-5": {
+      "alt": "Screenshot showing a closeup of a Notify action in Reality Composer’s Behaviors pane. ",
+      "identifier": "adding-interactivity-to-behaviors-5",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7aef5611aba0a13e8906cf6198b43c07/adding-interactivity-to-behaviors-5@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90e60c418dc61e34a106a4a96127b503/adding-interactivity-to-behaviors-5~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity": {
+      "abstract": [
+        {
+          "text": "An element of a RealityKit scene to which you attach components that provide",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "appearance and behavior characteristics for the entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Entity"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Entity"
+        }
+      ],
+      "role": "symbol",
+      "title": "Entity",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/bringing-a-reality-composer-scene-to-life": {
+      "abstract": [
+        {
+          "text": "Add animation and handle user input by using behaviors, triggers, and actions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/bringing-a-reality-composer-scene-to-life",
+      "kind": "article",
+      "role": "article",
+      "title": "Bringing a Reality Composer scene to life",
+      "type": "topic",
+      "url": "/documentation/realitykit/bringing-a-reality-composer-scene-to-life"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/building-custom-behaviors": {
+      "abstract": [
+        {
+          "text": "Create custom behaviors to control objects in your scene.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/building-custom-behaviors",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Building custom behaviors",
+      "type": "topic",
+      "url": "/documentation/realitykit/building-custom-behaviors"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/creating-3d-content-with-reality-composer": {
+      "abstract": [
+        {
+          "text": "Assemble assets into a dynamic 3D composition that you can add to a scene in your",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "app, or share with AR Quick Look.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/creating-3d-content-with-reality-composer",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Creating 3D Content with Reality Composer",
+      "type": "topic",
+      "url": "/documentation/realitykit/creating-3d-content-with-reality-composer"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/creating-a-trigger": {
+      "abstract": [
+        {
+          "text": "Define when and how a behavior fires.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/creating-a-trigger",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a Trigger",
+      "type": "topic",
+      "url": "/documentation/realitykit/creating-a-trigger"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-reality-composer": {
+      "abstract": [
+        {
+          "text": "A visual editor for RealityKit AR scenes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-reality-composer",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Reality Composer",
+      "type": "topic",
+      "url": "/documentation/realitykit/realitykit-reality-composer"
+    },
+    "doc://com.apple.documentation/documentation/realitykit/creating_a_game_with_reality_composer": {
+      "abstract": [
+        {
+          "text": "Design your app’s visual look and behaviors in Reality Composer, and complete the gameplay experience by using custom RealityKit code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/realitykit/creating_a_game_with_reality_composer",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating a Game with Reality Composer",
+      "type": "topic",
+      "url": "/documentation/realitykit/creating_a_game_with_reality_composer"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Behaviors",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/bringing-a-reality-composer-scene-to-life",
+        "doc://com.apple.documentation/documentation/realitykit/creating_a_game_with_reality_composer",
+        "doc://com.apple.RealityKit/documentation/RealityKit/building-custom-behaviors",
+        "doc://com.apple.RealityKit/documentation/RealityKit/creating-a-trigger"
+      ],
+      "title": "Behaviors"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/adding-interactivity-to-behaviors"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,404 @@
+{
+  "abstract": [
+    {
+      "text": "An atom that summarizes the features and complexity of a movie.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "Profile atoms are deprecated in the QuickTime file format. The information that follows documents existing content containing profile atoms and should not be used for new development.",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.qtff/documentation/quicktime-file-format"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.qtff/documentation/quicktime-file-format/Movie_profile_atom"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "__docc_universal_symbol_reference_$Movie_profile_atom",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "preciseIdentifier": "__docc_universal_symbol_reference_$Movie_profile_atom",
+        "text": "Movie profile atom ('prfl')"
+      }
+    ],
+    "modules": [
+      {
+        "name": "quicktime-file-format",
+        "relatedModules": []
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "preciseIdentifier": "__docc_universal_symbol_reference_$Movie_profile_atom",
+        "text": "Movie profile atom ('prfl')"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": true,
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Atom",
+    "symbolKind": "class",
+    "title": "Movie profile atom ('prfl')"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Revision_history"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The movie profile atom summarizes the features and complexity of a movie, such as the required codecs and maximum bit rate, in order to help player applications or devices quickly determine whether they have the necessary resources to play the movie.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Features for a movie typically include the movie’s maximum video and audio bit rate, a list of audio and video codec types, the movie’s video dimensions, and any applicable MPEG-4 profiles and levels. This is all information that can also be obtained by examining the contents of the movie file in more detail. This summary is intended to allow applications or devices to quickly determine whether they can play the movie. It is not intended as a container for information that is not found elsewhere in the movie, and should not be used as one.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The fact that a feature does not appear in the profile atom does not mean it is not present in the movie. The profile atom itself may not be present, or may list only a subset of movie features. The features listed in the profile atom are all present, but the list is not necessarily complete.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When creating a profile atom, it is permissible to omit some features that are present in the movie, but it is required to fully specify any features that are included in the profile. For example, a movie containing video may or may not have a video codec type feature in the profile atom, but if any video codec type feature is included in the profile atom, every required video codec must be listed in the profile atom.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The movie profile atom is a profile atom (",
+              "type": "text"
+            },
+            {
+              "code": "'prfl'",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") whose parent is a movie atom. This is distinct from the track profile atom, whose parent is a track atom. The structure of the profile atom is identical in both cases, but the contents of a movie profile atom describe the movie as a whole, while the contents of a track profile atom are specific to a particular track.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The profile atom contains a list of features. In a movie profile atom, these features summarize the movie as a whole. In a track profile atom, these features describe a particular track.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For details on the structure and contents of profile atoms, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Appendix_F_Profile_atom_guidelines",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Appendix_F_Profile_atom_guidelines": {
+      "abstract": [
+        {
+          "text": "Summarize profile information about a QuickTime movie so readers can easily determine features and complexity.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Appendix_F_Profile_atom_guidelines",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Appendix F: Profile atom guidelines",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/appendix_f_profile_atom_guidelines"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Revision_history": {
+      "abstract": [
+        {
+          "text": "Changes to the QuickTime File Format.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Revision_history",
+      "kind": "article",
+      "role": "article",
+      "title": "QuickTime File Format change log",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/revision_history"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format": {
+      "abstract": [
+        {
+          "text": "An object-oriented file format for the storage and exchange of digital media between devices, applications, and operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "QuickTime File Format",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Movie_profile_atom": {
+      "abstract": [
+        {
+          "text": "An atom that summarizes the features and complexity of a movie.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Movie_profile_atom",
+          "text": "Movie profile atom ('prfl')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Movie_profile_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Movie profile atom ('prfl')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/movie_profile_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Movie_profile_atom/Feature_code": {
+      "abstract": [
+        {
+          "text": "A 32-bit unsigned integer that represents a code specifying a feature.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Movie_profile_atom_Feature_code",
+          "text": "Feature code"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Movie_profile_atom/Feature_code",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Feature code",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/movie_profile_atom/feature_code"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Movie_profile_atom/Part-ID": {
+      "abstract": [
+        {
+          "text": "A 32-bit field that defines the feature as being either brand-specific or universal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Movie_profile_atom_Part-ID",
+          "text": "Part-ID"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Movie_profile_atom/Part-ID",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Part-ID",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/movie_profile_atom/part-id"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Movie_profile_atom/Reserved": {
+      "abstract": [
+        {
+          "text": "A 32-bit field.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Movie_profile_atom_Reserved",
+          "text": "Reserved"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Movie_profile_atom/Reserved",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Reserved",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/movie_profile_atom/reserved"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Movie_profile_atom/Value": {
+      "abstract": [
+        {
+          "text": "A 32-bit field that represents a value related to a feature.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Movie_profile_atom_Value",
+          "text": "Value"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Movie_profile_atom/Value",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Value",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/movie_profile_atom/value"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Track_profile_atom": {
+      "abstract": [
+        {
+          "text": "A child atom of movie atoms or track atoms.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Track_profile_atom",
+          "text": "Track profile atom ('prfl')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Track_profile_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Track profile atom ('prfl')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/track_profile_atom"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Movie-atoms",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Track_profile_atom",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Appendix_F_Profile_atom_guidelines"
+      ],
+      "title": "Movie atoms"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Data-fields",
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Movie_profile_atom/Reserved",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Movie_profile_atom/Part-ID",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Movie_profile_atom/Feature_code",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Movie_profile_atom/Value"
+      ],
+      "title": "Data fields"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quicktime-file-format/movie_profile_atom"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

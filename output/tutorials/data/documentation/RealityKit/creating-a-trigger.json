@@ -1,0 +1,740 @@
+{
+  "abstract": [
+    {
+      "text": "Define when and how a behavior fires.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit",
+        "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-reality-composer"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit",
+        "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-reality-composer",
+        "doc://com.apple.RealityKit/documentation/RealityKit/building-custom-behaviors"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit",
+        "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-reality-composer",
+        "doc://com.apple.RealityKit/documentation/RealityKit/creating-3d-content-with-reality-composer",
+        "doc://com.apple.RealityKit/documentation/RealityKit/building-custom-behaviors"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/creating-a-trigger"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating a Trigger"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Reality Composer supports five types of triggers: Tap, Scene Start, Proximity To",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Camera, Collide, and Notification. In Reality Composer’s Behavior pane, you click",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or tap inside the dashed box representing a trigger to specify the set of conditions",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or events that cause that trigger’s behavior to fire.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Respond-to-taps-and-touches",
+          "level": 3,
+          "text": "Respond to taps and touches",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Select the Tap trigger when you want a behavior to fire in response to the user tapping",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a specific object or objects. After adding a tap trigger to the behavior, select",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the object or objects in your scene that you want the user to interact with. If you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "accidentally select an object that you don’t want, click or tap it a second time",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to deselect it. When you’re finished making your selection, press the Done button.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To make further changes to the affected objects, press the Choose button to return",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to selection mode.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You can only use tap triggers for detecting single taps with one finger. To",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "detect more complex scenarios, such as double-taps, long presses, or multiple-finger",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "taps, use a notification trigger and then use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/library/archive/releasenotes/MacOSX/WhatsNewInOSX/Articles/MacOSX10_10.html#//apple_ref/doc/uid/TP40014484-SW20",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "or ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/SwiftUI",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " gesture detection. For more",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/creating-a-trigger#Fire-a-behavior-from-code",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "anchor": "Fire-a-behavior-immediately",
+          "level": 3,
+          "text": "Fire a behavior immediately",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Select the Scene Start trigger if you want a behavior to fire as soon as your scene",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "is loaded and displayed to the user. You would commonly used this type of trigger",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to set the starting state; for example, to hide objects you don’t want visible at",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "first, or to initiate animations to run immediately.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Fire-behaviors-when-the-user-is-near-an-object",
+          "level": 3,
+          "text": "Fire behaviors when the user is near an object",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Select the Proximity To Camera trigger if you want a behavior to fire whenever the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "camera—and, therefore, the user—gets close to specific objects in your scene. Specify",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "how close the user must get by using the Distance slider on the trigger. If you then",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "select the trigger, a green sphere is displayed around the affected objects to represent",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the specified distance. You can also drag the sphere to change the distance visually.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "creating-a-trigger-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Respond-to-object-collisions",
+          "level": 3,
+          "text": "Respond to object collisions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Select the Collide trigger if you want a behavior to fire whenever specific objects",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "collide with other objects in your scene, or when objects collide with detected real-world",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "surfaces.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The target of a collide trigger must participate in your scene’s physics",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "simulation. If you select an object that does not participate, Reality Composer prompts",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "you to enable it.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Fire-a-behavior-from-code",
+          "level": 3,
+          "text": "Fire a behavior from code",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Select a Notification trigger to fire a behavior from code you write in Xcode. Notification",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "triggers are a good option when none of the other trigger types meet your needs.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When you create a notification trigger, Xcode automatically generates the code needed",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to activate the behavior.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To trigger a notification, call the ",
+              "type": "text"
+            },
+            {
+              "code": "post()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function on the generated notification.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If, for example, your scene has a Notification trigger called ",
+              "type": "text"
+            },
+            {
+              "code": "SpinBox",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", as shown",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the figure below, trigger that behavior from your code like this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "myScene.notifications.spinBox.post() "
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "creating-a-trigger-2",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        }
+      ]
+    },
+    "creating-a-trigger-1": {
+      "alt": "Screenshot showing a behavior with a selected Proximity to Camera Trigger.",
+      "identifier": "creating-a-trigger-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/563aab78411832649bf7e0184796b4b5/creating-a-trigger-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c395357d8d9a62fd2592efae5cbb08a8/creating-a-trigger-1~dark@2x.png"
+        }
+      ]
+    },
+    "creating-a-trigger-2": {
+      "alt": "Screenshot showing a closeup of a Notification Trigger with an identifier called SpinBox.*.",
+      "identifier": "creating-a-trigger-2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6073bfd91bd97881b91cdb244d7eaf74/creating-a-trigger-2@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/126517db12f8c1cc3a44e5454dddc09d/creating-a-trigger-2~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/adding-interactivity-to-behaviors": {
+      "abstract": [
+        {
+          "text": "Define what a behavior does by using actions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/adding-interactivity-to-behaviors",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding interactivity to behaviors",
+      "type": "topic",
+      "url": "/documentation/realitykit/adding-interactivity-to-behaviors"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/bringing-a-reality-composer-scene-to-life": {
+      "abstract": [
+        {
+          "text": "Add animation and handle user input by using behaviors, triggers, and actions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/bringing-a-reality-composer-scene-to-life",
+      "kind": "article",
+      "role": "article",
+      "title": "Bringing a Reality Composer scene to life",
+      "type": "topic",
+      "url": "/documentation/realitykit/bringing-a-reality-composer-scene-to-life"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/building-custom-behaviors": {
+      "abstract": [
+        {
+          "text": "Create custom behaviors to control objects in your scene.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/building-custom-behaviors",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Building custom behaviors",
+      "type": "topic",
+      "url": "/documentation/realitykit/building-custom-behaviors"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/creating-3d-content-with-reality-composer": {
+      "abstract": [
+        {
+          "text": "Assemble assets into a dynamic 3D composition that you can add to a scene in your",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "app, or share with AR Quick Look.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/creating-3d-content-with-reality-composer",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Creating 3D Content with Reality Composer",
+      "type": "topic",
+      "url": "/documentation/realitykit/creating-3d-content-with-reality-composer"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/creating-a-trigger#Fire-a-behavior-from-code": {
+      "abstract": [],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/creating-a-trigger#Fire-a-behavior-from-code",
+      "kind": "section",
+      "title": "Fire a behavior from code",
+      "type": "topic",
+      "url": "/documentation/realitykit/creating-a-trigger#Fire-a-behavior-from-code"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-reality-composer": {
+      "abstract": [
+        {
+          "text": "A visual editor for RealityKit AR scenes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-reality-composer",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Reality Composer",
+      "type": "topic",
+      "url": "/documentation/realitykit/realitykit-reality-composer"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/SwiftUI"
+    },
+    "doc://com.apple.documentation/documentation/realitykit/creating_a_game_with_reality_composer": {
+      "abstract": [
+        {
+          "text": "Design your app’s visual look and behaviors in Reality Composer, and complete the gameplay experience by using custom RealityKit code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/realitykit/creating_a_game_with_reality_composer",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating a Game with Reality Composer",
+      "type": "topic",
+      "url": "/documentation/realitykit/creating_a_game_with_reality_composer"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/library/archive/releasenotes/MacOSX/WhatsNewInOSX/Articles/MacOSX10_10.html#//apple_ref/doc/uid/TP40014484-SW20": {
+      "identifier": "https://developer.apple.com/library/archive/releasenotes/MacOSX/WhatsNewInOSX/Articles/MacOSX10_10.html#//apple_ref/doc/uid/TP40014484-SW20",
+      "title": "Gesture Recognizers",
+      "titleInlineContent": [
+        {
+          "text": "Gesture Recognizers",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/releasenotes/MacOSX/WhatsNewInOSX/Articles/MacOSX10_10.html#//apple_ref/doc/uid/TP40014484-SW20"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Behaviors",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/bringing-a-reality-composer-scene-to-life",
+        "doc://com.apple.documentation/documentation/realitykit/creating_a_game_with_reality_composer",
+        "doc://com.apple.RealityKit/documentation/RealityKit/building-custom-behaviors",
+        "doc://com.apple.RealityKit/documentation/RealityKit/adding-interactivity-to-behaviors"
+      ],
+      "title": "Behaviors"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/creating-a-trigger"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

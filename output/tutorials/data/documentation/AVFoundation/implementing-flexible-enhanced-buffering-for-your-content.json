@@ -1,0 +1,490 @@
+{
+  "abstract": [
+    {
+      "text": "Configure your app for flexible enhanced buffering to stream content faster to AirPlay-enabled devices and supported CarPlay vehicles.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avfoundation/documentation/AVFoundation",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/streaming-and-airplay"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avfoundation/documentation/AVFoundation/implementing-flexible-enhanced-buffering-for-your-content"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AVFoundation"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Implementing flexible enhanced buffering for your content"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re working with content that requires flexibility with buffering, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVSampleBufferAudioRenderer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVSampleBufferRenderSynchronizer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " classes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To implement flexible enhanced buffering, complete the following steps.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a serialization queue to perform all playback operations on, and create the audio renderer and the render synchronizer to establish the media timeline.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "code": [
+            "let serializationQueue = DispatchQueue(label: \"sample.buffer.player.serialization.queue\")",
+            "let audioRenderer = AVSampleBufferAudioRenderer()",
+            "let renderSynchronizer = AVSampleBufferRenderSynchronizer()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Observe when the renderer has flushed enqueued audio, such as when the rate of playback increases or decreases, and re-enqueue audio data starting from the time the flush occurred.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "start": 2,
+          "type": "orderedList"
+        },
+        {
+          "code": [
+            "automaticFlushObserver = NotificationCenter.default.addObserver(forName: .AVSampleBufferAudioRendererWasFlushedAutomatically,",
+            "                                                                object: audioRenderer,",
+            "                                                                queue: nil) { [weak self] notification in",
+            "    self?.serializationQueue.async { [weak self] in",
+            "        guard let self = self else { return } ",
+            "        // Restart from the point where the flush interrupts the audio.",
+            "        let restartTime = (notification.userInfo?[AVSampleBufferAudioRendererFlushTimeKey] as? NSValue)?.timeValue",
+            "        self.autoflushPlayback(restartingAt: restartTime)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add the audio renderer to the render synchronizer, to tell the audio renderer to follow the media timeline.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "start": 3,
+          "type": "orderedList"
+        },
+        {
+          "code": [
+            "renderSynchronizer.addRenderer(audioRenderer)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Tell the audio renderer to start processing audio data, and set the render synchronizer’s rate to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to start playback.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "start": 4,
+          "type": "orderedList"
+        },
+        {
+          "code": [
+            "serializationQueue.async { [weak self] in",
+            "    guard let self = self else { return }",
+            "    // Start processing audio data and stop when there's no more data.",
+            "    self.audioRenderer.requestMediaDataWhenReady(on: serializationQueue) { [weak self] in",
+            "        guard let self = self else { return }",
+            "        while self.audioRenderer.isReadyForMoreMediaData {",
+            "            let sampleBuffer = self.nextSampleBuffer() // Returns nil at end of data.",
+            "            if let sampleBuffer = sampleBuffer {",
+            "                self.audioRenderer.enqueue(sampleBuffer)",
+            "            } else {",
+            "                // Tell the renderer to stop requesting audio data.",
+            "                audioRenderer.stopRequestingMediaData()",
+            "            }",
+            "        }",
+            "    }",
+            "",
+            "    // Start playback at the natural rate of the media.",
+            "    self.renderSynchronizer.rate = 1.0",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.avfoundation/documentation/AVFoundation": {
+      "abstract": [
+        {
+          "text": "Work with audiovisual assets, control device cameras, process audio, and configure system audio interactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFoundation",
+      "type": "topic",
+      "url": "/documentation/avfoundation"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVSampleBufferAudioRenderer": {
+      "abstract": [
+        {
+          "text": "An object used to decompress audio and play compressed or uncompressed audio.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVSampleBufferAudioRenderer"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVSampleBufferAudioRenderer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVSampleBufferAudioRenderer"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVSampleBufferAudioRenderer",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avsamplebufferaudiorenderer"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVSampleBufferRenderSynchronizer": {
+      "abstract": [
+        {
+          "text": "An object used to synchronize multiple queued sample buffers to a single timeline.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVSampleBufferRenderSynchronizer"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVSampleBufferRenderSynchronizer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVSampleBufferRenderSynchronizer"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVSampleBufferRenderSynchronizer",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avsamplebufferrendersynchronizer"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/implementing-simple-enhanced-buffering-for-your-content": {
+      "abstract": [
+        {
+          "text": "Configure your app for simple enhanced buffering to stream content faster to AirPlay-enabled devices and supported CarPlay vehicles.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/implementing-simple-enhanced-buffering-for-your-content",
+      "kind": "article",
+      "role": "article",
+      "title": "Implementing simple enhanced buffering for your content",
+      "type": "topic",
+      "url": "/documentation/avfoundation/implementing-simple-enhanced-buffering-for-your-content"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/integrating-airplay-for-long-form-video-apps": {
+      "abstract": [
+        {
+          "text": "Integrate AirPlay features and implement a dedicated external playback experience by preparing the routing system for long-form video playback.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/integrating-airplay-for-long-form-video-apps",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Integrating AirPlay for Long-Form Video Apps",
+      "type": "topic",
+      "url": "/documentation/avfoundation/integrating-airplay-for-long-form-video-apps"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/streaming-and-airplay": {
+      "abstract": [
+        {
+          "text": "Stream content wirelessly to other devices using AirPlay, and handle requests involving FairPlay-protected assets.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/streaming-and-airplay",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Streaming and AirPlay",
+      "type": "topic",
+      "url": "/documentation/avfoundation/streaming-and-airplay"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Buffered-playback",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/implementing-simple-enhanced-buffering-for-your-content",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/integrating-airplay-for-long-form-video-apps"
+      ],
+      "title": "Buffered playback"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Buffered-playback",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/implementing-simple-enhanced-buffering-for-your-content"
+              ],
+              "title": "Buffered playback"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVSampleBufferRenderSynchronizer/title",
+          "value": "AVSampleBufferRenderSynchronizer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVSampleBufferRenderSynchronizer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVSampleBufferRenderSynchronizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVSampleBufferRenderSynchronizer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVSampleBufferRenderSynchronizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVSampleBufferAudioRenderer/title",
+          "value": "AVSampleBufferAudioRenderer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVSampleBufferAudioRenderer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVSampleBufferAudioRenderer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVSampleBufferAudioRenderer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVSampleBufferAudioRenderer"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avfoundation/implementing-flexible-enhanced-buffering-for-your-content"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/avfoundation/implementing-flexible-enhanced-buffering-for-your-content"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

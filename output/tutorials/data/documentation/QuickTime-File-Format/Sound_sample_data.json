@@ -1,0 +1,808 @@
+{
+  "abstract": [
+    {
+      "text": "Sound sample formats that QuickTime supports.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.qtff/documentation/quicktime-file-format",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Media_data_atom_types",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sound_media"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sound_sample_data"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "QuickTime File Format"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Sound sample data"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The format of data stored in sound samples is completely dependent on the type of the compressed data stored in the sound sample description. The following sections discuss some of the formats supported by QuickTime.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Uncompressed-8-bit-sound",
+          "level": 3,
+          "text": "Uncompressed 8-bit sound",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Eight-bit audio is stored in offset-binary encodings. If the data is in stereo, the left and right channels are interleaved.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Uncompressed-16-bit-sound",
+          "level": 3,
+          "text": "Uncompressed 16-bit sound",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Sixteen-bit audio may be stored in two’s-complement encodings. If the data is in stereo, the left and right channels are interleaved.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "IMA-uLaw-and-aLaw",
+          "level": 3,
+          "text": "IMA, uLaw, and aLaw",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "IMA 4:1",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The IMA encoding scheme is based on a standard developed by the International Multimedia Association for pulse code modulation (PCM) audio compression. QuickTime uses a slight variation of the format to allow for random access. IMA is a 16-bit audio format which supports 4:1 compression. It is defined as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "kIMACompression = FOUR_CHAR_CODE('ima4'), /*IMA 4:1*/"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "uLaw 2:1 and aLaw 2:1",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The uLaw (mu-law) encoding scheme is used on North American and Japanese phone systems, and is coming into use for voice data interchange, and in PBXs, voice-mail systems, and Internet talk radio (via MIME). In uLaw encoding, 14 bits of linear sample data are reduced to 8 bits of logarithmic data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The aLaw encoding scheme is used in Europe and the rest of the world.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The kULawCompression and the kALawCompression formats are typically found in ",
+              "type": "text"
+            },
+            {
+              "code": ".au",
+              "type": "codeVoice"
+            },
+            {
+              "text": " formats.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Floating-point-formats",
+          "level": 3,
+          "text": "Floating-point formats",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Both ",
+              "type": "text"
+            },
+            {
+              "code": "kFloat32Format",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "kFloat64Format",
+              "type": "codeVoice"
+            },
+            {
+              "text": " are floating-point uncompressed formats. Depending upon codec-specific data associated with the sample description, the floating-point values may be in big-endian (network) or little-endian (Intel) byte order. This differs from the 16-bit formats, where there is a single format for each endian layout.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "24-and-32-bit-integer-formats",
+          "level": 3,
+          "text": "24- and 32-bit integer formats",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Both ",
+              "type": "text"
+            },
+            {
+              "code": "k24BitFormat",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "k32BitFormat",
+              "type": "codeVoice"
+            },
+            {
+              "text": " are integer uncompressed formats. Depending upon codec-specific data associated with the sample description, the floating-point values may be in big-endian (network) or little-endian (Intel) byte order.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "kMicrosoftADPCMFormat-and-kDVIIntelIMAFormat-sound-codecs",
+          "level": 3,
+          "text": "kMicrosoftADPCMFormat and kDVIIntelIMAFormat sound codecs",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "kMicrosoftADPCMFormat",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and the ",
+              "type": "text"
+            },
+            {
+              "code": "kDVIIntelIMAFormat",
+              "type": "codeVoice"
+            },
+            {
+              "text": " codec provide QuickTime interoperability with AVI and WAV files. The four-character codes used by Microsoft for their formats are numeric. To construct a QuickTime-supported codec format of this type, the Microsoft numeric ID is taken to generate a four-character code of the form ",
+              "type": "text"
+            },
+            {
+              "code": "'msxx'",
+              "type": "codeVoice"
+            },
+            {
+              "text": " where ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "xx",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " takes on the numeric ID.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "kDVAudioFormat-sound-codec",
+          "level": 3,
+          "text": "kDVAudioFormat sound codec",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The DV audio sound codec, ",
+              "type": "text"
+            },
+            {
+              "code": "kDVAudioFormat",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", decodes audio found in a DV stream. Since a DV frame contains both video and audio, this codec knows how to skip video portions of the frame and only retrieve the audio portions. Likewise, the video codec skips the audio portions and renders only the image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "kQDesignCompression-sound-codec",
+          "level": 3,
+          "text": "kQDesignCompression sound codec",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "kQDesignCompression",
+              "type": "codeVoice"
+            },
+            {
+              "text": " sound codec is the QDesign 1 (pre-QuickTime 4) format. Note that there is also a QDesign 2 format whose four-character code is ",
+              "type": "text"
+            },
+            {
+              "code": "'QDM2'",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "MPEG-1-layer-3-MP3-codecs",
+          "level": 3,
+          "text": "MPEG-1 layer 3 (MP3) codecs",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The QuickTime MPEG layer 3 (MP3) codecs come in two particular flavors. The first (",
+              "type": "text"
+            },
+            {
+              "code": "kMPEGLayer3Format",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") is used exclusively in the constant bit rate (CBR) case (pre-QuickTime 4). The other (",
+              "type": "text"
+            },
+            {
+              "code": "kFullMPEGLay3Format",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") is used in both the CBR and variable bit rate (VBR) cases. Note that they are the same codec underneath.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "MPEG-4-audio",
+          "level": 3,
+          "text": "MPEG-4 audio",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "MPEG-4 audio is stored as a sound track with data format ",
+              "type": "text"
+            },
+            {
+              "code": "'mp4a'",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and certain additions to the sound sample description and sound track atom. Specifically:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The compression ID is set to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "-2",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and redefined sample tables are used (see Redefined Sample Tables).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The sound sample description includes an siDecompressionParam atom (see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/siDecompressionParam_atom",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": "). The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "siDecompressionParam",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " atom includes:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "items": [
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "An MPEG-4 elementary stream descriptor extension atom (see ",
+                              "type": "text"
+                            },
+                            {
+                              "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/MPEG-4_elementary_sound_stream_descriptor_atom",
+                              "isActive": true,
+                              "type": "reference"
+                            },
+                            {
+                              "text": ").",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "The inclusion of a format atom is strongly recommended. See ",
+                              "type": "text"
+                            },
+                            {
+                              "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Format_atom",
+                              "isActive": true,
+                              "type": "reference"
+                            },
+                            {
+                              "text": ".",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "The last atom in the ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "siDecompressionParam",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": " atom must be a terminator atom. See ",
+                              "type": "text"
+                            },
+                            {
+                              "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Terminator_atom",
+                              "isActive": true,
+                              "type": "reference"
+                            },
+                            {
+                              "text": ".",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    }
+                  ],
+                  "type": "unorderedList"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Other atoms may be present as well; unknown atoms should be ignored.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The audio data is stored as an elementary MPEG-4 audio stream, as defined in ISO/IEC specification 14496-1.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Formats-not-currently-in-use-MACE-31-and-61",
+          "level": 3,
+          "text": "Formats not currently in use: MACE 3:1 and 6:1",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "These compression formats are obsolete: MACE 3:1 and 6:1.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "These are 8-bit sound codec formats, defined as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "kMACE3Compression = FOUR_CHAR_CODE('MAC3'), /*MACE 3:1*/",
+            "kMACE6Compression = FOUR_CHAR_CODE('MAC6'), /*MACE 6:1*/"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Appendix_G_Audio_priming_handling_encoder_delay_in_AAC": {
+      "abstract": [
+        {
+          "text": "Position a source audio signal in a sound track to handle encoder delay.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Appendix_G_Audio_priming_handling_encoder_delay_in_AAC",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio priming-handling encoder delay in AAC",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/appendix_g_audio_priming_handling_encoder_delay_in_aac"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Media_data_atom_types": {
+      "abstract": [
+        {
+          "text": "Store different types of media data, including video, sound, subtitles, and more.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Media_data_atom_types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Media data atom types",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/media_data_atom_types"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sound_media": {
+      "abstract": [
+        {
+          "text": "Store compressed and uncompressed audio data in QuickTime movies.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sound_media",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Sound media",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sound_media"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sound_sample_description_extensions": {
+      "abstract": [
+        {
+          "text": "Extend sound sample descriptions by appending other atoms.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sound_sample_description_extensions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Sound sample description extensions",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sound_sample_description_extensions"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sound_sample_descriptions": {
+      "abstract": [
+        {
+          "text": "A sound sample description contains information that defines how to interpret sound media data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sound_sample_descriptions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Sound sample descriptions",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sound_sample_descriptions"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format": {
+      "abstract": [
+        {
+          "text": "An object-oriented file format for the storage and exchange of digital media between devices, applications, and operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "QuickTime File Format",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Format_atom": {
+      "abstract": [
+        {
+          "text": "An atom that shows the data format of the stored sound media.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Format_atom",
+          "text": "Format atom ('frma')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Format_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Format atom ('frma')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/format_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/MPEG-4_elementary_sound_stream_descriptor_atom": {
+      "abstract": [
+        {
+          "text": "A required extension to the audio sample description for MPEG-4 audio.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$MPEG-4_elementary_sound_stream_descriptor_atom",
+          "text": "MPEG-4 elementary sound stream descriptor atom ('esds')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/MPEG-4_elementary_sound_stream_descriptor_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPEG-4 elementary stream descriptor atom  ('esds')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/mpeg-4_elementary_sound_stream_descriptor_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Terminator_atom": {
+      "abstract": [
+        {
+          "text": "An atom that indicates the end of the sound description.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Terminator_atom",
+          "text": "Terminator atom ('0x00000000')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Terminator_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Terminator atom ('0x00000000')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/terminator_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/siDecompressionParam_atom": {
+      "abstract": [
+        {
+          "text": "An atom that stores data specific to a given audio decompressor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$siDecompressionParam_atom",
+          "text": "siDecompressionParam atom ('wave')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/siDecompressionParam_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "siDecompressionParam atom ('wave')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/sidecompressionparam_atom"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Storing-audio-data",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sound_sample_descriptions",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Sound_sample_description_extensions",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Appendix_G_Audio_priming_handling_encoder_delay_in_AAC"
+      ],
+      "title": "Storing audio data"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quicktime-file-format/sound_sample_data"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

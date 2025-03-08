@@ -1,0 +1,1742 @@
+{
+  "abstract": [
+    {
+      "text": "Contains a buffer object, and provides access to an instance of",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "code": "Header",
+      "type": "codeVoice"
+    },
+    {
+      "text": " and contiguous storage for an arbitrary number of",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "code": "Element",
+      "type": "codeVoice"
+    },
+    {
+      "text": " instances stored in that buffer.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift/documentation/Swift"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift/documentation/Swift/ManagedBufferPointer"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:s20ManagedBufferPointerV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "ManagedBufferPointer"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Swift"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "ManagedBufferPointer"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.10",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "ManagedBufferPointer"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@frozen"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "ManagedBufferPointer"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "kind": "genericParameter",
+              "text": "Header"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "genericParameter",
+              "text": "Element"
+            },
+            {
+              "kind": "text",
+              "text": "> "
+            },
+            {
+              "kind": "keyword",
+              "text": "where"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "Element"
+            },
+            {
+              "kind": "text",
+              "text": " : ~Copyable"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For most purposes, the ",
+              "type": "text"
+            },
+            {
+              "code": "ManagedBuffer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class can be used on its own.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "However, in cases",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "where objects of various different classes must serve as storage,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you need to also use ",
+              "type": "text"
+            },
+            {
+              "code": "ManagedBufferPointer",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A valid buffer class is non-",
+              "type": "text"
+            },
+            {
+              "code": "@objc",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", with no declared stored",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "properties.  Its ",
+              "type": "text"
+            },
+            {
+              "code": "deinit",
+              "type": "codeVoice"
+            },
+            {
+              "text": " must destroy its",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "stored ",
+              "type": "text"
+            },
+            {
+              "code": "Header",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and any constructed ",
+              "type": "text"
+            },
+            {
+              "code": "Element",
+              "type": "codeVoice"
+            },
+            {
+              "text": "s.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Example-Buffer-Class",
+          "level": 2,
+          "text": "Example Buffer Class",
+          "type": "heading"
+        },
+        {
+          "code": [
+            " class MyBuffer<Element> { // non-@objc",
+            "   typealias Manager = ManagedBufferPointer<(Int, String), Element>",
+            "   deinit {",
+            "     Manager(unsafeBufferObject: self).withUnsafeMutablePointers {",
+            "       (pointerToHeader, pointerToElements) -> Void in",
+            "       pointerToElements.deinitialize(count: self.count)",
+            "       pointerToHeader.deinitialize(count: 1)",
+            "     }",
+            "   }",
+            "",
+            "   // All properties are *computed* based on members of the Header",
+            "   var count: Int {",
+            "     return Manager(unsafeBufferObject: self).header.0",
+            "   }",
+            "   var name: String {",
+            "     return Manager(unsafeBufferObject: self).header.1",
+            "   }",
+            " }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Swift-PageImage-card.png": {
+      "alt": "An orange Swift logo on a gradient background.",
+      "identifier": "Swift-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/81257762cf893d205c049e3021340e5f/Swift-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4d2ed632470b4616483901941fae4098/Swift-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Swift/documentation/Swift": {
+      "abstract": [
+        {
+          "text": "Build apps using a powerful open language.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift",
+      "images": [
+        {
+          "identifier": "Swift-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift",
+      "type": "topic",
+      "url": "/documentation/swift"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Copyable": {
+      "abstract": [
+        {
+          "text": "A type whose values can be implicitly or explicitly copied.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Header",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Copyable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ", ",
+            "type": "text"
+          },
+          {
+            "code": "Header",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Escapable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ", ",
+            "type": "text"
+          },
+          {
+            "code": "Element",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Copyable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ", and ",
+            "type": "text"
+          },
+          {
+            "code": "Element",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Escapable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Copyable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Copyable",
+      "type": "topic",
+      "url": "/documentation/swift/copyable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Equatable": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Header",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Copyable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ", ",
+            "type": "text"
+          },
+          {
+            "code": "Header",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Escapable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ", ",
+            "type": "text"
+          },
+          {
+            "code": "Element",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Copyable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ", and ",
+            "type": "text"
+          },
+          {
+            "code": "Element",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Escapable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Equatable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/swift/equatable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ManagedBuffer": {
+      "abstract": [
+        {
+          "text": "A class whose instances contain a property of type ",
+          "type": "text"
+        },
+        {
+          "code": "Header",
+          "type": "codeVoice"
+        },
+        {
+          "text": " and raw",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "storage for an array of ",
+          "type": "text"
+        },
+        {
+          "code": "Element",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", whose size is determined at",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "instance creation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ManagedBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ManagedBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ManagedBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "ManagedBuffer",
+      "type": "topic",
+      "url": "/documentation/swift/managedbuffer"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ManagedBufferPointer": {
+      "abstract": [
+        {
+          "text": "Contains a buffer object, and provides access to an instance of",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "code": "Header",
+          "type": "codeVoice"
+        },
+        {
+          "text": " and contiguous storage for an arbitrary number of",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "code": "Element",
+          "type": "codeVoice"
+        },
+        {
+          "text": " instances stored in that buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ManagedBufferPointer"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ManagedBufferPointer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ManagedBufferPointer"
+        }
+      ],
+      "role": "symbol",
+      "title": "ManagedBufferPointer",
+      "type": "topic",
+      "url": "/documentation/swift/managedbufferpointer"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ManagedBufferPointer/!=(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether two values are not equal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "!="
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ManagedBufferPointer/!=(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "!=(_:_:)",
+      "type": "topic",
+      "url": "/documentation/swift/managedbufferpointer/!=(_:_:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ManagedBufferPointer/Equatable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ManagedBufferPointer/Equatable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Equatable Implementations",
+      "type": "topic",
+      "url": "/documentation/swift/managedbufferpointer/equatable-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ManagedBufferPointer/buffer": {
+      "abstract": [
+        {
+          "text": "Returns the object instance being used for storage.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "buffer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9AnyObjecta",
+          "text": "AnyObject"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ManagedBufferPointer/buffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "buffer",
+      "type": "topic",
+      "url": "/documentation/swift/managedbufferpointer/buffer"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ManagedBufferPointer/capacity": {
+      "abstract": [
+        {
+          "text": "The actual number of elements that can be stored in this object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "capacity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ManagedBufferPointer/capacity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "capacity",
+      "type": "topic",
+      "url": "/documentation/swift/managedbufferpointer/capacity"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ManagedBufferPointer/header": {
+      "abstract": [
+        {
+          "text": "The stored ",
+          "type": "text"
+        },
+        {
+          "code": "Header",
+          "type": "codeVoice"
+        },
+        {
+          "text": " instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "header"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Header"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ManagedBufferPointer/header",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "header",
+      "type": "topic",
+      "url": "/documentation/swift/managedbufferpointer/header"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ManagedBufferPointer/init(bufferClass:minimumCapacity:makingHeaderWith:)": {
+      "abstract": [
+        {
+          "text": "Create with new storage containing an initial ",
+          "type": "text"
+        },
+        {
+          "code": "Header",
+          "type": "codeVoice"
+        },
+        {
+          "text": " and space",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "for at least ",
+          "type": "text"
+        },
+        {
+          "code": "minimumCapacity",
+          "type": "codeVoice"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "code": "element",
+          "type": "codeVoice"
+        },
+        {
+          "text": "s.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "bufferClass"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8AnyClassa",
+          "text": "AnyClass"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "minimumCapacity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "makingHeaderWith"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9AnyObjecta",
+          "text": "AnyObject"
+        },
+        {
+          "kind": "text",
+          "text": ", ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9AnyObjecta",
+          "text": "AnyObject"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Header"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "rethrows"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ManagedBufferPointer/init(bufferClass:minimumCapacity:makingHeaderWith:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(bufferClass:minimumCapacity:makingHeaderWith:)",
+      "type": "topic",
+      "url": "/documentation/swift/managedbufferpointer/init(bufferclass:minimumcapacity:makingheaderwith:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ManagedBufferPointer/init(unsafeBufferObject:)": {
+      "abstract": [
+        {
+          "text": "Manage the given ",
+          "type": "text"
+        },
+        {
+          "code": "buffer",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "unsafeBufferObject"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9AnyObjecta",
+          "text": "AnyObject"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ManagedBufferPointer/init(unsafeBufferObject:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(unsafeBufferObject:)",
+      "type": "topic",
+      "url": "/documentation/swift/managedbufferpointer/init(unsafebufferobject:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ManagedBufferPointer/isUniqueReference()": {
+      "abstract": [
+        {
+          "text": "Returns ",
+          "type": "text"
+        },
+        {
+          "code": "true",
+          "type": "codeVoice"
+        },
+        {
+          "text": " if ",
+          "type": "text"
+        },
+        {
+          "code": "self",
+          "type": "codeVoice"
+        },
+        {
+          "text": " holds the only strong reference to its",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "buffer; otherwise, returns ",
+          "type": "text"
+        },
+        {
+          "code": "false",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isUniqueReference"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ManagedBufferPointer/isUniqueReference()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isUniqueReference()",
+      "type": "topic",
+      "url": "/documentation/swift/managedbufferpointer/isuniquereference()"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ManagedBufferPointer/withUnsafeMutablePointerToElements(_:)": {
+      "abstract": [
+        {
+          "text": "Call ",
+          "type": "text"
+        },
+        {
+          "code": "body",
+          "type": "codeVoice"
+        },
+        {
+          "text": " with an ",
+          "type": "text"
+        },
+        {
+          "code": "UnsafeMutablePointer",
+          "type": "codeVoice"
+        },
+        {
+          "text": " to the ",
+          "type": "text"
+        },
+        {
+          "code": "Element",
+          "type": "codeVoice"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "storage.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "withUnsafeMutablePointerToElements"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "R"
+        },
+        {
+          "kind": "text",
+          "text": ">(("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": ">) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "R"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "R"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ManagedBufferPointer/withUnsafeMutablePointerToElements(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withUnsafeMutablePointerToElements(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/managedbufferpointer/withunsafemutablepointertoelements(_:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ManagedBufferPointer/withUnsafeMutablePointerToHeader(_:)": {
+      "abstract": [
+        {
+          "text": "Call ",
+          "type": "text"
+        },
+        {
+          "code": "body",
+          "type": "codeVoice"
+        },
+        {
+          "text": " with an ",
+          "type": "text"
+        },
+        {
+          "code": "UnsafeMutablePointer",
+          "type": "codeVoice"
+        },
+        {
+          "text": " to the stored",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "code": "Header",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "withUnsafeMutablePointerToHeader"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "R"
+        },
+        {
+          "kind": "text",
+          "text": ">(("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Header"
+        },
+        {
+          "kind": "text",
+          "text": ">) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "R"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "R"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ManagedBufferPointer/withUnsafeMutablePointerToHeader(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withUnsafeMutablePointerToHeader(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/managedbufferpointer/withunsafemutablepointertoheader(_:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ManagedBufferPointer/withUnsafeMutablePointers(_:)": {
+      "abstract": [
+        {
+          "text": "Call ",
+          "type": "text"
+        },
+        {
+          "code": "body",
+          "type": "codeVoice"
+        },
+        {
+          "text": " with ",
+          "type": "text"
+        },
+        {
+          "code": "UnsafeMutablePointer",
+          "type": "codeVoice"
+        },
+        {
+          "text": "s to the stored ",
+          "type": "text"
+        },
+        {
+          "code": "Header",
+          "type": "codeVoice"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and raw ",
+          "type": "text"
+        },
+        {
+          "code": "Element",
+          "type": "codeVoice"
+        },
+        {
+          "text": " storage.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "withUnsafeMutablePointers"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "R"
+        },
+        {
+          "kind": "text",
+          "text": ">(("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Header"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": ">) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "R"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "R"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ManagedBufferPointer/withUnsafeMutablePointers(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withUnsafeMutablePointers(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/managedbufferpointer/withunsafemutablepointers(_:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Copyable",
+        "doc://com.apple.Swift/documentation/Swift/Equatable"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Buffer-Implementation",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/ManagedBuffer"
+      ],
+      "title": "Buffer Implementation"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-Buffer",
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/ManagedBufferPointer/init(bufferClass:minimumCapacity:makingHeaderWith:)",
+        "doc://com.apple.Swift/documentation/Swift/ManagedBufferPointer/init(unsafeBufferObject:)"
+      ],
+      "title": "Creating a Buffer"
+    },
+    {
+      "anchor": "Inspecting-a-Buffer",
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/ManagedBufferPointer/capacity",
+        "doc://com.apple.Swift/documentation/Swift/ManagedBufferPointer/header",
+        "doc://com.apple.Swift/documentation/Swift/ManagedBufferPointer/buffer",
+        "doc://com.apple.Swift/documentation/Swift/ManagedBufferPointer/isUniqueReference()"
+      ],
+      "title": "Inspecting a Buffer"
+    },
+    {
+      "anchor": "Accessing-Buffer-Contents",
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/ManagedBufferPointer/withUnsafeMutablePointerToElements(_:)",
+        "doc://com.apple.Swift/documentation/Swift/ManagedBufferPointer/withUnsafeMutablePointerToHeader(_:)",
+        "doc://com.apple.Swift/documentation/Swift/ManagedBufferPointer/withUnsafeMutablePointers(_:)"
+      ],
+      "title": "Accessing Buffer Contents"
+    },
+    {
+      "anchor": "Comparing-Buffers",
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/ManagedBufferPointer/!=(_:_:)"
+      ],
+      "title": "Comparing Buffers"
+    },
+    {
+      "anchor": "Default-Implementations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/ManagedBufferPointer/Equatable-Implementations"
+      ],
+      "title": "Default Implementations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swift/managedbufferpointer"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

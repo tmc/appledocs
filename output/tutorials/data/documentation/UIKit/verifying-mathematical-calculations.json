@@ -1,0 +1,704 @@
+{
+  "abstract": [
+    {
+      "text": "Ensure the accuracy of your math operations in 64-bit architecture.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/app-and-environment",
+        "doc://com.apple.uikit/documentation/UIKit/updating-your-app-from-32-bit-to-64-bit-architecture"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/verifying-mathematical-calculations"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Verifying mathematical calculations"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Math operations are affected by numbers in the 64-bit runtime. Review the accuracy of the results of any calculations your app performs. Check signed value results to ensure that they’re correct for their operation and operands. Verify that your bit mask code doesn’t make assumptions about type size.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Verify-the-accuracy-of-signed-math-operations",
+          "level": 3,
+          "text": "Verify the accuracy of signed math operations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "C and similar languages use a set of ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "sign extension rules",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " to determine whether to treat the top bit in an integer as a sign bit when the value is assigned to a variable of larger width. The sign extension rules are as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Unsigned values are zero extended (not sign extended) when promoted to a larger type.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Signed values are always sign extended when promoted to a larger type, even if the resulting type is unsigned.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Constants (unless modified by a suffix, such as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0x8L",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") are treated as the smallest size that will hold the value. Hexadecimal numbers may be treated by the compiler as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "int",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "long",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "long long",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " types and may be either ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "signed",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "unsigned",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " types. Decimal numbers are always treated as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "signed",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " types.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The sum of a signed value and an unsigned value of the same size is an unsigned value.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "code": [
+            "int a = -2;",
+            "unsigned int b = 1;",
+            "long c = a + b;",
+            "long long d = c; // To get a consistent size for printing.",
+            "",
+            "printf(\"%lld\\n\", d);"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When this code is executed in the 32-bit runtime, the result is -1 (",
+              "type": "text"
+            },
+            {
+              "code": "0xffffffff",
+              "type": "codeVoice"
+            },
+            {
+              "text": "). When the same code is run in the 64-bit runtime, the result is 4294967295 (",
+              "type": "text"
+            },
+            {
+              "code": "0x00000000ffffffff",
+              "type": "codeVoice"
+            },
+            {
+              "text": "), which is incorrect.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To understand why this happens, consider that when these numbers are added, the signed value plus the unsigned value results in an unsigned value (rule 4). That result is promoted to a larger type, but this promotion doesn’t cause sign extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To fix this problem, cast ",
+              "type": "text"
+            },
+            {
+              "code": "b",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to a ",
+              "type": "text"
+            },
+            {
+              "code": "long",
+              "type": "codeVoice"
+            },
+            {
+              "text": " integer. This cast forces the non-sign-extended promotion of ",
+              "type": "text"
+            },
+            {
+              "code": "b",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to a 64-bit type before the addition operation, thus forcing the signed integer to be promoted (in a signed fashion) to match. With that change, the result is the expected -1.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "unsigned short a = 1;",
+            "unsigned long b = (a << 31);",
+            "unsigned long long c = b;",
+            "",
+            "printf(\"%llx\\n\", c);"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the above code, bit shifting is used to move the value of ",
+              "type": "text"
+            },
+            {
+              "code": "a",
+              "type": "codeVoice"
+            },
+            {
+              "text": " into a different position in ",
+              "type": "text"
+            },
+            {
+              "code": "b",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which is copied into ",
+              "type": "text"
+            },
+            {
+              "code": "c",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The expected result from the ",
+              "type": "text"
+            },
+            {
+              "code": "printf",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (and the result from a 32-bit executable) is ",
+              "type": "text"
+            },
+            {
+              "code": "0x80000000",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The result generated by a 64-bit executable, however, is ",
+              "type": "text"
+            },
+            {
+              "code": "0xffffffff80000000",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are two reasons for this result. First, when the left-shift operator ",
+              "type": "text"
+            },
+            {
+              "code": "<<",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is invoked, the variable ",
+              "type": "text"
+            },
+            {
+              "code": "a",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is promoted to a variable of type ",
+              "type": "text"
+            },
+            {
+              "code": "int",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Because all values of a ",
+              "type": "text"
+            },
+            {
+              "code": "short",
+              "type": "codeVoice"
+            },
+            {
+              "text": " integer can fit into a signed ",
+              "type": "text"
+            },
+            {
+              "code": "int",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type, the result of this promotion is signed. Second, when the left-shift completes, the result is stored in a ",
+              "type": "text"
+            },
+            {
+              "code": "long",
+              "type": "codeVoice"
+            },
+            {
+              "text": " integer. Thus, the 32-bit signed value represented by ",
+              "type": "text"
+            },
+            {
+              "code": "(a << 31)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is sign extended (rule 2) when it’s promoted to a 64-bit value (even though the resulting type is unsigned).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The solution is to cast the initial value to a ",
+              "type": "text"
+            },
+            {
+              "code": "long",
+              "type": "codeVoice"
+            },
+            {
+              "text": " integer before the shift. The ",
+              "type": "text"
+            },
+            {
+              "code": "short",
+              "type": "codeVoice"
+            },
+            {
+              "text": " integer is promoted only once — this time, to a 64-bit type (when compiled as a 64-bit executable).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Check-your-code-for-assumptions-about-type-size",
+          "level": 3,
+          "text": "Check your code for assumptions about type size",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When working with bit masks with 64-bit values, follow these tips to avoid inadvertently getting 32-bit values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Don’t assume that a data type has a particular length.",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " If you’re shifting through the bits stored in a variable of type ",
+              "type": "text"
+            },
+            {
+              "code": "long",
+              "type": "codeVoice"
+            },
+            {
+              "text": " integer, use the ",
+              "type": "text"
+            },
+            {
+              "code": "LONG_BIT",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value to determine the number of bits. The result of a shift that exceeds the length of a variable is architecture dependent.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Use inverted bit masks, if needed.",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " Be careful when using bit masks with long integers, because the width differs between 32-bit and 64-bit runtimes. There are two ways to create a bit mask, depending on whether you want it to be zero extended or one extended:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you want the bit mask value to contain zeros in the upper 32 bits in the 64-bit runtime, the usual fixed-width bit mask works as expected, because it’s extended in an unsigned fashion to a 64-bit quantity.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you want the bit mask value to contain ones in the upper bits, write the bit mask as the bitwise inverse of its inverse.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "code": [
+            "function_name(long value)",
+            "{",
+            "    // Use the complement (~) operator to get ones instead of zeros.",
+            "    // Mask will be 0xfffffffc in the 32-bit runtime,",
+            "    //   or 0xfffffffffffffffc in the 64-bit runtime.",
+            "    long mask = ~0x3;",
+            "    return (value & mask);",
+            "}"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note that in the 64-bit runtime, the upper bits in the bit mask are all ones.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/app-and-environment": {
+      "abstract": [
+        {
+          "text": "Manage life-cycle events and your app’s UI scenes, and get information about traits and the environment in which your app runs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/app-and-environment",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App and environment",
+      "type": "topic",
+      "url": "/documentation/uikit/app-and-environment"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/optimizing-memory-performance": {
+      "abstract": [
+        {
+          "text": "Measure the impact of the 64-bit runtime on your app’s memory usage.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/optimizing-memory-performance",
+      "kind": "article",
+      "role": "article",
+      "title": "Optimizing memory performance",
+      "type": "topic",
+      "url": "/documentation/uikit/optimizing-memory-performance"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/updating-your-app-from-32-bit-to-64-bit-architecture": {
+      "abstract": [
+        {
+          "text": "Ensure that your app behaves as expected by adapting it to support later versions of the operating system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/updating-your-app-from-32-bit-to-64-bit-architecture",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Updating your app from 32-bit to 64-bit architecture",
+      "type": "topic",
+      "url": "/documentation/uikit/updating-your-app-from-32-bit-to-64-bit-architecture"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Performance-and-accuracy",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/optimizing-memory-performance"
+      ],
+      "title": "Performance and accuracy"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Performance-and-accuracy",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/optimizing-memory-performance"
+              ],
+              "title": "Performance and accuracy"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/verifying-mathematical-calculations"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/verifying-mathematical-calculations"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

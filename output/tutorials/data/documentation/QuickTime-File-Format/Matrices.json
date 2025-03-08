@@ -1,0 +1,247 @@
+{
+  "abstract": [
+    {
+      "text": "QuickTime files use matrices to describe spatial information about many objects, such as tracks within a movie.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.qtff/documentation/quicktime-file-format",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Basic_data_types"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Matrices"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "QuickTime File Format"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Matrices"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A transformation matrix defines how to map points from one coordinate space into another coordinate space. By modifying the contents of a transformation matrix, you can perform several standard graphics display operations, including translation, rotation, and scaling. The matrix used to accomplish two-dimensional transformations is described mathematically by a 3-by-3 matrix.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "All values in the matrix are 32-bit fixed-point numbers divided as ",
+              "type": "text"
+            },
+            {
+              "code": "16.16",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", except for the ",
+              "type": "text"
+            },
+            {
+              "code": "{u, v, w}",
+              "type": "codeVoice"
+            },
+            {
+              "text": " column, which contains 32-bit fixed-point numbers divided as ",
+              "type": "text"
+            },
+            {
+              "code": "2.30",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The following figure illustrates the matrix formula QuickTime uses to transform displayed objects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "basic-data-type-matrix",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you specify a matrix in a movie header atom for a movie atom, QuickTime applies the transformation from the matrix to the atoms included in the movie atom, such as a clipping atom, one or more track atoms, a user data atom, and a color table atom.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "basic-data-type-matrix": {
+      "alt": "An image that shows the matrix formula QuickTime uses to map points from one coordinate space to another. The formula shows a one row, three column matrix with the values x, y, and 1, multiplied by a three row, three column matrix, with the values a, b, and u in the first row, c, d, and v in the second row, and t subscript x, t subscript y, and w in the third row, is equal to a one row, three column matrix with the values x’, y’, and 1.",
+      "identifier": "basic-data-type-matrix",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1bd76ba53b19faeedf2d4176439d17e4/basic-data-type-matrix@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/84d6855396170209ce711224b7940d92/basic-data-type-matrix~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Balance": {
+      "abstract": [
+        {
+          "text": "Represent balance values with 16-bit fixed-point numbers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Balance",
+      "kind": "article",
+      "role": "article",
+      "title": "Balance",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/balance"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Basic_data_types": {
+      "abstract": [
+        {
+          "text": "Express values in QuickTime files with common data types.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Basic_data_types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Basic QuickTime data types",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/basic_data_types"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Graphics_modes": {
+      "abstract": [
+        {
+          "text": "QuickTime files use graphics modes to describe how one video or graphics layer should be combined with the layers beneath it.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Graphics_modes",
+      "kind": "article",
+      "role": "article",
+      "title": "Graphics modes",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/graphics_modes"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/RGB_colors": {
+      "abstract": [
+        {
+          "text": "Colors stored as three consecutive unsigned 16-bit integers in the following order: red, green, blue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/RGB_colors",
+      "kind": "article",
+      "role": "article",
+      "title": "RGB colors",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/rgb_colors"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format": {
+      "abstract": [
+        {
+          "text": "An object-oriented file format for the storage and exchange of digital media between devices, applications, and operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "QuickTime File Format",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Graphics-and-colors",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Graphics_modes",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/RGB_colors",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Balance"
+      ],
+      "title": "Graphics and colors"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quicktime-file-format/matrices"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

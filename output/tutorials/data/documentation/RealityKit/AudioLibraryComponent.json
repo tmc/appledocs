@@ -1,1 +1,1083 @@
-{"schemaVersion":{"major":0,"minor":3,"patch":0},"identifier":{"url":"doc://com.apple.RealityKit/documentation/RealityKit/AudioLibraryComponent","interfaceLanguage":"swift"},"abstract":[{"type":"text","text":"A container for audio resources that you can look up by user-defined names."}],"relationshipsSections":[{"kind":"relationships","title":"Conforms To","type":"conformsTo","identifiers":["doc://com.apple.RealityKit/documentation/RealityKit/Component","doc://com.externally.resolved.symbol/s:s30ExpressibleByDictionaryLiteralP"]}],"metadata":{"navigatorTitle":[{"kind":"identifier","text":"AudioLibraryComponent"}],"role":"symbol","roleHeading":"Structure","symbolKind":"struct","modules":[{"name":"RealityKit"}],"fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"AudioLibraryComponent"}],"platforms":[{"deprecated":false,"introducedAt":"18.0","unavailable":false,"beta":false,"name":"iOS"},{"deprecated":false,"introducedAt":"18.0","unavailable":false,"beta":false,"name":"iPadOS"},{"deprecated":false,"introducedAt":"18.0","unavailable":false,"beta":false,"name":"Mac Catalyst"},{"deprecated":false,"introducedAt":"15.0","unavailable":false,"beta":false,"name":"macOS"},{"deprecated":false,"introducedAt":"2.0","unavailable":false,"beta":false,"name":"visionOS"}],"title":"AudioLibraryComponent","externalID":"s:17RealityFoundation21AudioLibraryComponentV"},"topicSections":[{"title":"Creating an audio library component","anchor":"Creating-an-audio-library-component","identifiers":["doc://com.apple.RealityKit/documentation/RealityKit/AudioLibraryComponent/init(resources:)","doc://com.apple.RealityKit/documentation/RealityKit/AudioLibraryComponent/init(dictionaryLiteral:)"]},{"title":"Accessing audio resources","anchor":"Accessing-audio-resources","identifiers":["doc://com.apple.RealityKit/documentation/RealityKit/AudioLibraryComponent/resources"]},{"generated":true,"title":"Type Aliases","anchor":"Type-Aliases","identifiers":["doc://com.apple.RealityKit/documentation/RealityKit/AudioLibraryComponent/Key","doc://com.apple.RealityKit/documentation/RealityKit/AudioLibraryComponent/Value"]},{"generated":true,"title":"Default Implementations","anchor":"Default-Implementations","identifiers":["doc://com.apple.RealityKit/documentation/RealityKit/AudioLibraryComponent/Component-Implementations"]}],"variants":[{"traits":[{"interfaceLanguage":"swift"}],"paths":["/documentation/realitykit/audiolibrarycomponent"]}],"sections":[],"primaryContentSections":[{"kind":"declarations","declarations":[{"languages":["swift"],"platforms":["iOS","iPadOS","Mac Catalyst","macOS","visionOS"],"tokens":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"AudioLibraryComponent"}]}]},{"kind":"content","content":[{"level":2,"text":"Overview","type":"heading","anchor":"overview"},{"inlineContent":[{"code":"AudioLibraryComponent","type":"codeVoice"},{"type":"text","text":" serves as a container for audio resources, so that you can"},{"type":"text","text":" "},{"type":"text","text":"store loaded audio resources and associate them with an entity for playback using user-defined names."},{"type":"text","text":" "},{"type":"text","text":"You may use any "},{"isActive":true,"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/AudioResource","type":"reference"},{"type":"text","text":" type, such as "},{"isActive":true,"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/AudioFileResource","type":"reference"},{"type":"text","text":" or "},{"isActive":true,"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/AudioFileGroupResource","type":"reference"},{"type":"text","text":"."}],"type":"paragraph"},{"type":"aside","name":"Note","style":"note","content":[{"inlineContent":[{"text":"In memory, you can also use ","type":"text"},{"isActive":true,"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/AudioBufferResource","type":"reference"},{"text":", but this type doesn’t support serializing to disk or sharing via network.","type":"text"}],"type":"paragraph"}]},{"inlineContent":[{"type":"text","text":"Below is an example of how you can set this component in code:"}],"type":"paragraph"},{"type":"codeListing","code":["// Create a new entity.","let humanEntity = Entity()","","// Set up two audio file resources, and combine them in one group resource.","let walkFileResource = try AudioFileResource.load(named: \"HumanWalk\")","let jumpFileResource = try AudioFileResource.load(named: \"HumanJump\")","let groupResource = try AudioFileGroupResource([walkFileResource, jumpFileResource])","","// Create an `AudioLibraryComponent` to house the audio resources.","var audioLibraryComponent = AudioLibraryComponent()","","// Add the resources to the component by name.","audioLibraryComponent.resources[\"Walk\"] = walkFileResource","audioLibraryComponent.resources[\"Jump\"] = jumpFileResource","audioLibraryComponent.resources[\"group\"] = groupResource","","humanEntity.components.set(audioLibraryComponent)","","// Play the resource matching the \"Walk\" key on the entity -> Expect to play 'HumanWalk'.","humanEntity.playAudio(audioLibraryComponent.resources[\"Walk\"]!)"],"syntax":"swift"},{"inlineContent":[{"text":"By setting an ","type":"text"},{"code":"AudioLibraryComponent","type":"codeVoice"},{"text":" on different entities, you can use simple defined names","type":"text"},{"text":" ","type":"text"},{"text":"that trigger different sounds on different entities.","type":"text"},{"text":" ","type":"text"},{"text":"For example, you can reuse the “Walk” string from the preceding example on a different entity:","type":"text"}],"type":"paragraph"},{"type":"codeListing","code":["","// Create a new entity.","let robotEntity = Entity()","","// Set up an audio file resource.","let robotWalkFileResource = try AudioFileResource.load(named: \"RobotWalk\")","","// Create an `AudioLibraryComponent` to house the `audioResource`.","var audioLibraryComponent = AudioLibraryComponent()","","// Add the resource to the component by name.","audioLibraryComponent.resources[\"Walk\"] = robotWalkFileResource","","robotEntity.components.set(audioLibraryComponent)","","// Play the resource matching the \"Walk\" key on the entity -> Expect to play 'RobotWalk'.","robotEntity.playAudio(audioLibraryComponent.resources[\"Walk\"]!)"],"syntax":"swift"},{"type":"aside","name":"Note","style":"note","content":[{"type":"paragraph","inlineContent":[{"type":"text","text":"You can create a component using code, or add it to your entity using tools such as Reality Composer Pro."}]}]},{"inlineContent":[{"type":"text","text":"In Reality Composer Pro, you can add an "},{"type":"codeVoice","code":"AudioLibraryComponent"},{"type":"text","text":" to an entity and then add audio"},{"type":"text","text":" "},{"type":"text","text":"resources to it for easy access to those resources by name."},{"type":"text","text":" "},{"type":"text","text":"The system automatically loads the audio resources for you when you search for this component."}],"type":"paragraph"},{"type":"codeListing","code":["guard let audioLibraryComponent = entity.components[AudioLibraryComponent.self],","      let audioResource = audioLibraryComponent.resources[\"My_Audio_Resource_Name\"]","else { return }","","// Because the system has already loaded the resource for you,","// you may prepare or play it on an entity right away.","entity.playAudio(audioResource)"],"syntax":"swift"}]}],"seeAlsoSections":[{"generated":true,"title":"Audio resources","anchor":"Audio-resources","identifiers":["doc://com.apple.RealityKit/documentation/RealityKit/AudioFileResource","doc://com.apple.RealityKit/documentation/RealityKit/AudioFileGroupResource","doc://com.apple.RealityKit/documentation/RealityKit/AudioBufferResource","doc://com.apple.RealityKit/documentation/RealityKit/AudioResource","doc://com.apple.RealityKit/documentation/RealityKit/AudioResource/Calibration","doc://com.apple.RealityKit/documentation/RealityKit/AudioResource/Normalization"]}],"kind":"symbol","hierarchy":{"paths":[["doc://com.apple.documentation/documentation/technologies","doc://com.apple.RealityKit/documentation/RealityKit"]]},"references":{"doc://com.externally.resolved.symbol/s:s30ExpressibleByDictionaryLiteralP":{"type":"topic","url":"/documentation/Swift/ExpressibleByDictionaryLiteral","identifier":"doc://com.externally.resolved.symbol/s:s30ExpressibleByDictionaryLiteralP","abstract":[{"type":"text","text":"A type that can be initialized using a dictionary literal."}],"title":"ExpressibleByDictionaryLiteral","kind":"symbol","fragments":[{"kind":"keyword","text":"protocol"},{"kind":"text","text":" "},{"kind":"identifier","text":"ExpressibleByDictionaryLiteral"}],"role":"symbol"},"doc://com.apple.RealityKit/documentation/RealityKit":{"url":"/documentation/realitykit","abstract":[{"text":"Simulate and render 3D content for use in your augmented reality apps.","type":"text"}],"kind":"symbol","type":"topic","role":"collection","title":"RealityKit","identifier":"doc://com.apple.RealityKit/documentation/RealityKit"},"doc://com.apple.RealityKit/documentation/RealityKit/AudioLibraryComponent/init(resources:)":{"type":"topic","url":"/documentation/realitykit/audiolibrarycomponent/init(resources:)","fragments":[{"kind":"identifier","text":"init"},{"kind":"text","text":"("},{"kind":"externalParam","text":"resources"},{"kind":"text","text":": ["},{"kind":"typeIdentifier","text":"String","preciseIdentifier":"s:SS"},{"kind":"text","text":" : "},{"kind":"typeIdentifier","text":"AudioResource","preciseIdentifier":"s:17RealityFoundation13AudioResourceC"},{"kind":"text","text":"])"}],"title":"init(resources:)","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/AudioLibraryComponent/init(resources:)","kind":"symbol","abstract":[{"type":"text","text":"Creates a new audio library from a dictionary."}],"role":"symbol"},"doc://com.apple.RealityKit/documentation/RealityKit/AudioLibraryComponent/Component-Implementations":{"type":"topic","url":"/documentation/realitykit/audiolibrarycomponent/component-implementations","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/AudioLibraryComponent/Component-Implementations","abstract":[],"title":"Component Implementations","kind":"article","role":"collectionGroup"},"doc://com.apple.documentation/documentation/technologies":{"url":"/documentation/technologies","abstract":[{"text":"","type":"text"}],"kind":"technologies","type":"topic","role":"overview","title":"Technologies","identifier":"doc://com.apple.documentation/documentation/technologies"},"doc://com.apple.RealityKit/documentation/RealityKit/AudioFileGroupResource":{"url":"/documentation/realitykit/audiofilegroupresource","kind":"symbol","title":"AudioFileGroupResource","role":"symbol","type":"topic","fragments":[{"text":"class","kind":"keyword"},{"text":" ","kind":"text"},{"text":"AudioFileGroupResource","kind":"identifier"}],"abstract":[{"text":"An audio file group.","type":"text"}],"navigatorTitle":[{"text":"AudioFileGroupResource","kind":"identifier"}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/AudioFileGroupResource"},"doc://com.apple.documentation/documentation/AVFAudio/AVAudioBuffer":{"url":"/documentation/AVFAudio/AVAudioBuffer","kind":"symbol","title":"AVAudioBuffer","role":"symbol","type":"topic","fragments":[{"text":"class","kind":"keyword"},{"text":" ","kind":"text"},{"text":"AVAudioBuffer","kind":"identifier"}],"abstract":[{"text":"An object that represents a buffer of audio data with a format.","type":"text"}],"identifier":"doc://com.apple.documentation/documentation/AVFAudio/AVAudioBuffer"},"doc://com.apple.RealityKit/documentation/RealityKit/AudioLibraryComponent":{"url":"/documentation/realitykit/audiolibrarycomponent","kind":"symbol","title":"AudioLibraryComponent","role":"symbol","type":"topic","fragments":[{"text":"struct","kind":"keyword"},{"text":" ","kind":"text"},{"text":"AudioLibraryComponent","kind":"identifier"}],"abstract":[{"text":"A container for audio resources that you can look up by user-defined names.","type":"text"}],"navigatorTitle":[{"text":"AudioLibraryComponent","kind":"identifier"}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/AudioLibraryComponent"},"doc://com.apple.RealityKit/documentation/RealityKit/AudioResource":{"url":"/documentation/realitykit/audioresource","kind":"symbol","title":"AudioResource","role":"symbol","type":"topic","fragments":[{"text":"class","kind":"keyword"},{"text":" ","kind":"text"},{"text":"AudioResource","kind":"identifier"}],"abstract":[{"text":"A playable audio resource","type":"text"}],"navigatorTitle":[{"text":"AudioResource","kind":"identifier"}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/AudioResource"},"doc://com.apple.RealityKit/documentation/RealityKit/Component":{"role":"symbol","navigatorTitle":[{"text":"Component","kind":"identifier"}],"type":"topic","title":"Component","kind":"symbol","fragments":[{"text":"protocol","kind":"keyword"},{"text":" ","kind":"text"},{"text":"Component","kind":"identifier"}],"abstract":[{"text":"A representation of a geometry or a behavior that you apply to an entity.","type":"text"}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/Component","url":"/documentation/realitykit/component"},"doc://com.apple.RealityKit/documentation/RealityKit/AudioLibraryComponent/Key":{"navigatorTitle":[{"kind":"identifier","text":"Key"}],"url":"/documentation/realitykit/audiolibrarycomponent/key","kind":"symbol","fragments":[{"kind":"keyword","text":"typealias"},{"kind":"text","text":" "},{"kind":"identifier","text":"Key"}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/AudioLibraryComponent/Key","title":"AudioLibraryComponent.Key","role":"symbol","abstract":[{"type":"text","text":"The key type of a dictionary literal."}],"type":"topic"},"doc://com.apple.RealityKit/documentation/RealityKit/AudioLibraryComponent/resources":{"type":"topic","url":"/documentation/realitykit/audiolibrarycomponent/resources","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/AudioLibraryComponent/resources","abstract":[{"type":"text","text":"A dictionary of audio resources with user-defined names."}],"title":"resources","kind":"symbol","fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"resources"},{"kind":"text","text":": ["},{"preciseIdentifier":"s:SS","kind":"typeIdentifier","text":"String"},{"kind":"text","text":" : "},{"preciseIdentifier":"s:17RealityFoundation13AudioResourceC","kind":"typeIdentifier","text":"AudioResource"},{"kind":"text","text":"]"}],"role":"symbol"},"doc://com.apple.RealityKit/documentation/RealityKit/AudioBufferResource":{"url":"/documentation/realitykit/audiobufferresource","kind":"symbol","title":"AudioBufferResource","role":"symbol","type":"topic","fragments":[{"text":"class","kind":"keyword"},{"text":" ","kind":"text"},{"text":"AudioBufferResource","kind":"identifier"}],"abstract":[{"text":"An audio resource that you load from an ","type":"text"},{"isActive":true,"type":"reference","identifier":"doc://com.apple.documentation/documentation/AVFAudio/AVAudioBuffer"},{"text":".","type":"text"}],"navigatorTitle":[{"text":"AudioBufferResource","kind":"identifier"}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/AudioBufferResource"},"doc://com.apple.RealityKit/documentation/RealityKit/AudioLibraryComponent/Value":{"type":"topic","url":"/documentation/realitykit/audiolibrarycomponent/value","kind":"symbol","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/AudioLibraryComponent/Value","navigatorTitle":[{"text":"Value","kind":"identifier"}],"title":"AudioLibraryComponent.Value","role":"symbol","abstract":[{"type":"text","text":"The value type of a dictionary literal."}],"fragments":[{"text":"typealias","kind":"keyword"},{"text":" ","kind":"text"},{"text":"Value","kind":"identifier"}]},"doc://com.apple.RealityKit/documentation/RealityKit/AudioResource/Normalization":{"url":"/documentation/realitykit/audioresource/normalization","kind":"symbol","title":"AudioResource.Normalization","role":"symbol","type":"topic","fragments":[{"text":"struct","kind":"keyword"},{"text":" ","kind":"text"},{"text":"Normalization","kind":"identifier"}],"abstract":[{"text":"Normalization adjusts the level of an audio file or buffer to be at a defined target.","type":"text"}],"navigatorTitle":[{"text":"Normalization","kind":"identifier"}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/AudioResource/Normalization"},"doc://com.apple.RealityKit/documentation/RealityKit/AudioLibraryComponent/init(dictionaryLiteral:)":{"type":"topic","url":"/documentation/realitykit/audiolibrarycomponent/init(dictionaryliteral:)","fragments":[{"kind":"identifier","text":"init"},{"kind":"text","text":"("},{"kind":"externalParam","text":"dictionaryLiteral"},{"kind":"text","text":": ("},{"kind":"typeIdentifier","text":"String","preciseIdentifier":"s:SS"},{"kind":"text","text":", "},{"kind":"typeIdentifier","text":"AudioResource","preciseIdentifier":"s:17RealityFoundation13AudioResourceC"},{"text":")...)","kind":"text"}],"title":"init(dictionaryLiteral:)","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/AudioLibraryComponent/init(dictionaryLiteral:)","kind":"symbol","abstract":[{"type":"text","text":"Creates an instance initialized with the given key-value pairs."}],"role":"symbol"},"doc://com.apple.RealityKit/documentation/RealityKit/AudioResource/Calibration":{"url":"/documentation/realitykit/audioresource/calibration","kind":"symbol","title":"AudioResource.Calibration","role":"symbol","type":"topic","fragments":[{"text":"struct","kind":"keyword"},{"text":" ","kind":"text"},{"text":"Calibration","kind":"identifier"}],"abstract":[{"text":"A container for different calibration modes that can be applied for playback.","type":"text"}],"navigatorTitle":[{"text":"Calibration","kind":"identifier"}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/AudioResource/Calibration"},"doc://com.apple.RealityKit/documentation/RealityKit/AudioFileResource":{"url":"/documentation/realitykit/audiofileresource","kind":"symbol","title":"AudioFileResource","role":"symbol","type":"topic","fragments":[{"text":"class","kind":"keyword"},{"text":" ","kind":"text"},{"text":"AudioFileResource","kind":"identifier"}],"abstract":[{"text":"An audio resource that you load from a file or from a URL.","type":"text"}],"navigatorTitle":[{"text":"AudioFileResource","kind":"identifier"}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/AudioFileResource"}},"variantOverrides":[{"patch":[{"op":"replace","path":"/references/doc:~1~1com.apple.documentation~1documentation~1AVFAudio~1AVAudioBuffer/fragments","value":[{"kind":"keyword","text":"@interface"},{"kind":"text","text":" "},{"kind":"identifier","text":"AVAudioBuffer"},{"kind":"text","text":" : "},{"kind":"typeIdentifier","preciseIdentifier":"c:objc(cs)NSObject","text":"NSObject"}]}],"traits":[{"interfaceLanguage":"occ"}]}],"legalNotices":{"copyright":"Copyright &copy; 2025 Apple Inc. All rights reserved.","termsOfUse":"https://www.apple.com/legal/internet-services/terms/site.html","privacyPolicy":"https://www.apple.com/privacy/privacy-policy"}}
+{
+  "abstract": [
+    {
+      "text": "A container for audio resources that you can look up by user-defined names.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/AudioLibraryComponent"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:17RealityFoundation21AudioLibraryComponentV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "AudioLibraryComponent"
+      }
+    ],
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "AudioLibraryComponent"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "AudioLibraryComponent"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AudioLibraryComponent"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "AudioLibraryComponent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " serves as a container for audio resources, so that you can",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "store loaded audio resources and associate them with an entity for playback using user-defined names.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You may use any ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AudioResource",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " type, such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AudioFileResource",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AudioFileGroupResource",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "In memory, you can also use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AudioBufferResource",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", but this type doesn’t support serializing to disk or sharing via network.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Below is an example of how you can set this component in code:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create a new entity.",
+            "let humanEntity = Entity()",
+            "",
+            "// Set up two audio file resources, and combine them in one group resource.",
+            "let walkFileResource = try AudioFileResource.load(named: \"HumanWalk\")",
+            "let jumpFileResource = try AudioFileResource.load(named: \"HumanJump\")",
+            "let groupResource = try AudioFileGroupResource([walkFileResource, jumpFileResource])",
+            "",
+            "// Create an `AudioLibraryComponent` to house the audio resources.",
+            "var audioLibraryComponent = AudioLibraryComponent()",
+            "",
+            "// Add the resources to the component by name.",
+            "audioLibraryComponent.resources[\"Walk\"] = walkFileResource",
+            "audioLibraryComponent.resources[\"Jump\"] = jumpFileResource",
+            "audioLibraryComponent.resources[\"group\"] = groupResource",
+            "",
+            "humanEntity.components.set(audioLibraryComponent)",
+            "",
+            "// Play the resource matching the \"Walk\" key on the entity -> Expect to play 'HumanWalk'.",
+            "humanEntity.playAudio(audioLibraryComponent.resources[\"Walk\"]!)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By setting an ",
+              "type": "text"
+            },
+            {
+              "code": "AudioLibraryComponent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " on different entities, you can use simple defined names",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that trigger different sounds on different entities.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, you can reuse the “Walk” string from the preceding example on a different entity:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "",
+            "// Create a new entity.",
+            "let robotEntity = Entity()",
+            "",
+            "// Set up an audio file resource.",
+            "let robotWalkFileResource = try AudioFileResource.load(named: \"RobotWalk\")",
+            "",
+            "// Create an `AudioLibraryComponent` to house the `audioResource`.",
+            "var audioLibraryComponent = AudioLibraryComponent()",
+            "",
+            "// Add the resource to the component by name.",
+            "audioLibraryComponent.resources[\"Walk\"] = robotWalkFileResource",
+            "",
+            "robotEntity.components.set(audioLibraryComponent)",
+            "",
+            "// Play the resource matching the \"Walk\" key on the entity -> Expect to play 'RobotWalk'.",
+            "robotEntity.playAudio(audioLibraryComponent.resources[\"Walk\"]!)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You can create a component using code, or add it to your entity using tools such as Reality Composer Pro.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Reality Composer Pro, you can add an ",
+              "type": "text"
+            },
+            {
+              "code": "AudioLibraryComponent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to an entity and then add audio",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "resources to it for easy access to those resources by name.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The system automatically loads the audio resources for you when you search for this component.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard let audioLibraryComponent = entity.components[AudioLibraryComponent.self],",
+            "      let audioResource = audioLibraryComponent.resources[\"My_Audio_Resource_Name\"]",
+            "else { return }",
+            "",
+            "// Because the system has already loaded the resource for you,",
+            "// you may prepare or play it on an entity right away.",
+            "entity.playAudio(audioResource)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AudioBufferResource": {
+      "abstract": [
+        {
+          "text": "An audio resource that you load from an ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioBuffer",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioBufferResource"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AudioBufferResource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioBufferResource"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioBufferResource",
+      "type": "topic",
+      "url": "/documentation/realitykit/audiobufferresource"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AudioFileGroupResource": {
+      "abstract": [
+        {
+          "text": "An audio file group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioFileGroupResource"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AudioFileGroupResource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioFileGroupResource"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioFileGroupResource",
+      "type": "topic",
+      "url": "/documentation/realitykit/audiofilegroupresource"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AudioFileResource": {
+      "abstract": [
+        {
+          "text": "An audio resource that you load from a file or from a URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioFileResource"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AudioFileResource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioFileResource"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioFileResource",
+      "type": "topic",
+      "url": "/documentation/realitykit/audiofileresource"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AudioLibraryComponent": {
+      "abstract": [
+        {
+          "text": "A container for audio resources that you can look up by user-defined names.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioLibraryComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AudioLibraryComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioLibraryComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioLibraryComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/audiolibrarycomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AudioLibraryComponent/Component-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AudioLibraryComponent/Component-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Component Implementations",
+      "type": "topic",
+      "url": "/documentation/realitykit/audiolibrarycomponent/component-implementations"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AudioLibraryComponent/Key": {
+      "abstract": [
+        {
+          "text": "The key type of a dictionary literal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Key"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AudioLibraryComponent/Key",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Key"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioLibraryComponent.Key",
+      "type": "topic",
+      "url": "/documentation/realitykit/audiolibrarycomponent/key"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AudioLibraryComponent/Value": {
+      "abstract": [
+        {
+          "text": "The value type of a dictionary literal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Value"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AudioLibraryComponent/Value",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Value"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioLibraryComponent.Value",
+      "type": "topic",
+      "url": "/documentation/realitykit/audiolibrarycomponent/value"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AudioLibraryComponent/init(dictionaryLiteral:)": {
+      "abstract": [
+        {
+          "text": "Creates an instance initialized with the given key-value pairs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "dictionaryLiteral"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation13AudioResourceC",
+          "text": "AudioResource"
+        },
+        {
+          "kind": "text",
+          "text": ")...)"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AudioLibraryComponent/init(dictionaryLiteral:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(dictionaryLiteral:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/audiolibrarycomponent/init(dictionaryliteral:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AudioLibraryComponent/init(resources:)": {
+      "abstract": [
+        {
+          "text": "Creates a new audio library from a dictionary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "resources"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation13AudioResourceC",
+          "text": "AudioResource"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AudioLibraryComponent/init(resources:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(resources:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/audiolibrarycomponent/init(resources:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AudioLibraryComponent/resources": {
+      "abstract": [
+        {
+          "text": "A dictionary of audio resources with user-defined names.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "resources"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation13AudioResourceC",
+          "text": "AudioResource"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AudioLibraryComponent/resources",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resources",
+      "type": "topic",
+      "url": "/documentation/realitykit/audiolibrarycomponent/resources"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AudioResource": {
+      "abstract": [
+        {
+          "text": "A playable audio resource",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioResource"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AudioResource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioResource"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioResource",
+      "type": "topic",
+      "url": "/documentation/realitykit/audioresource"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AudioResource/Calibration": {
+      "abstract": [
+        {
+          "text": "A container for different calibration modes that can be applied for playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Calibration"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AudioResource/Calibration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Calibration"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioResource.Calibration",
+      "type": "topic",
+      "url": "/documentation/realitykit/audioresource/calibration"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AudioResource/Normalization": {
+      "abstract": [
+        {
+          "text": "Normalization adjusts the level of an audio file or buffer to be at a defined target.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Normalization"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AudioResource/Normalization",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Normalization"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioResource.Normalization",
+      "type": "topic",
+      "url": "/documentation/realitykit/audioresource/normalization"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Component": {
+      "abstract": [
+        {
+          "text": "A representation of a geometry or a behavior that you apply to an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Component"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Component",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Component"
+        }
+      ],
+      "role": "symbol",
+      "title": "Component",
+      "type": "topic",
+      "url": "/documentation/realitykit/component"
+    },
+    "doc://com.apple.documentation/documentation/AVFAudio/AVAudioBuffer": {
+      "abstract": [
+        {
+          "text": "An object that represents a buffer of audio data with a format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioBuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVAudioBuffer",
+      "type": "topic",
+      "url": "/documentation/AVFAudio/AVAudioBuffer"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:s30ExpressibleByDictionaryLiteralP": {
+      "abstract": [
+        {
+          "text": "A type that can be initialized using a dictionary literal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExpressibleByDictionaryLiteral"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s30ExpressibleByDictionaryLiteralP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ExpressibleByDictionaryLiteral",
+      "type": "topic",
+      "url": "/documentation/Swift/ExpressibleByDictionaryLiteral"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/Component",
+        "doc://com.externally.resolved.symbol/s:s30ExpressibleByDictionaryLiteralP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Audio-resources",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/AudioFileResource",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AudioFileGroupResource",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AudioBufferResource",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AudioResource",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AudioResource/Calibration",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AudioResource/Normalization"
+      ],
+      "title": "Audio resources"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-an-audio-library-component",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/AudioLibraryComponent/init(resources:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AudioLibraryComponent/init(dictionaryLiteral:)"
+      ],
+      "title": "Creating an audio library component"
+    },
+    {
+      "anchor": "Accessing-audio-resources",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/AudioLibraryComponent/resources"
+      ],
+      "title": "Accessing audio resources"
+    },
+    {
+      "anchor": "Type-Aliases",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/AudioLibraryComponent/Key",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AudioLibraryComponent/Value"
+      ],
+      "title": "Type Aliases"
+    },
+    {
+      "anchor": "Default-Implementations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/AudioLibraryComponent/Component-Implementations"
+      ],
+      "title": "Default Implementations"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFAudio~1AVAudioBuffer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVAudioBuffer"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/audiolibrarycomponent"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

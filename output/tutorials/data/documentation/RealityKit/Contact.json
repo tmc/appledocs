@@ -1,0 +1,1111 @@
+{
+  "abstract": [
+    {
+      "text": "Events associated with collisions.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/Contact"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:17RealityFoundation7ContactV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "Contact"
+      }
+    ],
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Contact"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "Contact"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "Contact"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To subscribe to a collision event, import Combine, create a property of type ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Combine/Cancellable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "so that you maintain a reference to the subscription, then call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Scene/subscribe(to:on:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Scene/subscribe(to:on:componentType:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and provide a closure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The closure is passed an ",
+              "type": "text"
+            },
+            {
+              "code": "RealityKit/Scene/Event",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object that contains information relevant to the type of event you subscribed to.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here’s an example of subscribing to the collision begain event and retrieving the two entities involved in the collision:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            " import AppKit",
+            " import RealityKit",
+            " import Combine",
+            "",
+            " class GameViewController: NSViewController {",
+            "",
+            "     @IBOutlet var arView: ARView!",
+            "     var collisionSubscription:Cancellable?",
+            "",
+            "     override func awakeFromNib() {",
+            "        let boxAnchor = try! Experience.loadBox()",
+            "        arView.scene.anchors.append(boxAnchor)",
+            "",
+            "        collisionSubscription = arView.scene.subscribe(",
+            "           to: CollisionEvents.Began.self,",
+            "            on: boxAnchor",
+            "       ) { event in",
+            "           print(\"collision started\")",
+            "           let firstEntity = event.entityA",
+            "           let secondEntity = event.entityB",
+            "           // Take appropriate action...",
+            "        }",
+            "   }",
+            " }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also create a function to respond to the event rather than a closure by using",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Combine/Publisher/sink(receiveCompletion:receiveValue:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Here’s an example of using a function to respond to a collision event:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import AppKit",
+            "import RealityKit",
+            "import Combine",
+            "",
+            "class GameViewController: NSViewController {",
+            "",
+            "    @IBOutlet var arView: ARView!",
+            "    var collisionSubscription:Cancellable?",
+            "",
+            "    override func awakeFromNib() {",
+            "        let boxAnchor = try! Experience.loadBox()",
+            "        arView.scene.anchors.append(boxAnchor)",
+            "",
+            "        collisionSubscription = arView.scene.publisher(for: CollisionEvents.Began.self,",
+            "                                                       on:nil).sink(receiveValue: onCollisionBegan)",
+            "    }",
+            "",
+            "    private func onCollisionBegan(_ event:",
+            "                                  CollisionEvents.Began) {",
+            "        print(\"collision started\")",
+            "        let firstEntity = event.entityA",
+            "        let secondEntity = event.entityB",
+            "        // Take appropriate action...",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CollisionEvents": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CollisionEvents"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CollisionEvents",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CollisionEvents"
+        }
+      ],
+      "role": "symbol",
+      "title": "CollisionEvents",
+      "type": "topic",
+      "url": "/documentation/realitykit/collisionevents"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Contact": {
+      "abstract": [
+        {
+          "text": "Events associated with collisions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Contact"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Contact",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Contact"
+        }
+      ],
+      "role": "symbol",
+      "title": "Contact",
+      "type": "topic",
+      "url": "/documentation/realitykit/contact"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Contact/impulse": {
+      "abstract": [
+        {
+          "text": "Impulse, the force over time of the collision, in newton-seconds",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "impulse"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Contact/impulse",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "impulse",
+      "type": "topic",
+      "url": "/documentation/realitykit/contact/impulse"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Contact/impulseDirection": {
+      "abstract": [
+        {
+          "text": "Impulse direction in scene coordinate space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "impulseDirection"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5SIMD3V",
+          "text": "SIMD3"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Contact/impulseDirection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "impulseDirection",
+      "type": "topic",
+      "url": "/documentation/realitykit/contact/impulsedirection"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Contact/normal": {
+      "abstract": [
+        {
+          "text": "The normal of the contacting surfaces at the contact point. The normal direction points from the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "second shape to the first shape in scene coordinate space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "normal"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5SIMD3V",
+          "text": "SIMD3"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Contact/normal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "normal",
+      "type": "topic",
+      "url": "/documentation/realitykit/contact/normal"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Contact/penetrationDistance": {
+      "abstract": [
+        {
+          "text": "The distance of overlap between the contact pair.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "penetrationDistance"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Contact/penetrationDistance",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "penetrationDistance",
+      "type": "topic",
+      "url": "/documentation/realitykit/contact/penetrationdistance"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Contact/point": {
+      "abstract": [
+        {
+          "text": "Point of contact in scene coordinate space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "point"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5SIMD3V",
+          "text": "SIMD3"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Contact/point",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "point",
+      "type": "topic",
+      "url": "/documentation/realitykit/contact/point"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Scene/subscribe(to:on:_:)": {
+      "abstract": [
+        {
+          "text": "Subscribes to an event type, optionally limited to",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "events affecting a source entity or scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "subscribe"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": ".Type, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "on"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation11EventSourceP",
+          "text": "EventSource"
+        },
+        {
+          "kind": "text",
+          "text": ")?, ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ") -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine11CancellableP",
+          "text": "Cancellable"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Scene/subscribe(to:on:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subscribe(to:on:_:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/scene/subscribe(to:on:_:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Scene/subscribe(to:on:componentType:_:)": {
+      "abstract": [
+        {
+          "text": "Subscribes to an event type, optionally limited to",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "events affecting a source entity or scene,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "or limited to",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "a specific component type for component events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "subscribe"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": ".Type, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "on"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation11EventSourceP",
+          "text": "EventSource"
+        },
+        {
+          "kind": "text",
+          "text": ")?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "componentType"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation9ComponentP",
+          "text": "Component"
+        },
+        {
+          "kind": "text",
+          "text": ".Type)?, ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ") -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine11CancellableP",
+          "text": "Cancellable"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Scene/subscribe(to:on:componentType:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subscribe(to:on:componentType:_:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/scene/subscribe(to:on:componenttype:_:)"
+    },
+    "doc://com.apple.documentation/documentation/Combine/Cancellable": {
+      "abstract": [
+        {
+          "text": "A protocol indicating that an activity or action supports cancellation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Cancellable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Combine/Cancellable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Cancellable",
+      "type": "topic",
+      "url": "/documentation/Combine/Cancellable"
+    },
+    "doc://com.apple.documentation/documentation/Combine/Publisher/sink(receiveCompletion:receiveValue:)": {
+      "abstract": [
+        {
+          "text": "Attaches a subscriber with closure-based behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sink"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "receiveCompletion"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine11SubscribersO",
+          "text": "Subscribers"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine11SubscribersO10CompletionO",
+          "text": "Completion"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine9PublisherP7FailureQa",
+          "text": "Failure"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "receiveValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine9PublisherP6OutputQa",
+          "text": "Output"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine14AnyCancellableC",
+          "text": "AnyCancellable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Combine/Publisher/sink(receiveCompletion:receiveValue:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sink(receiveCompletion:receiveValue:)",
+      "type": "topic",
+      "url": "/documentation/Combine/Publisher/sink(receiveCompletion:receiveValue:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Collision-related-notifications",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/CollisionEvents"
+      ],
+      "title": "Collision-related notifications"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/Contact/impulse",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Contact/impulseDirection",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Contact/normal",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Contact/penetrationDistance",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Contact/point"
+      ],
+      "title": "Instance Properties"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/contact"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

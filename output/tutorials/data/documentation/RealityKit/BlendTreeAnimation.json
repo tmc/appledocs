@@ -1,0 +1,2239 @@
+{
+  "abstract": [
+    {
+      "text": "A collection of animations on the same property that the framework blends to",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "a single animation.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeAnimation"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:17RealityFoundation18BlendTreeAnimationV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "BlendTreeAnimation"
+      }
+    ],
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "BlendTreeAnimation"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "BlendTreeAnimation"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "BlendTreeAnimation"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "kind": "genericParameter",
+              "text": "Value"
+            },
+            {
+              "kind": "text",
+              "text": "> "
+            },
+            {
+              "kind": "keyword",
+              "text": "where"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "Value"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnimatableData",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:17RealityFoundation14AnimatableDataP",
+              "text": "AnimatableData"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This structure provides a way to form a single animation by mixing several",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "other animations together. You define a source node for each animation, and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a weight, which determines how much each individual animation takes effect",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the resulting animation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create the blended animation, you define a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "blend tree",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " that sprouts from",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeAnimation/root",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which consists of one or more blend-tree nodes",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "(",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeNode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "). Each node may be one of the following conforming types:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeBlendNode",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", which branches the tree for every element in",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeBlendNode/sources",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeSourceNode",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", which defines one of the animations to blend",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "via its ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeSourceNode/source",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because source nodes reference no other nodes, they represent leaf nodes in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the tree.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Blending-two-skeletal-movements-to-a-single-movement",
+          "level": 3,
+          "text": "Blending two skeletal movements to a single movement",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following animation plays a sampling of the animations named",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "anim1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "anim2",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". To fine-tune the interplay between the two animations,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the code sets a blend weight for each animation. The weight of ",
+              "type": "text"
+            },
+            {
+              "code": "0.25",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "anim1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " determines that the first animation’s behavior is 25% prominent in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the final result. The ",
+              "type": "text"
+            },
+            {
+              "code": "anim2",
+              "type": "codeVoice"
+            },
+            {
+              "text": " weight is ",
+              "type": "text"
+            },
+            {
+              "code": "0.75",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", as the cumulative blend",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "weight across all animations in the tree needs to equal ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". This determines",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that the second animation influences 75% of the visual behavior of the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "blended animation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let anim1 = FromToByAnimation<JointTransforms>(",
+            "    name: \"anim1\",",
+            "    from: JointTransforms([Transform(scale: SIMD3<Float>(1, 2, 3),",
+            "    rotation: simd_quatf(ix: 5, iy: 6, iz: 7, r: 8),",
+            "    translation: SIMD3<Float>(10, 20, 30))]),",
+            "    to: JointTransforms([Transform(scale: SIMD3<Float>(11, 21, 31),",
+            "    rotation: simd_quatf(ix: 50, iy: 60, iz: 70, r: 80),",
+            "    translation: SIMD3<Float>(100, 200, 300))]),",
+            "    duration: 1.0)",
+            "",
+            "let anim2 = FromToByAnimation<JointTransforms>(",
+            "    name: \"anim2\",",
+            "    from: JointTransforms([Transform(scale: SIMD3<Float>(10, 20, 30),",
+            "    rotation: simd_quatf(ix: 4, iy: 5, iz: 5, r: 7),",
+            "    translation: SIMD3<Float>(100, 200, 300))]),",
+            "    to: JointTransforms([Transform(scale: SIMD3<Float>(110, 210, 310),",
+            "    rotation: simd_quatf(ix: 500, iy: 60, iz: 70, r: 80),",
+            "    translation: SIMD3<Float>(1000, 2000, 3000))]),",
+            "    duration: 10.0)",
+            "",
+            "let blendTree = BlendTreeAnimation<JointTransforms>(",
+            "    blend(",
+            "        BlendTreeSourceNode(",
+            "            source: anim1,",
+            "            name: \"anim1\",",
+            "            weight: .value(0.25)),",
+            "        BlendTreeSourceNode(",
+            "            source: anim2,",
+            "            name: \"anim2\",",
+            "            weight: .value(0.75)),",
+            "        name: \"blend\"),",
+            "    name: \"blendTree\",",
+            "    bindTarget: .parameter(\"bar\")",
+            ")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "To modify the weights for each frame, create a source node with a",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "dynamic ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/BlendWeight",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", such as with the",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/BlendWeight/bindTarget(_:defaultWeight:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " or",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/BlendWeight/parameter(_:defaultWeight:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " enumeration cases.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AnimatableData": {
+      "abstract": [
+        {
+          "text": "A functionality specification that animatable data types adopt.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnimatableData"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnimatableData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnimatableData"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnimatableData",
+      "type": "topic",
+      "url": "/documentation/realitykit/animatabledata"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AnimationDefinition": {
+      "abstract": [
+        {
+          "text": "The configuration, including target object, timeframe, and visual semantics,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "of an animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnimationDefinition"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnimationDefinition",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnimationDefinition"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnimationDefinition",
+      "type": "topic",
+      "url": "/documentation/realitykit/animationdefinition"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeAnimation": {
+      "abstract": [
+        {
+          "text": "A collection of animations on the same property that the framework blends to",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "a single animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BlendTreeAnimation"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeAnimation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BlendTreeAnimation"
+        }
+      ],
+      "role": "symbol",
+      "title": "BlendTreeAnimation",
+      "type": "topic",
+      "url": "/documentation/realitykit/blendtreeanimation"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeAnimation/AnimationDefinition-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeAnimation/AnimationDefinition-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "AnimationDefinition Implementations",
+      "type": "topic",
+      "url": "/documentation/realitykit/blendtreeanimation/animationdefinition-implementations"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeAnimation/bindTarget": {
+      "abstract": [
+        {
+          "text": "A textual name that identifies the particular property that animates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bindTarget"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation10BindTargetO",
+          "text": "BindTarget"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeAnimation/bindTarget",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bindTarget",
+      "type": "topic",
+      "url": "/documentation/realitykit/blendtreeanimation/bindtarget"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeAnimation/blendLayer": {
+      "abstract": [
+        {
+          "text": "The order in which the framework composites the animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "blendLayer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeAnimation/blendLayer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "blendLayer",
+      "type": "topic",
+      "url": "/documentation/realitykit/blendtreeanimation/blendlayer"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeAnimation/delay": {
+      "abstract": [
+        {
+          "text": "An amount of time that lapses before the animation plays.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delay"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeAnimation/delay",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "delay",
+      "type": "topic",
+      "url": "/documentation/realitykit/blendtreeanimation/delay"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeAnimation/duration": {
+      "abstract": [
+        {
+          "text": "The total playback time of the animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "duration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeAnimation/duration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "duration",
+      "type": "topic",
+      "url": "/documentation/realitykit/blendtreeanimation/duration"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeAnimation/fillMode": {
+      "abstract": [
+        {
+          "text": "An option that determines which data displays outside of the normal",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "duration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fillMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation17AnimationFillModeV",
+          "text": "AnimationFillMode"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeAnimation/fillMode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fillMode",
+      "type": "topic",
+      "url": "/documentation/realitykit/blendtreeanimation/fillmode"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeAnimation/init(_:name:isAdditive:bindTarget:blendLayer:repeatMode:fillMode:trimStart:trimEnd:trimDuration:offset:delay:speed:)": {
+      "abstract": [
+        {
+          "text": "Creates a unique animation from a combination of other animations in the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "form of a tree.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation13BlendTreeNodeP",
+          "text": "BlendTreeNode"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isAdditive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "bindTarget"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation10BindTargetO",
+          "text": "BindTarget"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "blendLayer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "repeatMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation19AnimationRepeatModeO",
+          "text": "AnimationRepeatMode"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "fillMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation17AnimationFillModeV",
+          "text": "AnimationFillMode"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "trimStart"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "trimEnd"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "trimDuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "offset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "delay"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "speed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeAnimation/init(_:name:isAdditive:bindTarget:blendLayer:repeatMode:fillMode:trimStart:trimEnd:trimDuration:offset:delay:speed:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:name:isAdditive:bindTarget:blendLayer:repeatMode:fillMode:trimStart:trimEnd:trimDuration:offset:delay:speed:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/blendtreeanimation/init(_:name:isadditive:bindtarget:blendlayer:repeatmode:fillmode:trimstart:trimend:trimduration:offset:delay:speed:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeAnimation/isAdditive": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the animation builds on the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "current state of the target entity or resets the state before running.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isAdditive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeAnimation/isAdditive",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isAdditive",
+      "type": "topic",
+      "url": "/documentation/realitykit/blendtreeanimation/isadditive"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeAnimation/name": {
+      "abstract": [
+        {
+          "text": "A textual name for the animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeAnimation/name",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "name",
+      "type": "topic",
+      "url": "/documentation/realitykit/blendtreeanimation/name"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeAnimation/offset": {
+      "abstract": [
+        {
+          "text": "The time, in seconds, at which the animation begins within the duration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "offset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeAnimation/offset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "offset",
+      "type": "topic",
+      "url": "/documentation/realitykit/blendtreeanimation/offset"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeAnimation/repeatMode": {
+      "abstract": [
+        {
+          "text": "An option that determines how the animation repeats.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "repeatMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation19AnimationRepeatModeO",
+          "text": "AnimationRepeatMode"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeAnimation/repeatMode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "repeatMode",
+      "type": "topic",
+      "url": "/documentation/realitykit/blendtreeanimation/repeatmode"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeAnimation/repeated(count:)-3qmxo": {
+      "abstract": [
+        {
+          "text": "Repeats an animation the number of times specified by an irrational",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "number.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "repeated"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "count"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeAnimation/repeated(count:)-3qmxo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "repeated(count:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/blendtreeanimation/repeated(count:)-3qmxo"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeAnimation/repeated(count:)-8dwbj": {
+      "abstract": [
+        {
+          "text": "Repeats an animation the number of times specified by a whole number.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "repeated"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "count"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeAnimation/repeated(count:)-8dwbj",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "repeated(count:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/blendtreeanimation/repeated(count:)-8dwbj"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeAnimation/repeatingForever()": {
+      "abstract": [
+        {
+          "text": "Repeats the animation infinitely.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "repeatingForever"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeAnimation/repeatingForever()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "repeatingForever()",
+      "type": "topic",
+      "url": "/documentation/realitykit/blendtreeanimation/repeatingforever()"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeAnimation/root": {
+      "abstract": [
+        {
+          "text": "The first node in a tree of animations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "root"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation13BlendTreeNodeP",
+          "text": "BlendTreeNode"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeAnimation/root",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "root",
+      "type": "topic",
+      "url": "/documentation/realitykit/blendtreeanimation/root"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeAnimation/speed": {
+      "abstract": [
+        {
+          "text": "A factor that increases or decreases the animation’s rate of playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "speed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeAnimation/speed",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "speed",
+      "type": "topic",
+      "url": "/documentation/realitykit/blendtreeanimation/speed"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeAnimation/trimDuration": {
+      "abstract": [
+        {
+          "text": "An optional duration that overrides the calculated duration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "trimDuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeAnimation/trimDuration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "trimDuration",
+      "type": "topic",
+      "url": "/documentation/realitykit/blendtreeanimation/trimduration"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeAnimation/trimEnd": {
+      "abstract": [
+        {
+          "text": "The optional time, in seconds, at which the source animation stops.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "trimEnd"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeAnimation/trimEnd",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "trimEnd",
+      "type": "topic",
+      "url": "/documentation/realitykit/blendtreeanimation/trimend"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeAnimation/trimStart": {
+      "abstract": [
+        {
+          "text": "The optional time, in seconds, at which the source animation plays.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "trimStart"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeAnimation/trimStart",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "trimStart",
+      "type": "topic",
+      "url": "/documentation/realitykit/blendtreeanimation/trimstart"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeAnimation/trimmed(start:end:duration:)": {
+      "abstract": [
+        {
+          "text": "Edits the animation duration according to the specified time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "trimmed"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "start"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "end"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "duration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeAnimation/trimmed(start:end:duration:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "trimmed(start:end:duration:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/blendtreeanimation/trimmed(start:end:duration:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeBlendNode": {
+      "abstract": [
+        {
+          "text": "A source node for an animation that mixes several animations to form a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "single animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BlendTreeBlendNode"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeBlendNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BlendTreeBlendNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "BlendTreeBlendNode",
+      "type": "topic",
+      "url": "/documentation/realitykit/blendtreeblendnode"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeBlendNode/sources": {
+      "abstract": [
+        {
+          "text": "The nodes that branch from a node to form part of a blend tree.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sources"
+        },
+        {
+          "kind": "text",
+          "text": ": [any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation13BlendTreeNodeP",
+          "text": "BlendTreeNode"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeBlendNode/sources",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sources",
+      "type": "topic",
+      "url": "/documentation/realitykit/blendtreeblendnode/sources"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeInvalidNode": {
+      "abstract": [
+        {
+          "text": "A blend tree node that’s internal only or sources from an invalid",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "definition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BlendTreeInvalidNode"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeInvalidNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BlendTreeInvalidNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "BlendTreeInvalidNode",
+      "type": "topic",
+      "url": "/documentation/realitykit/blendtreeinvalidnode"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeNode": {
+      "abstract": [
+        {
+          "text": "An interface for a node that’s a member of a blend tree.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BlendTreeNode"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BlendTreeNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "BlendTreeNode",
+      "type": "topic",
+      "url": "/documentation/realitykit/blendtreenode"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeSourceNode": {
+      "abstract": [
+        {
+          "text": "A blend node that contains an animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BlendTreeSourceNode"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeSourceNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BlendTreeSourceNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "BlendTreeSourceNode",
+      "type": "topic",
+      "url": "/documentation/realitykit/blendtreesourcenode"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeSourceNode/source": {
+      "abstract": [
+        {
+          "text": "The blend node’s animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "source"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation19AnimationDefinitionP",
+          "text": "AnimationDefinition"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeSourceNode/source",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "source",
+      "type": "topic",
+      "url": "/documentation/realitykit/blendtreesourcenode/source"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/BlendWeight": {
+      "abstract": [
+        {
+          "text": "A numerical representation of the impact an animation has on a scene or",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BlendWeight"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/BlendWeight",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BlendWeight"
+        }
+      ],
+      "role": "symbol",
+      "title": "BlendWeight",
+      "type": "topic",
+      "url": "/documentation/realitykit/blendweight"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/BlendWeight/bindTarget(_:defaultWeight:)": {
+      "abstract": [
+        {
+          "text": "The amount of impact  an animation has on the bind target of an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bindTarget"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation10BindTargetO",
+          "text": "BindTarget"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "defaultWeight"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/BlendWeight/bindTarget(_:defaultWeight:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BlendWeight.bindTarget(_:defaultWeight:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/blendweight/bindtarget(_:defaultweight:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/BlendWeight/parameter(_:defaultWeight:)": {
+      "abstract": [
+        {
+          "text": "The amount of impact an animation has on a named parameter of an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "parameter"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "defaultWeight"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/BlendWeight/parameter(_:defaultWeight:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BlendWeight.parameter(_:defaultWeight:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/blendweight/parameter(_:defaultweight:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/AnimationDefinition"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Blend-trees",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeNode",
+        "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeBlendNode",
+        "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeSourceNode",
+        "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeInvalidNode",
+        "doc://com.apple.RealityKit/documentation/RealityKit/BlendWeight"
+      ],
+      "title": "Blend trees"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-an-animation",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeAnimation/init(_:name:isAdditive:bindTarget:blendLayer:repeatMode:fillMode:trimStart:trimEnd:trimDuration:offset:delay:speed:)"
+      ],
+      "title": "Creating an animation"
+    },
+    {
+      "anchor": "Configuring-the-animation",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeAnimation/root",
+        "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeAnimation/name",
+        "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeAnimation/bindTarget",
+        "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeAnimation/blendLayer",
+        "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeAnimation/isAdditive"
+      ],
+      "title": "Configuring the animation"
+    },
+    {
+      "anchor": "Timing-the-animation",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeAnimation/speed",
+        "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeAnimation/delay",
+        "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeAnimation/duration",
+        "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeAnimation/offset",
+        "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeAnimation/trimDuration",
+        "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeAnimation/trimStart",
+        "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeAnimation/trimEnd",
+        "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeAnimation/trimmed(start:end:duration:)"
+      ],
+      "title": "Timing the animation"
+    },
+    {
+      "anchor": "Repeating-animation-playback",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeAnimation/repeatMode",
+        "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeAnimation/fillMode",
+        "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeAnimation/repeated(count:)-3qmxo",
+        "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeAnimation/repeated(count:)-8dwbj",
+        "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeAnimation/repeatingForever()"
+      ],
+      "title": "Repeating animation playback"
+    },
+    {
+      "anchor": "Default-Implementations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/BlendTreeAnimation/AnimationDefinition-Implementations"
+      ],
+      "title": "Default Implementations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/blendtreeanimation"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

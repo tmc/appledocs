@@ -1,0 +1,1349 @@
+{
+  "abstract": [
+    {
+      "text": "Properties and methods for programmatically debugging runtime issues with a command buffer.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/gpu-devices-and-work-submission",
+        "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/command-buffer-debugging"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Command Buffer Debugging"
+  },
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer": {
+      "abstract": [
+        {
+          "text": "A container that stores a sequence of GPU commands that you encode into it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCommandBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCommandBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCommandBuffer",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbuffer"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/commandQueue": {
+      "abstract": [
+        {
+          "text": "The command queue that creates the command buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "commandQueue"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLCommandQueue",
+          "text": "MTLCommandQueue"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/commandQueue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "commandQueue"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "commandQueue",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbuffer/commandqueue"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/device": {
+      "abstract": [
+        {
+          "text": "The GPU device that indirectly owns the command buffer because you create it from a command queue the device also owns.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "device"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLDevice",
+          "text": "MTLDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/device",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "device"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "device",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbuffer/device"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/error": {
+      "abstract": [
+        {
+          "text": "A description of an error when the GPU encounters an issue as it runs the command buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "error"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/error",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "error"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "error",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbuffer/error"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/errorOptions": {
+      "abstract": [
+        {
+          "text": "Settings that determine which information the command buffer records about execution errors, and how it does it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "errorOptions"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLCommandBufferErrorOption",
+          "text": "MTLCommandBufferErrorOption"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/errorOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "errorOptions"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "errorOptions",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbuffer/erroroptions"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/gpuEndTime": {
+      "abstract": [
+        {
+          "text": "The host time, in seconds, when the GPU finishes execution of the command buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gpuEndTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTimeInterval",
+          "text": "CFTimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/gpuEndTime",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GPUEndTime"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "gpuEndTime",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbuffer/gpuendtime"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/gpuStartTime": {
+      "abstract": [
+        {
+          "text": "The host time, in seconds, when the GPU starts command buffer execution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gpuStartTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTimeInterval",
+          "text": "CFTimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/gpuStartTime",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GPUStartTime"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "gpuStartTime",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbuffer/gpustarttime"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/kernelEndTime": {
+      "abstract": [
+        {
+          "text": "The host time, in seconds, when the CPU finishes scheduling the command buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kernelEndTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTimeInterval",
+          "text": "CFTimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/kernelEndTime",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kernelEndTime"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "kernelEndTime",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbuffer/kernelendtime"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/kernelStartTime": {
+      "abstract": [
+        {
+          "text": "The host time, in seconds, when the CPU begins to schedule the command buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kernelStartTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTimeInterval",
+          "text": "CFTimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/kernelStartTime",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kernelStartTime"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "kernelStartTime",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbuffer/kernelstarttime"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/label": {
+      "abstract": [
+        {
+          "text": "An optional name that can help you identify the command buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "label"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/label",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "label"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "label",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbuffer/label"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/logs": {
+      "abstract": [
+        {
+          "text": "The messages the command buffer records as the GPU runs its commands.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "logs"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/logs",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "logs",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbuffer/logs"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/logs-518l2": {
+      "abstract": [
+        {
+          "text": "The messages the command buffer records as the GPU runs its commands.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "logs"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5Metal15MTLLogContainerV",
+          "text": "MTLLogContainer"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/logs-518l2",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "logs",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbuffer/logs-518l2"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/popDebugGroup()": {
+      "abstract": [
+        {
+          "text": "Marks the end of a debug group and, if applicable, restores the previous group from a stack.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "popDebugGroup"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/popDebugGroup()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "popDebugGroup"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "popDebugGroup()",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbuffer/popdebuggroup()"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/pushDebugGroup(_:)": {
+      "abstract": [
+        {
+          "text": "Marks the beginning of a debug group and gives it an identifying label, which temporarily replaces the previous group, if applicable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pushDebugGroup"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/pushDebugGroup(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "pushDebugGroup:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "pushDebugGroup(_:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbuffer/pushdebuggroup(_:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/retainedReferences": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the command buffer maintains strong references to the resources it uses.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "retainedReferences"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/retainedReferences",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "retainedReferences"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "retainedReferences",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbuffer/retainedreferences"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/status": {
+      "abstract": [
+        {
+          "text": "The command buffer’s current state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "status"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLCommandBufferStatus",
+          "text": "MTLCommandBufferStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/status",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "status"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "status",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbuffer/status"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBufferEncoderInfo": {
+      "abstract": [
+        {
+          "text": "A container that provides additional information about a runtime failure a GPU encounters as it runs the commands in a command buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCommandBufferEncoderInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBufferEncoderInfo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCommandBufferEncoderInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCommandBufferEncoderInfo",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbufferencoderinfo"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBufferEncoderInfoErrorKey": {
+      "abstract": [
+        {
+          "text": "A key to a command buffer error’s user information dictionary that retrieves additional information about a GPU’s runtime error.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCommandBufferEncoderInfoErrorKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBufferEncoderInfoErrorKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCommandBufferEncoderInfoErrorKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCommandBufferEncoderInfoErrorKey",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbufferencoderinfoerrorkey"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBufferStatus": {
+      "abstract": [
+        {
+          "text": "The discrete states for a command buffer that represent its life cycle stages.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCommandBufferStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBufferStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCommandBufferStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCommandBufferStatus",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbufferstatus"
+    },
+    "doc://com.apple.metal/documentation/Metal/gpu-devices-and-work-submission": {
+      "abstract": [
+        {
+          "text": "Find any available GPU, submit work to it with command buffers, suspend work, and coordinate between multiple GPUs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/gpu-devices-and-work-submission",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "GPU Devices and Work Submission",
+      "type": "topic",
+      "url": "/documentation/metal/gpu-devices-and-work-submission"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Troubleshooting-a-Command-Buffer",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/status",
+        "doc://com.apple.metal/documentation/Metal/MTLCommandBufferStatus"
+      ],
+      "title": "Troubleshooting a Command Buffer"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Identifying-the-Command-Buffer",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/label",
+        "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/commandQueue",
+        "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/device"
+      ],
+      "title": "Identifying the Command Buffer"
+    },
+    {
+      "anchor": "Grouping-Commands-within-a-GPU-Frame-Capture",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/pushDebugGroup(_:)",
+        "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/popDebugGroup()"
+      ],
+      "title": "Grouping Commands within a GPU Frame Capture"
+    },
+    {
+      "anchor": "Getting-Error-Details",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/error",
+        "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/errorOptions",
+        "doc://com.apple.metal/documentation/Metal/MTLCommandBufferEncoderInfo",
+        "doc://com.apple.metal/documentation/Metal/MTLCommandBufferEncoderInfoErrorKey"
+      ],
+      "title": "Getting Error Details"
+    },
+    {
+      "anchor": "Reading-the-Runtime-Message-Logs",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/logs-518l2"
+      ],
+      "title": "Reading the Runtime Message Logs"
+    },
+    {
+      "anchor": "Checking-Scheduling-Times-on-the-CPU",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/kernelStartTime",
+        "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/kernelEndTime"
+      ],
+      "title": "Checking Scheduling Times on the CPU"
+    },
+    {
+      "anchor": "Checking-Execution-Times-on-the-GPU",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/gpuStartTime",
+        "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/gpuEndTime"
+      ],
+      "title": "Checking Execution Times on the GPU"
+    },
+    {
+      "anchor": "Determining-Whether-to-Maintain-Strong-References",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/retainedReferences"
+      ],
+      "title": "Determining Whether to Maintain Strong References"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Identifying-the-Command-Buffer",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/label",
+                "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/commandQueue",
+                "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/device"
+              ],
+              "title": "Identifying the Command Buffer"
+            },
+            {
+              "anchor": "Grouping-Commands-within-a-GPU-Frame-Capture",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/pushDebugGroup(_:)",
+                "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/popDebugGroup()"
+              ],
+              "title": "Grouping Commands within a GPU Frame Capture"
+            },
+            {
+              "anchor": "Getting-Error-Details",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/error",
+                "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/errorOptions",
+                "doc://com.apple.metal/documentation/Metal/MTLCommandBufferEncoderInfo",
+                "doc://com.apple.metal/documentation/Metal/MTLCommandBufferEncoderInfoErrorKey"
+              ],
+              "title": "Getting Error Details"
+            },
+            {
+              "anchor": "Reading-the-Runtime-Message-Logs",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/logs"
+              ],
+              "title": "Reading the Runtime Message Logs"
+            },
+            {
+              "anchor": "Checking-Scheduling-Times-on-the-CPU",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/kernelStartTime",
+                "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/kernelEndTime"
+              ],
+              "title": "Checking Scheduling Times on the CPU"
+            },
+            {
+              "anchor": "Checking-Execution-Times-on-the-GPU",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/gpuStartTime",
+                "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/gpuEndTime"
+              ],
+              "title": "Checking Execution Times on the GPU"
+            },
+            {
+              "anchor": "Determining-Whether-to-Maintain-Strong-References",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/retainedReferences"
+              ],
+              "title": "Determining Whether to Maintain Strong References"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Troubleshooting-a-Command-Buffer",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/status",
+                "doc://com.apple.metal/documentation/Metal/MTLCommandBufferStatus"
+              ],
+              "title": "Troubleshooting a Command Buffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1commandQueue/title",
+          "value": "commandQueue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1commandQueue/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "commandQueue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1device/title",
+          "value": "device"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1device/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "device"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1kernelEndTime/title",
+          "value": "kernelEndTime"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1kernelEndTime/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kernelEndTime"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBufferEncoderInfo/title",
+          "value": "MTLCommandBufferEncoderInfo"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBufferEncoderInfo/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCommandBufferEncoderInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBufferEncoderInfo/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCommandBufferEncoderInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1errorOptions/title",
+          "value": "errorOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1errorOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "errorOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1pushDebugGroup(_:)/title",
+          "value": "pushDebugGroup:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1pushDebugGroup(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "pushDebugGroup:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1popDebugGroup()/title",
+          "value": "popDebugGroup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1popDebugGroup()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "popDebugGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer/title",
+          "value": "MTLCommandBuffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCommandBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCommandBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1error/title",
+          "value": "error"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1error/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "error"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1kernelStartTime/title",
+          "value": "kernelStartTime"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1kernelStartTime/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kernelStartTime"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBufferEncoderInfoErrorKey/title",
+          "value": "MTLCommandBufferEncoderInfoErrorKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBufferEncoderInfoErrorKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCommandBufferEncoderInfoErrorKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1label/title",
+          "value": "label"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1label/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "label"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1gpuStartTime/title",
+          "value": "GPUStartTime"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1gpuStartTime/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GPUStartTime"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1retainedReferences/title",
+          "value": "retainedReferences"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1retainedReferences/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "retainedReferences"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1gpuEndTime/title",
+          "value": "GPUEndTime"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1gpuEndTime/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GPUEndTime"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1status/title",
+          "value": "status"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1status/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "status"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBufferStatus/title",
+          "value": "MTLCommandBufferStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBufferStatus/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCommandBufferStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBufferStatus/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCommandBufferStatus"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/command-buffer-debugging"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/command-buffer-debugging"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

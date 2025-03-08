@@ -1,0 +1,1363 @@
+{
+  "abstract": [
+    {
+      "text": "A structure that describes the transformation of MIDI control change events.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.coremidi/documentation/CoreMIDI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIControlTransform"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@MIDIControlTransform",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "MIDIControlTransform"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core MIDI"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "MIDIControlTransform"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "MIDIControlTransform"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MIDIControlTransform"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A single parameters object may describe any number of transformations to control events. It’s important to order multiple transformations correctly: filter out, remap, and then alter values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system performs all transformations internally using 14-bit values, so when you perform an add, min, or max transform on a 7-bit control value, the parameter must be a 14-bit value. For example, to add 10 to a control value, the parameter must be (10 << 7) = 1280.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Based on the MIDI specification, the system interprets several controls specially:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Control",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Function",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "32-63",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The least signifcant bit of 0-31.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "6/38",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Data entry.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "96, 97",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Data increment and decrement, respectively.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "98-101",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "NRPN/RPN",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.coremidi/documentation/CoreMIDI": {
+      "abstract": [
+        {
+          "text": "Communicate with MIDI devices such as hardware keyboards and synthesizers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core MIDI",
+      "type": "topic",
+      "url": "/documentation/coremidi"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIControlTransform": {
+      "abstract": [
+        {
+          "text": "A structure that describes the transformation of MIDI control change events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDIControlTransform"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIControlTransform",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDIControlTransform"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDIControlTransform",
+      "type": "topic",
+      "url": "/documentation/coremidi/midicontroltransform"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIControlTransform/controlNumber": {
+      "abstract": [
+        {
+          "text": "The control number to affect.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "controlNumber"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt16V",
+          "text": "UInt16"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIControlTransform/controlNumber",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "controlNumber"
+        }
+      ],
+      "role": "symbol",
+      "title": "controlNumber",
+      "type": "topic",
+      "url": "/documentation/coremidi/midicontroltransform/controlnumber"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIControlTransform/controlType": {
+      "abstract": [
+        {
+          "text": "The type of control specified by the control number.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "controlType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MIDITransformControlType",
+          "text": "MIDITransformControlType"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIControlTransform/controlType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "controlType"
+        }
+      ],
+      "role": "symbol",
+      "title": "controlType",
+      "type": "topic",
+      "url": "/documentation/coremidi/midicontroltransform/controltype"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIControlTransform/init()": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIControlTransform/init()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/coremidi/midicontroltransform/init()"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIControlTransform/init(controlType:remappedControlType:controlNumber:transform:param:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "controlType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MIDITransformControlType",
+          "text": "MIDITransformControlType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "remappedControlType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MIDITransformControlType",
+          "text": "MIDITransformControlType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "controlNumber"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt16V",
+          "text": "UInt16"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "transform"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MIDITransformType",
+          "text": "MIDITransformType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "param"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int16V",
+          "text": "Int16"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIControlTransform/init(controlType:remappedControlType:controlNumber:transform:param:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(controlType:remappedControlType:controlNumber:transform:param:)",
+      "type": "topic",
+      "url": "/documentation/coremidi/midicontroltransform/init(controltype:remappedcontroltype:controlnumber:transform:param:)"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIControlTransform/param": {
+      "abstract": [
+        {
+          "text": "An argument to the transformation method.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "param"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int16V",
+          "text": "Int16"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIControlTransform/param",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "param"
+        }
+      ],
+      "role": "symbol",
+      "title": "param",
+      "type": "topic",
+      "url": "/documentation/coremidi/midicontroltransform/param"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIControlTransform/remappedControlType": {
+      "abstract": [
+        {
+          "text": "The remapped control type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "remappedControlType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MIDITransformControlType",
+          "text": "MIDITransformControlType"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIControlTransform/remappedControlType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "remappedControlType"
+        }
+      ],
+      "role": "symbol",
+      "title": "remappedControlType",
+      "type": "topic",
+      "url": "/documentation/coremidi/midicontroltransform/remappedcontroltype"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIControlTransform/transform": {
+      "abstract": [
+        {
+          "text": "The type of transformation to apply to the event values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "transform"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MIDITransformType",
+          "text": "MIDITransformType"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIControlTransform/transform",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "transform"
+        }
+      ],
+      "role": "symbol",
+      "title": "transform",
+      "type": "topic",
+      "url": "/documentation/coremidi/midicontroltransform/transform"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDITransform": {
+      "abstract": [
+        {
+          "text": "The transformation of a single type of MIDI event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDITransform"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDITransform",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDITransform"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDITransform",
+      "type": "topic",
+      "url": "/documentation/coremidi/miditransform"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDITransformControlType": {
+      "abstract": [
+        {
+          "text": "A set of values that indicate how to interpret control numbers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDITransformControlType"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDITransformControlType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDITransformControlType"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDITransformControlType",
+      "type": "topic",
+      "url": "/documentation/coremidi/miditransformcontroltype"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDITransformType": {
+      "abstract": [
+        {
+          "text": "Values that specify the type of MIDI transformation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDITransformType"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDITransformType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDITransformType"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDITransformType",
+      "type": "topic",
+      "url": "/documentation/coremidi/miditransformtype"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIValueMap": {
+      "abstract": [
+        {
+          "text": "A custom lookup table to transform MIDI 7-bit values, as contained in note numbers, velocities, control values, and so on.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDIValueMap"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIValueMap",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDIValueMap"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDIValueMap",
+      "type": "topic",
+      "url": "/documentation/coremidi/midivaluemap"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BitwiseCopyable"
+        },
+        {
+          "kind": "text",
+          "text": " : ~Escapable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BitwiseCopyable",
+      "type": "topic",
+      "url": "/documentation/Swift/BitwiseCopyable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Transforming-Values",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIValueMap",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDITransform",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDITransformType",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDITransformControlType"
+      ],
+      "title": "Transforming Values"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Configuring-a-Control-Transform",
+      "identifiers": [
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIControlTransform/controlType",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIControlTransform/remappedControlType",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIControlTransform/controlNumber",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIControlTransform/transform",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIControlTransform/param"
+      ],
+      "title": "Configuring a Control Transform"
+    },
+    {
+      "anchor": "Initializers",
+      "identifiers": [
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIControlTransform/init()",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIControlTransform/init(controlType:remappedControlType:controlNumber:transform:param:)"
+      ],
+      "title": "Initializers"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Structure"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "MIDIControlTransform"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "struct"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIControlTransform"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIControlTransform"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.coremidi/documentation/CoreMIDI"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Configuring-a-Control-Transform",
+              "identifiers": [
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIControlTransform/controlType",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIControlTransform/remappedControlType",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIControlTransform/controlNumber",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIControlTransform/transform",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIControlTransform/param"
+              ],
+              "title": "Configuring a Control Transform"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Transforming-Values",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIValueMap",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDITransform",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDITransformType",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDITransformControlType"
+              ],
+              "title": "Transforming Values"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "struct"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "MIDIControlTransform"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIControlTransform~1param/title",
+          "value": "param"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIControlTransform~1param/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "param"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIControlTransform~1transform/title",
+          "value": "transform"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIControlTransform~1transform/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "transform"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIControlTransform/title",
+          "value": "MIDIControlTransform"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIControlTransform/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIControlTransform"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIControlTransform/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIControlTransform"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIControlTransform~1remappedControlType/title",
+          "value": "remappedControlType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIControlTransform~1remappedControlType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "remappedControlType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIValueMap/title",
+          "value": "MIDIValueMap"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIValueMap/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIValueMap"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIValueMap/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIValueMap"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIControlTransform~1controlNumber/title",
+          "value": "controlNumber"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIControlTransform~1controlNumber/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "controlNumber"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDITransform/title",
+          "value": "MIDITransform"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDITransform/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDITransform"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDITransform/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDITransform"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDITransformControlType/title",
+          "value": "MIDITransformControlType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDITransformControlType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDITransformControlType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDITransformControlType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDITransformControlType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDITransformType/title",
+          "value": "MIDITransformType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDITransformType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDITransformType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDITransformType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDITransformType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIControlTransform~1controlType/title",
+          "value": "controlType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIControlTransform~1controlType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "controlType"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coremidi/midicontroltransform"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/coremidi/midicontroltransform"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

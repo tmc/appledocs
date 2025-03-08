@@ -1,0 +1,356 @@
+{
+  "abstract": [
+    {
+      "text": "Relate a movie’s tracks to one another with track references.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.qtff/documentation/quicktime-file-format",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Media_data_atom_types"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Track_references"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "QuickTime File Format"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Track references"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Although QuickTime has always allowed the creation of movies that contain more than one track, it has not been able to specify relationships between those tracks. Track references are a feature of QuickTime that allows you to relate a movie’s tracks to one another. The QuickTime track-reference mechanism supports many-to-many relationships. That is, any movie track may contain one or more track references, and any track may be related to one or more other tracks in the movie.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Track references can be useful in a variety of ways. For example, track references can be used to relate timecode tracks to other movie tracks. You can use track references to identify relationships between video and sound tracks such as identifying the track that contains dialog and the track that contains background sounds. Another use of track references is to associate one or more text tracks that contain subtitles with the appropriate sound track or tracks.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Track references are also used to create chapter lists, as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Chapter_lists",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Every movie track contains a list of its track references. Each track reference identifies another related track. That related track is identified by its track identifier. The track reference itself contains information that allows you to classify the references by type. This type information is stored in an ",
+              "type": "text"
+            },
+            {
+              "code": "OSType",
+              "type": "codeVoice"
+            },
+            {
+              "text": " data type. You are free to specify any type value you want. Note, however, that Apple has reserved all lowercase type values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You may create as many track references as you want, and you may create more than one reference of a given type. Each track reference of a given type is assigned an index value. The index values start at ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for each different reference type. The Movie Toolbox maintains these index values, so that they always start at ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and count by ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Using the ",
+              "type": "text"
+            },
+            {
+              "code": "AddTrackReference",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function, you can relate one track to another. The ",
+              "type": "text"
+            },
+            {
+              "code": "DeleteTrackReference",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function will remove that relationship. The ",
+              "type": "text"
+            },
+            {
+              "code": "SetTrackReference",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "GetTrackReference",
+              "type": "codeVoice"
+            },
+            {
+              "text": " functions allow you to modify an existing track reference so that it identifies a different track. The ",
+              "type": "text"
+            },
+            {
+              "code": "GetNextTrackReferenceType",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "GetTrackReferenceCount",
+              "type": "codeVoice"
+            },
+            {
+              "text": " functions allow you to scan all of a track’s track references.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a list of track reference types, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Track_reference_atoms",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Chapter_lists": {
+      "abstract": [
+        {
+          "text": "A chapter list provides a set of named entry points into a movie.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Chapter_lists",
+      "kind": "article",
+      "role": "article",
+      "title": "Chapter lists",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/chapter_lists"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Creating_movies_with_modifier_tracks": {
+      "abstract": [
+        {
+          "text": "Send data to another media handler instead of presenting media directly.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Creating_movies_with_modifier_tracks",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating movies with modifier tracks",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/creating_movies_with_modifier_tracks"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Media_data_atom_types": {
+      "abstract": [
+        {
+          "text": "Store different types of media data, including video, sound, subtitles, and more.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Media_data_atom_types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Media data atom types",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/media_data_atom_types"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Modifier_tracks": {
+      "abstract": [
+        {
+          "text": "Create dynamic movies with modifier tracks that send data to another track.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Modifier_tracks",
+      "kind": "article",
+      "role": "article",
+      "title": "Modifier tracks",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/modifier_tracks"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Streaming_media": {
+      "abstract": [
+        {
+          "text": "Store streaming data in a streaming media track for QuickTime movies.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Streaming_media",
+      "kind": "article",
+      "role": "article",
+      "title": "Streaming media",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/streaming_media"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Track_reference_atoms": {
+      "abstract": [
+        {
+          "text": "Atoms that defines relationships between tracks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Track_reference_atoms",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Track reference atoms",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/track_reference_atoms"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format": {
+      "abstract": [
+        {
+          "text": "An object-oriented file format for the storage and exchange of digital media between devices, applications, and operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "QuickTime File Format",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Track-features",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Modifier_tracks",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Creating_movies_with_modifier_tracks",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Chapter_lists",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Streaming_media"
+      ],
+      "title": "Track features"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quicktime-file-format/track_references"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

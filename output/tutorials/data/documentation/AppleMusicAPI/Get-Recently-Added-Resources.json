@@ -1,0 +1,973 @@
+{
+  "abstract": [
+    {
+      "text": "Fetch the resources recently added to the library.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Apple Music",
+      "versions": [
+        "1.0",
+        "1.2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Recently-Added-Resources"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:music_api:get:v1-me-library-recently-added",
+    "modules": [
+      {
+        "name": "Apple Music API"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Get Recently Added Resources"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "Apple Music"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Get Recently Added Resources"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "GET"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://api.music.apple.com/"
+        },
+        {
+          "kind": "path",
+          "text": "v1/me/library/recently-added"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The localization to use, specified by a language tag. The possible values are in the ",
+                  "type": "text"
+                },
+                {
+                  "code": "supportedLanguageTags",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " array belonging to the ",
+                  "type": "text"
+                },
+                {
+                  "code": "Storefront",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " object specified by ",
+                  "type": "text"
+                },
+                {
+                  "code": "storefront",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". Otherwise, the default is ",
+                  "type": "text"
+                },
+                {
+                  "code": "defaultLanguageTag",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " in ",
+                  "type": "text"
+                },
+                {
+                  "code": "Storefront",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "l",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "query",
+      "title": "Query Parameters"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The request was successful.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ResourceCollectionResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:music_api:ResourceCollectionResponse",
+              "text": "ResourceCollectionResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A response indicating an incorrect ",
+                  "type": "text"
+                },
+                {
+                  "code": "Authorization",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " header.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Unauthorized",
+          "status": 401,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/UnauthorizedResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:music_api:UnauthorizedResponse",
+              "text": "UnauthorizedResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A response indicating invalid or insufficient authentication.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Forbidden",
+          "status": 403,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ForbiddenResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:music_api:ForbiddenResponse",
+              "text": "ForbiddenResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A response indicating an error occurred on the server.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Internal Server Error",
+          "status": 500,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ErrorsResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:music_api:ErrorsResponse",
+              "text": "ErrorsResponse"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If successful, the HTTP status code is 200 (OK) and the ",
+              "type": "text"
+            },
+            {
+              "code": "data",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array contains an array of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Resource",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects. If unsuccessful, the HTTP status code indicates the error and the details are in the ",
+              "type": "text"
+            },
+            {
+              "code": "errors",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-requests-and-responses",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This endpoint requires a music user token. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/user-authentication-for-musickit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Example",
+          "level": 3,
+          "text": "Example",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "https://api.music.apple.com/v1/me/library/recently-added"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "{    ",
+                    "    \"next\": \"/v1/me/library/recently-added?offset=10\",",
+                    "    \"data\": [",
+                    "        {",
+                    "            \"id\": \"l.NWqWi1m\",",
+                    "            \"type\": \"library-albums\",",
+                    "            \"href\": \"/v1/me/library/albums/l.NWqWi1m\",",
+                    "            \"attributes\": {",
+                    "                \"artistName\": \"Elephante\",",
+                    "                \"genreNames\": [",
+                    "                    \"Electronic\"",
+                    "                ],",
+                    "                \"playParams\": {",
+                    "                    \"id\": \"l.NWqWi1m\",",
+                    "                    \"kind\": \"album\",",
+                    "                    \"isLibrary\": true",
+                    "                },",
+                    "                \"dateAdded\": \"2021-10-06T16: 47: 33Z\",",
+                    "                \"artwork\": {",
+                    "                    \"width\": 1200,",
+                    "                    \"height\": 1200,",
+                    "                    \"url\": \"https: //is1-ssl.mzstatic.com/image/thumb/Music115/v4/76/15/f3/7615f398-b97c-0df7-e840-2d45c14c4f60/190296481482.jpg/{w}x{h}bb.jpg\"",
+                    "                },",
+                    "                \"name\": \"Dopamine - Single\",",
+                    "                \"trackCount\": 1,",
+                    "                \"releaseDate\": \"2021-10-01\"",
+                    "            }",
+                    "        },",
+                    "        {",
+                    "            \"id\": \"l.KPXJEO4\",",
+                    "            \"type\": \"library-albums\",",
+                    "            \"href\": \"/v1/me/library/albums/l.KPXJEO4\",",
+                    "            \"attributes\": {",
+                    "                \"artistName\": \"James Arthur\",",
+                    "                \"genreNames\": [",
+                    "                    \"Pop\"",
+                    "                ],",
+                    "                \"playParams\": {",
+                    "                    \"id\": \"l.KPXJEO4\",",
+                    "                    \"kind\": \"album\",",
+                    "                    \"isLibrary\": true",
+                    "                },",
+                    "                \"dateAdded\": \"2021-10-05T21: 40: 11Z\",",
+                    "                \"artwork\": {",
+                    "                    \"width\": 1200,",
+                    "                    \"height\": 1200,",
+                    "                    \"url\": \"https: //is5-ssl.mzstatic.com/image/thumb/Music115/v4/f2/9e/3a/f29e3a22-ed78-a55c-97d6-d56def0bef25/886449290833.jpg/{w}x{h}bb.jpg\"",
+                    "                },",
+                    "                \"name\": \"September - Single\",",
+                    "                \"trackCount\": 1,",
+                    "                \"releaseDate\": \"2021-06-11\"",
+                    "            }",
+                    "        },",
+                    "        {",
+                    "            \"id\": \"l.REWyBL8\",",
+                    "            \"type\": \"library-albums\",",
+                    "            \"href\": \"/v1/me/library/albums/l.REWyBL8\",",
+                    "            \"attributes\": {",
+                    "                \"artistName\": \"Jess Glynne\",",
+                    "                \"genreNames\": [",
+                    "                    \"Pop\"",
+                    "                ],",
+                    "                \"playParams\": {",
+                    "                    \"id\": \"l.REWyBL8\",",
+                    "                    \"kind\": \"album\",",
+                    "                    \"isLibrary\": true",
+                    "                },",
+                    "                \"dateAdded\": \"2021-10-05T06: 18: 27Z\",",
+                    "                \"artwork\": {",
+                    "                    \"width\": 1200,",
+                    "                    \"height\": 1200,",
+                    "                    \"url\": \"https: //is2-ssl.mzstatic.com/image/thumb/Music124/v4/2f/95/12/2f95123c-6fb0-055d-f018-a540f22848c6/190295416836.jpg/{w}x{h}bb.jpg\"",
+                    "                },",
+                    "                \"name\": \"Always in Between (Deluxe)\",",
+                    "                \"trackCount\": 1,",
+                    "                \"releaseDate\": \"2018-05-04\"",
+                    "            }",
+                    "        },",
+                    "        {",
+                    "            \"id\": \"l.FH0ZX5z\",",
+                    "            \"type\": \"library-albums\",",
+                    "            \"href\": \"/v1/me/library/albums/l.FH0ZX5z\",",
+                    "            \"attributes\": {",
+                    "                \"artistName\": \"Culture Code & Alexis Donn\",",
+                    "                \"genreNames\": [",
+                    "                    \"Electronic\"",
+                    "                ],",
+                    "                \"playParams\": {",
+                    "                    \"id\": \"l.FH0ZX5z\",",
+                    "                    \"kind\": \"album\",",
+                    "                    \"isLibrary\": true",
+                    "                },",
+                    "                \"dateAdded\": \"2021-10-03T17: 32: 40Z\",",
+                    "                \"artwork\": {",
+                    "                    \"width\": 1200,",
+                    "                    \"height\": 1200,",
+                    "                    \"url\": \"https: //is2-ssl.mzstatic.com/image/thumb/Music125/v4/d7/dd/6d/d7dd6d15-0265-12d5-02f0-5200a48bd715/cover.jpg/{w}x{h}bb.jpg\"",
+                    "                },",
+                    "                \"name\": \"You & I - Single\",",
+                    "                \"trackCount\": 1,",
+                    "                \"releaseDate\": \"2021-08-26\"",
+                    "            }",
+                    "        },",
+                    "        {",
+                    "            \"id\": \"p.WmzVKBLFxprx0E\",",
+                    "            \"type\": \"library-playlists\",",
+                    "            \"href\": \"/v1/me/library/playlists/p.WmzVKBLFxprx0E\",",
+                    "            \"attributes\": {",
+                    "                \"playParams\": {",
+                    "                    \"id\": \"p.WmzVKBLFxprx0E\",",
+                    "                    \"kind\": \"playlist\",",
+                    "                    \"isLibrary\": true,",
+                    "                    \"globalId\": \"pl.9dc9de535a544d5d9692766feac0f7c7\"",
+                    "                },",
+                    "                \"isPublic\": false,",
+                    "                \"dateAdded\": \"2021-09-29T19: 09: 24Z\",",
+                    "                \"name\": \"Permanent Vacation\",",
+                    "                \"description\": {",
+                    "                    \"standard\": \"The soundtrack to your next escape—even if you’re staying put.\"",
+                    "                },",
+                    "                \"hasCatalog\": true,",
+                    "                \"artwork\": {",
+                    "                    \"width\": null,",
+                    "                    \"height\": null,",
+                    "                    \"url\": \"https: //is3-ssl.mzstatic.com/image/thumb/Features125/v4/cd/47/f9/cd47f91a-e318-bdb2-7293-a76e484a50ae/contsched.tunnffvr.png/{w}x{h}SC.DN01.jpg\"",
+                    "                },",
+                    "                \"canEdit\": false",
+                    "            }",
+                    "        },",
+                    "        {",
+                    "            \"id\": \"l.G8wMn6w\",",
+                    "            \"type\": \"library-albums\",",
+                    "            \"href\": \"/v1/me/library/albums/l.G8wMn6w\",",
+                    "            \"attributes\": {",
+                    "                \"artistName\": \"Dua Lipa\",",
+                    "                \"genreNames\": [",
+                    "                    \"Pop\"",
+                    "                ],",
+                    "                \"playParams\": {",
+                    "                    \"id\": \"l.G8wMn6w\",",
+                    "                    \"kind\": \"album\",",
+                    "                    \"isLibrary\": true",
+                    "                },",
+                    "                \"dateAdded\": \"2021-09-29T18: 27: 45Z\",",
+                    "                \"artwork\": {",
+                    "                    \"width\": 1200,",
+                    "                    \"height\": 1200,",
+                    "                    \"url\": \"https: //is5-ssl.mzstatic.com/image/thumb/Video124/v4/3f/1e/6f/3f1e6f35-6960-3f0e-0a0c-8701aa2012d4/dj.bcvxpufw.jpg/{w}x{h}bb.jpg\"",
+                    "                },",
+                    "                \"name\": \"Unknown Album\",",
+                    "                \"trackCount\": 1,",
+                    "                \"releaseDate\": \"2021-02-12\"",
+                    "            }",
+                    "        },",
+                    "        {",
+                    "            \"id\": \"l.8mDKroj\",",
+                    "            \"type\": \"library-albums\",",
+                    "            \"href\": \"/v1/me/library/albums/l.8mDKroj\",",
+                    "            \"attributes\": {",
+                    "                \"artistName\": \"Man Cub\",",
+                    "                \"genreNames\": [",
+                    "                    \"Dance\"",
+                    "                ],",
+                    "                \"playParams\": {",
+                    "                    \"id\": \"l.8mDKroj\",",
+                    "                    \"kind\": \"album\",",
+                    "                    \"isLibrary\": true",
+                    "                },",
+                    "                \"dateAdded\": \"2021-09-28T05: 50: 24Z\",",
+                    "                \"artwork\": {",
+                    "                    \"width\": 1200,",
+                    "                    \"height\": 1200,",
+                    "                    \"url\": \"https: //is3-ssl.mzstatic.com/image/thumb/Music123/v4/35/a6/17/35a617bd-4d83-b9e5-92cd-ea8618c27402/5054285157053.png/{w}x{h}bb.jpg\"",
+                    "                },",
+                    "                \"name\": \"Impressions\",",
+                    "                \"trackCount\": 1,",
+                    "                \"releaseDate\": \"2020-06-12\"",
+                    "            }",
+                    "        },",
+                    "        {",
+                    "            \"id\": \"l.dsZCeEv\",",
+                    "            \"type\": \"library-albums\",",
+                    "            \"href\": \"/v1/me/library/albums/l.dsZCeEv\",",
+                    "            \"attributes\": {",
+                    "                \"artistName\": \"GhostDragon\",",
+                    "                \"genreNames\": [",
+                    "                    \"Electronic\"",
+                    "                ],",
+                    "                \"playParams\": {",
+                    "                    \"id\": \"l.dsZCeEv\",",
+                    "                    \"kind\": \"album\",",
+                    "                    \"isLibrary\": true",
+                    "                },",
+                    "                \"dateAdded\": \"2021-09-24T02: 14: 11Z\",",
+                    "                \"artwork\": {",
+                    "                    \"width\": 1200,",
+                    "                    \"height\": 1200,",
+                    "                    \"url\": \"https: //is5-ssl.mzstatic.com/image/thumb/Music114/v4/33/2a/69/332a69ba-b687-ecaa-6a27-9ce5ed0e2492/cover.jpg/{w}x{h}bb.jpg\"",
+                    "                },",
+                    "                \"name\": \"Stories - EP\",",
+                    "                \"trackCount\": 2,",
+                    "                \"releaseDate\": \"2020-03-14\"",
+                    "            }",
+                    "        },",
+                    "        {",
+                    "            \"id\": \"l.F6QVDFo\",",
+                    "            \"type\": \"library-albums\",",
+                    "            \"href\": \"/v1/me/library/albums/l.F6QVDFo\",",
+                    "            \"attributes\": {",
+                    "                \"artistName\": \"Monstercat\",",
+                    "                \"genreNames\": [",
+                    "                    \"Dance\"",
+                    "                ],",
+                    "                \"playParams\": {",
+                    "                    \"id\": \"l.F6QVDFo\",",
+                    "                    \"kind\": \"album\",",
+                    "                    \"isLibrary\": true",
+                    "                },",
+                    "                \"dateAdded\": \"2021-09-24T20: 57: 21Z\",",
+                    "                \"artwork\": {",
+                    "                    \"width\": 1200,",
+                    "                    \"height\": 1200,",
+                    "                    \"url\": \"https: //is1-ssl.mzstatic.com/image/thumb/Music114/v4/c9/ad/36/c9ad3692-027f-046a-313b-40b487e4c949/742779537072.png/{w}x{h}bb.jpg\"",
+                    "                },",
+                    "                \"name\": \"Monstercat Instinct Vol. 7\",",
+                    "                \"trackCount\": 1,",
+                    "                \"releaseDate\": \"2021-03-09\"",
+                    "            }",
+                    "        },",
+                    "        {",
+                    "            \"id\": \"l.ndPcyOd\",",
+                    "            \"type\": \"library-albums\",",
+                    "            \"href\": \"/v1/me/library/albums/l.ndPcyOd\",",
+                    "            \"attributes\": {",
+                    "                \"artistName\": \"The Kid LAROI\",",
+                    "                \"genreNames\": [",
+                    "                    \"Pop\"",
+                    "                ],",
+                    "                \"playParams\": {",
+                    "                    \"id\": \"l.ndPcyOd\",",
+                    "                    \"kind\": \"album\",",
+                    "                    \"isLibrary\": true",
+                    "                },",
+                    "                \"dateAdded\": \"2021-09-24T19: 14: 17Z\",",
+                    "                \"artwork\": {",
+                    "                    \"width\": 1200,",
+                    "                    \"height\": 1200,",
+                    "                    \"url\": \"https: //is4-ssl.mzstatic.com/image/thumb/Music125/v4/9d/69/f1/9d69f15c-7bcc-24e9-0adc-ec3afd0bf5cc/886449473663.jpg/{w}x{h}bb.jpg\"",
+                    "                },",
+                    "                \"name\": \"F*CK LOVE 3+: OVER YOU\",",
+                    "                \"trackCount\": 1,",
+                    "                \"releaseDate\": \"2020-07-22\"",
+                    "            }",
+                    "        }",
+                    "    ]",
+                    "}",
+                    ""
+                  ],
+                  "syntax": "json",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI": {
+      "abstract": [
+        {
+          "text": "Integrate streaming music with catalog and personal content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Music API",
+      "type": "topic",
+      "url": "/documentation/applemusicapi"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ErrorsResponse": {
+      "abstract": [
+        {
+          "text": "A response object indicating that an error occurred while processing the request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ErrorsResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ErrorsResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ErrorsResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ErrorsResponse",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/errorsresponse"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ForbiddenResponse": {
+      "abstract": [
+        {
+          "text": "A response object indicating that the request wasn’t accepted due to an issue with the authentication.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ForbiddenResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ForbiddenResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ForbiddenResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ForbiddenResponse",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/forbiddenresponse"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/GET-v1-me-recent-played-tracks": {
+      "abstract": [
+        {
+          "text": "Fetch the recently played tracks for the user.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/GET-v1-me-recent-played-tracks",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/me/recent/played/tracks"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Recently Played Tracks",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/get-v1-me-recent-played-tracks"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Heavy-Rotation-Content": {
+      "abstract": [
+        {
+          "text": "Fetch the resources in heavy rotation for the user.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Heavy-Rotation-Content",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Heavy Rotation Content"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Heavy Rotation Content",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/get-heavy-rotation-content"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Recently-Added-Resources": {
+      "abstract": [
+        {
+          "text": "Fetch the resources recently added to the library.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Recently-Added-Resources",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Recently Added Resources"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Recently Added Resources",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/get-recently-added-resources"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Recently-Played-Resources": {
+      "abstract": [
+        {
+          "text": "Fetch the recently played resources for the user.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Recently-Played-Resources",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Recently Played Resources"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Recently Played Resources",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/get-recently-played-resources"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Recently-Played-Stations": {
+      "abstract": [
+        {
+          "text": "Fetch recently played radio stations for the user.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Recently-Played-Stations",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Recently Played Stations"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Recently Played Stations",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/get-recently-played-stations"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Resource": {
+      "abstract": [
+        {
+          "text": "A resource—such as an album, song, or playlist.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Resource"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Resource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Resource"
+        }
+      ],
+      "role": "symbol",
+      "title": "Resource",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/resource"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ResourceCollectionResponse": {
+      "abstract": [
+        {
+          "text": "A response object composed of resource objects for the request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ResourceCollectionResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ResourceCollectionResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ResourceCollectionResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ResourceCollectionResponse",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/resourcecollectionresponse"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/UnauthorizedResponse": {
+      "abstract": [
+        {
+          "text": "A response object indicating that the request’s authorization is missing or invalid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnauthorizedResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/UnauthorizedResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UnauthorizedResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "UnauthorizedResponse",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/unauthorizedresponse"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-requests-and-responses": {
+      "abstract": [
+        {
+          "text": "Write a request and handle responses from the API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-requests-and-responses",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling Requests and Responses",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/handling-requests-and-responses"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/user-authentication-for-musickit": {
+      "abstract": [
+        {
+          "text": "Authenticate requests for user data using the Music User Token.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/user-authentication-for-musickit",
+      "kind": "article",
+      "role": "article",
+      "title": "User Authentication for MusicKit",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/user-authentication-for-musickit"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Resource"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Requesting-Historical-Information",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Heavy-Rotation-Content",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Recently-Played-Resources",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/GET-v1-me-recent-played-tracks",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Recently-Played-Stations"
+      ],
+      "title": "Requesting Historical Information"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/applemusicapi/get-recently-added-resources"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

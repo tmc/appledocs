@@ -1,1 +1,1514 @@
-{"relationshipsSections":[{"title":"Conforms To","identifiers":["doc://com.apple.RealityKit/documentation/RealityKit/Component","doc://com.externally.resolved.symbol/s:SQ"],"kind":"relationships","type":"conformsTo"}],"schemaVersion":{"major":0,"minor":3,"patch":0},"seeAlsoSections":[{"title":"Anchoring component","identifiers":["doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/Target-swift.enum","doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/TrackingMode-swift.struct","doc://com.apple.RealityKit/documentation/RealityKit/AnchorEntity","doc://com.apple.RealityKit/documentation/RealityKit/HasAnchoring"],"anchor":"Anchoring-component","generated":true}],"kind":"symbol","variants":[{"traits":[{"interfaceLanguage":"swift"}],"paths":["/documentation/realitykit/anchoringcomponent"]}],"sections":[],"abstract":[{"text":"A component that anchors virtual content to a real world target.","type":"text"}],"identifier":{"url":"doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent","interfaceLanguage":"swift"},"topicSections":[{"title":"Creating the anchor component","identifiers":["doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/init(_:)-2wng6","doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/init(_:trackingMode:)","doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/init(_:trackingMode:physicsSimulation:)","doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/init(_:)-5dney"],"anchor":"Creating-the-anchor-component"},{"title":"Setting a target","identifiers":["doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/target-swift.property"],"anchor":"Setting-a-target"},{"title":"Setting a tracking mode","identifiers":["doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/trackingMode-swift.property"],"anchor":"Setting-a-tracking-mode"},{"title":"Setting a physics simulation space","identifiers":["doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/physicsSimulation-swift.property"],"anchor":"Setting-a-physics-simulation-space"},{"title":"Registering a component type","identifiers":["doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/registerComponent()"],"anchor":"Registering-a-component-type"},{"title":"Comparing anchoring components","identifiers":["doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/==(_:_:)","doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/!=(_:_:)"],"anchor":"Comparing-anchoring-components"},{"title":"Structures","identifiers":["doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/ImageAnchoringSource","doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/ObjectAnchoringSource","doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/TrackingMode-swift.struct"],"anchor":"Structures","generated":true},{"title":"Enumerations","identifiers":["doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/PhysicsSimulation-swift.enum","doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/Target-swift.enum"],"anchor":"Enumerations","generated":true},{"title":"Default Implementations","identifiers":["doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/Component-Implementations","doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/Equatable-Implementations"],"anchor":"Default-Implementations","generated":true}],"primaryContentSections":[{"declarations":[{"platforms":["iOS","iPadOS","Mac Catalyst","macOS","visionOS"],"languages":["swift"],"tokens":[{"text":"struct","kind":"keyword"},{"text":" ","kind":"text"},{"text":"AnchoringComponent","kind":"identifier"}]}],"kind":"declarations"},{"content":[{"anchor":"Overview","type":"heading","level":2,"text":"Overview"},{"type":"paragraph","inlineContent":[{"type":"text","text":"This component is essential for getting AR features into RealityKit."},{"type":"text","text":" "},{"type":"text","text":"Use "},{"type":"codeVoice","code":"AnchoringComponent"},{"type":"text","text":" to anchor virtual content to a real world target by attaching the component to any "},{"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/Entity","isActive":true,"type":"reference"},{"type":"text","text":" in your RealityKit scene."}]},{"type":"paragraph","inlineContent":[{"text":"To create an ","type":"text"},{"code":"AnchoringComponent","type":"codeVoice"},{"text":", you need to specify a ","type":"text"},{"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/Target-swift.enum","isActive":true,"type":"reference"},{"text":". You can also specify the ","type":"text"},{"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/TrackingMode-swift.struct","isActive":true,"type":"reference"},{"text":" and the ","type":"text"},{"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/PhysicsSimulation-swift.enum","isActive":true,"type":"reference"},{"text":" to control how the entity tracks the anchor and how the physics simulates with the entity.","type":"text"}]},{"type":"paragraph","inlineContent":[{"text":"For example, here’s how to create an entity that targets the left hand’s wrist with predicted tracking mode:","type":"text"}]},{"type":"codeListing","syntax":"swift","code":["let target = AnchoringComponent.Target.hand(.left, location: .wrist)","let anchoringComponent = AnchoringComponent(target, trackingMode: .predicted)","let entity = Entity()","entity.components.set(anchoringComponent)"]},{"type":"paragraph","inlineContent":[{"type":"text","text":"The entity with "},{"type":"codeVoice","code":"AnchoringComponent"},{"type":"text","text":" is inactive when created."},{"type":"text","text":" "},{"type":"text","text":"RealityKit anchors and activates the entity when it finds an anchor that meets the target requirements."},{"type":"text","text":" "},{"type":"text","text":"You can check the entity’s anchored status using "},{"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/Entity/isAnchored","type":"reference","isActive":true},{"type":"text","text":", or you can subscribe to "},{"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/SceneEvents/AnchoredStateChanged","type":"reference","isActive":true},{"type":"text","text":" events to receive scene events."}]},{"type":"paragraph","inlineContent":[{"type":"text","text":"Similarly, RealityKit unanchors the entity if the target disappears or no longer meets the target requirements."}]},{"type":"paragraph","inlineContent":[{"type":"text","text":"For more information about anchors, see "},{"type":"reference","identifier":"doc://com.apple.documentation/documentation/ARKit","isActive":true},{"type":"text","text":"."}]}],"kind":"content"}],"metadata":{"navigatorTitle":[{"text":"AnchoringComponent","kind":"identifier"}],"roleHeading":"Structure","externalID":"s:17RealityFoundation18AnchoringComponentV","symbolKind":"struct","modules":[{"name":"RealityKit"}],"platforms":[{"name":"iOS","deprecated":false,"beta":false,"unavailable":false,"introducedAt":"13.0"},{"name":"iPadOS","deprecated":false,"beta":false,"unavailable":false,"introducedAt":"13.0"},{"name":"Mac Catalyst","deprecated":false,"beta":false,"unavailable":false,"introducedAt":"14.0"},{"name":"macOS","deprecated":false,"beta":false,"unavailable":false,"introducedAt":"10.15"},{"name":"visionOS","deprecated":false,"beta":false,"unavailable":false}],"title":"AnchoringComponent","role":"symbol","fragments":[{"text":"struct","kind":"keyword"},{"text":" ","kind":"text"},{"text":"AnchoringComponent","kind":"identifier"}]},"hierarchy":{"paths":[["doc://com.apple.documentation/documentation/technologies","doc://com.apple.RealityKit/documentation/RealityKit"]]},"references":{"doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/init(_:)-5dney":{"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/init(_:)-5dney","title":"init(_:)","url":"/documentation/realitykit/anchoringcomponent/init(_:)-5dney","type":"topic","abstract":[{"type":"text","text":"Creates an anchoring component with the given AR anchor."}],"kind":"symbol","fragments":[{"kind":"identifier","text":"init"},{"kind":"text","text":"("},{"preciseIdentifier":"c:objc(cs)ARAnchor","kind":"typeIdentifier","text":"ARAnchor"},{"kind":"text","text":")"}],"role":"symbol"},"doc://com.apple.RealityKit/documentation/RealityKit/Component":{"role":"symbol","navigatorTitle":[{"text":"Component","kind":"identifier"}],"type":"topic","title":"Component","kind":"symbol","fragments":[{"text":"protocol","kind":"keyword"},{"text":" ","kind":"text"},{"text":"Component","kind":"identifier"}],"abstract":[{"text":"A representation of a geometry or a behavior that you apply to an entity.","type":"text"}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/Component","url":"/documentation/realitykit/component"},"doc://com.apple.RealityKit/documentation/RealityKit/AnchorEntity":{"abstract":[{"type":"text","text":"An anchor that tethers entities to a scene."}],"navigatorTitle":[{"kind":"identifier","text":"AnchorEntity"}],"role":"symbol","url":"/documentation/realitykit/anchorentity","kind":"symbol","title":"AnchorEntity","fragments":[{"text":"class","kind":"keyword"},{"kind":"text","text":" "},{"kind":"identifier","text":"AnchorEntity"}],"type":"topic","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/AnchorEntity"},"doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/ImageAnchoringSource":{"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/ImageAnchoringSource","type":"topic","abstract":[{"text":"Defines the source of object anchoring target based on how it is created.","type":"text"}],"url":"/documentation/realitykit/anchoringcomponent/imageanchoringsource","kind":"symbol","title":"AnchoringComponent.ImageAnchoringSource","navigatorTitle":[{"kind":"identifier","text":"ImageAnchoringSource"}],"role":"symbol","fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"ImageAnchoringSource"}]},"doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/TrackingMode-swift.struct":{"title":"AnchoringComponent.TrackingMode","type":"topic","abstract":[{"text":"Decides how the ","type":"text"},{"code":"Entity","type":"codeVoice"},{"text":" tracks its target anchor.","type":"text"}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/TrackingMode-swift.struct","kind":"symbol","navigatorTitle":[{"text":"TrackingMode","kind":"identifier"}],"fragments":[{"text":"struct","kind":"keyword"},{"text":" ","kind":"text"},{"text":"TrackingMode","kind":"identifier"}],"role":"symbol","url":"/documentation/realitykit/anchoringcomponent/trackingmode-swift.struct"},"doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent":{"kind":"symbol","url":"/documentation/realitykit/anchoringcomponent","abstract":[{"type":"text","text":"A component that anchors virtual content to a real world target."}],"fragments":[{"text":"struct","kind":"keyword"},{"text":" ","kind":"text"},{"text":"AnchoringComponent","kind":"identifier"}],"navigatorTitle":[{"text":"AnchoringComponent","kind":"identifier"}],"role":"symbol","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent","title":"AnchoringComponent","type":"topic"},"doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/Target-swift.enum":{"title":"AnchoringComponent.Target","abstract":[{"text":"Defines the kinds of real world objects to which an anchor entity can be tethered.","type":"text"}],"type":"topic","navigatorTitle":[{"kind":"identifier","text":"Target"}],"fragments":[{"text":"enum","kind":"keyword"},{"kind":"text","text":" "},{"kind":"identifier","text":"Target"}],"kind":"symbol","url":"/documentation/realitykit/anchoringcomponent/target-swift.enum","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/Target-swift.enum","role":"symbol"},"doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/init(_:trackingMode:physicsSimulation:)":{"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/init(_:trackingMode:physicsSimulation:)","fragments":[{"text":"init","kind":"identifier"},{"text":"(","kind":"text"},{"text":"AnchoringComponent","preciseIdentifier":"s:17RealityFoundation18AnchoringComponentV","kind":"typeIdentifier"},{"text":".","kind":"text"},{"text":"Target","preciseIdentifier":"s:17RealityFoundation18AnchoringComponentV6TargetO","kind":"typeIdentifier"},{"text":", ","kind":"text"},{"text":"trackingMode","kind":"externalParam"},{"text":": ","kind":"text"},{"text":"AnchoringComponent","preciseIdentifier":"s:17RealityFoundation18AnchoringComponentV","kind":"typeIdentifier"},{"text":".","kind":"text"},{"text":"TrackingMode","preciseIdentifier":"s:17RealityFoundation18AnchoringComponentVAAE12TrackingModeV","kind":"typeIdentifier"},{"text":", ","kind":"text"},{"text":"physicsSimulation","kind":"externalParam"},{"kind":"text","text":": "},{"kind":"typeIdentifier","preciseIdentifier":"s:17RealityFoundation18AnchoringComponentV","text":"AnchoringComponent"},{"kind":"text","text":"."},{"kind":"typeIdentifier","preciseIdentifier":"s:17RealityFoundation18AnchoringComponentVAAE17PhysicsSimulationO","text":"PhysicsSimulation"},{"kind":"text","text":")"}],"abstract":[{"text":"Creates an anchoring component for a given target, tracking mode and physics simulation.","type":"text"}],"type":"topic","kind":"symbol","title":"init(_:trackingMode:physicsSimulation:)","url":"/documentation/realitykit/anchoringcomponent/init(_:trackingmode:physicssimulation:)","role":"symbol"},"doc://com.apple.documentation/documentation/technologies":{"url":"/documentation/technologies","abstract":[{"text":"","type":"text"}],"kind":"technologies","type":"topic","role":"overview","title":"Technologies","identifier":"doc://com.apple.documentation/documentation/technologies"},"doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/PhysicsSimulation-swift.enum":{"fragments":[{"kind":"keyword","text":"enum"},{"kind":"text","text":" "},{"kind":"identifier","text":"PhysicsSimulation"}],"navigatorTitle":[{"kind":"identifier","text":"PhysicsSimulation"}],"abstract":[{"text":"Describes the physics simulation space of the entity and its descendants.","type":"text"}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/PhysicsSimulation-swift.enum","title":"AnchoringComponent.PhysicsSimulation","url":"/documentation/realitykit/anchoringcomponent/physicssimulation-swift.enum","kind":"symbol","role":"symbol","type":"topic"},"doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/==(_:_:)":{"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/==(_:_:)","kind":"symbol","type":"topic","url":"/documentation/realitykit/anchoringcomponent/==(_:_:)","title":"==(_:_:)","abstract":[{"type":"text","text":"Returns a Boolean value indicating whether two values are equal."}],"role":"symbol","fragments":[{"kind":"keyword","text":"static"},{"kind":"text","text":" "},{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"=="},{"kind":"text","text":" "},{"kind":"text","text":"("},{"kind":"typeIdentifier","text":"AnchoringComponent","preciseIdentifier":"s:17RealityFoundation18AnchoringComponentV"},{"kind":"text","text":", "},{"kind":"typeIdentifier","text":"AnchoringComponent","preciseIdentifier":"s:17RealityFoundation18AnchoringComponentV"},{"kind":"text","text":") -> "},{"kind":"typeIdentifier","text":"Bool","preciseIdentifier":"s:Sb"}]},"doc://com.apple.RealityKit/documentation/RealityKit/Entity":{"navigatorTitle":[{"text":"Entity","kind":"identifier"}],"url":"/documentation/realitykit/entity","fragments":[{"text":"class","kind":"keyword"},{"text":" ","kind":"text"},{"text":"Entity","kind":"identifier"}],"abstract":[{"text":"An element of a RealityKit scene to which you attach components that provide","type":"text"},{"text":" ","type":"text"},{"type":"text","text":"appearance and behavior characteristics for the entity."}],"kind":"symbol","type":"topic","role":"symbol","title":"Entity","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/Entity"},"doc://com.apple.RealityKit/documentation/RealityKit":{"url":"/documentation/realitykit","abstract":[{"text":"Simulate and render 3D content for use in your augmented reality apps.","type":"text"}],"kind":"symbol","type":"topic","role":"collection","title":"RealityKit","identifier":"doc://com.apple.RealityKit/documentation/RealityKit"},"doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/registerComponent()":{"url":"/documentation/realitykit/anchoringcomponent/registercomponent()","kind":"symbol","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/registerComponent()","abstract":[{"type":"text","text":"Registers a new component type."}],"type":"topic","title":"registerComponent()","fragments":[{"kind":"keyword","text":"static"},{"kind":"text","text":" "},{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"registerComponent"},{"kind":"text","text":"()"}],"role":"symbol"},"doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/target-swift.property":{"type":"topic","kind":"symbol","role":"symbol","title":"target","abstract":[{"type":"text","text":"The real world anchor target to attach the entity to."}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/target-swift.property","url":"/documentation/realitykit/anchoringcomponent/target-swift.property","fragments":[{"kind":"keyword","text":"let"},{"kind":"text","text":" "},{"kind":"identifier","text":"target"},{"kind":"text","text":": "},{"kind":"typeIdentifier","preciseIdentifier":"s:17RealityFoundation18AnchoringComponentV","text":"AnchoringComponent"},{"kind":"text","text":"."},{"kind":"typeIdentifier","preciseIdentifier":"s:17RealityFoundation18AnchoringComponentV6TargetO","text":"Target"}]},"doc://com.apple.documentation/documentation/ARKit":{"identifier":"doc://com.apple.documentation/documentation/ARKit","title":"ARKit","type":"topic","role":"collection","url":"/documentation/ARKit","kind":"symbol","abstract":[{"type":"text","text":"Integrate hardware sensing features to produce augmented reality apps and games."}]},"doc://com.apple.RealityKit/documentation/RealityKit/HasAnchoring":{"navigatorTitle":[{"kind":"identifier","text":"HasAnchoring"}],"role":"symbol","title":"HasAnchoring","kind":"symbol","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/HasAnchoring","type":"topic","abstract":[{"type":"text","text":"An interface that enables anchoring of virtual content to a real-world"},{"type":"text","text":" "},{"type":"text","text":"object in an AR scene."}],"fragments":[{"kind":"keyword","text":"protocol"},{"kind":"text","text":" "},{"kind":"identifier","text":"HasAnchoring"}],"url":"/documentation/realitykit/hasanchoring"},"doc://com.apple.RealityKit/documentation/RealityKit/Entity/isAnchored":{"type":"topic","abstract":[{"type":"text","text":"A Boolean that indicates whether the entity is anchored."}],"role":"symbol","title":"isAnchored","kind":"symbol","fragments":[{"text":"var","kind":"keyword"},{"text":" ","kind":"text"},{"text":"isAnchored","kind":"identifier"},{"text":": ","kind":"text"},{"text":"Bool","kind":"typeIdentifier","preciseIdentifier":"s:Sb"}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/Entity/isAnchored","url":"/documentation/realitykit/entity/isanchored"},"doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/trackingMode-swift.property":{"title":"trackingMode","role":"symbol","type":"topic","abstract":[{"text":"Defines how the ","type":"text"},{"code":"Entity","type":"codeVoice"},{"text":" tracks its target anchor.","type":"text"}],"kind":"symbol","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/trackingMode-swift.property","url":"/documentation/realitykit/anchoringcomponent/trackingmode-swift.property","fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"trackingMode"},{"kind":"text","text":": "},{"preciseIdentifier":"s:17RealityFoundation18AnchoringComponentV","kind":"typeIdentifier","text":"AnchoringComponent"},{"kind":"text","text":"."},{"preciseIdentifier":"s:17RealityFoundation18AnchoringComponentVAAE12TrackingModeV","kind":"typeIdentifier","text":"TrackingMode"}]},"doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/physicsSimulation-swift.property":{"type":"topic","abstract":[{"text":"Specifies the physics simulation spece that the entity and its descendants are in.","type":"text"}],"fragments":[{"text":"var","kind":"keyword"},{"text":" ","kind":"text"},{"text":"physicsSimulation","kind":"identifier"},{"text":": ","kind":"text"},{"text":"AnchoringComponent","preciseIdentifier":"s:17RealityFoundation18AnchoringComponentV","kind":"typeIdentifier"},{"text":".","kind":"text"},{"text":"PhysicsSimulation","preciseIdentifier":"s:17RealityFoundation18AnchoringComponentVAAE17PhysicsSimulationO","kind":"typeIdentifier"}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/physicsSimulation-swift.property","title":"physicsSimulation","kind":"symbol","role":"symbol","url":"/documentation/realitykit/anchoringcomponent/physicssimulation-swift.property"},"doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/init(_:trackingMode:)":{"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/init(_:trackingMode:)","title":"init(_:trackingMode:)","url":"/documentation/realitykit/anchoringcomponent/init(_:trackingmode:)","type":"topic","abstract":[],"kind":"symbol","fragments":[{"text":"init","kind":"identifier"},{"text":"(","kind":"text"},{"text":"AnchoringComponent","kind":"typeIdentifier","preciseIdentifier":"s:17RealityFoundation18AnchoringComponentV"},{"text":".","kind":"text"},{"text":"Target","kind":"typeIdentifier","preciseIdentifier":"s:17RealityFoundation18AnchoringComponentV6TargetO"},{"text":", ","kind":"text"},{"text":"trackingMode","kind":"externalParam"},{"text":": ","kind":"text"},{"text":"AnchoringComponent","preciseIdentifier":"s:17RealityFoundation18AnchoringComponentV","kind":"typeIdentifier"},{"text":".","kind":"text"},{"text":"TrackingMode","preciseIdentifier":"s:17RealityFoundation18AnchoringComponentVAAE12TrackingModeV","kind":"typeIdentifier"},{"text":")","kind":"text"}],"role":"symbol"},"doc://com.apple.RealityKit/documentation/RealityKit/SceneEvents/AnchoredStateChanged":{"navigatorTitle":[{"kind":"identifier","text":"AnchoredStateChanged"}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/SceneEvents/AnchoredStateChanged","kind":"symbol","type":"topic","url":"/documentation/realitykit/sceneevents/anchoredstatechanged","title":"SceneEvents.AnchoredStateChanged","abstract":[{"type":"text","text":"An event invoked when the anchored state of an anchoring entity"},{"type":"text","text":" "},{"type":"text","text":"changes."}],"role":"symbol","fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"AnchoredStateChanged"}]},"doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/ObjectAnchoringSource":{"navigatorTitle":[{"kind":"identifier","text":"ObjectAnchoringSource"}],"title":"AnchoringComponent.ObjectAnchoringSource","kind":"symbol","fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"ObjectAnchoringSource"}],"role":"symbol","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/ObjectAnchoringSource","url":"/documentation/realitykit/anchoringcomponent/objectanchoringsource","type":"topic","abstract":[{"type":"text","text":"Defines the source of object anchoring target based on how it is created."}]},"doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/init(_:)-2wng6":{"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/init(_:)-2wng6","fragments":[{"text":"init","kind":"identifier"},{"text":"(","kind":"text"},{"text":"AnchoringComponent","kind":"typeIdentifier","preciseIdentifier":"s:17RealityFoundation18AnchoringComponentV"},{"text":".","kind":"text"},{"text":"Target","preciseIdentifier":"s:17RealityFoundation18AnchoringComponentV6TargetO","kind":"typeIdentifier"},{"text":")","kind":"text"}],"abstract":[{"type":"text","text":"Creates an anchoring component for a given target."}],"type":"topic","kind":"symbol","title":"init(_:)","url":"/documentation/realitykit/anchoringcomponent/init(_:)-2wng6","role":"symbol"},"doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/Component-Implementations":{"type":"topic","kind":"article","role":"collectionGroup","title":"Component Implementations","abstract":[],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/Component-Implementations","url":"/documentation/realitykit/anchoringcomponent/component-implementations"},"doc://com.externally.resolved.symbol/s:SQ":{"url":"/documentation/Swift/Equatable","kind":"symbol","title":"Equatable","role":"symbol","type":"topic","fragments":[{"text":"protocol","kind":"keyword"},{"text":" ","kind":"text"},{"text":"Equatable","kind":"identifier"}],"abstract":[{"text":"A type that can be compared for value equality.","type":"text"}],"identifier":"doc://com.externally.resolved.symbol/s:SQ"},"doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/!=(_:_:)":{"title":"!=(_:_:)","role":"symbol","type":"topic","abstract":[{"type":"text","text":"Returns a Boolean value indicating whether two values are not equal."}],"kind":"symbol","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/!=(_:_:)","url":"/documentation/realitykit/anchoringcomponent/!=(_:_:)","fragments":[{"kind":"keyword","text":"static"},{"kind":"text","text":" "},{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"!="},{"kind":"text","text":" "},{"kind":"text","text":"("},{"kind":"typeIdentifier","text":"Self"},{"kind":"text","text":", "},{"kind":"typeIdentifier","text":"Self"},{"kind":"text","text":") -> "},{"kind":"typeIdentifier","text":"Bool","preciseIdentifier":"s:Sb"}]},"doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/Equatable-Implementations":{"type":"topic","kind":"article","role":"collectionGroup","title":"Equatable Implementations","abstract":[],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/Equatable-Implementations","url":"/documentation/realitykit/anchoringcomponent/equatable-implementations"}},"legalNotices":{"copyright":"Copyright &copy; 2025 Apple Inc. All rights reserved.","termsOfUse":"https://www.apple.com/legal/internet-services/terms/site.html","privacyPolicy":"https://www.apple.com/privacy/privacy-policy"}}
+{
+  "abstract": [
+    {
+      "text": "A component that anchors virtual content to a real world target.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:17RealityFoundation18AnchoringComponentV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "AnchoringComponent"
+      }
+    ],
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "AnchoringComponent"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.15",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "AnchoringComponent"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AnchoringComponent"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This component is essential for getting AR features into RealityKit.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "code": "AnchoringComponent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to anchor virtual content to a real world target by attaching the component to any ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in your RealityKit scene.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create an ",
+              "type": "text"
+            },
+            {
+              "code": "AnchoringComponent",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", you need to specify a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/Target-swift.enum",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". You can also specify the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/TrackingMode-swift.struct",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/PhysicsSimulation-swift.enum",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to control how the entity tracks the anchor and how the physics simulates with the entity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, here’s how to create an entity that targets the left hand’s wrist with predicted tracking mode:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let target = AnchoringComponent.Target.hand(.left, location: .wrist)",
+            "let anchoringComponent = AnchoringComponent(target, trackingMode: .predicted)",
+            "let entity = Entity()",
+            "entity.components.set(anchoringComponent)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The entity with ",
+              "type": "text"
+            },
+            {
+              "code": "AnchoringComponent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is inactive when created.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "RealityKit anchors and activates the entity when it finds an anchor that meets the target requirements.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can check the entity’s anchored status using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/isAnchored",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or you can subscribe to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SceneEvents/AnchoredStateChanged",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " events to receive scene events.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Similarly, RealityKit unanchors the entity if the target disappears or no longer meets the target requirements.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about anchors, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ARKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AnchorEntity": {
+      "abstract": [
+        {
+          "text": "An anchor that tethers entities to a scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnchorEntity"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnchorEntity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnchorEntity"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnchorEntity",
+      "type": "topic",
+      "url": "/documentation/realitykit/anchorentity"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent": {
+      "abstract": [
+        {
+          "text": "A component that anchors virtual content to a real world target.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnchoringComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnchoringComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnchoringComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/anchoringcomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/!=(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether two values are not equal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "!="
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/!=(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "!=(_:_:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/anchoringcomponent/!=(_:_:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/==(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether two values are equal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "=="
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation18AnchoringComponentV",
+          "text": "AnchoringComponent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation18AnchoringComponentV",
+          "text": "AnchoringComponent"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/==(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "==(_:_:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/anchoringcomponent/==(_:_:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/Component-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/Component-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Component Implementations",
+      "type": "topic",
+      "url": "/documentation/realitykit/anchoringcomponent/component-implementations"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/Equatable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/Equatable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Equatable Implementations",
+      "type": "topic",
+      "url": "/documentation/realitykit/anchoringcomponent/equatable-implementations"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/ImageAnchoringSource": {
+      "abstract": [
+        {
+          "text": "Defines the source of object anchoring target based on how it is created.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImageAnchoringSource"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/ImageAnchoringSource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ImageAnchoringSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnchoringComponent.ImageAnchoringSource",
+      "type": "topic",
+      "url": "/documentation/realitykit/anchoringcomponent/imageanchoringsource"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/ObjectAnchoringSource": {
+      "abstract": [
+        {
+          "text": "Defines the source of object anchoring target based on how it is created.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ObjectAnchoringSource"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/ObjectAnchoringSource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ObjectAnchoringSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnchoringComponent.ObjectAnchoringSource",
+      "type": "topic",
+      "url": "/documentation/realitykit/anchoringcomponent/objectanchoringsource"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/PhysicsSimulation-swift.enum": {
+      "abstract": [
+        {
+          "text": "Describes the physics simulation space of the entity and its descendants.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PhysicsSimulation"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/PhysicsSimulation-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PhysicsSimulation"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnchoringComponent.PhysicsSimulation",
+      "type": "topic",
+      "url": "/documentation/realitykit/anchoringcomponent/physicssimulation-swift.enum"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/Target-swift.enum": {
+      "abstract": [
+        {
+          "text": "Defines the kinds of real world objects to which an anchor entity can be tethered.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Target"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/Target-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Target"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnchoringComponent.Target",
+      "type": "topic",
+      "url": "/documentation/realitykit/anchoringcomponent/target-swift.enum"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/TrackingMode-swift.struct": {
+      "abstract": [
+        {
+          "text": "Decides how the ",
+          "type": "text"
+        },
+        {
+          "code": "Entity",
+          "type": "codeVoice"
+        },
+        {
+          "text": " tracks its target anchor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TrackingMode"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/TrackingMode-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TrackingMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnchoringComponent.TrackingMode",
+      "type": "topic",
+      "url": "/documentation/realitykit/anchoringcomponent/trackingmode-swift.struct"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/init(_:)-2wng6": {
+      "abstract": [
+        {
+          "text": "Creates an anchoring component for a given target.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation18AnchoringComponentV",
+          "text": "AnchoringComponent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation18AnchoringComponentV6TargetO",
+          "text": "Target"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/init(_:)-2wng6",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/anchoringcomponent/init(_:)-2wng6"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/init(_:)-5dney": {
+      "abstract": [
+        {
+          "text": "Creates an anchoring component with the given AR anchor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARAnchor",
+          "text": "ARAnchor"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/init(_:)-5dney",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/anchoringcomponent/init(_:)-5dney"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/init(_:trackingMode:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation18AnchoringComponentV",
+          "text": "AnchoringComponent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation18AnchoringComponentV6TargetO",
+          "text": "Target"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "trackingMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation18AnchoringComponentV",
+          "text": "AnchoringComponent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation18AnchoringComponentVAAE12TrackingModeV",
+          "text": "TrackingMode"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/init(_:trackingMode:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:trackingMode:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/anchoringcomponent/init(_:trackingmode:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/init(_:trackingMode:physicsSimulation:)": {
+      "abstract": [
+        {
+          "text": "Creates an anchoring component for a given target, tracking mode and physics simulation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation18AnchoringComponentV",
+          "text": "AnchoringComponent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation18AnchoringComponentV6TargetO",
+          "text": "Target"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "trackingMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation18AnchoringComponentV",
+          "text": "AnchoringComponent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation18AnchoringComponentVAAE12TrackingModeV",
+          "text": "TrackingMode"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "physicsSimulation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation18AnchoringComponentV",
+          "text": "AnchoringComponent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation18AnchoringComponentVAAE17PhysicsSimulationO",
+          "text": "PhysicsSimulation"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/init(_:trackingMode:physicsSimulation:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:trackingMode:physicsSimulation:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/anchoringcomponent/init(_:trackingmode:physicssimulation:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/physicsSimulation-swift.property": {
+      "abstract": [
+        {
+          "text": "Specifies the physics simulation spece that the entity and its descendants are in.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "physicsSimulation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation18AnchoringComponentV",
+          "text": "AnchoringComponent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation18AnchoringComponentVAAE17PhysicsSimulationO",
+          "text": "PhysicsSimulation"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/physicsSimulation-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "physicsSimulation",
+      "type": "topic",
+      "url": "/documentation/realitykit/anchoringcomponent/physicssimulation-swift.property"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/registerComponent()": {
+      "abstract": [
+        {
+          "text": "Registers a new component type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "registerComponent"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/registerComponent()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "registerComponent()",
+      "type": "topic",
+      "url": "/documentation/realitykit/anchoringcomponent/registercomponent()"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/target-swift.property": {
+      "abstract": [
+        {
+          "text": "The real world anchor target to attach the entity to.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "target"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation18AnchoringComponentV",
+          "text": "AnchoringComponent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation18AnchoringComponentV6TargetO",
+          "text": "Target"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/target-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "target",
+      "type": "topic",
+      "url": "/documentation/realitykit/anchoringcomponent/target-swift.property"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/trackingMode-swift.property": {
+      "abstract": [
+        {
+          "text": "Defines how the ",
+          "type": "text"
+        },
+        {
+          "code": "Entity",
+          "type": "codeVoice"
+        },
+        {
+          "text": " tracks its target anchor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "trackingMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation18AnchoringComponentV",
+          "text": "AnchoringComponent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation18AnchoringComponentVAAE12TrackingModeV",
+          "text": "TrackingMode"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/trackingMode-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "trackingMode",
+      "type": "topic",
+      "url": "/documentation/realitykit/anchoringcomponent/trackingmode-swift.property"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Component": {
+      "abstract": [
+        {
+          "text": "A representation of a geometry or a behavior that you apply to an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Component"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Component",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Component"
+        }
+      ],
+      "role": "symbol",
+      "title": "Component",
+      "type": "topic",
+      "url": "/documentation/realitykit/component"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity": {
+      "abstract": [
+        {
+          "text": "An element of a RealityKit scene to which you attach components that provide",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "appearance and behavior characteristics for the entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Entity"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Entity"
+        }
+      ],
+      "role": "symbol",
+      "title": "Entity",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/isAnchored": {
+      "abstract": [
+        {
+          "text": "A Boolean that indicates whether the entity is anchored.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isAnchored"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/isAnchored",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isAnchored",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/isanchored"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/HasAnchoring": {
+      "abstract": [
+        {
+          "text": "An interface that enables anchoring of virtual content to a real-world",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "object in an AR scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HasAnchoring"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/HasAnchoring",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HasAnchoring"
+        }
+      ],
+      "role": "symbol",
+      "title": "HasAnchoring",
+      "type": "topic",
+      "url": "/documentation/realitykit/hasanchoring"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SceneEvents/AnchoredStateChanged": {
+      "abstract": [
+        {
+          "text": "An event invoked when the anchored state of an anchoring entity",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnchoredStateChanged"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SceneEvents/AnchoredStateChanged",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnchoredStateChanged"
+        }
+      ],
+      "role": "symbol",
+      "title": "SceneEvents.AnchoredStateChanged",
+      "type": "topic",
+      "url": "/documentation/realitykit/sceneevents/anchoredstatechanged"
+    },
+    "doc://com.apple.documentation/documentation/ARKit": {
+      "abstract": [
+        {
+          "text": "Integrate hardware sensing features to produce augmented reality apps and games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ARKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ARKit",
+      "type": "topic",
+      "url": "/documentation/ARKit"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/Component",
+        "doc://com.externally.resolved.symbol/s:SQ"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Anchoring-component",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/Target-swift.enum",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/TrackingMode-swift.struct",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AnchorEntity",
+        "doc://com.apple.RealityKit/documentation/RealityKit/HasAnchoring"
+      ],
+      "title": "Anchoring component"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-the-anchor-component",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/init(_:)-2wng6",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/init(_:trackingMode:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/init(_:trackingMode:physicsSimulation:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/init(_:)-5dney"
+      ],
+      "title": "Creating the anchor component"
+    },
+    {
+      "anchor": "Setting-a-target",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/target-swift.property"
+      ],
+      "title": "Setting a target"
+    },
+    {
+      "anchor": "Setting-a-tracking-mode",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/trackingMode-swift.property"
+      ],
+      "title": "Setting a tracking mode"
+    },
+    {
+      "anchor": "Setting-a-physics-simulation-space",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/physicsSimulation-swift.property"
+      ],
+      "title": "Setting a physics simulation space"
+    },
+    {
+      "anchor": "Registering-a-component-type",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/registerComponent()"
+      ],
+      "title": "Registering a component type"
+    },
+    {
+      "anchor": "Comparing-anchoring-components",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/==(_:_:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/!=(_:_:)"
+      ],
+      "title": "Comparing anchoring components"
+    },
+    {
+      "anchor": "Structures",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/ImageAnchoringSource",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/ObjectAnchoringSource",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/TrackingMode-swift.struct"
+      ],
+      "title": "Structures"
+    },
+    {
+      "anchor": "Enumerations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/PhysicsSimulation-swift.enum",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/Target-swift.enum"
+      ],
+      "title": "Enumerations"
+    },
+    {
+      "anchor": "Default-Implementations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/Component-Implementations",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent/Equatable-Implementations"
+      ],
+      "title": "Default Implementations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/anchoringcomponent"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

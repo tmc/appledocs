@@ -1,0 +1,673 @@
+{
+  "abstract": [
+    {
+      "text": "Detects when one thread accesses a mutable object while another thread is writing to it.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/debugging",
+        "doc://com.apple.Xcode/documentation/Xcode/diagnosing-memory-thread-and-crash-issues-early"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/races-on-collections-and-other-apis"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Races on collections and other APIs"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Xcode 9 and later, the Thread Sanitizer detects unsafe thread accesses of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework APIs. This feature applies to the following collection types:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablearray",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutabledictionary",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfmutablearray",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfmutabledictionary",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Collection-race-with-a-mutable-array",
+          "level": 3,
+          "text": "Collection race with a mutable array",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the following example, the code enumerates a mutable array in one thread while writing to the array from another without synchronizing access:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Swift",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let array: NSMutableArray = []",
+            "var sum: Int = 0",
+            "// Executed on Thread #1",
+            "for value in array {",
+            "    sum += value as! Int",
+            "}",
+            "// Executed on Thread #2",
+            "array.add(42)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Objective-C",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "NSMutableArray *array = [NSMutableArray new];",
+            "NSInteger sum = 0;",
+            "// Executed on Thread #1",
+            "for (id value in array) {  ",
+            "    sum += [value integerValue];",
+            "} ",
+            "// Executed on Thread #2",
+            "[array addObject:@42];"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Solution",
+          "level": 4,
+          "text": "Solution",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Dispatch",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " APIs to coordinate access to ",
+              "type": "text"
+            },
+            {
+              "code": "array",
+              "type": "codeVoice"
+            },
+            {
+              "text": " across multiple threads.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Collection-race-with-a-mutable-dictionary",
+          "level": 3,
+          "text": "Collection race with a mutable dictionary",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the following example, the code enumerates a mutable dictionary in one thread while writing to the dictionary from another without synchronizing access:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let dictionary: NSMutableDictionary = [:]",
+            "var sum: Int = 0",
+            "// Executed on Thread #1",
+            "for key in dictionary.keyEnumerator() {",
+            "    sum += dictionary[key] as! Int",
+            "}",
+            "// Executed on Thread #2",
+            "dictionary[\"forty-two\"] = 42"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Objective-C",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "NSMutableDictionary *dictionary = [NSMutableDictionary new];",
+            "NSInteger sum = 0;",
+            "// Executed on Thread #1",
+            "for (id key in dictionary) {",
+            "    sum += [dictionary[key] integerValue];",
+            "}",
+            "// Executed on Thread #2",
+            "dictionary[@\"forty-two\"] = @42;"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Solution",
+          "level": 4,
+          "text": "Solution",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Dispatch",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " APIs to coordinate access to ",
+              "type": "text"
+            },
+            {
+              "code": "dictionary",
+              "type": "codeVoice"
+            },
+            {
+              "text": " across multiple threads.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/data-races": {
+      "abstract": [
+        {
+          "text": "Detects unsynchronized access to mutable state across multiple threads.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/data-races",
+      "kind": "article",
+      "role": "article",
+      "title": "Data races",
+      "type": "topic",
+      "url": "/documentation/xcode/data-races"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/debugging": {
+      "abstract": [
+        {
+          "text": "Identify and address issues in your app using the Xcode debugger, Xcode Organizer, Metal debugger, and Instruments.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/debugging",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Debugging",
+      "type": "topic",
+      "url": "/documentation/xcode/debugging"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/diagnosing-memory-thread-and-crash-issues-early": {
+      "abstract": [
+        {
+          "text": "Identify runtime crashes and undefined behaviors in your app during testing using",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Xcode’s sanitizer tools.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/diagnosing-memory-thread-and-crash-issues-early",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Diagnosing memory, thread, and crash issues early",
+      "type": "topic",
+      "url": "/documentation/xcode/diagnosing-memory-thread-and-crash-issues-early"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/swift-access-races": {
+      "abstract": [
+        {
+          "text": "Detects unsynchronized access to mutable state across multiple threads in Swift.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/swift-access-races",
+      "kind": "article",
+      "role": "article",
+      "title": "Swift access races",
+      "type": "topic",
+      "url": "/documentation/xcode/swift-access-races"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/thread-leaks": {
+      "abstract": [
+        {
+          "text": "Detects when you don’t close threads after use.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/thread-leaks",
+      "kind": "article",
+      "role": "article",
+      "title": "Thread leaks",
+      "type": "topic",
+      "url": "/documentation/xcode/thread-leaks"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/uninitialized-mutexes": {
+      "abstract": [
+        {
+          "text": "Detects when you use an uninitialized mutex.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/uninitialized-mutexes",
+      "kind": "article",
+      "role": "article",
+      "title": "Uninitialized mutexes",
+      "type": "topic",
+      "url": "/documentation/xcode/uninitialized-mutexes"
+    },
+    "doc://com.apple.documentation/documentation/Dispatch": {
+      "abstract": [
+        {
+          "text": "Execute code concurrently on multicore hardware by submitting work to dispatch queues managed by the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Dispatch",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Dispatch",
+      "type": "topic",
+      "url": "/documentation/Dispatch"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation": {
+      "abstract": [
+        {
+          "text": "Access low-level functions, primitive data types, and various collection types that are bridged seamlessly with the Foundation framework.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Foundation",
+      "type": "topic",
+      "url": "/documentation/corefoundation"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfmutablearray": {
+      "abstract": [
+        {
+          "text": "A reference to a mutable array object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFMutableArray"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfmutablearray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFMutableArray",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfmutablearray"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfmutabledictionary": {
+      "abstract": [
+        {
+          "text": "A reference to a mutable dictionary object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFMutableDictionary"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfmutabledictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFMutableDictionary",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfmutabledictionary"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "abstract": [
+        {
+          "text": "Access essential data types, collections, and operating-system services to define the base layer of functionality for your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablearray": {
+      "abstract": [
+        {
+          "text": "An object representing a dynamic ordered collection, for use instead of an  variable in cases that require reference semantics.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSMutableArray"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablearray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMutableArray",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablearray"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutabledictionary": {
+      "abstract": [
+        {
+          "text": "An object representing a dynamic collection of key-value pairs, for use instead of a  variable in cases that require reference semantics.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSMutableDictionary"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutabledictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMutableDictionary",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutabledictionary"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Thread-Sanitizer",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/data-races",
+        "doc://com.apple.Xcode/documentation/Xcode/swift-access-races",
+        "doc://com.apple.Xcode/documentation/Xcode/uninitialized-mutexes",
+        "doc://com.apple.Xcode/documentation/Xcode/thread-leaks"
+      ],
+      "title": "Thread Sanitizer"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1corefoundation~1cfmutabledictionary/title",
+          "value": "CFMutableDictionaryRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1corefoundation~1cfmutablearray/title",
+          "value": "CFMutableArrayRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsmutabledictionary/abstract",
+          "value": [
+            {
+              "text": "A dynamic collection of objects associated with unique keys.",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsmutablearray/abstract",
+          "value": [
+            {
+              "text": "A dynamic ordered collection of objects.",
+              "type": "text"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

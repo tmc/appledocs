@@ -1,1 +1,2022 @@
-{"abstract":[{"text":"A component that defines a point light source.","type":"text"}],"topicSections":[{"anchor":"Creating-a-point-light-component","title":"Creating a point light component","identifiers":["doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/init(color:intensity:attenuationRadius:)-8z3j5","doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/init(color:intensity:attenuationRadius:)-hp22","doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/init(cgColor:intensity:attenuationRadius:)","doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/init(color:intensity:attenuationRadius:attenuationFalloffExponent:)-603s0","doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/init(color:intensity:attenuationRadius:attenuationFalloffExponent:)-6dm4f"]},{"anchor":"Setting-color","title":"Setting color","identifiers":["doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/color-37raw","doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/color-1ed8j"]},{"anchor":"Configuring-the-light","title":"Configuring the light","identifiers":["doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/attenuationRadius","doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/intensity","doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/attenuationFalloffExponent"]},{"anchor":"Registering-a-component-type","title":"Registering a component type","identifiers":["doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/registerComponent()"]},{"anchor":"Comparing-point-light-components","title":"Comparing point light components","identifiers":["doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/==(_:_:)","doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/!=(_:_:)"]},{"anchor":"Supporting-types","title":"Supporting types","identifiers":["doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/Color-swift.typealias"]},{"anchor":"Default-Implementations","generated":true,"title":"Default Implementations","identifiers":["doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/Component-Implementations","doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/Equatable-Implementations"]}],"schemaVersion":{"major":0,"minor":3,"patch":0},"kind":"symbol","hierarchy":{"paths":[["doc://com.apple.documentation/documentation/technologies","doc://com.apple.RealityKit/documentation/RealityKit"]]},"primaryContentSections":[{"declarations":[{"platforms":["iOS","iPadOS","Mac Catalyst","macOS","visionOS"],"languages":["swift"],"tokens":[{"text":"struct","kind":"keyword"},{"text":" ","kind":"text"},{"text":"PointLightComponent","kind":"identifier"}]}],"kind":"declarations"},{"content":[{"level":2,"type":"heading","anchor":"overview","text":"Overview"},{"type":"paragraph","inlineContent":[{"type":"text","text":"The strength of a point light depends on a combination of its"},{"type":"text","text":" "},{"type":"reference","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/intensity","isActive":true},{"type":"text","text":" and "},{"type":"reference","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/attenuationRadius","isActive":true},{"type":"text","text":"."},{"type":"text","text":" "},{"type":"text","text":"The default values for these properties make this light"},{"type":"text","text":" "},{"type":"text","text":"comparable to high-power streetlights, or outdoor floodlights."}]},{"type":"paragraph","inlineContent":[{"type":"text","text":"This table shows a few examples of common scenarios similar to a point light source:"}]},{"type":"table","rows":[[[{"inlineContent":[{"text":"Scenario","type":"text"}],"type":"paragraph"}],[{"inlineContent":[{"text":"Approximate lumens","type":"text"}],"type":"paragraph"}],[{"inlineContent":[{"text":"Attenuation radius","type":"text"}],"type":"paragraph"}],[{"inlineContent":[{"type":"text","text":"Description"}],"type":"paragraph"}]],[[{"inlineContent":[{"text":"Candle flame","type":"text"}],"type":"paragraph"}],[{"inlineContent":[{"type":"text","text":"10-15 lumens"}],"type":"paragraph"}],[{"inlineContent":[{"text":"~1 meter","type":"text"}],"type":"paragraph"}],[{"inlineContent":[{"text":"Very small light source","type":"text"}],"type":"paragraph"}]],[[{"inlineContent":[{"text":"Nightlight","type":"text"}],"type":"paragraph"}],[{"inlineContent":[{"text":"20-30 lumens","type":"text"}],"type":"paragraph"}],[{"inlineContent":[{"type":"text","text":"1-2 meters"}],"type":"paragraph"}],[{"inlineContent":[{"type":"text","text":"Low-level lighting"}],"type":"paragraph"}]],[[{"inlineContent":[{"type":"text","text":"25W lightbulb"}],"type":"paragraph"}],[{"inlineContent":[{"text":"200-300 lumens","type":"text"}],"type":"paragraph"}],[{"inlineContent":[{"type":"text","text":"2-3 meters"}],"type":"paragraph"}],[{"inlineContent":[{"text":"Small room lighting","type":"text"}],"type":"paragraph"}]],[[{"inlineContent":[{"text":"40W lightbulb","type":"text"}],"type":"paragraph"}],[{"inlineContent":[{"text":"400-500 lumens","type":"text"}],"type":"paragraph"}],[{"inlineContent":[{"type":"text","text":"3-4 meters"}],"type":"paragraph"}],[{"inlineContent":[{"type":"text","text":"Moderate room lighting"}],"type":"paragraph"}]],[[{"inlineContent":[{"text":"60W lightbulb","type":"text"}],"type":"paragraph"}],[{"inlineContent":[{"type":"text","text":"700-800 lumens"}],"type":"paragraph"}],[{"inlineContent":[{"type":"text","text":"4-5 meters"}],"type":"paragraph"}],[{"inlineContent":[{"text":"General-purpose lighting","type":"text"}],"type":"paragraph"}]],[[{"inlineContent":[{"text":"100W lightbulb","type":"text"}],"type":"paragraph"}],[{"inlineContent":[{"text":"1,500-1,700 lumens","type":"text"}],"type":"paragraph"}],[{"inlineContent":[{"type":"text","text":"5-6 meters"}],"type":"paragraph"}],[{"inlineContent":[{"type":"text","text":"Bright room lighting"}],"type":"paragraph"}]],[[{"inlineContent":[{"text":"LED flashlight","type":"text"}],"type":"paragraph"}],[{"inlineContent":[{"type":"text","text":"300-600 lumens"}],"type":"paragraph"}],[{"inlineContent":[{"text":"50-70 meters","type":"text"}],"type":"paragraph"}],[{"inlineContent":[{"type":"text","text":"Long distance illumination"}],"type":"paragraph"}]],[[{"inlineContent":[{"text":"Car headlights (each, low-beam)","type":"text"}],"type":"paragraph"}],[{"inlineContent":[{"text":"700-1,200 lumens","type":"text"}],"type":"paragraph"}],[{"inlineContent":[{"type":"text","text":"100-150 meters"}],"type":"paragraph"}],[{"inlineContent":[{"text":"Illuminates the road ahead","type":"text"}],"type":"paragraph"}]],[[{"inlineContent":[{"text":"LED streetlight","type":"text"}],"type":"paragraph"}],[{"inlineContent":[{"type":"text","text":"8,000-10,000 lumens"}],"type":"paragraph"}],[{"inlineContent":[{"type":"text","text":"20-30 meters"}],"type":"paragraph"}],[{"inlineContent":[{"type":"text","text":"Illuminates large outdoor areas"}],"type":"paragraph"}]],[[{"inlineContent":[{"text":"Stadium lighting","type":"text"}],"type":"paragraph"}],[{"inlineContent":[{"text":"~100,000 lumens","type":"text"}],"type":"paragraph"}],[{"inlineContent":[{"type":"text","text":"100-200 meters"}],"type":"paragraph"}],[{"inlineContent":[{"text":"Lights-up large outdoor areas","type":"text"}],"type":"paragraph"}]]],"header":"row"},{"type":"paragraph","inlineContent":[{"text":"Use this component by applying it to an entity’s ","type":"text"},{"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/Entity/components","type":"reference","isActive":true},{"text":" set.","type":"text"},{"text":" ","type":"text"},{"text":"In this example, the light’s color is red:","type":"text"}]},{"code":["let lightEntity = Entity()","","let redLightComponent = PointLightComponent(color: .red)","lightEntity.components.set(redLightComponent)"],"type":"codeListing","syntax":"swift"},{"type":"paragraph","inlineContent":[{"type":"text","text":"The point light illuminates entities based on its distance from them."},{"type":"text","text":" "},{"type":"text","text":"Here is a visual example of how a red "},{"code":"PointLightComponent","type":"codeVoice"},{"type":"text","text":" illuminates elements based on distance:"}]},{"type":"table","rows":[[[{"inlineContent":[{"identifier":"pointlight-cube-far","type":"image"}],"type":"paragraph"}],[{"inlineContent":[{"identifier":"pointlight-cube-closer","type":"image"}],"type":"paragraph"}],[{"inlineContent":[{"identifier":"pointlight-cube-closest","type":"image"}],"type":"paragraph"}]]],"header":"row"},{"type":"aside","name":"Note","style":"note","content":[{"type":"paragraph","inlineContent":[{"text":"The green dot in the above illustrations is only a visual representation of the light’s position.","type":"text"}]}]}],"kind":"content"}],"metadata":{"roleHeading":"Structure","title":"PointLightComponent","symbolKind":"struct","fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"PointLightComponent"}],"navigatorTitle":[{"kind":"identifier","text":"PointLightComponent"}],"role":"symbol","platforms":[{"beta":false,"introducedAt":"13.0","deprecated":false,"name":"iOS","unavailable":false},{"beta":false,"introducedAt":"13.0","deprecated":false,"name":"iPadOS","unavailable":false},{"beta":false,"introducedAt":"13.0","deprecated":false,"name":"Mac Catalyst","unavailable":false},{"beta":false,"introducedAt":"10.15","deprecated":false,"name":"macOS","unavailable":false},{"beta":false,"introducedAt":"2.0","deprecated":false,"name":"visionOS","unavailable":false}],"modules":[{"name":"RealityKit"}],"externalID":"s:17RealityFoundation19PointLightComponentV"},"sections":[],"relationshipsSections":[{"kind":"relationships","type":"conformsTo","title":"Conforms To","identifiers":["doc://com.apple.RealityKit/documentation/RealityKit/Component","doc://com.externally.resolved.symbol/s:SQ"]}],"variants":[{"paths":["/documentation/realitykit/pointlightcomponent"],"traits":[{"interfaceLanguage":"swift"}]}],"identifier":{"interfaceLanguage":"swift","url":"doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent"},"references":{"doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/color-1ed8j":{"role":"symbol","kind":"symbol","url":"/documentation/realitykit/pointlightcomponent/color-1ed8j","abstract":[{"text":"A color for the point light.","type":"text"}],"fragments":[{"text":"var","kind":"keyword"},{"text":" ","kind":"text"},{"text":"color","kind":"identifier"},{"text":": ","kind":"text"},{"text":"PointLightComponent","kind":"typeIdentifier","preciseIdentifier":"s:17RealityFoundation19PointLightComponentV"},{"text":".","kind":"text"},{"text":"Color","kind":"typeIdentifier","preciseIdentifier":"s:17RealityFoundation19PointLightComponentV5Colora"}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/color-1ed8j","type":"topic","title":"color"},"doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/!=(_:_:)":{"role":"symbol","abstract":[{"text":"Returns a Boolean value indicating whether two values are not equal.","type":"text"}],"kind":"symbol","title":"!=(_:_:)","fragments":[{"text":"static","kind":"keyword"},{"text":" ","kind":"text"},{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"text":"!=","kind":"identifier"},{"text":" ","kind":"text"},{"text":"(","kind":"text"},{"text":"Self","kind":"typeIdentifier"},{"text":", ","kind":"text"},{"text":"Self","kind":"typeIdentifier"},{"text":") -> ","kind":"text"},{"text":"Bool","preciseIdentifier":"s:Sb","kind":"typeIdentifier"}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/!=(_:_:)","url":"/documentation/realitykit/pointlightcomponent/!=(_:_:)","type":"topic"},"doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/init(cgColor:intensity:attenuationRadius:)":{"role":"symbol","type":"topic","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/init(cgColor:intensity:attenuationRadius:)","title":"init(cgColor:intensity:attenuationRadius:)","fragments":[{"kind":"identifier","text":"init"},{"kind":"text","text":"("},{"kind":"externalParam","text":"cgColor"},{"kind":"text","text":": "},{"preciseIdentifier":"c:@T@CGColorRef","kind":"typeIdentifier","text":"CGColor"},{"kind":"text","text":", "},{"kind":"externalParam","text":"intensity"},{"kind":"text","text":": "},{"preciseIdentifier":"s:Sf","kind":"typeIdentifier","text":"Float"},{"kind":"text","text":", "},{"kind":"externalParam","text":"attenuationRadius"},{"kind":"text","text":": "},{"preciseIdentifier":"s:Sf","kind":"typeIdentifier","text":"Float"},{"kind":"text","text":")"}],"kind":"symbol","url":"/documentation/realitykit/pointlightcomponent/init(cgcolor:intensity:attenuationradius:)","abstract":[{"type":"text","text":"Creates a new instance with the specified color, intensity and attenuation."}]},"doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/init(color:intensity:attenuationRadius:)-hp22":{"abstract":[{"text":"Creates a point light component with a configuration.","type":"text"}],"fragments":[{"text":"init","kind":"identifier"},{"text":"(","kind":"text"},{"text":"color","kind":"externalParam"},{"text":": ","kind":"text"},{"text":"PointLightComponent","preciseIdentifier":"s:17RealityFoundation19PointLightComponentV","kind":"typeIdentifier"},{"text":".","kind":"text"},{"text":"Color","preciseIdentifier":"s:17RealityFoundation19PointLightComponentV5Colora","kind":"typeIdentifier"},{"text":", ","kind":"text"},{"text":"intensity","kind":"externalParam"},{"text":": ","kind":"text"},{"text":"Float","preciseIdentifier":"s:Sf","kind":"typeIdentifier"},{"text":", ","kind":"text"},{"text":"attenuationRadius","kind":"externalParam"},{"text":": ","kind":"text"},{"text":"Float","preciseIdentifier":"s:Sf","kind":"typeIdentifier"},{"text":")","kind":"text"}],"kind":"symbol","title":"init(color:intensity:attenuationRadius:)","type":"topic","role":"symbol","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/init(color:intensity:attenuationRadius:)-hp22","url":"/documentation/realitykit/pointlightcomponent/init(color:intensity:attenuationradius:)-hp22"},"pointlight-cube-far":{"type":"image","alt":"A screenshot of a RealityKit scene with a dark gray floor, a light gray cube, and a small green sphere to the left of the cube above the floor. The green sphere is emitting a red light, which slightly illuminates the close side of the cube and the floor below.","variants":[{"traits":["1x","light"],"url":"https://docs-assets.developer.apple.com/published/05885759e11740e8fc7fcded21de4bb4/pointlight-cube-far.jpg"},{"traits":["1x","dark"],"url":"https://docs-assets.developer.apple.com/published/f05c487a85cee19811e3670f7ca47776/pointlight-cube-far~dark.jpg"}],"identifier":"pointlight-cube-far"},"pointlight-cube-closer":{"type":"image","alt":"A screenshot of a RealityKit scene with a dark gray floor, a light gray cube, and a small green sphere to the left of the cube above the floor. The green sphere is emitting a red light, which strongly illuminates the close side of the cube and the floor below.","variants":[{"traits":["1x","light"],"url":"https://docs-assets.developer.apple.com/published/c05085185d750c42c1b3551fc3fcc956/pointlight-cube-closer.jpg"},{"traits":["1x","dark"],"url":"https://docs-assets.developer.apple.com/published/68e93b35a9098f2596ec5b1352131ca6/pointlight-cube-closer~dark.jpg"}],"identifier":"pointlight-cube-closer"},"doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/init(color:intensity:attenuationRadius:attenuationFalloffExponent:)-6dm4f":{"abstract":[{"text":"Creates a point light component with a configuration.","type":"text"}],"fragments":[{"text":"init","kind":"identifier"},{"text":"(","kind":"text"},{"text":"color","kind":"externalParam"},{"text":": ","kind":"text"},{"text":"PointLightComponent","preciseIdentifier":"s:17RealityFoundation19PointLightComponentV","kind":"typeIdentifier"},{"text":".","kind":"text"},{"text":"Color","preciseIdentifier":"s:17RealityFoundation19PointLightComponentV5Colora","kind":"typeIdentifier"},{"text":", ","kind":"text"},{"text":"intensity","kind":"externalParam"},{"text":": ","kind":"text"},{"text":"Float","preciseIdentifier":"s:Sf","kind":"typeIdentifier"},{"text":", ","kind":"text"},{"text":"attenuationRadius","kind":"externalParam"},{"text":": ","kind":"text"},{"text":"Float","preciseIdentifier":"s:Sf","kind":"typeIdentifier"},{"text":", ","kind":"text"},{"text":"attenuationFalloffExponent","kind":"externalParam"},{"text":": ","kind":"text"},{"text":"Float","preciseIdentifier":"s:Sf","kind":"typeIdentifier"},{"text":")","kind":"text"}],"kind":"symbol","title":"init(color:intensity:attenuationRadius:attenuationFalloffExponent:)","type":"topic","role":"symbol","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/init(color:intensity:attenuationRadius:attenuationFalloffExponent:)-6dm4f","url":"/documentation/realitykit/pointlightcomponent/init(color:intensity:attenuationradius:attenuationfalloffexponent:)-6dm4f"},"doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/attenuationFalloffExponent":{"abstract":[{"text":"The exponent value for the light’s intensity falloff-transition curve.","type":"text"}],"kind":"symbol","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/attenuationFalloffExponent","url":"/documentation/realitykit/pointlightcomponent/attenuationfalloffexponent","fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"text":"attenuationFalloffExponent","kind":"identifier"},{"text":": ","kind":"text"},{"text":"Float","kind":"typeIdentifier","preciseIdentifier":"s:Sf"}],"type":"topic","title":"attenuationFalloffExponent","role":"symbol"},"doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/init(color:intensity:attenuationRadius:)-8z3j5":{"fragments":[{"kind":"identifier","text":"init"},{"kind":"text","text":"("},{"kind":"externalParam","text":"color"},{"kind":"text","text":": "},{"preciseIdentifier":"s:17RealityFoundation19PointLightComponentV","kind":"typeIdentifier","text":"PointLightComponent"},{"kind":"text","text":"."},{"preciseIdentifier":"s:17RealityFoundation19PointLightComponentV5Colora","kind":"typeIdentifier","text":"Color"},{"kind":"text","text":", "},{"kind":"externalParam","text":"intensity"},{"kind":"text","text":": "},{"preciseIdentifier":"s:Sf","kind":"typeIdentifier","text":"Float"},{"kind":"text","text":", "},{"kind":"externalParam","text":"attenuationRadius"},{"kind":"text","text":": "},{"preciseIdentifier":"s:Sf","kind":"typeIdentifier","text":"Float"},{"kind":"text","text":")"}],"role":"symbol","type":"topic","kind":"symbol","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/init(color:intensity:attenuationRadius:)-8z3j5","abstract":[{"type":"text","text":"Creates a point light component with a configuration."}],"url":"/documentation/realitykit/pointlightcomponent/init(color:intensity:attenuationradius:)-8z3j5","title":"init(color:intensity:attenuationRadius:)"},"doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/color-37raw":{"fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"color"},{"kind":"text","text":": "},{"kind":"typeIdentifier","preciseIdentifier":"s:17RealityFoundation19PointLightComponentV","text":"PointLightComponent"},{"kind":"text","text":"."},{"kind":"typeIdentifier","preciseIdentifier":"s:17RealityFoundation19PointLightComponentV5Colora","text":"Color"}],"role":"symbol","type":"topic","kind":"symbol","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/color-37raw","abstract":[{"text":"A color for the point light.","type":"text"}],"url":"/documentation/realitykit/pointlightcomponent/color-37raw","title":"color"},"doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/intensity":{"kind":"symbol","role":"symbol","title":"intensity","type":"topic","abstract":[{"text":"The intensity of the point light, measured in lumen.","type":"text"}],"url":"/documentation/realitykit/pointlightcomponent/intensity","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/intensity","fragments":[{"text":"var","kind":"keyword"},{"text":" ","kind":"text"},{"text":"intensity","kind":"identifier"},{"text":": ","kind":"text"},{"text":"Float","kind":"typeIdentifier","preciseIdentifier":"s:Sf"}]},"pointlight-cube-closest":{"type":"image","alt":"A screenshot of a RealityKit scene with a dark gray floor, a light gray cube, and a small green sphere to the left of the cube above the floor. The green sphere is emitting a red light, which intensely illuminates the close side of the cube and the floor below.","variants":[{"traits":["1x","light"],"url":"https://docs-assets.developer.apple.com/published/d05f7d56981d20de48633c78552d7215/pointlight-cube-closest.jpg"},{"traits":["1x","dark"],"url":"https://docs-assets.developer.apple.com/published/8fa51995f6eb6085f62b630eaaaada3d/pointlight-cube-closest~dark.jpg"}],"identifier":"pointlight-cube-closest"},"doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/==(_:_:)":{"url":"/documentation/realitykit/pointlightcomponent/==(_:_:)","fragments":[{"text":"static","kind":"keyword"},{"text":" ","kind":"text"},{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"text":"==","kind":"identifier"},{"text":" ","kind":"text"},{"text":"(","kind":"text"},{"text":"PointLightComponent","preciseIdentifier":"s:17RealityFoundation19PointLightComponentV","kind":"typeIdentifier"},{"text":", ","kind":"text"},{"text":"PointLightComponent","preciseIdentifier":"s:17RealityFoundation19PointLightComponentV","kind":"typeIdentifier"},{"text":") -> ","kind":"text"},{"text":"Bool","preciseIdentifier":"s:Sb","kind":"typeIdentifier"}],"abstract":[{"text":"Returns a Boolean value indicating whether two values are equal.","type":"text"}],"role":"symbol","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/==(_:_:)","type":"topic","title":"==(_:_:)","kind":"symbol"},"doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/Color-swift.typealias":{"navigatorTitle":[{"text":"Color","kind":"identifier"}],"fragments":[{"text":"typealias","kind":"keyword"},{"text":" ","kind":"text"},{"text":"Color","kind":"identifier"}],"role":"symbol","type":"topic","kind":"symbol","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/Color-swift.typealias","abstract":[{"text":"A platform-specific type used to define color for a point light.","type":"text"}],"url":"/documentation/realitykit/pointlightcomponent/color-swift.typealias","title":"PointLightComponent.Color"},"doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/init(color:intensity:attenuationRadius:attenuationFalloffExponent:)-603s0":{"url":"/documentation/realitykit/pointlightcomponent/init(color:intensity:attenuationradius:attenuationfalloffexponent:)-603s0","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/init(color:intensity:attenuationRadius:attenuationFalloffExponent:)-603s0","role":"symbol","type":"topic","fragments":[{"text":"init","kind":"identifier"},{"text":"(","kind":"text"},{"text":"color","kind":"externalParam"},{"text":": ","kind":"text"},{"text":"PointLightComponent","kind":"typeIdentifier","preciseIdentifier":"s:17RealityFoundation19PointLightComponentV"},{"text":".","kind":"text"},{"text":"Color","kind":"typeIdentifier","preciseIdentifier":"s:17RealityFoundation19PointLightComponentV5Colora"},{"text":", ","kind":"text"},{"text":"intensity","kind":"externalParam"},{"text":": ","kind":"text"},{"text":"Float","kind":"typeIdentifier","preciseIdentifier":"s:Sf"},{"text":", ","kind":"text"},{"text":"attenuationRadius","kind":"externalParam"},{"text":": ","kind":"text"},{"text":"Float","kind":"typeIdentifier","preciseIdentifier":"s:Sf"},{"text":", ","kind":"text"},{"text":"attenuationFalloffExponent","kind":"externalParam"},{"text":": ","kind":"text"},{"text":"Float","kind":"typeIdentifier","preciseIdentifier":"s:Sf"},{"text":")","kind":"text"}],"title":"init(color:intensity:attenuationRadius:attenuationFalloffExponent:)","kind":"symbol","abstract":[{"text":"Creates a point light component with a configuration.","type":"text"}]},"doc://com.externally.resolved.symbol/s:SQ":{"url":"/documentation/Swift/Equatable","kind":"symbol","title":"Equatable","role":"symbol","type":"topic","fragments":[{"text":"protocol","kind":"keyword"},{"text":" ","kind":"text"},{"text":"Equatable","kind":"identifier"}],"abstract":[{"text":"A type that can be compared for value equality.","type":"text"}],"identifier":"doc://com.externally.resolved.symbol/s:SQ"},"doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/Equatable-Implementations":{"abstract":[],"url":"/documentation/realitykit/pointlightcomponent/equatable-implementations","role":"collectionGroup","kind":"article","type":"topic","title":"Equatable Implementations","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/Equatable-Implementations"},"doc://com.apple.RealityKit/documentation/RealityKit":{"url":"/documentation/realitykit","abstract":[{"text":"Simulate and render 3D content for use in your augmented reality apps.","type":"text"}],"kind":"symbol","type":"topic","role":"collection","title":"RealityKit","identifier":"doc://com.apple.RealityKit/documentation/RealityKit"},"doc://com.apple.RealityKit/documentation/RealityKit/Component":{"role":"symbol","navigatorTitle":[{"text":"Component","kind":"identifier"}],"type":"topic","title":"Component","kind":"symbol","fragments":[{"text":"protocol","kind":"keyword"},{"text":" ","kind":"text"},{"text":"Component","kind":"identifier"}],"abstract":[{"text":"A representation of a geometry or a behavior that you apply to an entity.","type":"text"}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/Component","url":"/documentation/realitykit/component"},"doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/attenuationRadius":{"kind":"symbol","role":"symbol","title":"attenuationRadius","type":"topic","abstract":[{"text":"The distance from the light source where its intensity reaches zero.","type":"text"}],"url":"/documentation/realitykit/pointlightcomponent/attenuationradius","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/attenuationRadius","fragments":[{"text":"var","kind":"keyword"},{"text":" ","kind":"text"},{"text":"attenuationRadius","kind":"identifier"},{"text":": ","kind":"text"},{"text":"Float","kind":"typeIdentifier","preciseIdentifier":"s:Sf"}]},"doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/Component-Implementations":{"abstract":[],"url":"/documentation/realitykit/pointlightcomponent/component-implementations","role":"collectionGroup","kind":"article","type":"topic","title":"Component Implementations","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/Component-Implementations"},"doc://com.apple.documentation/documentation/technologies":{"url":"/documentation/technologies","abstract":[{"text":"","type":"text"}],"kind":"technologies","type":"topic","role":"overview","title":"Technologies","identifier":"doc://com.apple.documentation/documentation/technologies"},"doc://com.apple.RealityKit/documentation/RealityKit/Entity/components":{"type":"topic","url":"/documentation/realitykit/entity/components","kind":"symbol","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/Entity/components","fragments":[{"text":"var","kind":"keyword"},{"text":" ","kind":"text"},{"text":"components","kind":"identifier"},{"text":": ","kind":"text"},{"preciseIdentifier":"s:17RealityFoundation6EntityC","text":"Entity","kind":"typeIdentifier"},{"text":".","kind":"text"},{"preciseIdentifier":"s:17RealityFoundation6EntityC12ComponentSetV","text":"ComponentSet","kind":"typeIdentifier"}],"abstract":[{"text":"All the components that an entity stores.","type":"text"}],"title":"components","role":"symbol"},"doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/registerComponent()":{"fragments":[{"kind":"keyword","text":"static"},{"kind":"text","text":" "},{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"registerComponent"},{"kind":"text","text":"()"}],"role":"symbol","type":"topic","url":"/documentation/realitykit/pointlightcomponent/registercomponent()","kind":"symbol","abstract":[{"text":"Registers a new component type.","type":"text"}],"title":"registerComponent()","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/registerComponent()"},"doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent":{"url":"/documentation/realitykit/pointlightcomponent","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent","fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"PointLightComponent"}],"title":"PointLightComponent","kind":"symbol","navigatorTitle":[{"kind":"identifier","text":"PointLightComponent"}],"abstract":[{"type":"text","text":"A component that defines a point light source."}],"type":"topic","role":"symbol"}},"legalNotices":{"copyright":"Copyright &copy; 2025 Apple Inc. All rights reserved.","termsOfUse":"https://www.apple.com/legal/internet-services/terms/site.html","privacyPolicy":"https://www.apple.com/privacy/privacy-policy"}}
+{
+  "abstract": [
+    {
+      "text": "A component that defines a point light source.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:17RealityFoundation19PointLightComponentV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "PointLightComponent"
+      }
+    ],
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "PointLightComponent"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.15",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "PointLightComponent"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "PointLightComponent"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The strength of a point light depends on a combination of its",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/intensity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/attenuationRadius",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The default values for these properties make this light",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "comparable to high-power streetlights, or outdoor floodlights.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This table shows a few examples of common scenarios similar to a point light source:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Scenario",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Approximate lumens",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Attenuation radius",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Candle flame",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "10-15 lumens",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "~1 meter",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Very small light source",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Nightlight",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "20-30 lumens",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "1-2 meters",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Low-level lighting",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "25W lightbulb",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "200-300 lumens",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "2-3 meters",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Small room lighting",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "40W lightbulb",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "400-500 lumens",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "3-4 meters",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Moderate room lighting",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "60W lightbulb",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "700-800 lumens",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "4-5 meters",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "General-purpose lighting",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "100W lightbulb",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "1,500-1,700 lumens",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "5-6 meters",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Bright room lighting",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "LED flashlight",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "300-600 lumens",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "50-70 meters",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Long distance illumination",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Car headlights (each, low-beam)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "700-1,200 lumens",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "100-150 meters",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Illuminates the road ahead",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "LED streetlight",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "8,000-10,000 lumens",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "20-30 meters",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Illuminates large outdoor areas",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Stadium lighting",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "~100,000 lumens",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "100-200 meters",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Lights-up large outdoor areas",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this component by applying it to an entity’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/components",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " set.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In this example, the light’s color is red:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let lightEntity = Entity()",
+            "",
+            "let redLightComponent = PointLightComponent(color: .red)",
+            "lightEntity.components.set(redLightComponent)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The point light illuminates entities based on its distance from them.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Here is a visual example of how a red ",
+              "type": "text"
+            },
+            {
+              "code": "PointLightComponent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " illuminates elements based on distance:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "pointlight-cube-far",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "pointlight-cube-closer",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "pointlight-cube-closest",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The green dot in the above illustrations is only a visual representation of the light’s position.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Component": {
+      "abstract": [
+        {
+          "text": "A representation of a geometry or a behavior that you apply to an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Component"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Component",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Component"
+        }
+      ],
+      "role": "symbol",
+      "title": "Component",
+      "type": "topic",
+      "url": "/documentation/realitykit/component"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/components": {
+      "abstract": [
+        {
+          "text": "All the components that an entity stores.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "components"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation6EntityC",
+          "text": "Entity"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation6EntityC12ComponentSetV",
+          "text": "ComponentSet"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/components",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "components",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/components"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent": {
+      "abstract": [
+        {
+          "text": "A component that defines a point light source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PointLightComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PointLightComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "PointLightComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/pointlightcomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/!=(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether two values are not equal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "!="
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/!=(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "!=(_:_:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/pointlightcomponent/!=(_:_:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/==(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether two values are equal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "=="
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation19PointLightComponentV",
+          "text": "PointLightComponent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation19PointLightComponentV",
+          "text": "PointLightComponent"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/==(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "==(_:_:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/pointlightcomponent/==(_:_:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/Color-swift.typealias": {
+      "abstract": [
+        {
+          "text": "A platform-specific type used to define color for a point light.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Color"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/Color-swift.typealias",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Color"
+        }
+      ],
+      "role": "symbol",
+      "title": "PointLightComponent.Color",
+      "type": "topic",
+      "url": "/documentation/realitykit/pointlightcomponent/color-swift.typealias"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/Component-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/Component-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Component Implementations",
+      "type": "topic",
+      "url": "/documentation/realitykit/pointlightcomponent/component-implementations"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/Equatable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/Equatable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Equatable Implementations",
+      "type": "topic",
+      "url": "/documentation/realitykit/pointlightcomponent/equatable-implementations"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/attenuationFalloffExponent": {
+      "abstract": [
+        {
+          "text": "The exponent value for the light’s intensity falloff-transition curve.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "attenuationFalloffExponent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/attenuationFalloffExponent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "attenuationFalloffExponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/pointlightcomponent/attenuationfalloffexponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/attenuationRadius": {
+      "abstract": [
+        {
+          "text": "The distance from the light source where its intensity reaches zero.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "attenuationRadius"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/attenuationRadius",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "attenuationRadius",
+      "type": "topic",
+      "url": "/documentation/realitykit/pointlightcomponent/attenuationradius"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/color-1ed8j": {
+      "abstract": [
+        {
+          "text": "A color for the point light.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "color"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation19PointLightComponentV",
+          "text": "PointLightComponent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation19PointLightComponentV5Colora",
+          "text": "Color"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/color-1ed8j",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "color",
+      "type": "topic",
+      "url": "/documentation/realitykit/pointlightcomponent/color-1ed8j"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/color-37raw": {
+      "abstract": [
+        {
+          "text": "A color for the point light.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "color"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation19PointLightComponentV",
+          "text": "PointLightComponent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation19PointLightComponentV5Colora",
+          "text": "Color"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/color-37raw",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "color",
+      "type": "topic",
+      "url": "/documentation/realitykit/pointlightcomponent/color-37raw"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/init(cgColor:intensity:attenuationRadius:)": {
+      "abstract": [
+        {
+          "text": "Creates a new instance with the specified color, intensity and attenuation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "cgColor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGColorRef",
+          "text": "CGColor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "intensity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "attenuationRadius"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/init(cgColor:intensity:attenuationRadius:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(cgColor:intensity:attenuationRadius:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/pointlightcomponent/init(cgcolor:intensity:attenuationradius:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/init(color:intensity:attenuationRadius:)-8z3j5": {
+      "abstract": [
+        {
+          "text": "Creates a point light component with a configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "color"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation19PointLightComponentV",
+          "text": "PointLightComponent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation19PointLightComponentV5Colora",
+          "text": "Color"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "intensity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "attenuationRadius"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/init(color:intensity:attenuationRadius:)-8z3j5",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(color:intensity:attenuationRadius:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/pointlightcomponent/init(color:intensity:attenuationradius:)-8z3j5"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/init(color:intensity:attenuationRadius:)-hp22": {
+      "abstract": [
+        {
+          "text": "Creates a point light component with a configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "color"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation19PointLightComponentV",
+          "text": "PointLightComponent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation19PointLightComponentV5Colora",
+          "text": "Color"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "intensity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "attenuationRadius"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/init(color:intensity:attenuationRadius:)-hp22",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(color:intensity:attenuationRadius:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/pointlightcomponent/init(color:intensity:attenuationradius:)-hp22"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/init(color:intensity:attenuationRadius:attenuationFalloffExponent:)-603s0": {
+      "abstract": [
+        {
+          "text": "Creates a point light component with a configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "color"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation19PointLightComponentV",
+          "text": "PointLightComponent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation19PointLightComponentV5Colora",
+          "text": "Color"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "intensity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "attenuationRadius"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "attenuationFalloffExponent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/init(color:intensity:attenuationRadius:attenuationFalloffExponent:)-603s0",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(color:intensity:attenuationRadius:attenuationFalloffExponent:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/pointlightcomponent/init(color:intensity:attenuationradius:attenuationfalloffexponent:)-603s0"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/init(color:intensity:attenuationRadius:attenuationFalloffExponent:)-6dm4f": {
+      "abstract": [
+        {
+          "text": "Creates a point light component with a configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "color"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation19PointLightComponentV",
+          "text": "PointLightComponent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation19PointLightComponentV5Colora",
+          "text": "Color"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "intensity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "attenuationRadius"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "attenuationFalloffExponent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/init(color:intensity:attenuationRadius:attenuationFalloffExponent:)-6dm4f",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(color:intensity:attenuationRadius:attenuationFalloffExponent:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/pointlightcomponent/init(color:intensity:attenuationradius:attenuationfalloffexponent:)-6dm4f"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/intensity": {
+      "abstract": [
+        {
+          "text": "The intensity of the point light, measured in lumen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "intensity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/intensity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "intensity",
+      "type": "topic",
+      "url": "/documentation/realitykit/pointlightcomponent/intensity"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/registerComponent()": {
+      "abstract": [
+        {
+          "text": "Registers a new component type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "registerComponent"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/registerComponent()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "registerComponent()",
+      "type": "topic",
+      "url": "/documentation/realitykit/pointlightcomponent/registercomponent()"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "pointlight-cube-closer": {
+      "alt": "A screenshot of a RealityKit scene with a dark gray floor, a light gray cube, and a small green sphere to the left of the cube above the floor. The green sphere is emitting a red light, which strongly illuminates the close side of the cube and the floor below.",
+      "identifier": "pointlight-cube-closer",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c05085185d750c42c1b3551fc3fcc956/pointlight-cube-closer.jpg"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/68e93b35a9098f2596ec5b1352131ca6/pointlight-cube-closer~dark.jpg"
+        }
+      ]
+    },
+    "pointlight-cube-closest": {
+      "alt": "A screenshot of a RealityKit scene with a dark gray floor, a light gray cube, and a small green sphere to the left of the cube above the floor. The green sphere is emitting a red light, which intensely illuminates the close side of the cube and the floor below.",
+      "identifier": "pointlight-cube-closest",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d05f7d56981d20de48633c78552d7215/pointlight-cube-closest.jpg"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8fa51995f6eb6085f62b630eaaaada3d/pointlight-cube-closest~dark.jpg"
+        }
+      ]
+    },
+    "pointlight-cube-far": {
+      "alt": "A screenshot of a RealityKit scene with a dark gray floor, a light gray cube, and a small green sphere to the left of the cube above the floor. The green sphere is emitting a red light, which slightly illuminates the close side of the cube and the floor below.",
+      "identifier": "pointlight-cube-far",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/05885759e11740e8fc7fcded21de4bb4/pointlight-cube-far.jpg"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f05c487a85cee19811e3670f7ca47776/pointlight-cube-far~dark.jpg"
+        }
+      ]
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/Component",
+        "doc://com.externally.resolved.symbol/s:SQ"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-point-light-component",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/init(color:intensity:attenuationRadius:)-8z3j5",
+        "doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/init(color:intensity:attenuationRadius:)-hp22",
+        "doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/init(cgColor:intensity:attenuationRadius:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/init(color:intensity:attenuationRadius:attenuationFalloffExponent:)-603s0",
+        "doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/init(color:intensity:attenuationRadius:attenuationFalloffExponent:)-6dm4f"
+      ],
+      "title": "Creating a point light component"
+    },
+    {
+      "anchor": "Setting-color",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/color-37raw",
+        "doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/color-1ed8j"
+      ],
+      "title": "Setting color"
+    },
+    {
+      "anchor": "Configuring-the-light",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/attenuationRadius",
+        "doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/intensity",
+        "doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/attenuationFalloffExponent"
+      ],
+      "title": "Configuring the light"
+    },
+    {
+      "anchor": "Registering-a-component-type",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/registerComponent()"
+      ],
+      "title": "Registering a component type"
+    },
+    {
+      "anchor": "Comparing-point-light-components",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/==(_:_:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/!=(_:_:)"
+      ],
+      "title": "Comparing point light components"
+    },
+    {
+      "anchor": "Supporting-types",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/Color-swift.typealias"
+      ],
+      "title": "Supporting types"
+    },
+    {
+      "anchor": "Default-Implementations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/Component-Implementations",
+        "doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent/Equatable-Implementations"
+      ],
+      "title": "Default Implementations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/pointlightcomponent"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2894 @@
+{
+  "abstract": [
+    {
+      "text": "A bitmask used to define the collision group to which an entity belongs.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:17RealityFoundation14CollisionGroupV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "CollisionGroup"
+      }
+    ],
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "CollisionGroup"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.15",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "CollisionGroup"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CollisionGroup"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use collision groups along with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CollisionFilter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to define custom",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "collision properties for entities in your scene and controlling which",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "entities collide wit which other entities. By default, all entities that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "participate in the physics simulation collide with all other participating",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "entities. There are times, however, when you need certain entities to not",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "collide with certain other entities, and that’s where collision groups and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "filters come into play.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create individual collision groups using raw bit flag values, like this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let redGroup = CollisionGroup(rawValue: 1 << 0)",
+            "let blueGroup = CollisionGroup(rawValue: 1 << 1)",
+            "let greenGroup = CollisionGroup(rawValue: 1 << 2)",
+            "let yellowGroup = CollisionGroup(rawValue: 1 << 3)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " conforms to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/OptionSet",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", this allows",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you to create aggregate groups that encompass multiple individual collision",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "groups, like so:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let blueAndRedGroup = redGroup.union(blueGroup)",
+            "let greenAndYellowGroup = greenGroup.union(yellowGroup)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also define groups that have all entities except those in specific",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "groups. In a game, for example, you might want to turn off collisions",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "between members of the same team or between pieces owned by the same player.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This is what creating that kind of filter would look like:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let allButRedGroup = CollisionGroup.all.subtracting(redGroup)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Collision groups aren’t assigned directly to entities. Instead, you create a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CollisionFilter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for the group, and then assign that filter to all the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "entities you wish to include in its group. The collision filter’s mask",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "defines which objects the entities in this group collide with, and all",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "entities that share the same filter are part of the same collision group.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let allButRedFilter = CollisionFilter(group: redGroup, mask: allButRedGroup)",
+            "redTeamPlayer1.collision?.filter = allButRedFilter"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Simulating-physics-with-collisions-in-your-visionOS-app-PageImage-card.png": {
+      "alt": "An image of a large, light orange cube covered with and surrounded by smaller orange cubes.",
+      "identifier": "Simulating-physics-with-collisions-in-your-visionOS-app-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/507347325f58b49ec440b0040cc8623d/Simulating-physics-with-collisions-in-your-visionOS-app-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3f1d5f817b7cca76c58f645a4e903f59/Simulating-physics-with-collisions-in-your-visionOS-app-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CollisionComponent": {
+      "abstract": [
+        {
+          "text": "A component that gives an entity the ability to collide with other entities",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "that also have collision components.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CollisionComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CollisionComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CollisionComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "CollisionComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/collisioncomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CollisionComponent/Mode-swift.enum": {
+      "abstract": [
+        {
+          "text": "A mode that dictates how much collision data is collected for a given",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Mode"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CollisionComponent/Mode-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Mode"
+        }
+      ],
+      "role": "symbol",
+      "title": "CollisionComponent.Mode",
+      "type": "topic",
+      "url": "/documentation/realitykit/collisioncomponent/mode-swift.enum"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CollisionFilter": {
+      "abstract": [
+        {
+          "text": "A set of masks that determine whether entities can collide during",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "simulations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CollisionFilter"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CollisionFilter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CollisionFilter"
+        }
+      ],
+      "role": "symbol",
+      "title": "CollisionFilter",
+      "type": "topic",
+      "url": "/documentation/realitykit/collisionfilter"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup": {
+      "abstract": [
+        {
+          "text": "A bitmask used to define the collision group to which an entity belongs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CollisionGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CollisionGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "CollisionGroup",
+      "type": "topic",
+      "url": "/documentation/realitykit/collisiongroup"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/!=(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether two values are not equal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "!="
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/!=(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "!=(_:_:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/collisiongroup/!=(_:_:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/ArrayLiteralElement": {
+      "abstract": [
+        {
+          "text": "The type of the elements of an array literal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ArrayLiteralElement"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/ArrayLiteralElement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ArrayLiteralElement"
+        }
+      ],
+      "role": "symbol",
+      "title": "CollisionGroup.ArrayLiteralElement",
+      "type": "topic",
+      "url": "/documentation/realitykit/collisiongroup/arrayliteralelement"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/Element": {
+      "abstract": [
+        {
+          "text": "The element type of the option set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Element"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/Element",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Element"
+        }
+      ],
+      "role": "symbol",
+      "title": "CollisionGroup.Element",
+      "type": "topic",
+      "url": "/documentation/realitykit/collisiongroup/element"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/Equatable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/Equatable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Equatable Implementations",
+      "type": "topic",
+      "url": "/documentation/realitykit/collisiongroup/equatable-implementations"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/OptionSet-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/OptionSet-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "OptionSet Implementations",
+      "type": "topic",
+      "url": "/documentation/realitykit/collisiongroup/optionset-implementations"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/RawValue-swift.typealias": {
+      "abstract": [
+        {
+          "text": "The raw type that can be used to represent all values of the conforming",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RawValue"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/RawValue-swift.typealias",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RawValue"
+        }
+      ],
+      "role": "symbol",
+      "title": "CollisionGroup.RawValue",
+      "type": "topic",
+      "url": "/documentation/realitykit/collisiongroup/rawvalue-swift.typealias"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/SetAlgebra-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/SetAlgebra-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "SetAlgebra Implementations",
+      "type": "topic",
+      "url": "/documentation/realitykit/collisiongroup/setalgebra-implementations"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/all": {
+      "abstract": [
+        {
+          "text": "The collision group that represents all groups.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "all"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation14CollisionGroupV",
+          "text": "CollisionGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/all",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "all",
+      "type": "topic",
+      "url": "/documentation/realitykit/collisiongroup/all"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/contains(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether a given element is a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "member of the option set.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "Self.Element",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contains"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/contains(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "contains(_:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/collisiongroup/contains(_:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/default": {
+      "abstract": [
+        {
+          "text": "The default collision group for objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "`default`"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation14CollisionGroupV",
+          "text": "CollisionGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/default",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "default",
+      "type": "topic",
+      "url": "/documentation/realitykit/collisiongroup/default"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/formIntersection(_:)": {
+      "abstract": [
+        {
+          "text": "Removes all elements of this option set that are not",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "also present in the given set.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "RawValue",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "FixedWidthInteger",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "formIntersection"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/formIntersection(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "formIntersection(_:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/collisiongroup/formintersection(_:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/formSymmetricDifference(_:)": {
+      "abstract": [
+        {
+          "text": "Replaces this set with a new set containing all elements",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "contained in either this set or the given set, but not in both.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "RawValue",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "FixedWidthInteger",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "formSymmetricDifference"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/formSymmetricDifference(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "formSymmetricDifference(_:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/collisiongroup/formsymmetricdifference(_:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/formUnion(_:)": {
+      "abstract": [
+        {
+          "text": "Inserts the elements of another set into this option set.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "RawValue",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "FixedWidthInteger",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "formUnion"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/formUnion(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "formUnion(_:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/collisiongroup/formunion(_:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/init()": {
+      "abstract": [
+        {
+          "text": "Creates an empty option set.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "RawValue",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "FixedWidthInteger",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/init()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/realitykit/collisiongroup/init()"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/init(_:)": {
+      "abstract": [
+        {
+          "text": "Creates a new set from a finite sequence of items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/init(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/collisiongroup/init(_:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/init(arrayLiteral:)": {
+      "abstract": [
+        {
+          "text": "Creates a set containing the elements of the given array literal.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "ArrayLiteralElement",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "Self.Element",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "arrayLiteral"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s10SetAlgebraP7ElementQa",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": "...)"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/init(arrayLiteral:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(arrayLiteral:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/collisiongroup/init(arrayliteral:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/init(rawValue:)": {
+      "abstract": [
+        {
+          "text": "Creates a collision group from a raw value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "rawValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/init(rawValue:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(rawValue:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/collisiongroup/init(rawvalue:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/insert(_:)": {
+      "abstract": [
+        {
+          "text": "Adds the given element to the option set if it is not already a member.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "Self.Element",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "insert"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s10SetAlgebraP7ElementQa",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": ") -> (inserted"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", memberAfterInsert"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s10SetAlgebraP7ElementQa",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/insert(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "insert(_:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/collisiongroup/insert(_:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/intersection(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a new option set with only the elements contained in both this",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "set and the given set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "intersection"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/intersection(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "intersection(_:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/collisiongroup/intersection(_:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/isDisjoint(with:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the set has no members in",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "common with the given set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isDisjoint"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/isDisjoint(with:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isDisjoint(with:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/collisiongroup/isdisjoint(with:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/isEmpty": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the set has no elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isEmpty"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/isEmpty",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isEmpty",
+      "type": "topic",
+      "url": "/documentation/realitykit/collisiongroup/isempty"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/isStrictSubset(of:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether this set is a strict",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "subset of the given set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isStrictSubset"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/isStrictSubset(of:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isStrictSubset(of:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/collisiongroup/isstrictsubset(of:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/isStrictSuperset(of:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether this set is a strict",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "superset of the given set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isStrictSuperset"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/isStrictSuperset(of:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isStrictSuperset(of:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/collisiongroup/isstrictsuperset(of:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/isSubset(of:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the set is a subset of",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "another set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isSubset"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/isSubset(of:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isSubset(of:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/collisiongroup/issubset(of:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/isSuperset(of:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the set is a superset of",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the given set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isSuperset"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/isSuperset(of:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isSuperset(of:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/collisiongroup/issuperset(of:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/rawValue-swift.property": {
+      "abstract": [
+        {
+          "text": "The corresponding value of the raw type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rawValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/rawValue-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "rawValue",
+      "type": "topic",
+      "url": "/documentation/realitykit/collisiongroup/rawvalue-swift.property"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/remove(_:)": {
+      "abstract": [
+        {
+          "text": "Removes the given element and all elements subsumed by it.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "Self.Element",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "remove"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s10SetAlgebraP7ElementQa",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s10SetAlgebraP7ElementQa",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/remove(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "remove(_:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/collisiongroup/remove(_:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/sceneUnderstanding": {
+      "abstract": [
+        {
+          "text": "The default collision group for scene-understanding meshes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sceneUnderstanding"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation14CollisionGroupV",
+          "text": "CollisionGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/sceneUnderstanding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sceneUnderstanding",
+      "type": "topic",
+      "url": "/documentation/realitykit/collisiongroup/sceneunderstanding"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/subtract(_:)": {
+      "abstract": [
+        {
+          "text": "Removes the elements of the given set from this set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "subtract"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/subtract(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subtract(_:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/collisiongroup/subtract(_:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/subtracting(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a new set containing the elements of this set that do not occur",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "in the given set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "subtracting"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/subtracting(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subtracting(_:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/collisiongroup/subtracting(_:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/symmetricDifference(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a new option set with the elements contained in this set or in",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the given set, but not in both.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "symmetricDifference"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/symmetricDifference(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "symmetricDifference(_:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/collisiongroup/symmetricdifference(_:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/union(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a new option set of the elements contained in this set, in the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "given set, or in both.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "union"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/union(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "union(_:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/collisiongroup/union(_:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/update(with:)": {
+      "abstract": [
+        {
+          "text": "Inserts the given element into the set.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "Self.Element",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "update"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s10SetAlgebraP7ElementQa",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s10SetAlgebraP7ElementQa",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/update(with:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "update(with:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/collisiongroup/update(with:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ShapeResource": {
+      "abstract": [
+        {
+          "text": "A representation of a shape.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ShapeResource"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ShapeResource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ShapeResource"
+        }
+      ],
+      "role": "symbol",
+      "title": "ShapeResource",
+      "type": "topic",
+      "url": "/documentation/realitykit/shaperesource"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ShapeResourceError": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ShapeResourceError"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ShapeResourceError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ShapeResourceError"
+        }
+      ],
+      "role": "symbol",
+      "title": "ShapeResourceError",
+      "type": "topic",
+      "url": "/documentation/realitykit/shaperesourceerror"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/TriggerVolume": {
+      "abstract": [
+        {
+          "text": "An invisible 3D shape that detects when objects enter or exit a given region",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "of space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TriggerVolume"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/TriggerVolume",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TriggerVolume"
+        }
+      ],
+      "role": "symbol",
+      "title": "TriggerVolume",
+      "type": "topic",
+      "url": "/documentation/realitykit/triggervolume"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/configuring-collision-in-realitykit": {
+      "abstract": [
+        {
+          "text": "Use collision groups and collision filters to control which objects collide.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/configuring-collision-in-realitykit",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Configuring Collision in RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit/configuring-collision-in-realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/simulating-physics-with-collisions-in-your-visionos-app": {
+      "abstract": [
+        {
+          "text": "Create entities that behave and react like physical objects in a RealityKit view.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/simulating-physics-with-collisions-in-your-visionos-app",
+      "images": [
+        {
+          "identifier": "Simulating-physics-with-collisions-in-your-visionOS-app-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Simulating physics with collisions in your visionOS app",
+      "type": "topic",
+      "url": "/documentation/realitykit/simulating-physics-with-collisions-in-your-visionos-app"
+    },
+    "doc://com.apple.documentation/documentation/Swift/OptionSet": {
+      "abstract": [
+        {
+          "text": "A type that presents a mathematical set interface to a bit set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OptionSet"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SY",
+          "text": "RawRepresentable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s10SetAlgebraP",
+          "text": "SetAlgebra"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/OptionSet",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OptionSet",
+      "type": "topic",
+      "url": "/documentation/Swift/OptionSet"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:SY": {
+      "abstract": [
+        {
+          "text": "A type that can be converted to and from an associated raw value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RawRepresentable"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SY8RawValueQa",
+          "text": "RawValue"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SY",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RawRepresentable",
+      "type": "topic",
+      "url": "/documentation/Swift/RawRepresentable"
+    },
+    "doc://com.externally.resolved.symbol/s:s10SetAlgebraP": {
+      "abstract": [
+        {
+          "text": "A type that provides mathematical set operations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SetAlgebra"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s10SetAlgebraP7ElementQa",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": "> : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s25ExpressibleByArrayLiteralP",
+          "text": "ExpressibleByArrayLiteral"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s10SetAlgebraP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetAlgebra",
+      "type": "topic",
+      "url": "/documentation/Swift/SetAlgebra"
+    },
+    "doc://com.externally.resolved.symbol/s:s25ExpressibleByArrayLiteralP": {
+      "abstract": [
+        {
+          "text": "A type that can be initialized using an array literal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExpressibleByArrayLiteral"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s25ExpressibleByArrayLiteralP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ExpressibleByArrayLiteral",
+      "type": "topic",
+      "url": "/documentation/Swift/ExpressibleByArrayLiteral"
+    },
+    "doc://com.externally.resolved.symbol/s:s9OptionSetP": {
+      "abstract": [
+        {
+          "text": "A type that presents a mathematical set interface to a bit set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OptionSet"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SY",
+          "text": "RawRepresentable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s10SetAlgebraP",
+          "text": "SetAlgebra"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s9OptionSetP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OptionSet",
+      "type": "topic",
+      "url": "/documentation/Swift/OptionSet"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:s25ExpressibleByArrayLiteralP",
+        "doc://com.externally.resolved.symbol/s:s9OptionSetP",
+        "doc://com.externally.resolved.symbol/s:SY",
+        "doc://com.externally.resolved.symbol/s:s10SetAlgebraP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Collision-shapes-and-groups",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/simulating-physics-with-collisions-in-your-visionos-app",
+        "doc://com.apple.RealityKit/documentation/RealityKit/configuring-collision-in-realitykit",
+        "doc://com.apple.RealityKit/documentation/RealityKit/CollisionComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/CollisionComponent/Mode-swift.enum",
+        "doc://com.apple.RealityKit/documentation/RealityKit/ShapeResource",
+        "doc://com.apple.RealityKit/documentation/RealityKit/ShapeResourceError",
+        "doc://com.apple.RealityKit/documentation/RealityKit/CollisionFilter",
+        "doc://com.apple.RealityKit/documentation/RealityKit/TriggerVolume"
+      ],
+      "title": "Collision shapes and groups"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Standard-collision-groups",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/default",
+        "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/all",
+        "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/sceneUnderstanding"
+      ],
+      "title": "Standard collision groups"
+    },
+    {
+      "anchor": "Creating-a-collision-group",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/init()",
+        "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/init(rawValue:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/init(_:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/init(arrayLiteral:)"
+      ],
+      "title": "Creating a collision group"
+    },
+    {
+      "anchor": "Option-set",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/rawValue-swift.property",
+        "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/!=(_:_:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/Element",
+        "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/isEmpty",
+        "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/rawValue-swift.property",
+        "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/contains(_:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/formIntersection(_:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/formSymmetricDifference(_:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/formUnion(_:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/insert(_:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/intersection(_:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/isDisjoint(with:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/isStrictSubset(of:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/isStrictSuperset(of:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/isSubset(of:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/isSuperset(of:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/remove(_:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/subtract(_:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/subtracting(_:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/symmetricDifference(_:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/union(_:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/update(with:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/ArrayLiteralElement",
+        "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/RawValue-swift.typealias"
+      ],
+      "title": "Option set"
+    },
+    {
+      "anchor": "Default-Implementations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/Equatable-Implementations",
+        "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/OptionSet-Implementations",
+        "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup/SetAlgebra-Implementations"
+      ],
+      "title": "Default Implementations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/collisiongroup"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,453 @@
+{
+  "abstract": [
+    {
+      "text": "The number of times a temporary image may be read by a CNN kernel before its contents become undefined.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage/2097546-readcount"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 2097546,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)MPSTemporaryImage(py)readCount",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "var "
+      },
+      {
+        "kind": "identifier",
+        "text": "readCount"
+      },
+      {
+        "kind": "text",
+        "text": ": Int"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Metal Performance Shaders"
+      }
+    ],
+    "parent": {
+      "title": "MPSTemporaryImage"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "10.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "10.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.13",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "10.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "instp",
+    "title": "readCount"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "readCount"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Int",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Si",
+              "text": "Int"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "set"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Temporary images must release their underlying textures for reuse immediately after last use. In order to facilitate ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "prompt",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " and convenient memory recycling, each time a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object is read by an ",
+              "type": "text"
+            },
+            {
+              "code": "encode",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method of an ",
+              "type": "text"
+            },
+            {
+              "identifier": "link-2528269",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object, the value of its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage/2097546-readcount",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property is automatically decremented. When the value of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage/2097546-readcount",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " reaches 0, the underlying texture is automatically made available and reusable to the framework for its own needs (and for other ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " objects prior to return from the ",
+              "type": "text"
+            },
+            {
+              "code": "encode",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method). The contents of the underlying texture become undefined at this time. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, the value of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage/2097546-readcount",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is initialized to 1, indicating a temporary image that may be overwritten any number of times, but read only once.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You may change the value of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage/2097546-readcount",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as desired to allow ",
+              "type": "text"
+            },
+            {
+              "identifier": "link-2528269",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects to read the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object additional times. However, it is an error to change the value of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage/2097546-readcount",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " once it reaches 0 (it is also an error to read or write to a temporary image with a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage/2097546-readcount",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " value of 0). You may set the value of  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage/2097546-readcount",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to 0 yourself to cause the underlying texture to be returned to the framework. Writing to a temporary image does not adjust the value of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage/2097546-readcount",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Metal API Validation layer will assert if a temporary image is deallocated with a non-zero ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage/2097546-readcount",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " value to help identify cases when resources are not returned promptly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/Int": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Int",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Int",
+      "type": "topic",
+      "url": "/documentation/swift/int"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal Performance Shaders",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSTemporaryImage",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpstemporaryimage"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage/2097546-readcount": {
+      "abstract": [
+        {
+          "text": "The number of times a temporary image may be read by a CNN kernel before its contents become undefined.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "readCount"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage/2097546-readcount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "readCount",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpstemporaryimage/2097546-readcount"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "link-2528269": {
+      "identifier": "link-2528269",
+      "kind": "article",
+      "role": "link",
+      "title": "MPSCNNKernel",
+      "type": "topic",
+      "url": "https://developer.apple.com/reference/metalperformanceshaders/mpscnnkernel"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "documentation/metalperformanceshaders/mpstemporaryimage/2097546-readcount"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/metalperformanceshaders/mpstemporaryimage/2097546-readcount"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

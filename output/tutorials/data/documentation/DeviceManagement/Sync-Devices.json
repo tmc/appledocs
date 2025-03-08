@@ -1,0 +1,580 @@
+{
+  "abstract": [
+    {
+      "text": "Get updates about the list of devices the server manages.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Sync-Devices"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:dep:post:devices-sync",
+    "modules": [
+      {
+        "name": "Device Management"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Sync Devices"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "name": "Device Assignment Services"
+      },
+      {
+        "beta": false,
+        "name": "VPP License Management"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Sync the List of Devices"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "POST"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://mdmenrollment.apple.com/"
+        },
+        {
+          "kind": "path",
+          "text": "devices/sync"
+        }
+      ]
+    },
+    {
+      "bodyContentType": [
+        {
+          "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/SyncDeviceRequest",
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "mdm-services:dep:SyncDeviceRequest",
+          "text": "SyncDeviceRequest"
+        }
+      ],
+      "content": [
+        {
+          "inlineContent": [
+            {
+              "text": "The request to sync the list of devices.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "restBody",
+      "mimeType": "application/json",
+      "parameters": [],
+      "title": "HTTP Body"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/FetchDeviceResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "mdm-services:dep:FetchDeviceResponse",
+              "text": "FetchDeviceResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "items": [
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "code": "CURSOR_REQUIRED",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ": ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "The cursor value was not provided in the request body.",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "code": "INVALID_CURSOR",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ": An invalid cursor value was provided.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "code": "EXHAUSTED_CURSOR",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ": The cursor had returned all devices in previous calls.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "code": "EXPIRED_CURSOR",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ": The provided cursor is older than 7 days.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "code": "USER_AGENT_INVALID:",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": "  The ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "User-Agent",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": " header is invalid.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "code": "USER_AGENT_MISSING:",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": "  The ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "User-Agent",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": " header is missing or has no assigned value.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                }
+              ],
+              "type": "unorderedList"
+            }
+          ],
+          "reason": "Bad Request",
+          "status": 400,
+          "type": []
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sync service depends on a cursor returned by the fetch device service. It returns a list of all modifications (additions or deletions) since the specified cursor. The cursor passed to this endpoint should not be older than 7 days.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This service may return the same device more than once. You must resolve duplicates by matching on the device serial number and the ",
+              "type": "text"
+            },
+            {
+              "code": "op_type",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "op_date",
+              "type": "codeVoice"
+            },
+            {
+              "text": " fields. The record with the latest ",
+              "type": "text"
+            },
+            {
+              "code": "op_date",
+              "type": "codeVoice"
+            },
+            {
+              "text": " indicates the last known state of the device in DEP.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement": {
+      "abstract": [
+        {
+          "text": "Manage your organization’s devices remotely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Activation-Lock-Devices": {
+      "abstract": [
+        {
+          "text": "Enable activation lock on a remote device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Activation-Lock-Devices",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Activation Lock Devices"
+        }
+      ],
+      "role": "symbol",
+      "title": "Activation Lock a Device",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/activation-lock-devices"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Device-Details": {
+      "abstract": [
+        {
+          "text": "Get the details on a set of devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Device-Details",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Device Details"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Device Details",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/device-details"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Disown-Devices": {
+      "abstract": [
+        {
+          "text": "Notify Apple’s servers that your organization no longer owns the specified devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Disown-Devices",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Disown Devices"
+        }
+      ],
+      "role": "symbol",
+      "title": "Disown Devices",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/disown-devices"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Fetch-Devices": {
+      "abstract": [
+        {
+          "text": "Get a list of devices that are managed by the server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Fetch-Devices",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Fetch Devices"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get a List of Devices",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/fetch-devices"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/FetchDeviceResponse": {
+      "abstract": [
+        {
+          "text": "The response that contains a list of devices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "FetchDeviceResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/FetchDeviceResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FetchDeviceResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "FetchDeviceResponse",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/fetchdeviceresponse"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Beta-Enrollment-Tokens": {
+      "abstract": [
+        {
+          "text": "Retrieves the beta enrollment tokens available for the organization.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Beta-Enrollment-Tokens",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Beta Enrollment Tokens"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Beta Enrollment Tokens",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/get-beta-enrollment-tokens"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Sync-Devices": {
+      "abstract": [
+        {
+          "text": "Get updates about the list of devices the server manages.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Sync-Devices",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Sync Devices"
+        }
+      ],
+      "role": "symbol",
+      "title": "Sync the List of Devices",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/sync-devices"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/SyncDeviceRequest": {
+      "abstract": [
+        {
+          "text": "The request to sync the list of devices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "SyncDeviceRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/SyncDeviceRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SyncDeviceRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "SyncDeviceRequest",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/syncdevicerequest"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Device-Management",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Activation-Lock-Devices",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Device-Details",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Fetch-Devices",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Disown-Devices",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Beta-Enrollment-Tokens"
+      ],
+      "title": "Device Management"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Request",
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/SyncDeviceRequest"
+      ],
+      "title": "Request"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicemanagement/sync-devices"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

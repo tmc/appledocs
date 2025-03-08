@@ -1,1 +1,1925 @@
-{"sections":[],"schemaVersion":{"major":0,"minor":3,"patch":0},"kind":"symbol","metadata":{"extendedModule":"AVFoundation","role":"symbol","roleHeading":"Type Method","platforms":[{"name":"iOS","introducedAt":"7.0","deprecated":false,"unavailable":false,"beta":false},{"name":"iPadOS","introducedAt":"7.0","deprecated":false,"unavailable":false,"beta":false},{"name":"Mac Catalyst","introducedAt":"14.0","deprecated":false,"unavailable":false,"beta":false},{"name":"macOS","introducedAt":"10.14","deprecated":false,"unavailable":false,"beta":false},{"name":"tvOS","beta":false,"introducedAt":"17.0","unavailable":false,"deprecated":false},{"name":"visionOS","beta":false,"introducedAt":"1.0","unavailable":false,"deprecated":false}],"externalID":"c:objc(cs)AVCaptureDevice(cm)requestAccessForMediaType:completionHandler:","navigatorTitle":[{"kind":"identifier","text":"requestAccessForMediaType:completionHandler:"}],"title":"requestAccess(for:completionHandler:)","symbolKind":"method","fragments":[{"text":"class","kind":"keyword"},{"text":" ","kind":"text"},{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"kind":"identifier","text":"requestAccess"},{"kind":"text","text":"("},{"kind":"externalParam","text":"for"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"AVMediaType","preciseIdentifier":"c:@T@AVMediaType"},{"kind":"text","text":", "},{"kind":"externalParam","text":"completionHandler"},{"kind":"text","text":": ("},{"kind":"typeIdentifier","preciseIdentifier":"s:Sb","text":"Bool"},{"kind":"text","text":") -> "},{"kind":"typeIdentifier","preciseIdentifier":"s:s4Voida","text":"Void"},{"kind":"text","text":")"}],"modules":[{"name":"AVFoundation"}]},"abstract":[{"type":"text","text":"Requests the user’s permission to allow the app to capture media of a particular type."}],"seeAlsoSections":[{"anchor":"Authorizing-Device-Access","identifiers":["doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/authorizationStatus(for:)","doc://com.apple.avfoundation/documentation/AVFoundation/AVAuthorizationStatus"],"generated":true,"title":"Authorizing Device Access"}],"identifier":{"interfaceLanguage":"swift","url":"doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/requestAccess(for:completionHandler:)"},"variants":[{"traits":[{"interfaceLanguage":"swift"}],"paths":["/documentation/avfoundation/avcapturedevice/requestaccess(for:completionhandler:)"]},{"traits":[{"interfaceLanguage":"occ"}],"paths":["/documentation/avfoundation/avcapturedevice/requestaccess(for:completionhandler:)"]}],"hierarchy":{"paths":[["doc://com.apple.documentation/documentation/technologies","doc://com.apple.avfoundation/documentation/AVFoundation","doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice"]]},"primaryContentSections":[{"declarations":[{"platforms":["iOS","iPadOS","Mac Catalyst","macOS","tvOS","visionOS"],"languages":["swift"],"tokens":[{"kind":"keyword","text":"class"},{"kind":"text","text":" "},{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"requestAccess"},{"kind":"text","text":"("},{"kind":"externalParam","text":"for"},{"kind":"text","text":" "},{"kind":"internalParam","text":"mediaType"},{"kind":"text","text":": "},{"identifier":"doc://com.apple.avfoundation/documentation/AVFoundation/AVMediaType","kind":"typeIdentifier","preciseIdentifier":"c:@T@AVMediaType","text":"AVMediaType"},{"kind":"text","text":", "},{"kind":"externalParam","text":"completionHandler"},{"kind":"text","text":" "},{"kind":"internalParam","text":"handler"},{"kind":"text","text":": "},{"kind":"keyword","text":"@escaping"},{"kind":"text","text":" ("},{"identifier":"doc://com.externally.resolved.symbol/s:Sb","kind":"typeIdentifier","preciseIdentifier":"s:Sb","text":"Bool"},{"kind":"text","text":") -> "},{"identifier":"doc://com.externally.resolved.symbol/s:s4Voida","kind":"typeIdentifier","preciseIdentifier":"s:s4Voida","text":"Void"},{"text":")","kind":"text"}]},{"platforms":["iOS","iPadOS","Mac Catalyst","macOS","tvOS","visionOS"],"languages":["swift"],"tokens":[{"text":"class","kind":"keyword"},{"text":" ","kind":"text"},{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"text":"requestAccess","kind":"identifier"},{"text":"(","kind":"text"},{"text":"for","kind":"externalParam"},{"text":" ","kind":"text"},{"text":"mediaType","kind":"internalParam"},{"text":": ","kind":"text"},{"preciseIdentifier":"c:@T@AVMediaType","text":"AVMediaType","identifier":"doc://com.apple.avfoundation/documentation/AVFoundation/AVMediaType","kind":"typeIdentifier"},{"text":") ","kind":"text"},{"text":"async","kind":"keyword"},{"text":" -> ","kind":"text"},{"preciseIdentifier":"s:Sb","text":"Bool","identifier":"doc://com.externally.resolved.symbol/s:Sb","kind":"typeIdentifier"}]}],"kind":"declarations"},{"kind":"parameters","parameters":[{"name":"mediaType","content":[{"type":"paragraph","inlineContent":[{"type":"text","text":"A media type for which to check the authorization status. The supported media types are "},{"identifier":"doc://com.apple.avfoundation/documentation/AVFoundation/AVMediaType/video","isActive":true,"type":"reference"},{"type":"text","text":" and "},{"identifier":"doc://com.apple.avfoundation/documentation/AVFoundation/AVMediaType/audio","isActive":true,"type":"reference"},{"type":"text","text":"."}]}]},{"name":"handler","content":[{"type":"paragraph","inlineContent":[{"type":"text","text":"A callback the system invokes with a Boolean value that indicates whether the user granted or denied access to your app."}]},{"type":"paragraph","inlineContent":[{"type":"text","text":"Return control to the main queue or "},{"type":"reference","isActive":true,"identifier":"doc://com.apple.documentation/documentation/Swift/MainActor"},{"type":"text","text":" before performing user interface updates."}]}]}]},{"mentions":["doc://com.apple.avfoundation/documentation/AVFoundation/requesting-authorization-to-capture-and-save-media"],"kind":"mentions"},{"content":[{"type":"heading","anchor":"Discussion","level":2,"text":"Discussion"},{"type":"paragraph","inlineContent":[{"text":"Capturing media requires explicit permission from the user. An app’s default authorization status is ","type":"text"},{"isActive":true,"type":"reference","identifier":"doc://com.apple.avfoundation/documentation/AVFoundation/AVAuthorizationStatus/notDetermined"},{"text":", which means the user hasn’t yet granted it permission to capture media. The first time you create an ","type":"text"},{"isActive":true,"type":"reference","identifier":"doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDeviceInput"},{"text":" object for a media type that requires permission, the system automatically displays an alert to request recording permission. Alternatively, call this method to prompt the user at a time of your choosing. The system saves the user’s selection so that it doesn’t have to prompt the user again. A user can change their authorization status in the Settings app.","type":"text"}]},{"type":"aside","name":"Important","content":[{"type":"paragraph","inlineContent":[{"text":"","type":"text"},{"text":" ","type":"text"},{"text":"Your app must provide an explanation for its use of capture devices using the ","type":"text"},{"type":"reference","isActive":true,"identifier":"doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSCameraUsageDescription"},{"text":" and ","type":"text"},{"type":"reference","isActive":true,"identifier":"doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSMicrophoneUsageDescription"},{"text":" Info.plist keys. The system presents the strings you set for these keys when prompting the user for permission, and thereafter in the Settings app. Calling this method or attempting to start a capture session without a usage description raises an exception.","type":"text"}]}],"style":"important"},{"type":"paragraph","inlineContent":[{"type":"text","text":"Calling this method doesn’t block the thread while the system is prompting the user for access. However, until the grants permission, the system only vends black video frames and silent audio samples."}]},{"type":"aside","name":"Note","content":[{"type":"paragraph","inlineContent":[{"text":"","type":"text"},{"text":" ","type":"text"},{"text":"Calling this method with a media type of ","type":"text"},{"type":"reference","identifier":"doc://com.apple.avfoundation/documentation/AVFoundation/AVMediaType/audio","isActive":true},{"text":" is equivalent to calling the ","type":"text"},{"type":"reference","identifier":"doc://com.apple.documentation/documentation/AVFAudio/AVAudioSession/requestRecordPermission(_:)","isActive":true},{"text":" method on ","type":"text"},{"type":"reference","identifier":"doc://com.apple.documentation/documentation/AVFAudio/AVAudioSession","isActive":true},{"text":".","type":"text"}]}],"style":"note"}],"kind":"content"}],"references":{"doc://com.apple.avfoundation/documentation/AVFoundation/AVMediaType/audio":{"role":"symbol","abstract":[{"text":"The media contains audio media.","type":"text"}],"fragments":[{"text":"static","kind":"keyword"},{"kind":"text","text":" "},{"kind":"keyword","text":"let"},{"text":" ","kind":"text"},{"text":"audio","kind":"identifier"},{"kind":"text","text":": "},{"text":"AVMediaType","preciseIdentifier":"c:@T@AVMediaType","kind":"typeIdentifier"}],"navigatorTitle":[{"text":"AVMediaTypeAudio","kind":"identifier"}],"identifier":"doc://com.apple.avfoundation/documentation/AVFoundation/AVMediaType/audio","url":"/documentation/avfoundation/avmediatype/audio","type":"topic","title":"audio","kind":"symbol"},"doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDeviceInput":{"identifier":"doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDeviceInput","url":"/documentation/avfoundation/avcapturedeviceinput","fragments":[{"kind":"keyword","text":"class"},{"kind":"text","text":" "},{"kind":"identifier","text":"AVCaptureDeviceInput"}],"navigatorTitle":[{"kind":"identifier","text":"AVCaptureDeviceInput"}],"kind":"symbol","type":"topic","role":"symbol","title":"AVCaptureDeviceInput","abstract":[{"type":"text","text":"An object that provides media input from a capture device to a capture session."}]},"doc://com.apple.avfoundation/documentation/AVFoundation/requesting-authorization-to-capture-and-save-media":{"role":"article","abstract":[{"text":"Prompt the user to authorize access to the camera, microphone, and photo library.","type":"text"}],"type":"topic","kind":"article","identifier":"doc://com.apple.avfoundation/documentation/AVFoundation/requesting-authorization-to-capture-and-save-media","url":"/documentation/avfoundation/requesting-authorization-to-capture-and-save-media","title":"Requesting authorization to capture and save media"},"doc://com.externally.resolved.symbol/c:@T@BOOL":{"identifier":"doc://com.externally.resolved.symbol/c:@T@BOOL","title":"BOOL","url":"/documentation/objectivec/bool","type":"topic","kind":"symbol","role":"symbol","abstract":[{"type":"text","text":"Type to represent a Boolean value."}]},"doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSCameraUsageDescription":{"identifier":"doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSCameraUsageDescription","abstract":[{"type":"text","text":"A message that tells the user why the app is requesting access to the device’s camera."}],"title":"NSCameraUsageDescription","type":"topic","role":"symbol","kind":"symbol","url":"/documentation/BundleResources/Information-Property-List/NSCameraUsageDescription"},"doc://com.apple.documentation/documentation/technologies":{"role":"overview","identifier":"doc://com.apple.documentation/documentation/technologies","abstract":[{"type":"text","text":""}],"type":"topic","title":"Technologies","url":"/documentation/technologies","kind":"technologies"},"doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/authorizationStatus(for:)":{"type":"topic","role":"symbol","url":"/documentation/avfoundation/avcapturedevice/authorizationstatus(for:)","identifier":"doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/authorizationStatus(for:)","kind":"symbol","fragments":[{"kind":"keyword","text":"class"},{"kind":"text","text":" "},{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"authorizationStatus"},{"kind":"text","text":"("},{"kind":"externalParam","text":"for"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"AVMediaType","preciseIdentifier":"c:@T@AVMediaType"},{"kind":"text","text":") -> "},{"kind":"typeIdentifier","text":"AVAuthorizationStatus","preciseIdentifier":"c:@E@AVAuthorizationStatus"}],"title":"authorizationStatus(for:)","abstract":[{"text":"Returns an authorization status that indicates whether the user grants the app permission to capture media of a particular type.","type":"text"}],"navigatorTitle":[{"kind":"identifier","text":"authorizationStatusForMediaType:"}]},"doc://com.externally.resolved.symbol/s:s4Voida":{"role":"symbol","identifier":"doc://com.externally.resolved.symbol/s:s4Voida","type":"topic","title":"Void","kind":"symbol","fragments":[{"text":"typealias","kind":"keyword"},{"text":" ","kind":"text"},{"text":"Void","kind":"identifier"},{"text":" = ()","kind":"text"}],"abstract":[{"text":"The return type of functions that don’t explicitly specify a return type, that is, an empty tuple `()`.","type":"text"}],"url":"/documentation/Swift/Void"},"doc://com.apple.documentation/documentation/AVFAudio/AVAudioSession/requestRecordPermission(_:)":{"fragments":[{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"text":"requestRecordPermission","kind":"identifier"},{"text":"(","kind":"text"},{"kind":"externalParam","text":"_"},{"kind":"text","text":" "},{"kind":"internalParam","text":"response"},{"kind":"text","text":": "},{"kind":"keyword","text":"@escaping"},{"kind":"text","text":" ("},{"kind":"typeIdentifier","preciseIdentifier":"s:Sb","text":"Bool"},{"kind":"text","text":") -> "},{"kind":"typeIdentifier","preciseIdentifier":"s:s4Voida","text":"Void"},{"kind":"text","text":")"}],"kind":"symbol","url":"/documentation/AVFAudio/AVAudioSession/requestRecordPermission(_:)","abstract":[{"type":"text","text":"Requests the user’s permission to record audio."}],"type":"topic","title":"requestRecordPermission(_:)","role":"symbol","identifier":"doc://com.apple.documentation/documentation/AVFAudio/AVAudioSession/requestRecordPermission(_:)","deprecated":true},"doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSMicrophoneUsageDescription":{"identifier":"doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSMicrophoneUsageDescription","abstract":[{"text":"A message that tells the user why the app is requesting access to the device’s microphone.","type":"text"}],"title":"NSMicrophoneUsageDescription","type":"topic","role":"symbol","kind":"symbol","url":"/documentation/BundleResources/Information-Property-List/NSMicrophoneUsageDescription"},"doc://com.apple.documentation/documentation/Swift/MainActor":{"fragments":[{"text":"@globalActor","kind":"attribute"},{"text":" ","kind":"text"},{"text":"final","kind":"keyword"},{"text":" ","kind":"text"},{"kind":"keyword","text":"actor"},{"kind":"text","text":" "},{"kind":"identifier","text":"MainActor"}],"kind":"symbol","url":"/documentation/Swift/MainActor","abstract":[{"type":"text","text":"A singleton actor whose executor is equivalent to the main dispatch queue."}],"type":"topic","title":"MainActor","role":"symbol","identifier":"doc://com.apple.documentation/documentation/Swift/MainActor"},"doc://com.externally.resolved.symbol/s:Sb":{"role":"symbol","identifier":"doc://com.externally.resolved.symbol/s:Sb","fragments":[{"text":"@frozen","kind":"attribute"},{"text":" ","kind":"text"},{"text":"struct","kind":"keyword"},{"text":" ","kind":"text"},{"text":"Bool","kind":"identifier"}],"abstract":[{"type":"text","text":"A value type whose instances are either `true` or `false`."}],"type":"topic","title":"Bool","url":"/documentation/Swift/Bool","kind":"symbol"},"doc://com.apple.avfoundation/documentation/AVFoundation/AVMediaType/video":{"identifier":"doc://com.apple.avfoundation/documentation/AVFoundation/AVMediaType/video","kind":"symbol","fragments":[{"text":"static","kind":"keyword"},{"text":" ","kind":"text"},{"text":"let","kind":"keyword"},{"text":" ","kind":"text"},{"text":"video","kind":"identifier"},{"text":": ","kind":"text"},{"text":"AVMediaType","preciseIdentifier":"c:@T@AVMediaType","kind":"typeIdentifier"}],"type":"topic","role":"symbol","title":"video","navigatorTitle":[{"text":"AVMediaTypeVideo","kind":"identifier"}],"url":"/documentation/avfoundation/avmediatype/video","abstract":[{"text":"The media contains video.","type":"text"}]},"doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice":{"url":"/documentation/avfoundation/avcapturedevice","title":"AVCaptureDevice","abstract":[{"text":"An object that represents a hardware or virtual capture device like a camera or microphone.","type":"text"}],"kind":"symbol","navigatorTitle":[{"text":"AVCaptureDevice","kind":"identifier"}],"type":"topic","role":"symbol","fragments":[{"text":"class","kind":"keyword"},{"text":" ","kind":"text"},{"text":"AVCaptureDevice","kind":"identifier"}],"identifier":"doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice"},"doc://com.apple.avfoundation/documentation/AVFoundation/AVMediaType":{"url":"/documentation/avfoundation/avmediatype","title":"AVMediaType","abstract":[{"text":"An identifier for various media types.","type":"text"}],"navigatorTitle":[{"text":"AVMediaType","kind":"identifier"}],"type":"topic","fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"text":"AVMediaType","kind":"identifier"}],"kind":"symbol","role":"symbol","identifier":"doc://com.apple.avfoundation/documentation/AVFoundation/AVMediaType"},"doc://com.apple.avfoundation/documentation/AVFoundation/AVAuthorizationStatus":{"abstract":[{"text":"Constants that indicate the status of an app’s authorization to capture media.","type":"text"}],"kind":"symbol","fragments":[{"text":"enum","kind":"keyword"},{"text":" ","kind":"text"},{"text":"AVAuthorizationStatus","kind":"identifier"}],"navigatorTitle":[{"text":"AVAuthorizationStatus","kind":"identifier"}],"url":"/documentation/avfoundation/avauthorizationstatus","title":"AVAuthorizationStatus","type":"topic","identifier":"doc://com.apple.avfoundation/documentation/AVFoundation/AVAuthorizationStatus","role":"symbol"},"doc://com.apple.documentation/documentation/AVFAudio/AVAudioSession":{"url":"/documentation/AVFAudio/AVAudioSession","role":"symbol","kind":"symbol","identifier":"doc://com.apple.documentation/documentation/AVFAudio/AVAudioSession","type":"topic","fragments":[{"text":"class","kind":"keyword"},{"text":" ","kind":"text"},{"text":"AVAudioSession","kind":"identifier"}],"abstract":[{"text":"An object that communicates to the system how you intend to use audio in your app.","type":"text"}],"title":"AVAudioSession"},"doc://com.apple.avfoundation/documentation/AVFoundation/AVAuthorizationStatus/notDetermined":{"abstract":[{"text":"A status that indicates the user hasn’t yet granted or denied authorization.","type":"text"}],"kind":"symbol","fragments":[{"text":"case","kind":"keyword"},{"text":" ","kind":"text"},{"text":"notDetermined","kind":"identifier"}],"navigatorTitle":[{"text":"AVAuthorizationStatusNotDetermined","kind":"identifier"}],"url":"/documentation/avfoundation/avauthorizationstatus/notdetermined","title":"AVAuthorizationStatus.notDetermined","type":"topic","identifier":"doc://com.apple.avfoundation/documentation/AVFoundation/AVAuthorizationStatus/notDetermined","role":"symbol"},"doc://com.apple.avfoundation/documentation/AVFoundation":{"role":"collection","identifier":"doc://com.apple.avfoundation/documentation/AVFoundation","abstract":[{"type":"text","text":"Work with audiovisual assets, control device cameras, process audio, and configure system audio interactions."}],"type":"topic","title":"AVFoundation","url":"/documentation/avfoundation","kind":"symbol"},"doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/requestAccess(for:completionHandler:)":{"role":"symbol","title":"requestAccess(for:completionHandler:)","url":"/documentation/avfoundation/avcapturedevice/requestaccess(for:completionhandler:)","kind":"symbol","fragments":[{"text":"class","kind":"keyword"},{"text":" ","kind":"text"},{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"text":"requestAccess","kind":"identifier"},{"text":"(","kind":"text"},{"text":"for","kind":"externalParam"},{"text":": ","kind":"text"},{"preciseIdentifier":"c:@T@AVMediaType","text":"AVMediaType","kind":"typeIdentifier"},{"text":", ","kind":"text"},{"text":"completionHandler","kind":"externalParam"},{"text":": (","kind":"text"},{"preciseIdentifier":"s:Sb","text":"Bool","kind":"typeIdentifier"},{"text":") -> ","kind":"text"},{"preciseIdentifier":"s:s4Voida","text":"Void","kind":"typeIdentifier"},{"text":")","kind":"text"}],"abstract":[{"text":"Requests the user’s permission to allow the app to capture media of a particular type.","type":"text"}],"navigatorTitle":[{"text":"requestAccessForMediaType:completionHandler:","kind":"identifier"}],"identifier":"doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/requestAccess(for:completionHandler:)","type":"topic"}},"variantOverrides":[{"traits":[{"interfaceLanguage":"occ"}],"patch":[{"value":"occ","path":"/identifier/interfaceLanguage","op":"replace"},{"value":[{"beta":false,"name":"iOS","deprecated":false,"introducedAt":"7.0","unavailable":false},{"beta":false,"name":"iPadOS","deprecated":false,"introducedAt":"7.0","unavailable":false},{"beta":false,"name":"Mac Catalyst","deprecated":false,"introducedAt":"14.0","unavailable":false},{"beta":false,"name":"macOS","deprecated":false,"introducedAt":"10.14","unavailable":false},{"beta":false,"name":"tvOS","deprecated":false,"introducedAt":"17.0","unavailable":false},{"beta":false,"name":"visionOS","deprecated":false,"introducedAt":"1.0","unavailable":false}],"path":"/metadata/platforms","op":"replace"},{"value":"Type Method","path":"/metadata/roleHeading","op":"replace"},{"value":"requestAccessForMediaType:completionHandler:","path":"/metadata/title","op":"replace"},{"value":"method","path":"/metadata/symbolKind","op":"replace"},{"value":[{"text":"+ ","kind":"text"},{"text":"requestAccessForMediaType:completionHandler:","kind":"identifier"}],"path":"/metadata/fragments","op":"replace"},{"value":{"paths":[["doc://com.apple.documentation/documentation/technologies","doc://com.apple.avfoundation/documentation/AVFoundation","doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice"]]},"path":"/hierarchy","op":"replace"},{"path":"/topicSections","op":"add","value":null},{"path":"/relationshipsSections","op":"add","value":null},{"path":"/seeAlsoSections","op":"replace","value":[{"anchor":"Authorizing-Device-Access","identifiers":["doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/authorizationStatus(for:)","doc://com.apple.avfoundation/documentation/AVFoundation/AVAuthorizationStatus"],"generated":true,"title":"Authorizing Device Access"}]},{"path":"/primaryContentSections/0","op":"replace","value":{"declarations":[{"tokens":[{"kind":"text","text":"+ ("},{"kind":"typeIdentifier","preciseIdentifier":"c:v","text":"void"},{"kind":"text","text":") "},{"kind":"identifier","text":"requestAccessForMediaType:"},{"kind":"text","text":"("},{"kind":"typeIdentifier","identifier":"doc://com.apple.avfoundation/documentation/AVFoundation/AVMediaType","text":"AVMediaType","preciseIdentifier":"c:@T@AVMediaType"},{"kind":"text","text":") "},{"kind":"internalParam","text":"mediaType"},{"kind":"text","text":" "},{"kind":"identifier","text":"completionHandler:"},{"kind":"text","text":"("},{"kind":"typeIdentifier","text":"void","preciseIdentifier":"c:v"},{"kind":"text","text":" (^)("},{"kind":"typeIdentifier","identifier":"doc://com.externally.resolved.symbol/c:@T@BOOL","text":"BOOL","preciseIdentifier":"c:@T@BOOL"},{"text":" ","kind":"text"},{"text":"granted","kind":"internalParam"},{"text":")) ","kind":"text"},{"text":"handler","kind":"internalParam"},{"text":";","kind":"text"}],"languages":["occ"],"platforms":["iOS","iPadOS","Mac Catalyst","macOS","tvOS","visionOS","watchOS"]}],"kind":"declarations"}},{"value":{"parameters":[{"name":"mediaType","content":[{"inlineContent":[{"type":"text","text":"A media type for which to check the authorization status. The supported media types are "},{"type":"reference","identifier":"doc://com.apple.avfoundation/documentation/AVFoundation/AVMediaType/video","isActive":true},{"type":"text","text":" and "},{"type":"reference","identifier":"doc://com.apple.avfoundation/documentation/AVFoundation/AVMediaType/audio","isActive":true},{"type":"text","text":"."}],"type":"paragraph"}]},{"name":"handler","content":[{"type":"paragraph","inlineContent":[{"text":"A callback the system invokes with a Boolean value that indicates whether the user granted or denied access to your app.","type":"text"}]},{"type":"paragraph","inlineContent":[{"type":"text","text":"Return control to the main queue or "},{"type":"reference","identifier":"doc://com.apple.documentation/documentation/Swift/MainActor","isActive":true},{"type":"text","text":" before performing user interface updates."}]}]}],"kind":"parameters"},"op":"replace","path":"/primaryContentSections/1"},{"path":"/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMediaType~1audio/title","op":"replace","value":"AVMediaTypeAudio"},{"path":"/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMediaType~1audio/fragments","op":"replace","value":[{"text":"AVMediaTypeAudio","kind":"identifier"}]},{"path":"/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDeviceInput/title","op":"replace","value":"AVCaptureDeviceInput"},{"path":"/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDeviceInput/fragments","op":"replace","value":[{"kind":"identifier","text":"AVCaptureDeviceInput"}]},{"path":"/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDeviceInput/navigatorTitle","op":"replace","value":[{"kind":"identifier","text":"AVCaptureDeviceInput"}]},{"path":"/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1authorizationStatus(for:)/title","op":"replace","value":"authorizationStatusForMediaType:"},{"path":"/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1authorizationStatus(for:)/fragments","op":"replace","value":[{"kind":"text","text":"+ "},{"kind":"identifier","text":"authorizationStatusForMediaType:"}]},{"path":"/references/doc:~1~1com.apple.documentation~1documentation~1AVFAudio~1AVAudioSession~1requestRecordPermission(_:)/title","op":"replace","value":"requestRecordPermission:"},{"path":"/references/doc:~1~1com.apple.documentation~1documentation~1AVFAudio~1AVAudioSession~1requestRecordPermission(_:)/fragments","op":"replace","value":[{"kind":"text","text":"- ("},{"kind":"typeIdentifier","text":"void","preciseIdentifier":"c:v"},{"kind":"text","text":") "},{"kind":"identifier","text":"requestRecordPermission:"},{"kind":"text","text":"("},{"kind":"typeIdentifier","text":"void","preciseIdentifier":"c:v"},{"kind":"text","text":" (^)("},{"kind":"typeIdentifier","text":"BOOL","preciseIdentifier":"c:@T@BOOL"},{"kind":"text","text":" "},{"kind":"internalParam","text":"granted"},{"kind":"text","text":")) "},{"kind":"internalParam","text":"response"},{"kind":"text","text":";"}]},{"path":"/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMediaType~1video/title","op":"replace","value":"AVMediaTypeVideo"},{"path":"/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMediaType~1video/fragments","op":"replace","value":[{"text":"AVMediaTypeVideo","kind":"identifier"}]},{"path":"/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice/title","op":"replace","value":"AVCaptureDevice"},{"path":"/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice/fragments","op":"replace","value":[{"text":"AVCaptureDevice","kind":"identifier"}]},{"path":"/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice/navigatorTitle","op":"replace","value":[{"kind":"identifier","text":"AVCaptureDevice"}]},{"path":"/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMediaType/title","op":"replace","value":"AVMediaType"},{"path":"/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMediaType/fragments","op":"replace","value":[{"text":"AVMediaType","kind":"identifier"}]},{"path":"/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMediaType/navigatorTitle","op":"replace","value":[{"kind":"identifier","text":"AVMediaType"}]},{"path":"/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAuthorizationStatus/title","op":"replace","value":"AVAuthorizationStatus"},{"path":"/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAuthorizationStatus/fragments","op":"replace","value":[{"kind":"identifier","text":"AVAuthorizationStatus"}]},{"path":"/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAuthorizationStatus/navigatorTitle","op":"replace","value":[{"kind":"identifier","text":"AVAuthorizationStatus"}]},{"path":"/references/doc:~1~1com.apple.documentation~1documentation~1AVFAudio~1AVAudioSession/fragments","op":"replace","value":[{"text":"@interface","kind":"keyword"},{"text":" ","kind":"text"},{"text":"AVAudioSession","kind":"identifier"},{"text":" : ","kind":"text"},{"text":"NSObject","kind":"typeIdentifier","preciseIdentifier":"c:objc(cs)NSObject"}]},{"path":"/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAuthorizationStatus~1notDetermined/title","op":"replace","value":"AVAuthorizationStatusNotDetermined"},{"path":"/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAuthorizationStatus~1notDetermined/fragments","op":"replace","value":[{"text":"AVAuthorizationStatusNotDetermined","kind":"identifier"}]},{"path":"/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1requestAccess(for:completionHandler:)/title","op":"replace","value":"requestAccessForMediaType:completionHandler:"},{"path":"/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1requestAccess(for:completionHandler:)/fragments","op":"replace","value":[{"text":"+ ","kind":"text"},{"text":"requestAccessForMediaType:completionHandler:","kind":"identifier"}]}]}],"legalNotices":{"copyright":"Copyright &copy; 2025 Apple Inc. All rights reserved.","termsOfUse":"https://www.apple.com/legal/internet-services/terms/site.html","privacyPolicy":"https://www.apple.com/privacy/privacy-policy"}}
+{
+  "abstract": [
+    {
+      "text": "Requests the user’s permission to allow the app to capture media of a particular type.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avfoundation/documentation/AVFoundation",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/requestAccess(for:completionHandler:)"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "AVFoundation",
+    "externalID": "c:objc(cs)AVCaptureDevice(cm)requestAccessForMediaType:completionHandler:",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "requestAccess"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "externalParam",
+        "text": "for"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@T@AVMediaType",
+        "text": "AVMediaType"
+      },
+      {
+        "kind": "text",
+        "text": ", "
+      },
+      {
+        "kind": "externalParam",
+        "text": "completionHandler"
+      },
+      {
+        "kind": "text",
+        "text": ": ("
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:Sb",
+        "text": "Bool"
+      },
+      {
+        "kind": "text",
+        "text": ") -> "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:s4Voida",
+        "text": "Void"
+      },
+      {
+        "kind": "text",
+        "text": ")"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AVFoundation"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "requestAccessForMediaType:completionHandler:"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "7.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "7.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.14",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Method",
+    "symbolKind": "method",
+    "title": "requestAccess(for:completionHandler:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "requestAccess"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "for"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "mediaType"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMediaType",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@AVMediaType",
+              "text": "AVMediaType"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "externalParam",
+              "text": "completionHandler"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "handler"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "kind": "keyword",
+              "text": "@escaping"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:Sb",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Sb",
+              "text": "Bool"
+            },
+            {
+              "kind": "text",
+              "text": ") -> "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:s4Voida",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:s4Voida",
+              "text": "Void"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            }
+          ]
+        },
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "requestAccess"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "for"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "mediaType"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMediaType",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@AVMediaType",
+              "text": "AVMediaType"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "keyword",
+              "text": "async"
+            },
+            {
+              "kind": "text",
+              "text": " -> "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:Sb",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Sb",
+              "text": "Bool"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A media type for which to check the authorization status. The supported media types are ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMediaType/video",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMediaType/audio",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "mediaType"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A callback the system invokes with a Boolean value that indicates whether the user granted or denied access to your app.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Return control to the main queue or ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Swift/MainActor",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " before performing user interface updates.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "handler"
+        }
+      ]
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/requesting-authorization-to-capture-and-save-media"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Capturing media requires explicit permission from the user. An app’s default authorization status is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAuthorizationStatus/notDetermined",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which means the user hasn’t yet granted it permission to capture media. The first time you create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDeviceInput",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object for a media type that requires permission, the system automatically displays an alert to request recording permission. Alternatively, call this method to prompt the user at a time of your choosing. The system saves the user’s selection so that it doesn’t have to prompt the user again. A user can change their authorization status in the Settings app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Your app must provide an explanation for its use of capture devices using the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSCameraUsageDescription",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSMicrophoneUsageDescription",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " Info.plist keys. The system presents the strings you set for these keys when prompting the user for permission, and thereafter in the Settings app. Calling this method or attempting to start a capture session without a usage description raises an exception.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Calling this method doesn’t block the thread while the system is prompting the user for access. However, until the grants permission, the system only vends black video frames and silent audio samples.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Calling this method with a media type of ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMediaType/audio",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " is equivalent to calling the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioSession/requestRecordPermission(_:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " method on ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioSession",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.avfoundation/documentation/AVFoundation": {
+      "abstract": [
+        {
+          "text": "Work with audiovisual assets, control device cameras, process audio, and configure system audio interactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFoundation",
+      "type": "topic",
+      "url": "/documentation/avfoundation"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAuthorizationStatus": {
+      "abstract": [
+        {
+          "text": "Constants that indicate the status of an app’s authorization to capture media.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAuthorizationStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAuthorizationStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAuthorizationStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAuthorizationStatus",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avauthorizationstatus"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAuthorizationStatus/notDetermined": {
+      "abstract": [
+        {
+          "text": "A status that indicates the user hasn’t yet granted or denied authorization.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "notDetermined"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAuthorizationStatus/notDetermined",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAuthorizationStatusNotDetermined"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAuthorizationStatus.notDetermined",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avauthorizationstatus/notdetermined"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice": {
+      "abstract": [
+        {
+          "text": "An object that represents a hardware or virtual capture device like a camera or microphone.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCaptureDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCaptureDevice",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/authorizationStatus(for:)": {
+      "abstract": [
+        {
+          "text": "Returns an authorization status that indicates whether the user grants the app permission to capture media of a particular type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "authorizationStatus"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVMediaType",
+          "text": "AVMediaType"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AVAuthorizationStatus",
+          "text": "AVAuthorizationStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/authorizationStatus(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "authorizationStatusForMediaType:"
+        }
+      ],
+      "role": "symbol",
+      "title": "authorizationStatus(for:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/authorizationstatus(for:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/requestAccess(for:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Requests the user’s permission to allow the app to capture media of a particular type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestAccess"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVMediaType",
+          "text": "AVMediaType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/requestAccess(for:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "requestAccessForMediaType:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "requestAccess(for:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/requestaccess(for:completionhandler:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDeviceInput": {
+      "abstract": [
+        {
+          "text": "An object that provides media input from a capture device to a capture session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureDeviceInput"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDeviceInput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCaptureDeviceInput"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCaptureDeviceInput",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedeviceinput"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMediaType": {
+      "abstract": [
+        {
+          "text": "An identifier for various media types.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVMediaType"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMediaType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVMediaType"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVMediaType",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmediatype"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMediaType/audio": {
+      "abstract": [
+        {
+          "text": "The media contains audio media.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "audio"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVMediaType",
+          "text": "AVMediaType"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMediaType/audio",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVMediaTypeAudio"
+        }
+      ],
+      "role": "symbol",
+      "title": "audio",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmediatype/audio"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVMediaType/video": {
+      "abstract": [
+        {
+          "text": "The media contains video.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "video"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVMediaType",
+          "text": "AVMediaType"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMediaType/video",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVMediaTypeVideo"
+        }
+      ],
+      "role": "symbol",
+      "title": "video",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avmediatype/video"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/requesting-authorization-to-capture-and-save-media": {
+      "abstract": [
+        {
+          "text": "Prompt the user to authorize access to the camera, microphone, and photo library.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/requesting-authorization-to-capture-and-save-media",
+      "kind": "article",
+      "role": "article",
+      "title": "Requesting authorization to capture and save media",
+      "type": "topic",
+      "url": "/documentation/avfoundation/requesting-authorization-to-capture-and-save-media"
+    },
+    "doc://com.apple.documentation/documentation/AVFAudio/AVAudioSession": {
+      "abstract": [
+        {
+          "text": "An object that communicates to the system how you intend to use audio in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioSession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVAudioSession",
+      "type": "topic",
+      "url": "/documentation/AVFAudio/AVAudioSession"
+    },
+    "doc://com.apple.documentation/documentation/AVFAudio/AVAudioSession/requestRecordPermission(_:)": {
+      "abstract": [
+        {
+          "text": "Requests the user’s permission to record audio.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestRecordPermission"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "response"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioSession/requestRecordPermission(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "requestRecordPermission(_:)",
+      "type": "topic",
+      "url": "/documentation/AVFAudio/AVAudioSession/requestRecordPermission(_:)"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSCameraUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting access to the device’s camera.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSCameraUsageDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCameraUsageDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSCameraUsageDescription"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSMicrophoneUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting access to the device’s microphone.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSMicrophoneUsageDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMicrophoneUsageDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSMicrophoneUsageDescription"
+    },
+    "doc://com.apple.documentation/documentation/Swift/MainActor": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/MainActor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@BOOL": {
+      "abstract": [
+        {
+          "text": "Type to represent a Boolean value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@BOOL",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BOOL",
+      "type": "topic",
+      "url": "/documentation/objectivec/bool"
+    },
+    "doc://com.externally.resolved.symbol/s:Sb": {
+      "abstract": [
+        {
+          "text": "A value type whose instances are either `true` or `false`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:Sb",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Bool",
+      "type": "topic",
+      "url": "/documentation/Swift/Bool"
+    },
+    "doc://com.externally.resolved.symbol/s:s4Voida": {
+      "abstract": [
+        {
+          "text": "The return type of functions that don’t explicitly specify a return type, that is, an empty tuple `()`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": " = ()"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s4Voida",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Void",
+      "type": "topic",
+      "url": "/documentation/Swift/Void"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Authorizing-Device-Access",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/authorizationStatus(for:)",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAuthorizationStatus"
+      ],
+      "title": "Authorizing Device Access"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "7.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "7.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.14",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "17.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Type Method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "requestAccessForMediaType:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "requestAccessForMediaType:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.avfoundation/documentation/AVFoundation",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Authorizing-Device-Access",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/authorizationStatus(for:)",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAuthorizationStatus"
+              ],
+              "title": "Authorizing Device Access"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "text",
+                    "text": "+ ("
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:v",
+                    "text": "void"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "requestAccessForMediaType:"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "("
+                  },
+                  {
+                    "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMediaType",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@T@AVMediaType",
+                    "text": "AVMediaType"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "mediaType"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "completionHandler:"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "("
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:v",
+                    "text": "void"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " (^)("
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:@T@BOOL",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@T@BOOL",
+                    "text": "BOOL"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "granted"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ")) "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "handler"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/1",
+          "value": {
+            "kind": "parameters",
+            "parameters": [
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A media type for which to check the authorization status. The supported media types are ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMediaType/video",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " and ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVMediaType/audio",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "mediaType"
+              },
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A callback the system invokes with a Boolean value that indicates whether the user granted or denied access to your app.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Return control to the main queue or ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/Swift/MainActor",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " before performing user interface updates.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "handler"
+              }
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMediaType~1audio/title",
+          "value": "AVMediaTypeAudio"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMediaType~1audio/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMediaTypeAudio"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDeviceInput/title",
+          "value": "AVCaptureDeviceInput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDeviceInput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDeviceInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDeviceInput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDeviceInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1authorizationStatus(for:)/title",
+          "value": "authorizationStatusForMediaType:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1authorizationStatus(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "authorizationStatusForMediaType:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFAudio~1AVAudioSession~1requestRecordPermission(_:)/title",
+          "value": "requestRecordPermission:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFAudio~1AVAudioSession~1requestRecordPermission(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "requestRecordPermission:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " (^)("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "granted"
+            },
+            {
+              "kind": "text",
+              "text": ")) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "response"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMediaType~1video/title",
+          "value": "AVMediaTypeVideo"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMediaType~1video/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMediaTypeVideo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice/title",
+          "value": "AVCaptureDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMediaType/title",
+          "value": "AVMediaType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMediaType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMediaType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVMediaType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVMediaType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAuthorizationStatus/title",
+          "value": "AVAuthorizationStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAuthorizationStatus/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAuthorizationStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAuthorizationStatus/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAuthorizationStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFAudio~1AVAudioSession/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVAudioSession"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAuthorizationStatus~1notDetermined/title",
+          "value": "AVAuthorizationStatusNotDetermined"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAuthorizationStatus~1notDetermined/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAuthorizationStatusNotDetermined"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1requestAccess(for:completionHandler:)/title",
+          "value": "requestAccessForMediaType:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1requestAccess(for:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "requestAccessForMediaType:completionHandler:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avfoundation/avcapturedevice/requestaccess(for:completionhandler:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/avfoundation/avcapturedevice/requestaccess(for:completionhandler:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

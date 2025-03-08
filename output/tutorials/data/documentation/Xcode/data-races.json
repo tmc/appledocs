@@ -1,0 +1,344 @@
+{
+  "abstract": [
+    {
+      "text": "Detects unsynchronized access to mutable state across multiple threads.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/debugging",
+        "doc://com.apple.Xcode/documentation/Xcode/diagnosing-memory-thread-and-crash-issues-early"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/data-races"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Data races"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this check to detect when multiple threads access the same memory without synchronization, and at least one access is a write. Available in Xcode 8 and later.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Data-race-with-producer-and-consumer-functions",
+          "level": 3,
+          "text": "Data race with producer and consumer functions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the following example, the ",
+              "type": "text"
+            },
+            {
+              "code": "producer()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function sets the global variable ",
+              "type": "text"
+            },
+            {
+              "code": "message",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and the ",
+              "type": "text"
+            },
+            {
+              "code": "consumer()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function waits for a flag to set before printing the message. Because ",
+              "type": "text"
+            },
+            {
+              "code": "producer()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " executes on one thread and ",
+              "type": "text"
+            },
+            {
+              "code": "consumer()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " executes on another thread, their execution can be concurrent, creating a data race.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var message: String? = nil",
+            "var messageIsAvailable: Bool = false",
+            "// Executed on Thread #1",
+            "func producer() {",
+            "    message = \"hello!\"",
+            "    messageIsAvailable = true",
+            "}",
+            "// Executed on Thread #2",
+            "func consumer() {",
+            "    repeat {",
+            "        usleep(1000)",
+            "    } while !messageIsAvailable",
+            "    print(message)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Solution",
+          "level": 4,
+          "text": "Solution",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Dispatch",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " APIs to coordinate access to ",
+              "type": "text"
+            },
+            {
+              "code": "message",
+              "type": "codeVoice"
+            },
+            {
+              "text": " across multiple threads.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/debugging": {
+      "abstract": [
+        {
+          "text": "Identify and address issues in your app using the Xcode debugger, Xcode Organizer, Metal debugger, and Instruments.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/debugging",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Debugging",
+      "type": "topic",
+      "url": "/documentation/xcode/debugging"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/diagnosing-memory-thread-and-crash-issues-early": {
+      "abstract": [
+        {
+          "text": "Identify runtime crashes and undefined behaviors in your app during testing using",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Xcode’s sanitizer tools.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/diagnosing-memory-thread-and-crash-issues-early",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Diagnosing memory, thread, and crash issues early",
+      "type": "topic",
+      "url": "/documentation/xcode/diagnosing-memory-thread-and-crash-issues-early"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/races-on-collections-and-other-apis": {
+      "abstract": [
+        {
+          "text": "Detects when one thread accesses a mutable object while another thread is writing to it.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/races-on-collections-and-other-apis",
+      "kind": "article",
+      "role": "article",
+      "title": "Races on collections and other APIs",
+      "type": "topic",
+      "url": "/documentation/xcode/races-on-collections-and-other-apis"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/swift-access-races": {
+      "abstract": [
+        {
+          "text": "Detects unsynchronized access to mutable state across multiple threads in Swift.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/swift-access-races",
+      "kind": "article",
+      "role": "article",
+      "title": "Swift access races",
+      "type": "topic",
+      "url": "/documentation/xcode/swift-access-races"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/thread-leaks": {
+      "abstract": [
+        {
+          "text": "Detects when you don’t close threads after use.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/thread-leaks",
+      "kind": "article",
+      "role": "article",
+      "title": "Thread leaks",
+      "type": "topic",
+      "url": "/documentation/xcode/thread-leaks"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/uninitialized-mutexes": {
+      "abstract": [
+        {
+          "text": "Detects when you use an uninitialized mutex.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/uninitialized-mutexes",
+      "kind": "article",
+      "role": "article",
+      "title": "Uninitialized mutexes",
+      "type": "topic",
+      "url": "/documentation/xcode/uninitialized-mutexes"
+    },
+    "doc://com.apple.documentation/documentation/Dispatch": {
+      "abstract": [
+        {
+          "text": "Execute code concurrently on multicore hardware by submitting work to dispatch queues managed by the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Dispatch",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Dispatch",
+      "type": "topic",
+      "url": "/documentation/Dispatch"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Thread-Sanitizer",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/swift-access-races",
+        "doc://com.apple.Xcode/documentation/Xcode/races-on-collections-and-other-apis",
+        "doc://com.apple.Xcode/documentation/Xcode/uninitialized-mutexes",
+        "doc://com.apple.Xcode/documentation/Xcode/thread-leaks"
+      ],
+      "title": "Thread Sanitizer"
+    }
+  ]
+}

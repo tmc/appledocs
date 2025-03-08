@@ -1,1 +1,687 @@
-{"identifier":{"url":"doc://com.apple.Swift/documentation/Swift/BidirectionalCollection/subscript(_:)-7tzd8","interfaceLanguage":"swift"},"variants":[{"paths":["/documentation/swift/bidirectionalcollection/subscript(_:)-7tzd8"],"traits":[{"interfaceLanguage":"swift"}]}],"hierarchy":{"paths":[["doc://com.apple.documentation/documentation/technologies","doc://com.apple.Swift/documentation/Swift","doc://com.apple.Swift/documentation/Swift/BidirectionalCollection"]]},"sections":[],"metadata":{"modules":[{"name":"Swift"}],"roleHeading":"Instance Subscript","platforms":[{"deprecated":false,"name":"iOS","beta":false,"introducedAt":"8.0","unavailable":false},{"deprecated":false,"name":"iPadOS","beta":false,"introducedAt":"8.0","unavailable":false},{"deprecated":false,"name":"Mac Catalyst","beta":false,"introducedAt":"13.0","unavailable":false},{"deprecated":false,"name":"macOS","beta":false,"introducedAt":"10.10","unavailable":false},{"deprecated":false,"name":"tvOS","beta":false,"introducedAt":"9.0","unavailable":false},{"deprecated":false,"name":"visionOS","beta":false,"introducedAt":"1.0","unavailable":false},{"deprecated":false,"name":"watchOS","beta":false,"introducedAt":"2.0","unavailable":false}],"symbolKind":"subscript","role":"symbol","externalID":"s:SKy11SubSequenceQzSny5IndexQzGcip","fragments":[{"text":"subscript","kind":"keyword"},{"text":"(","kind":"text"},{"text":"Range","preciseIdentifier":"s:Sn","kind":"typeIdentifier"},{"text":"<","kind":"text"},{"text":"Self","kind":"typeIdentifier"},{"text":".","kind":"text"},{"text":"Index","preciseIdentifier":"s:Sl5IndexQa","kind":"typeIdentifier"},{"text":">) -> ","kind":"text"},{"text":"Self","kind":"typeIdentifier"},{"text":".","kind":"text"},{"text":"SubSequence","preciseIdentifier":"s:Sl11SubSequenceQa","kind":"typeIdentifier"}],"title":"subscript(_:)","required":true},"abstract":[{"text":"Accesses a contiguous subrange of the collection’s elements.","type":"text"}],"primaryContentSections":[{"kind":"declarations","declarations":[{"tokens":[{"text":"override","kind":"keyword"},{"text":" ","kind":"text"},{"text":"subscript","kind":"keyword"},{"text":"(","kind":"text"},{"text":"bounds","kind":"internalParam"},{"text":": ","kind":"text"},{"preciseIdentifier":"s:Sn","text":"Range","kind":"typeIdentifier","identifier":"doc://com.apple.Swift/documentation/Swift/Range"},{"text":"<","kind":"text"},{"text":"Self","kind":"typeIdentifier"},{"text":".","kind":"text"},{"preciseIdentifier":"s:Sl5IndexQa","text":"Index","kind":"typeIdentifier","identifier":"doc://com.apple.Swift/documentation/Swift/Collection/Index"},{"text":">) -> ","kind":"text"},{"text":"Self","kind":"typeIdentifier"},{"text":".","kind":"text"},{"preciseIdentifier":"s:Sl11SubSequenceQa","text":"SubSequence","kind":"typeIdentifier","identifier":"doc://com.apple.Swift/documentation/Swift/Collection/SubSequence"},{"text":" { ","kind":"text"},{"text":"get","kind":"keyword"},{"text":" }","kind":"text"}],"languages":["swift"],"platforms":["iOS","iPadOS","Mac Catalyst","macOS","tvOS","visionOS","watchOS"]}]},{"kind":"parameters","parameters":[{"name":"bounds","content":[{"type":"paragraph","inlineContent":[{"type":"text","text":"A range of the collection’s indices. The bounds of"},{"type":"text","text":" "},{"type":"text","text":"the range must be valid indices of the collection."}]}]}]},{"content":[{"text":"Overview","type":"heading","level":2,"anchor":"overview"},{"type":"paragraph","inlineContent":[{"type":"text","text":"The accessed slice uses the same indices for the same elements as the"},{"type":"text","text":" "},{"type":"text","text":"original collection uses. Always use the slice’s "},{"type":"codeVoice","code":"startIndex"},{"type":"text","text":" property"},{"type":"text","text":" "},{"type":"text","text":"instead of assuming that its indices start at a particular value."}]},{"type":"paragraph","inlineContent":[{"type":"text","text":"This example demonstrates getting a slice of an array of strings, finding"},{"type":"text","text":" "},{"type":"text","text":"the index of one of the strings in the slice, and then using that index"},{"type":"text","text":" "},{"type":"text","text":"in the original array."}]},{"code":["let streets = [\"Adams\", \"Bryant\", \"Channing\", \"Douglas\", \"Evarts\"]","let streetsSlice = streets[2 ..< streets.endIndex]","print(streetsSlice)","// Prints \"[\"Channing\", \"Douglas\", \"Evarts\"]\"","","let index = streetsSlice.firstIndex(of: \"Evarts\")    // 4","print(streets[index!])","// Prints \"Evarts\""],"type":"codeListing","syntax":"swift"},{"name":"Complexity","content":[{"type":"paragraph","inlineContent":[{"text":"O(1)","type":"text"}]}],"type":"aside","style":"note"}],"kind":"content"}],"schemaVersion":{"major":0,"minor":3,"patch":0},"kind":"symbol","references":{"doc://com.apple.documentation/documentation/technologies":{"abstract":[{"text":"","type":"text"}],"type":"topic","role":"overview","title":"Technologies","identifier":"doc://com.apple.documentation/documentation/technologies","url":"/documentation/technologies","kind":"technologies"},"doc://com.apple.Swift/documentation/Swift/BidirectionalCollection/subscript(_:)-7tzd8":{"type":"topic","kind":"symbol","identifier":"doc://com.apple.Swift/documentation/Swift/BidirectionalCollection/subscript(_:)-7tzd8","url":"/documentation/swift/bidirectionalcollection/subscript(_:)-7tzd8","title":"subscript(_:)","role":"symbol","required":true,"fragments":[{"text":"subscript","kind":"keyword"},{"text":"(","kind":"text"},{"preciseIdentifier":"s:Sn","text":"Range","kind":"typeIdentifier"},{"text":"<","kind":"text"},{"text":"Self","kind":"typeIdentifier"},{"text":".","kind":"text"},{"preciseIdentifier":"s:Sl5IndexQa","text":"Index","kind":"typeIdentifier"},{"text":">) -> ","kind":"text"},{"text":"Self","kind":"typeIdentifier"},{"text":".","kind":"text"},{"preciseIdentifier":"s:Sl11SubSequenceQa","text":"SubSequence","kind":"typeIdentifier"}],"abstract":[{"text":"Accesses a contiguous subrange of the collection’s elements.","type":"text"}]},"doc://com.apple.Swift/documentation/Swift":{"abstract":[{"text":"Build apps using a powerful open language.","type":"text"}],"type":"topic","role":"collection","title":"Swift","identifier":"doc://com.apple.Swift/documentation/Swift","url":"/documentation/swift","kind":"symbol","images":[{"identifier":"Swift-PageImage-card.png","type":"card"}]},"doc://com.apple.Swift/documentation/Swift/Range":{"abstract":[{"type":"text","text":"A half-open interval from a lower bound up to, but not including, an upper"},{"type":"text","text":" "},{"type":"text","text":"bound."}],"type":"topic","role":"symbol","navigatorTitle":[{"kind":"identifier","text":"Range"}],"title":"Range","identifier":"doc://com.apple.Swift/documentation/Swift/Range","fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"Range"}],"url":"/documentation/swift/range","kind":"symbol"},"doc://com.apple.Swift/documentation/Swift/BidirectionalCollection":{"url":"/documentation/swift/bidirectionalcollection","kind":"symbol","navigatorTitle":[{"kind":"identifier","text":"BidirectionalCollection"}],"fragments":[{"kind":"keyword","text":"protocol"},{"kind":"text","text":" "},{"kind":"identifier","text":"BidirectionalCollection"}],"title":"BidirectionalCollection","type":"topic","abstract":[{"type":"text","text":"A collection that supports backward as well as forward traversal."}],"identifier":"doc://com.apple.Swift/documentation/Swift/BidirectionalCollection","role":"symbol"},"doc://com.apple.Swift/documentation/Swift/Collection/Index":{"title":"Index","kind":"symbol","role":"symbol","abstract":[{"type":"text","text":"A type that represents a position in the collection."}],"fragments":[{"text":"associatedtype","kind":"keyword"},{"text":" ","kind":"text"},{"text":"Index","kind":"identifier"},{"text":" : ","kind":"text"},{"preciseIdentifier":"s:SL","text":"Comparable","kind":"typeIdentifier"}],"required":true,"type":"topic","url":"/documentation/swift/collection/index","identifier":"doc://com.apple.Swift/documentation/Swift/Collection/Index"},"doc://com.apple.Swift/documentation/Swift/Collection/SubSequence":{"abstract":[{"type":"text","text":"A collection representing a contiguous subrange of this collection’s"},{"type":"text","text":" "},{"type":"text","text":"elements. The subsequence shares indices with the original collection."}],"type":"topic","role":"symbol","required":true,"title":"SubSequence","identifier":"doc://com.apple.Swift/documentation/Swift/Collection/SubSequence","fragments":[{"kind":"keyword","text":"associatedtype"},{"kind":"text","text":" "},{"kind":"identifier","text":"SubSequence"},{"kind":"text","text":" : "},{"preciseIdentifier":"s:Sl","kind":"typeIdentifier","text":"Collection"},{"kind":"text","text":" = "},{"preciseIdentifier":"s:s5SliceV","kind":"typeIdentifier","text":"Slice"},{"kind":"text","text":"<"},{"kind":"typeIdentifier","text":"Self"},{"kind":"text","text":">"}],"url":"/documentation/swift/collection/subsequence","kind":"symbol"},"Swift-PageImage-card.png":{"identifier":"Swift-PageImage-card.png","type":"image","alt":"An orange Swift logo on a gradient background.","variants":[{"url":"https://docs-assets.developer.apple.com/published/81257762cf893d205c049e3021340e5f/Swift-PageImage-card@2x.png","traits":["2x","light"]},{"url":"https://docs-assets.developer.apple.com/published/4d2ed632470b4616483901941fae4098/Swift-PageImage-card~dark@2x.png","traits":["2x","dark"]}]}},"legalNotices":{"copyright":"Copyright &copy; 2025 Apple Inc. All rights reserved.","termsOfUse":"https://www.apple.com/legal/internet-services/terms/site.html","privacyPolicy":"https://www.apple.com/privacy/privacy-policy"}}
+{
+  "abstract": [
+    {
+      "text": "Accesses a contiguous subrange of the collection’s elements.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift/documentation/Swift",
+        "doc://com.apple.Swift/documentation/Swift/BidirectionalCollection"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift/documentation/Swift/BidirectionalCollection/subscript(_:)-7tzd8"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:SKy11SubSequenceQzSny5IndexQzGcip",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "subscript"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:Sn",
+        "text": "Range"
+      },
+      {
+        "kind": "text",
+        "text": "<"
+      },
+      {
+        "kind": "typeIdentifier",
+        "text": "Self"
+      },
+      {
+        "kind": "text",
+        "text": "."
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:Sl5IndexQa",
+        "text": "Index"
+      },
+      {
+        "kind": "text",
+        "text": ">) -> "
+      },
+      {
+        "kind": "typeIdentifier",
+        "text": "Self"
+      },
+      {
+        "kind": "text",
+        "text": "."
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:Sl11SubSequenceQa",
+        "text": "SubSequence"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Swift"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.10",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "required": true,
+    "role": "symbol",
+    "roleHeading": "Instance Subscript",
+    "symbolKind": "subscript",
+    "title": "subscript(_:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "override"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "subscript"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "internalParam",
+              "text": "bounds"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Range",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Sn",
+              "text": "Range"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "Self"
+            },
+            {
+              "kind": "text",
+              "text": "."
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Collection/Index",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Sl5IndexQa",
+              "text": "Index"
+            },
+            {
+              "kind": "text",
+              "text": ">) -> "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "Self"
+            },
+            {
+              "kind": "text",
+              "text": "."
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Collection/SubSequence",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Sl11SubSequenceQa",
+              "text": "SubSequence"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A range of the collection’s indices. The bounds of",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "the range must be valid indices of the collection.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "bounds"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The accessed slice uses the same indices for the same elements as the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "original collection uses. Always use the slice’s ",
+              "type": "text"
+            },
+            {
+              "code": "startIndex",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "instead of assuming that its indices start at a particular value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This example demonstrates getting a slice of an array of strings, finding",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the index of one of the strings in the slice, and then using that index",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the original array.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let streets = [\"Adams\", \"Bryant\", \"Channing\", \"Douglas\", \"Evarts\"]",
+            "let streetsSlice = streets[2 ..< streets.endIndex]",
+            "print(streetsSlice)",
+            "// Prints \"[\"Channing\", \"Douglas\", \"Evarts\"]\"",
+            "",
+            "let index = streetsSlice.firstIndex(of: \"Evarts\")    // 4",
+            "print(streets[index!])",
+            "// Prints \"Evarts\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "O(1)",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Complexity",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Swift-PageImage-card.png": {
+      "alt": "An orange Swift logo on a gradient background.",
+      "identifier": "Swift-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/81257762cf893d205c049e3021340e5f/Swift-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4d2ed632470b4616483901941fae4098/Swift-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Swift/documentation/Swift": {
+      "abstract": [
+        {
+          "text": "Build apps using a powerful open language.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift",
+      "images": [
+        {
+          "identifier": "Swift-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift",
+      "type": "topic",
+      "url": "/documentation/swift"
+    },
+    "doc://com.apple.Swift/documentation/Swift/BidirectionalCollection": {
+      "abstract": [
+        {
+          "text": "A collection that supports backward as well as forward traversal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BidirectionalCollection"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/BidirectionalCollection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BidirectionalCollection"
+        }
+      ],
+      "role": "symbol",
+      "title": "BidirectionalCollection",
+      "type": "topic",
+      "url": "/documentation/swift/bidirectionalcollection"
+    },
+    "doc://com.apple.Swift/documentation/Swift/BidirectionalCollection/subscript(_:)-7tzd8": {
+      "abstract": [
+        {
+          "text": "Accesses a contiguous subrange of the collection’s elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "subscript"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sl5IndexQa",
+          "text": "Index"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sl11SubSequenceQa",
+          "text": "SubSequence"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/BidirectionalCollection/subscript(_:)-7tzd8",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "subscript(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/bidirectionalcollection/subscript(_:)-7tzd8"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Collection/Index": {
+      "abstract": [
+        {
+          "text": "A type that represents a position in the collection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "associatedtype"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Index"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SL",
+          "text": "Comparable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Collection/Index",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "Index",
+      "type": "topic",
+      "url": "/documentation/swift/collection/index"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Collection/SubSequence": {
+      "abstract": [
+        {
+          "text": "A collection representing a contiguous subrange of this collection’s",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "elements. The subsequence shares indices with the original collection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "associatedtype"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubSequence"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sl",
+          "text": "Collection"
+        },
+        {
+          "kind": "text",
+          "text": " = "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5SliceV",
+          "text": "Slice"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Collection/SubSequence",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "SubSequence",
+      "type": "topic",
+      "url": "/documentation/swift/collection/subsequence"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Range": {
+      "abstract": [
+        {
+          "text": "A half-open interval from a lower bound up to, but not including, an upper",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "bound.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Range"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Range",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Range"
+        }
+      ],
+      "role": "symbol",
+      "title": "Range",
+      "type": "topic",
+      "url": "/documentation/swift/range"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swift/bidirectionalcollection/subscript(_:)-7tzd8"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

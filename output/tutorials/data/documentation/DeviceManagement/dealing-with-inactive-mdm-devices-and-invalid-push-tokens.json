@@ -1,0 +1,362 @@
+{
+  "abstract": [
+    {
+      "text": "Handle when devices become unmanageable due to inactivity or invalid push tokens.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/implementing-device-management"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devicemanagement/documentation/DeviceManagement/dealing-with-inactive-mdm-devices-and-invalid-push-tokens"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Device Management"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Dealing with Inactive MDM Devices and Invalid Push Tokens"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a device becomes inactive, your server can take action, such as limiting the deviceʼs access to your organizationʼs resources until the device resumes responding to push notifications.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Handle-When-a-Device-Becomes-Inactive",
+          "level": 3,
+          "text": "Handle When a Device Becomes Inactive",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To receive a notification when a device becomes inactive, set the ",
+              "type": "text"
+            },
+            {
+              "code": "CheckOutWhenRemoved",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key to ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the MDM payload. This causes the device to contact your MDM server when it becomes unmanaged.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following actions cause a device to become inactive:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Powering off the device.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Disconnecting from the network.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Erasing the device.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Removing the MDM profile.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Your security report for each managed device specifies whether the MDM profile is nonremovable. The ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ProfileListResponse/ProfileListItem",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " contains this information.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because a managed device makes only a single attempt to deliver this message, employ a timeout to detect devices that fail to check out due to network conditions. Your server then sends a push notification periodically to ensure that managed devices are still listening to it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the device fails to respond to push notifications after a specified time, you can consider the device inactive. The time to wait before considering that a device is inactive can vary according to your IT policy. A good time period to use ranges from several days to one week.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You don’t need to send push notifications on a daily basis to make sure a device is responding. Appleʼs push notification servers cache your last push notification and deliver it to the device when it reconnects to the network.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement": {
+      "abstract": [
+        {
+          "text": "Manage your organization’s devices remotely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/ProfileListResponse/ProfileListItem": {
+      "abstract": [
+        {
+          "text": "A dictionary that describes a profile list item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ProfileListResponse.ProfileListItem"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ProfileListResponse/ProfileListItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ProfileListResponse.ProfileListItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "ProfileListResponse.ProfileListItem",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/profilelistresponse/profilelistitem"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/enabling-network-and-mobile-user-logins": {
+      "abstract": [
+        {
+          "text": "Manage network users on macOS devices bound to an Open Directory server, and mobile users on shared iPads.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/enabling-network-and-mobile-user-logins",
+      "kind": "article",
+      "role": "article",
+      "title": "Enabling Network and Mobile User Logins",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/enabling-network-and-mobile-user-logins"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/implementing-device-management": {
+      "abstract": [
+        {
+          "text": "Set up an MDM server and send commands to managed devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/implementing-device-management",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Implementing Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/implementing-device-management"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-mdm-devices-and-users-in-macos": {
+      "abstract": [
+        {
+          "text": "Manage devices and users as separate entities in macOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-mdm-devices-and-users-in-macos",
+      "kind": "article",
+      "role": "article",
+      "title": "Managing MDM Devices and Users in macOS",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/managing-mdm-devices-and-users-in-macos"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-passcodes": {
+      "abstract": [
+        {
+          "text": "Ensure data security by managing device passcodes and compliance with policies.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-passcodes",
+      "kind": "article",
+      "role": "article",
+      "title": "Managing Passcodes",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/managing-passcodes"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Devices-and-Users",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-mdm-devices-and-users-in-macos",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/enabling-network-and-mobile-user-logins",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-passcodes"
+      ],
+      "title": "Devices and Users"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicemanagement/dealing-with-inactive-mdm-devices-and-invalid-push-tokens"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

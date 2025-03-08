@@ -1,1 +1,890 @@
-{"abstract":[{"text":"Omits elements from the base asynchronous sequence until a given closure","type":"text"},{"text":" ","type":"text"},{"text":"returns false, after which it passes through all remaining elements.","type":"text"}],"variants":[{"traits":[{"interfaceLanguage":"swift"}],"paths":["/documentation/createmlcomponents/preprocessedfeaturesequence/drop(while:)"]}],"metadata":{"role":"symbol","title":"drop(while:)","platforms":[{"name":"iOS","beta":false,"deprecated":false,"introducedAt":"13.0","unavailable":false},{"name":"iPadOS","beta":false,"deprecated":false,"introducedAt":"13.0","unavailable":false},{"name":"Mac Catalyst","beta":false,"deprecated":false,"introducedAt":"13.0","unavailable":false},{"name":"macOS","beta":false,"deprecated":false,"introducedAt":"10.15","unavailable":false},{"name":"tvOS","beta":false,"deprecated":false,"introducedAt":"13.0","unavailable":false},{"name":"visionOS","unavailable":false,"introducedAt":"1.0","beta":false,"deprecated":false},{"name":"watchOS","unavailable":false,"introducedAt":"6.0","beta":false,"deprecated":false}],"externalID":"s:Sci12_ConcurrencyE4drop5whileAA22AsyncDropWhileSequenceVyxGSb7ElementQzYac_tF::SYNTHESIZED::s:18CreateMLComponents27PreprocessedFeatureSequenceV","fragments":[{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"drop"},{"kind":"text","text":"("},{"kind":"externalParam","text":"while"},{"kind":"text","text":": ("},{"kind":"typeIdentifier","text":"Self"},{"kind":"text","text":"."},{"kind":"typeIdentifier","text":"Element","preciseIdentifier":"s:Sci7ElementQa"},{"kind":"text","text":") "},{"kind":"keyword","text":"async"},{"kind":"text","text":" -> "},{"kind":"typeIdentifier","text":"Bool","preciseIdentifier":"s:Sb"},{"kind":"text","text":") -> "},{"kind":"typeIdentifier","text":"AsyncDropWhileSequence","preciseIdentifier":"s:12_Concurrency22AsyncDropWhileSequenceV"},{"kind":"text","text":"<"},{"kind":"typeIdentifier","text":"Self"},{"kind":"text","text":">"}],"modules":[{"name":"Create ML Components","relatedModules":["Swift"]}],"extendedModule":"Swift","symbolKind":"method","roleHeading":"Instance Method"},"sections":[],"primaryContentSections":[{"declarations":[{"tokens":[{"kind":"attribute","text":"@preconcurrency"},{"kind":"text","text":" "},{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"drop"},{"kind":"text","text":"("},{"kind":"externalParam","text":"while"},{"kind":"text","text":" "},{"kind":"internalParam","text":"predicate"},{"kind":"text","text":": "},{"kind":"keyword","text":"@escaping"},{"kind":"text","text":" ("},{"kind":"typeIdentifier","text":"Self"},{"kind":"text","text":"."},{"text":"Element","identifier":"doc://com.externally.resolved.symbol/s:Sci7ElementQa","preciseIdentifier":"s:Sci7ElementQa","kind":"typeIdentifier"},{"text":") ","kind":"text"},{"text":"async","kind":"keyword"},{"text":" -> ","kind":"text"},{"text":"Bool","identifier":"doc://com.externally.resolved.symbol/s:Sb","preciseIdentifier":"s:Sb","kind":"typeIdentifier"},{"text":") -> ","kind":"text"},{"text":"AsyncDropWhileSequence","identifier":"doc://com.externally.resolved.symbol/s:12_Concurrency22AsyncDropWhileSequenceV","preciseIdentifier":"s:12_Concurrency22AsyncDropWhileSequenceV","kind":"typeIdentifier"},{"text":"<","kind":"text"},{"text":"Self","kind":"typeIdentifier"},{"text":">","kind":"text"}],"platforms":["iOS","iPadOS","Mac Catalyst","macOS","tvOS","visionOS","watchOS"],"languages":["swift"]}],"kind":"declarations"},{"parameters":[{"content":[{"type":"paragraph","inlineContent":[{"type":"text","text":"A closure that takes an element as a parameter and"},{"type":"text","text":" "},{"type":"text","text":"returns a Boolean value indicating whether to drop the element from the"},{"type":"text","text":" "},{"type":"text","text":"modified sequence."}]}],"name":"predicate"}],"kind":"parameters"},{"content":[{"level":2,"text":"Return Value","type":"heading","anchor":"return-value"},{"inlineContent":[{"text":"An asynchronous sequence that skips over values from the","type":"text"},{"text":" ","type":"text"},{"text":"base sequence until the provided closure returns ","type":"text"},{"type":"codeVoice","code":"false"},{"text":".","type":"text"}],"type":"paragraph"}],"kind":"content"},{"content":[{"anchor":"discussion","type":"heading","level":2,"text":"Discussion"},{"type":"paragraph","inlineContent":[{"type":"text","text":"Use "},{"type":"codeVoice","code":"drop(while:)"},{"type":"text","text":" to omit elements from an asynchronous sequence until"},{"type":"text","text":" "},{"type":"text","text":"the element received meets a condition you specify."}]},{"type":"paragraph","inlineContent":[{"type":"text","text":"In this example, an asynchronous sequence called "},{"type":"codeVoice","code":"Counter"},{"type":"text","text":" produces "},{"type":"codeVoice","code":"Int"},{"type":"text","text":" "},{"type":"text","text":"values from "},{"type":"codeVoice","code":"1"},{"type":"text","text":" to "},{"type":"codeVoice","code":"10"},{"text":". The ","type":"text"},{"code":"drop(while:)","type":"codeVoice"},{"text":" method causes the modified","type":"text"},{"text":" ","type":"text"},{"text":"sequence to ignore received values until it encounters one that is","type":"text"},{"text":" ","type":"text"},{"text":"divisible by ","type":"text"},{"code":"3","type":"codeVoice"},{"text":":","type":"text"}]},{"code":["let stream = Counter(howHigh: 10)","    .drop { $0 % 3 != 0 }","for await number in stream {","    print(number, terminator: \" \")","}","// Prints \"3 4 5 6 7 8 9 10 \""],"syntax":null,"type":"codeListing"},{"type":"paragraph","inlineContent":[{"text":"After the predicate returns ","type":"text"},{"type":"codeVoice","code":"false"},{"text":", the sequence never executes it again,","type":"text"},{"text":" ","type":"text"},{"text":"and from then on the sequence passes through elements from its underlying","type":"text"},{"text":" ","type":"text"},{"text":"sequence as-is.","type":"text"}]}],"kind":"content"}],"identifier":{"url":"doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessedFeatureSequence/drop(while:)","interfaceLanguage":"swift"},"hierarchy":{"paths":[["doc://com.apple.documentation/documentation/technologies","doc://com.apple.CreateMLComponents/documentation/CreateMLComponents","doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessedFeatureSequence"]]},"schemaVersion":{"major":0,"minor":3,"patch":0},"kind":"symbol","references":{"doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessedFeatureSequence/drop(while:)":{"type":"topic","fragments":[{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"drop"},{"kind":"text","text":"("},{"kind":"externalParam","text":"while"},{"kind":"text","text":": ("},{"kind":"typeIdentifier","text":"Self"},{"kind":"text","text":"."},{"kind":"typeIdentifier","text":"Element","preciseIdentifier":"s:Sci7ElementQa"},{"kind":"text","text":") "},{"kind":"keyword","text":"async"},{"kind":"text","text":" -> "},{"kind":"typeIdentifier","text":"Bool","preciseIdentifier":"s:Sb"},{"kind":"text","text":") -> "},{"kind":"typeIdentifier","text":"AsyncDropWhileSequence","preciseIdentifier":"s:12_Concurrency22AsyncDropWhileSequenceV"},{"kind":"text","text":"<"},{"kind":"typeIdentifier","text":"Self"},{"kind":"text","text":">"}],"url":"/documentation/createmlcomponents/preprocessedfeaturesequence/drop(while:)","kind":"symbol","role":"symbol","identifier":"doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessedFeatureSequence/drop(while:)","title":"drop(while:)","abstract":[{"text":"Omits elements from the base asynchronous sequence until a given closure","type":"text"},{"text":" ","type":"text"},{"type":"text","text":"returns false, after which it passes through all remaining elements."}]},"doc://com.apple.CreateMLComponents/documentation/CreateMLComponents":{"kind":"symbol","role":"collection","type":"topic","identifier":"doc://com.apple.CreateMLComponents/documentation/CreateMLComponents","abstract":[{"text":"Create more customizable machine learning models in your app.","type":"text"}],"url":"/documentation/createmlcomponents","title":"Create ML Components"},"doc://com.apple.documentation/documentation/technologies":{"url":"/documentation/technologies","title":"Technologies","role":"overview","identifier":"doc://com.apple.documentation/documentation/technologies","type":"topic","abstract":[{"text":"","type":"text"}],"kind":"technologies"},"doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessedFeatureSequence":{"abstract":[{"type":"text","text":"An asynchronous sequence of eagerly stored temporal features."}],"navigatorTitle":[{"kind":"identifier","text":"PreprocessedFeatureSequence"}],"fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"PreprocessedFeatureSequence"}],"type":"topic","identifier":"doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessedFeatureSequence","url":"/documentation/createmlcomponents/preprocessedfeaturesequence","kind":"symbol","title":"PreprocessedFeatureSequence","role":"symbol"},"doc://com.externally.resolved.symbol/s:Sci7ElementQa":{"identifier":"doc://com.externally.resolved.symbol/s:Sci7ElementQa","kind":"symbol","role":"symbol","fragments":[{"kind":"keyword","text":"associatedtype"},{"text":" ","kind":"text"},{"text":"Element","kind":"identifier"},{"text":" ","kind":"text"},{"text":"where","kind":"keyword"},{"text":" ","kind":"text"},{"text":"Self","kind":"typeIdentifier"},{"text":".","kind":"text"},{"text":"Element","kind":"typeIdentifier","preciseIdentifier":"s:Sci7ElementQa"},{"text":" == ","kind":"text"},{"text":"Self","kind":"typeIdentifier"},{"text":".","kind":"text"},{"text":"AsyncIterator","kind":"typeIdentifier","preciseIdentifier":"s:Sci13AsyncIteratorQa"},{"text":".","kind":"text"},{"text":"Element","kind":"typeIdentifier","preciseIdentifier":"s:ScI7ElementQa"}],"title":"Element","url":"/documentation/Swift/AsyncSequence/Element","abstract":[{"type":"text","text":"The type of element produced by this asynchronous sequence."}],"type":"topic"},"doc://com.externally.resolved.symbol/s:12_Concurrency22AsyncDropWhileSequenceV":{"role":"symbol","identifier":"doc://com.externally.resolved.symbol/s:12_Concurrency22AsyncDropWhileSequenceV","fragments":[{"text":"struct","kind":"keyword"},{"kind":"text","text":" "},{"text":"AsyncDropWhileSequence","kind":"identifier"},{"text":"<","kind":"text"},{"text":"Base","kind":"genericParameter"},{"kind":"text","text":"> "},{"text":"where","kind":"keyword"},{"kind":"text","text":" "},{"kind":"typeIdentifier","text":"Base"},{"kind":"text","text":" : "},{"kind":"typeIdentifier","text":"AsyncSequence","preciseIdentifier":"s:Sci"}],"type":"topic","kind":"symbol","title":"AsyncDropWhileSequence","url":"/documentation/Swift/AsyncDropWhileSequence","abstract":[{"text":"An asynchronous sequence which omits elements from the base sequence until a given closure returns false, after which it passes through all remaining elements.","type":"text"}]},"doc://com.externally.resolved.symbol/s:Sb":{"url":"/documentation/Swift/Bool","title":"Bool","role":"symbol","identifier":"doc://com.externally.resolved.symbol/s:Sb","type":"topic","abstract":[{"type":"text","text":"A value type whose instances are either `true` or `false`."}],"kind":"symbol","fragments":[{"text":"@frozen","kind":"attribute"},{"text":" ","kind":"text"},{"text":"struct","kind":"keyword"},{"text":" ","kind":"text"},{"text":"Bool","kind":"identifier"}]}},"legalNotices":{"copyright":"Copyright &copy; 2025 Apple Inc. All rights reserved.","termsOfUse":"https://www.apple.com/legal/internet-services/terms/site.html","privacyPolicy":"https://www.apple.com/privacy/privacy-policy"}}
+{
+  "abstract": [
+    {
+      "text": "Omits elements from the base asynchronous sequence until a given closure",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "returns false, after which it passes through all remaining elements.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessedFeatureSequence"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessedFeatureSequence/drop(while:)"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "Swift",
+    "externalID": "s:Sci12_ConcurrencyE4drop5whileAA22AsyncDropWhileSequenceVyxGSb7ElementQzYac_tF::SYNTHESIZED::s:18CreateMLComponents27PreprocessedFeatureSequenceV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "drop"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "externalParam",
+        "text": "while"
+      },
+      {
+        "kind": "text",
+        "text": ": ("
+      },
+      {
+        "kind": "typeIdentifier",
+        "text": "Self"
+      },
+      {
+        "kind": "text",
+        "text": "."
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:Sci7ElementQa",
+        "text": "Element"
+      },
+      {
+        "kind": "text",
+        "text": ") "
+      },
+      {
+        "kind": "keyword",
+        "text": "async"
+      },
+      {
+        "kind": "text",
+        "text": " -> "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:Sb",
+        "text": "Bool"
+      },
+      {
+        "kind": "text",
+        "text": ") -> "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:12_Concurrency22AsyncDropWhileSequenceV",
+        "text": "AsyncDropWhileSequence"
+      },
+      {
+        "kind": "text",
+        "text": "<"
+      },
+      {
+        "kind": "typeIdentifier",
+        "text": "Self"
+      },
+      {
+        "kind": "text",
+        "text": ">"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Create ML Components",
+        "relatedModules": [
+          "Swift"
+        ]
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.15",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "6.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "drop(while:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@preconcurrency"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "drop"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "while"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "predicate"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "kind": "keyword",
+              "text": "@escaping"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "Self"
+            },
+            {
+              "kind": "text",
+              "text": "."
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:Sci7ElementQa",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Sci7ElementQa",
+              "text": "Element"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "keyword",
+              "text": "async"
+            },
+            {
+              "kind": "text",
+              "text": " -> "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:Sb",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Sb",
+              "text": "Bool"
+            },
+            {
+              "kind": "text",
+              "text": ") -> "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:12_Concurrency22AsyncDropWhileSequenceV",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:12_Concurrency22AsyncDropWhileSequenceV",
+              "text": "AsyncDropWhileSequence"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "Self"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A closure that takes an element as a parameter and",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "returns a Boolean value indicating whether to drop the element from the",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "modified sequence.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "predicate"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An asynchronous sequence that skips over values from the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "base sequence until the provided closure returns ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "code": "drop(while:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to omit elements from an asynchronous sequence until",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the element received meets a condition you specify.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this example, an asynchronous sequence called ",
+              "type": "text"
+            },
+            {
+              "code": "Counter",
+              "type": "codeVoice"
+            },
+            {
+              "text": " produces ",
+              "type": "text"
+            },
+            {
+              "code": "Int",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "values from ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "10",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The ",
+              "type": "text"
+            },
+            {
+              "code": "drop(while:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method causes the modified",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "sequence to ignore received values until it encounters one that is",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "divisible by ",
+              "type": "text"
+            },
+            {
+              "code": "3",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let stream = Counter(howHigh: 10)",
+            "    .drop { $0 % 3 != 0 }",
+            "for await number in stream {",
+            "    print(number, terminator: \" \")",
+            "}",
+            "// Prints \"3 4 5 6 7 8 9 10 \""
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the predicate returns ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the sequence never executes it again,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and from then on the sequence passes through elements from its underlying",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "sequence as-is.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents": {
+      "abstract": [
+        {
+          "text": "Create more customizable machine learning models in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Create ML Components",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessedFeatureSequence": {
+      "abstract": [
+        {
+          "text": "An asynchronous sequence of eagerly stored temporal features.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PreprocessedFeatureSequence"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessedFeatureSequence",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PreprocessedFeatureSequence"
+        }
+      ],
+      "role": "symbol",
+      "title": "PreprocessedFeatureSequence",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/preprocessedfeaturesequence"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessedFeatureSequence/drop(while:)": {
+      "abstract": [
+        {
+          "text": "Omits elements from the base asynchronous sequence until a given closure",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "returns false, after which it passes through all remaining elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "drop"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "while"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sci7ElementQa",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:12_Concurrency22AsyncDropWhileSequenceV",
+          "text": "AsyncDropWhileSequence"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PreprocessedFeatureSequence/drop(while:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "drop(while:)",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/preprocessedfeaturesequence/drop(while:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:12_Concurrency22AsyncDropWhileSequenceV": {
+      "abstract": [
+        {
+          "text": "An asynchronous sequence which omits elements from the base sequence until a given closure returns false, after which it passes through all remaining elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AsyncDropWhileSequence"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Base"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Base"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sci",
+          "text": "AsyncSequence"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:12_Concurrency22AsyncDropWhileSequenceV",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AsyncDropWhileSequence",
+      "type": "topic",
+      "url": "/documentation/Swift/AsyncDropWhileSequence"
+    },
+    "doc://com.externally.resolved.symbol/s:Sb": {
+      "abstract": [
+        {
+          "text": "A value type whose instances are either `true` or `false`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:Sb",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Bool",
+      "type": "topic",
+      "url": "/documentation/Swift/Bool"
+    },
+    "doc://com.externally.resolved.symbol/s:Sci7ElementQa": {
+      "abstract": [
+        {
+          "text": "The type of element produced by this asynchronous sequence.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "associatedtype"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sci7ElementQa",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": " == "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sci13AsyncIteratorQa",
+          "text": "AsyncIterator"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ScI7ElementQa",
+          "text": "Element"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:Sci7ElementQa",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Element",
+      "type": "topic",
+      "url": "/documentation/Swift/AsyncSequence/Element"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/createmlcomponents/preprocessedfeaturesequence/drop(while:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

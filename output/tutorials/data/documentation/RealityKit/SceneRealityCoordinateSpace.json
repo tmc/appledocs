@@ -1,0 +1,751 @@
+{
+  "abstract": [
+    {
+      "text": "The coordinate space that represents the center of a RealityKit scene.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/SceneRealityCoordinateSpace"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:17RealityFoundation05SceneA15CoordinateSpaceV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "SceneRealityCoordinateSpace"
+      }
+    ],
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SceneRealityCoordinateSpace"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "SceneRealityCoordinateSpace"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SceneRealityCoordinateSpace"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The center, or origin, of a RealityKit scene varies depending on the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "platform and context:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The origin is a point that extends outward from the window, or upward from the volume.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "visionOS (Window or Volume)",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The origin is the ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/ARKit",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " world origin, which does not directly relate to any specific ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/RealityView",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ", but rather to the broader immersive environment.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "visionOS (Immersive Space)",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The origin is a point behind the RealityView. Here, the ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/RealityView",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " acts as a window through which you can view the scene, and the scene’s origin is placed behind this by default, giving depth to the scene.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "macOS and iOS (Non-AR)",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Similar to the Immersive Space in visionOS, ARKit determines the world origin, and does not directly relate to the ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/RealityView",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " position.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "iOS (AR Mode)",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This object is equivalent to",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/RealityCoordinateSpace/scene",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CameraRealityCoordinateSpace": {
+      "abstract": [
+        {
+          "text": "The coordinate space that represents the scene’s active camera.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CameraRealityCoordinateSpace"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CameraRealityCoordinateSpace",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CameraRealityCoordinateSpace"
+        }
+      ],
+      "role": "symbol",
+      "title": "CameraRealityCoordinateSpace",
+      "type": "topic",
+      "url": "/documentation/realitykit/camerarealitycoordinatespace"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/RealityCoordinateSpace": {
+      "abstract": [
+        {
+          "text": "A 3D coordinate space that exists within a RealityKit hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RealityCoordinateSpace"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/RealityCoordinateSpace",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RealityCoordinateSpace"
+        }
+      ],
+      "role": "symbol",
+      "title": "RealityCoordinateSpace",
+      "type": "topic",
+      "url": "/documentation/realitykit/realitycoordinatespace"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/RealityCoordinateSpace/scene": {
+      "abstract": [
+        {
+          "text": "The coordinate space that represents ARKit world space.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "SceneRealityCoordinateSpace",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scene"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation05SceneA15CoordinateSpaceV",
+          "text": "SceneRealityCoordinateSpace"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/RealityCoordinateSpace/scene",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scene",
+      "type": "topic",
+      "url": "/documentation/realitykit/realitycoordinatespace/scene"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/RealityCoordinateSpaceConverting": {
+      "abstract": [
+        {
+          "text": "A value that can be converted between SwiftUI ",
+          "type": "text"
+        },
+        {
+          "code": "CoordinateSpace",
+          "type": "codeVoice"
+        },
+        {
+          "text": " and RealityKit ",
+          "type": "text"
+        },
+        {
+          "code": "Entity",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RealityCoordinateSpaceConverting"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/RealityCoordinateSpaceConverting",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RealityCoordinateSpaceConverting"
+        }
+      ],
+      "role": "symbol",
+      "title": "RealityCoordinateSpaceConverting",
+      "type": "topic",
+      "url": "/documentation/realitykit/realitycoordinatespaceconverting"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/RealityCoordinateSpaceProjecting": {
+      "abstract": [
+        {
+          "text": "A protocol for coordinate spaces that can project 2D points to and from 3D.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RealityCoordinateSpaceProjecting"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/RealityCoordinateSpaceProjecting",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RealityCoordinateSpaceProjecting"
+        }
+      ],
+      "role": "symbol",
+      "title": "RealityCoordinateSpaceProjecting",
+      "type": "topic",
+      "url": "/documentation/realitykit/realitycoordinatespaceprojecting"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/RealityView": {
+      "abstract": [
+        {
+          "text": "A view that contains RealityKit content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RealityView"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/RealityView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RealityView"
+        }
+      ],
+      "role": "symbol",
+      "title": "RealityView",
+      "type": "topic",
+      "url": "/documentation/realitykit/realityview"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SceneRealityCoordinateSpace": {
+      "abstract": [
+        {
+          "text": "The coordinate space that represents the center of a RealityKit scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SceneRealityCoordinateSpace"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SceneRealityCoordinateSpace",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SceneRealityCoordinateSpace"
+        }
+      ],
+      "role": "symbol",
+      "title": "SceneRealityCoordinateSpace",
+      "type": "topic",
+      "url": "/documentation/realitykit/scenerealitycoordinatespace"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SceneRealityCoordinateSpace/RealityCoordinateSpace-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SceneRealityCoordinateSpace/RealityCoordinateSpace-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "RealityCoordinateSpace Implementations",
+      "type": "topic",
+      "url": "/documentation/realitykit/scenerealitycoordinatespace/realitycoordinatespace-implementations"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SceneRealityCoordinateSpace/init()": {
+      "abstract": [
+        {
+          "text": "Creates a scene coordinate space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SceneRealityCoordinateSpace/init()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/realitykit/scenerealitycoordinatespace/init()"
+    },
+    "doc://com.apple.documentation/documentation/ARKit": {
+      "abstract": [
+        {
+          "text": "Integrate hardware sensing features to produce augmented reality apps and games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ARKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ARKit",
+      "type": "topic",
+      "url": "/documentation/ARKit"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/RealityCoordinateSpace"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Coordinate-space-conversions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/RealityCoordinateSpaceConverting",
+        "doc://com.apple.RealityKit/documentation/RealityKit/CameraRealityCoordinateSpace",
+        "doc://com.apple.RealityKit/documentation/RealityKit/RealityCoordinateSpace",
+        "doc://com.apple.RealityKit/documentation/RealityKit/RealityCoordinateSpaceProjecting"
+      ],
+      "title": "Coordinate space conversions"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/SceneRealityCoordinateSpace/init()"
+      ],
+      "title": "Initializers"
+    },
+    {
+      "anchor": "Default-Implementations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/SceneRealityCoordinateSpace/RealityCoordinateSpace-Implementations"
+      ],
+      "title": "Default Implementations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/scenerealitycoordinatespace"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,1 +1,702 @@
-{"sections":[],"primaryContentSections":[{"declarations":[{"platforms":["iOS","iPadOS","Mac Catalyst","macOS","tvOS","visionOS","watchOS"],"languages":["swift"],"tokens":[{"kind":"keyword","text":"mutating"},{"kind":"text","text":" "},{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"withUTF8"},{"kind":"text","text":"<"},{"kind":"genericParameter","text":"R"},{"kind":"text","text":">("},{"kind":"externalParam","text":"_"},{"kind":"text","text":" "},{"kind":"internalParam","text":"body"},{"kind":"text","text":": ("},{"kind":"typeIdentifier","identifier":"doc://com.apple.Swift/documentation/Swift/UnsafeBufferPointer","preciseIdentifier":"s:SR","text":"UnsafeBufferPointer"},{"kind":"text","text":"<"},{"kind":"typeIdentifier","identifier":"doc://com.apple.Swift/documentation/Swift/UInt8","preciseIdentifier":"s:s5UInt8V","text":"UInt8"},{"kind":"text","text":">) "},{"kind":"keyword","text":"throws"},{"kind":"text","text":" -> "},{"kind":"typeIdentifier","text":"R"},{"kind":"text","text":") "},{"kind":"keyword","text":"rethrows"},{"kind":"text","text":" -> "},{"kind":"typeIdentifier","text":"R"}]}],"kind":"declarations"},{"kind":"content","content":[{"text":"Discussion","level":2,"type":"heading","anchor":"discussion"},{"type":"paragraph","inlineContent":[{"type":"text","text":"Note that it is unsafe to escape the pointer provided to "},{"code":"body","type":"codeVoice"},{"type":"text","text":". For"},{"type":"text","text":" "},{"type":"text","text":"example, strings of up to 15 UTF-8 code units in length may be represented"},{"type":"text","text":" "},{"type":"text","text":"in a small-string representation, and thus will be spilled into"},{"type":"text","text":" "},{"type":"text","text":"temporary stack space which is invalid after "},{"code":"withUTF8","type":"codeVoice"},{"type":"text","text":" finishes"},{"type":"text","text":" "},{"type":"text","text":"execution."}]},{"type":"paragraph","inlineContent":[{"type":"text","text":"Complexity: O(n) if non-contiguous, O(1) if already contiguous"}]}]}],"hierarchy":{"paths":[["doc://com.apple.documentation/documentation/technologies","doc://com.apple.Swift/documentation/Swift","doc://com.apple.Swift/documentation/Swift/Substring"]]},"variants":[{"paths":["/documentation/swift/substring/withutf8(_:)"],"traits":[{"interfaceLanguage":"swift"}]}],"metadata":{"platforms":[{"beta":false,"deprecated":false,"name":"iOS","unavailable":false,"introducedAt":"8.0"},{"beta":false,"deprecated":false,"name":"iPadOS","unavailable":false,"introducedAt":"8.0"},{"beta":false,"deprecated":false,"name":"Mac Catalyst","unavailable":false,"introducedAt":"13.0"},{"beta":false,"deprecated":false,"name":"macOS","unavailable":false,"introducedAt":"10.10"},{"beta":false,"deprecated":false,"name":"tvOS","unavailable":false,"introducedAt":"9.0"},{"beta":false,"deprecated":false,"name":"visionOS","unavailable":false,"introducedAt":"1.0"},{"beta":false,"deprecated":false,"name":"watchOS","unavailable":false,"introducedAt":"2.0"}],"extendedModule":"Swift","modules":[{"name":"Swift"}],"symbolKind":"method","fragments":[{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"withUTF8"},{"kind":"text","text":"<"},{"kind":"genericParameter","text":"R"},{"kind":"text","text":">(("},{"kind":"typeIdentifier","text":"UnsafeBufferPointer","preciseIdentifier":"s:SR"},{"kind":"text","text":"<"},{"kind":"typeIdentifier","text":"UInt8","preciseIdentifier":"s:s5UInt8V"},{"kind":"text","text":">) "},{"kind":"keyword","text":"throws"},{"kind":"text","text":" -> "},{"kind":"typeIdentifier","text":"R"},{"kind":"text","text":") "},{"kind":"keyword","text":"rethrows"},{"kind":"text","text":" -> "},{"kind":"typeIdentifier","text":"R"}],"title":"withUTF8(_:)","roleHeading":"Instance Method","role":"symbol","externalID":"s:Ss8withUTF8yxxSRys5UInt8VGKXEKlF"},"schemaVersion":{"major":0,"minor":3,"patch":0},"abstract":[{"text":"Runs ","type":"text"},{"code":"body","type":"codeVoice"},{"text":" over the content of this substring in contiguous memory. If","type":"text"},{"text":" ","type":"text"},{"text":"this substring is not contiguous, this will first make it contiguous,","type":"text"},{"text":" ","type":"text"},{"text":"which will also speed up subsequent access. If this mutates the substring,","type":"text"},{"text":" ","type":"text"},{"text":"it will invalidate any pre-existing indices.","type":"text"}],"identifier":{"url":"doc://com.apple.Swift/documentation/Swift/Substring/withUTF8(_:)","interfaceLanguage":"swift"},"kind":"symbol","references":{"doc://com.apple.Swift/documentation/Swift/Substring/withUTF8(_:)":{"kind":"symbol","type":"topic","url":"/documentation/swift/substring/withutf8(_:)","fragments":[{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"text":"withUTF8","kind":"identifier"},{"text":"<","kind":"text"},{"text":"R","kind":"genericParameter"},{"text":">((","kind":"text"},{"preciseIdentifier":"s:SR","text":"UnsafeBufferPointer","kind":"typeIdentifier"},{"text":"<","kind":"text"},{"preciseIdentifier":"s:s5UInt8V","text":"UInt8","kind":"typeIdentifier"},{"text":">) ","kind":"text"},{"text":"throws","kind":"keyword"},{"text":" -> ","kind":"text"},{"text":"R","kind":"typeIdentifier"},{"text":") ","kind":"text"},{"text":"rethrows","kind":"keyword"},{"text":" -> ","kind":"text"},{"text":"R","kind":"typeIdentifier"}],"identifier":"doc://com.apple.Swift/documentation/Swift/Substring/withUTF8(_:)","title":"withUTF8(_:)","role":"symbol","abstract":[{"text":"Runs ","type":"text"},{"code":"body","type":"codeVoice"},{"text":" over the content of this substring in contiguous memory. If","type":"text"},{"text":" ","type":"text"},{"text":"this substring is not contiguous, this will first make it contiguous,","type":"text"},{"text":" ","type":"text"},{"text":"which will also speed up subsequent access. If this mutates the substring,","type":"text"},{"text":" ","type":"text"},{"text":"it will invalidate any pre-existing indices.","type":"text"}]},"doc://com.apple.Swift/documentation/Swift/UnsafeBufferPointer":{"url":"/documentation/swift/unsafebufferpointer","kind":"symbol","navigatorTitle":[{"kind":"identifier","text":"UnsafeBufferPointer"}],"fragments":[{"text":"struct","kind":"keyword"},{"kind":"text","text":" "},{"kind":"identifier","text":"UnsafeBufferPointer"}],"title":"UnsafeBufferPointer","type":"topic","abstract":[{"text":"A nonowning collection interface to a buffer of","type":"text"},{"text":" ","type":"text"},{"text":"elements stored contiguously in memory.","type":"text"}],"identifier":"doc://com.apple.Swift/documentation/Swift/UnsafeBufferPointer","role":"symbol"},"doc://com.apple.documentation/documentation/technologies":{"abstract":[{"text":"","type":"text"}],"type":"topic","role":"overview","title":"Technologies","identifier":"doc://com.apple.documentation/documentation/technologies","url":"/documentation/technologies","kind":"technologies"},"Swift-PageImage-card.png":{"variants":[{"url":"https://docs-assets.developer.apple.com/published/81257762cf893d205c049e3021340e5f/Swift-PageImage-card@2x.png","traits":["2x","light"]},{"url":"https://docs-assets.developer.apple.com/published/4d2ed632470b4616483901941fae4098/Swift-PageImage-card~dark@2x.png","traits":["2x","dark"]}],"alt":"An orange Swift logo on a gradient background.","type":"image","identifier":"Swift-PageImage-card.png"},"doc://com.apple.Swift/documentation/Swift/Substring":{"title":"Substring","kind":"symbol","role":"symbol","abstract":[{"type":"text","text":"A slice of a string."}],"fragments":[{"text":"struct","kind":"keyword"},{"text":" ","kind":"text"},{"text":"Substring","kind":"identifier"}],"navigatorTitle":[{"text":"Substring","kind":"identifier"}],"type":"topic","url":"/documentation/swift/substring","identifier":"doc://com.apple.Swift/documentation/Swift/Substring"},"doc://com.apple.Swift/documentation/Swift":{"abstract":[{"text":"Build apps using a powerful open language.","type":"text"}],"type":"topic","role":"collection","title":"Swift","identifier":"doc://com.apple.Swift/documentation/Swift","url":"/documentation/swift","kind":"symbol","images":[{"identifier":"Swift-PageImage-card.png","type":"card"}]},"doc://com.apple.Swift/documentation/Swift/UInt8":{"identifier":"doc://com.apple.Swift/documentation/Swift/UInt8","kind":"symbol","navigatorTitle":[{"kind":"identifier","text":"UInt8"}],"title":"UInt8","url":"/documentation/swift/uint8","abstract":[{"type":"text","text":"An 8-bit unsigned integer value"},{"type":"text","text":" "},{"type":"text","text":"type."}],"role":"symbol","fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"UInt8"}],"type":"topic"}},"legalNotices":{"copyright":"Copyright &copy; 2025 Apple Inc. All rights reserved.","termsOfUse":"https://www.apple.com/legal/internet-services/terms/site.html","privacyPolicy":"https://www.apple.com/privacy/privacy-policy"}}
+{
+  "abstract": [
+    {
+      "text": "Runs ",
+      "type": "text"
+    },
+    {
+      "code": "body",
+      "type": "codeVoice"
+    },
+    {
+      "text": " over the content of this substring in contiguous memory. If",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "this substring is not contiguous, this will first make it contiguous,",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "which will also speed up subsequent access. If this mutates the substring,",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "it will invalidate any pre-existing indices.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift/documentation/Swift",
+        "doc://com.apple.Swift/documentation/Swift/Substring"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift/documentation/Swift/Substring/withUTF8(_:)"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "Swift",
+    "externalID": "s:Ss8withUTF8yxxSRys5UInt8VGKXEKlF",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "withUTF8"
+      },
+      {
+        "kind": "text",
+        "text": "<"
+      },
+      {
+        "kind": "genericParameter",
+        "text": "R"
+      },
+      {
+        "kind": "text",
+        "text": ">(("
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:SR",
+        "text": "UnsafeBufferPointer"
+      },
+      {
+        "kind": "text",
+        "text": "<"
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:s5UInt8V",
+        "text": "UInt8"
+      },
+      {
+        "kind": "text",
+        "text": ">) "
+      },
+      {
+        "kind": "keyword",
+        "text": "throws"
+      },
+      {
+        "kind": "text",
+        "text": " -> "
+      },
+      {
+        "kind": "typeIdentifier",
+        "text": "R"
+      },
+      {
+        "kind": "text",
+        "text": ") "
+      },
+      {
+        "kind": "keyword",
+        "text": "rethrows"
+      },
+      {
+        "kind": "text",
+        "text": " -> "
+      },
+      {
+        "kind": "typeIdentifier",
+        "text": "R"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Swift"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.10",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "withUTF8(_:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "mutating"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "withUTF8"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "kind": "genericParameter",
+              "text": "R"
+            },
+            {
+              "kind": "text",
+              "text": ">("
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "body"
+            },
+            {
+              "kind": "text",
+              "text": ": ("
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeBufferPointer",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:SR",
+              "text": "UnsafeBufferPointer"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/UInt8",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:s5UInt8V",
+              "text": "UInt8"
+            },
+            {
+              "kind": "text",
+              "text": ">) "
+            },
+            {
+              "kind": "keyword",
+              "text": "throws"
+            },
+            {
+              "kind": "text",
+              "text": " -> "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "R"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "keyword",
+              "text": "rethrows"
+            },
+            {
+              "kind": "text",
+              "text": " -> "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "R"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note that it is unsafe to escape the pointer provided to ",
+              "type": "text"
+            },
+            {
+              "code": "body",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". For",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "example, strings of up to 15 UTF-8 code units in length may be represented",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in a small-string representation, and thus will be spilled into",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "temporary stack space which is invalid after ",
+              "type": "text"
+            },
+            {
+              "code": "withUTF8",
+              "type": "codeVoice"
+            },
+            {
+              "text": " finishes",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "execution.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Complexity: O(n) if non-contiguous, O(1) if already contiguous",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Swift-PageImage-card.png": {
+      "alt": "An orange Swift logo on a gradient background.",
+      "identifier": "Swift-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/81257762cf893d205c049e3021340e5f/Swift-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4d2ed632470b4616483901941fae4098/Swift-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Swift/documentation/Swift": {
+      "abstract": [
+        {
+          "text": "Build apps using a powerful open language.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift",
+      "images": [
+        {
+          "identifier": "Swift-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift",
+      "type": "topic",
+      "url": "/documentation/swift"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Substring": {
+      "abstract": [
+        {
+          "text": "A slice of a string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Substring"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Substring",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Substring"
+        }
+      ],
+      "role": "symbol",
+      "title": "Substring",
+      "type": "topic",
+      "url": "/documentation/swift/substring"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Substring/withUTF8(_:)": {
+      "abstract": [
+        {
+          "text": "Runs ",
+          "type": "text"
+        },
+        {
+          "code": "body",
+          "type": "codeVoice"
+        },
+        {
+          "text": " over the content of this substring in contiguous memory. If",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "this substring is not contiguous, this will first make it contiguous,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "which will also speed up subsequent access. If this mutates the substring,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "it will invalidate any pre-existing indices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "withUTF8"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "R"
+        },
+        {
+          "kind": "text",
+          "text": ">(("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SR",
+          "text": "UnsafeBufferPointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5UInt8V",
+          "text": "UInt8"
+        },
+        {
+          "kind": "text",
+          "text": ">) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "R"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "rethrows"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "R"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Substring/withUTF8(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withUTF8(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/substring/withutf8(_:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UInt8": {
+      "abstract": [
+        {
+          "text": "An 8-bit unsigned integer value",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UInt8"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UInt8",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UInt8"
+        }
+      ],
+      "role": "symbol",
+      "title": "UInt8",
+      "type": "topic",
+      "url": "/documentation/swift/uint8"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnsafeBufferPointer": {
+      "abstract": [
+        {
+          "text": "A nonowning collection interface to a buffer of",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "elements stored contiguously in memory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnsafeBufferPointer"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeBufferPointer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UnsafeBufferPointer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UnsafeBufferPointer",
+      "type": "topic",
+      "url": "/documentation/swift/unsafebufferpointer"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swift/substring/withutf8(_:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,705 @@
+{
+  "abstract": [
+    {
+      "text": "A kernel for computing the solution of a linear system of equations using a triangular coefficient matrix.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/matrices_and_vectors"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsmatrixsolvetriangular"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 2867080,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)MPSMatrixSolveTriangular",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "MPSMatrixSolveTriangular"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Metal Performance Shaders"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "11.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "11.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.13",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "11.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "MPSMatrixSolveTriangular"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MPSMatrixSolveTriangular"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsmatrixbinarykernel",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)MPSMatrixBinaryKernel",
+              "text": "MPSMatrixBinaryKernel"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This kernel finds the solution matrix to the system ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "op(A) * X = alpha * B ",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": "or ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "X * op(A) = alpha * B",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", where:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A is either an upper or lower triangular matrix",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "op(A)",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " is either ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Aᵀ",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "A",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "X ",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": "is the resulting matrix of solutions",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [],
+                      "type": "emphasis"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "B",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " is the array of right hand sides for which the equations are to be solved",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/metalperformanceshaders": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal Performance Shaders",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/matrices_and_vectors": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/matrices_and_vectors",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Matrices and Vectors",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/matrices_and_vectors"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsmatrixbinarykernel": {
+      "abstract": [
+        {
+          "text": "A kernel that consumes two matrices and produces one matrix.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSMatrixBinaryKernel"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsmatrixbinarykernel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSMatrixBinaryKernel",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsmatrixbinarykernel"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsmatrixdecompositioncholesky": {
+      "abstract": [
+        {
+          "text": "A kernel for computing the Cholesky factorization of a matrix.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSMatrixDecompositionCholesky"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsmatrixdecompositioncholesky",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSMatrixDecompositionCholesky",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsmatrixdecompositioncholesky"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsmatrixdecompositionlu": {
+      "abstract": [
+        {
+          "text": "A kernel for computing the LU factorization of a matrix using partial pivoting with row interchanges.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSMatrixDecompositionLU"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsmatrixdecompositionlu",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSMatrixDecompositionLU",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsmatrixdecompositionlu"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsmatrixdecompositionstatus": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSMatrixDecompositionStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsmatrixdecompositionstatus",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSMatrixDecompositionStatus",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsmatrixdecompositionstatus"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsmatrixsolvecholesky": {
+      "abstract": [
+        {
+          "text": "A kernel for computing the solution of a linear system of equations using a Cholesky factorization.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSMatrixSolveCholesky"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsmatrixsolvecholesky",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSMatrixSolveCholesky",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsmatrixsolvecholesky"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsmatrixsolvelu": {
+      "abstract": [
+        {
+          "text": "A kernel for computing the solution of a linear system of equations using an LU factorization.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSMatrixSolveLU"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsmatrixsolvelu",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSMatrixSolveLU",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsmatrixsolvelu"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsmatrixsolvetriangular": {
+      "abstract": [
+        {
+          "text": "A kernel for computing the solution of a linear system of equations using a triangular coefficient matrix.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSMatrixSolveTriangular"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsmatrixsolvetriangular",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSMatrixSolveTriangular",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsmatrixsolvetriangular"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsmatrixsolvetriangular/2867027-encode": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "encode"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "commandBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ": any MTLCommandBuffer, "
+        },
+        {
+          "kind": "identifier",
+          "text": "sourceMatrix"
+        },
+        {
+          "kind": "text",
+          "text": ": MPSMatrix, "
+        },
+        {
+          "kind": "identifier",
+          "text": "rightHandSideMatrix"
+        },
+        {
+          "kind": "text",
+          "text": ": MPSMatrix, "
+        },
+        {
+          "kind": "identifier",
+          "text": "solutionMatrix"
+        },
+        {
+          "kind": "text",
+          "text": ": MPSMatrix)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsmatrixsolvetriangular/2867027-encode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encode(commandBuffer:sourceMatrix:rightHandSideMatrix:solutionMatrix:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsmatrixsolvetriangular/2867027-encode"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsmatrixsolvetriangular/2873007-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "device"
+        },
+        {
+          "kind": "text",
+          "text": ": any MTLDevice, "
+        },
+        {
+          "kind": "identifier",
+          "text": "right"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool, "
+        },
+        {
+          "kind": "identifier",
+          "text": "upper"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool, "
+        },
+        {
+          "kind": "identifier",
+          "text": "transpose"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool, "
+        },
+        {
+          "kind": "identifier",
+          "text": "unit"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool, "
+        },
+        {
+          "kind": "identifier",
+          "text": "order"
+        },
+        {
+          "kind": "text",
+          "text": ": Int, "
+        },
+        {
+          "kind": "identifier",
+          "text": "numberOfRightHandSides"
+        },
+        {
+          "kind": "text",
+          "text": ": Int, "
+        },
+        {
+          "kind": "identifier",
+          "text": "alpha"
+        },
+        {
+          "kind": "text",
+          "text": ": Double)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsmatrixsolvetriangular/2873007-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(device:right:upper:transpose:unit:order:numberOfRightHandSides:alpha:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsmatrixsolvetriangular/2873007-init"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsmatrixunarykernel": {
+      "abstract": [
+        {
+          "text": "A kernel that consumes one matrix and produces one matrix.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSMatrixUnaryKernel"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsmatrixunarykernel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSMatrixUnaryKernel",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsmatrixunarykernel"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsmatrixbinarykernel"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsmatrixdecompositioncholesky",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsmatrixsolvecholesky",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsmatrixdecompositionlu",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsmatrixsolvelu",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsmatrixunarykernel",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsmatrixbinarykernel",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsmatrixdecompositionstatus"
+      ],
+      "title": "Classes for Decomposition and Solving"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "2869233",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsmatrixsolvetriangular/2873007-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Initializers"
+    },
+    {
+      "anchor": "2869234",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsmatrixsolvetriangular/2867027-encode"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/metalperformanceshaders/mpsmatrixsolvetriangular"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/metalperformanceshaders/mpsmatrixsolvetriangular"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

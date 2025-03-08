@@ -1,0 +1,879 @@
+{
+  "abstract": [
+    {
+      "text": "An atom that holds a list of the metadata keys that may be present in the metadata atom.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.qtff/documentation/quicktime-file-format"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_item_keys_atom"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "__docc_universal_symbol_reference_$Metadata_item_keys_atom",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "preciseIdentifier": "__docc_universal_symbol_reference_$Metadata_item_keys_atom",
+        "text": "Metadata item keys atom ('keys')"
+      }
+    ],
+    "modules": [
+      {
+        "name": "quicktime-file-format",
+        "relatedModules": []
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "preciseIdentifier": "__docc_universal_symbol_reference_$Metadata_item_keys_atom",
+        "text": "Metadata item keys atom ('keys')"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Atom",
+    "symbolKind": "class",
+    "title": "Metadata item keys atom ('keys')"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The metadata item keys atom holds a list of the metadata keys that may be present in the metadata atom. This list is indexed starting with ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": "; ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is a reserved index value. The metadata item keys atom is a full atom with an atom type of ",
+              "type": "text"
+            },
+            {
+              "code": "‘keys’",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note that:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Indexes into the metadata item keys atom are 1-based (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "1…entry_count",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ").",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Zero (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") is reserved and never used as an index.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The structure of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "key_value",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " depends upon the key namespace.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following figure shows a typical metadata item keys atom.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "metadata-item-keys-atom",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following figure shows an example of a metadata item keys atom consisting of three keys: two from one key namespace and a third from another key namespace.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "'keys'",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "entry_count = 3",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "key_size (uint32)",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "key_namespace (uint32)",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "key_value (uint8[])",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "1",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "38",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "'mdta'",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "com.apple.quicktime.copyright",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "2",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "35",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "'mdta'",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "com.apple.quicktime.author",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "3",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "12",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "'udta'",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "@cpy",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format": {
+      "abstract": [
+        {
+          "text": "An object-oriented file format for the storage and exchange of digital media between devices, applications, and operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "QuickTime File Format",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Country_list_atom": {
+      "abstract": [
+        {
+          "text": "An atom that lists items that are suitable for more than one country.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Country_list_atom",
+          "text": "Country list atom ('ctry')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Country_list_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Country list atom ('ctry')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/country_list_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Data_atom": {
+      "abstract": [
+        {
+          "text": "An atom that contains the type and locale specific value of metadata.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Data_atom",
+          "text": "Data atom ('data')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Data_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Data atom ('data')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/data_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Item_information_atom": {
+      "abstract": [
+        {
+          "text": "An atom that contains information about the item, including item-specific flags and item optional identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Item_information_atom",
+          "text": "Item information atom ('itif')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Item_information_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Item information atom ('itif')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/item_information_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Language_list_atom": {
+      "abstract": [
+        {
+          "text": "An atom that lists items that are suitable for more than one language.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Language_list_atom",
+          "text": "Language list atom ('lang')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Language_list_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Language list atom ('lang')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/language_list_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_item_atom": {
+      "abstract": [
+        {
+          "text": "An atom that holds a metadata value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Metadata_item_atom",
+          "text": "Metadata item atom"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_item_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Metadata item atom",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/metadata_item_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_item_keys_atom": {
+      "abstract": [
+        {
+          "text": "An atom that holds a list of the metadata keys that may be present in the metadata atom.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Metadata_item_keys_atom",
+          "text": "Metadata item keys atom ('keys')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_item_keys_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Metadata item keys atom ('keys')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/metadata_item_keys_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_item_keys_atom/Entry_count": {
+      "abstract": [
+        {
+          "text": "A 32-bit integer indicating the number of key arrays to follow in this atom.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Metadata_item_keys_atom_Entry_count",
+          "text": "Entry_count"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_item_keys_atom/Entry_count",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Entry_count",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/metadata_item_keys_atom/entry_count"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_item_keys_atom/Flags": {
+      "abstract": [
+        {
+          "text": "Three bytes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Metadata_item_keys_atom_Flags",
+          "text": "Flags"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_item_keys_atom/Flags",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Flags",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/metadata_item_keys_atom/flags"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_item_keys_atom/Key_namespace": {
+      "abstract": [
+        {
+          "text": "A 32-bit integer defining a naming scheme used for metadata keys.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Metadata_item_keys_atom_Key_namespace",
+          "text": "Key_namespace"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_item_keys_atom/Key_namespace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Key_namespace",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/metadata_item_keys_atom/key_namespace"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_item_keys_atom/Key_size": {
+      "abstract": [
+        {
+          "text": "A 32-bit integer indicating the size of the entire structure containing a key definition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Metadata_item_keys_atom_Key_size",
+          "text": "Key_size"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_item_keys_atom/Key_size",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Key_size",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/metadata_item_keys_atom/key_size"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_item_keys_atom/Key_value_Key_size-8": {
+      "abstract": [
+        {
+          "text": "An array of 8-bit integers, each containing the actual name of the metadata key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Metadata_item_keys_atom_Key_value_Key_size-8",
+          "text": "Key_value_Key_size-8"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_item_keys_atom/Key_value_Key_size-8",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Key_value[Key_size-8]",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/metadata_item_keys_atom/key_value_key_size-8"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_item_keys_atom/Size": {
+      "abstract": [
+        {
+          "text": "A 32-bit unsigned integer that indicates the size in bytes of the atom structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Metadata_item_keys_atom_Size",
+          "text": "Size"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_item_keys_atom/Size",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Size",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/metadata_item_keys_atom/size"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_item_keys_atom/Type": {
+      "abstract": [
+        {
+          "text": "A 32-bit unsigned integer value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Metadata_item_keys_atom_Type",
+          "text": "Type"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_item_keys_atom/Type",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Type",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/metadata_item_keys_atom/type"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_item_keys_atom/Version": {
+      "abstract": [
+        {
+          "text": "One byte.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Metadata_item_keys_atom_Version",
+          "text": "Version"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_item_keys_atom/Version",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Version",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/metadata_item_keys_atom/version"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_item_list_atom": {
+      "abstract": [
+        {
+          "text": "An atom that holds a list of actual metadata values that are present in the metadata atom.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Metadata_item_list_atom",
+          "text": "Metadata item list atom ('ilst')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_item_list_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Metadata item list atom ('ilst')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/metadata_item_list_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Name_atom": {
+      "abstract": [
+        {
+          "text": "An atom you use to provide a name for a metadata item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Name_atom",
+          "text": "Name atom ('name')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Name_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Name atom ('name')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/name_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Value_atom": {
+      "abstract": [
+        {
+          "text": "An atom that expresses a metadata value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Value_atom",
+          "text": "Value atom"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Value_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Value atom",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/value_atom"
+    },
+    "metadata-item-keys-atom": {
+      "alt": "A diagram that shows a box, with the captions “Item keys atom” and “Type = ‘keys’” inside the top of the box. Just below the captions is a box, inside the previous box, that extends almost the width of the containing box, and has the caption “Entry count = 4”. Below that box are three columns of boxes, each with four rows. Each row of boxes is captioned “size”, “namespace”, and “value” from right to left. Outside the enclosing box there is a marker line that spans the four rows of boxes, with the caption “Key definitions.”",
+      "identifier": "metadata-item-keys-atom",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4e8940f990ae4a64cddd5b758a81e4a7/metadata-item-keys-atom@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6638fcc9e62d69c7c914f2d842c6c472/metadata-item-keys-atom~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Atoms",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Country_list_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Language_list_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_item_list_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_item_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Value_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Item_information_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Name_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Data_atom"
+      ],
+      "title": "Atoms"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Data-fields",
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_item_keys_atom/Size",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_item_keys_atom/Type",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_item_keys_atom/Version",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_item_keys_atom/Flags",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_item_keys_atom/Entry_count",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_item_keys_atom/Key_size",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_item_keys_atom/Key_namespace",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Metadata_item_keys_atom/Key_value_Key_size-8"
+      ],
+      "title": "Data fields"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quicktime-file-format/metadata_item_keys_atom"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

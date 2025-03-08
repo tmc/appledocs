@@ -1,0 +1,1444 @@
+{
+  "abstract": [
+    {
+      "text": "An object that identifies a particular area in a captured room in relation to common types of room areas in a building.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RoomPlan/documentation/RoomPlan",
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/Section"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:8RoomPlan08CapturedA0V7SectionV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "Section"
+      }
+    ],
+    "modules": [
+      {
+        "name": "RoomPlan"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Section"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "CapturedRoom.Section"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "Section"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When RoomPlan recognizes a captured room as one of the common kinds of room areas, such as a living room, the framework adds an instance of this structure to the room’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/sections",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " array.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The section instance provides:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A label type for the common area (",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/Section/label-swift.property",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": "), such as  ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/Section/Label-swift.enum/livingRoom",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A center point (",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/Section/center",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": "), that generally locates the area within the room",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A story (",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/Section/story",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": "), that identifies a floor number for the area in the building",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In a larger room, the framework may identify multiple types of areas, for example, a kitchen and a dining room. In that case, the ",
+              "type": "text"
+            },
+            {
+              "code": "sections",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array contains both, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/Section/Label-swift.enum/kitchen",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/Section/Label-swift.enum/diningRoom",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and their ",
+              "type": "text"
+            },
+            {
+              "code": "center",
+              "type": "codeVoice"
+            },
+            {
+              "text": " points distinguish their individual locations within the room.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.RoomPlan/documentation/RoomPlan": {
+      "abstract": [
+        {
+          "text": "Create a 3D model of a room by interactively guiding people to scan their physical environment using a device’s camera.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RoomPlan",
+      "type": "topic",
+      "url": "/documentation/roomplan"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom": {
+      "abstract": [
+        {
+          "text": "A structure that provides the key details of a scanned room.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CapturedRoom"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CapturedRoom"
+        }
+      ],
+      "role": "symbol",
+      "title": "CapturedRoom",
+      "type": "topic",
+      "url": "/documentation/roomplan/capturedroom"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/Confidence": {
+      "abstract": [
+        {
+          "text": "Levels of certainty in the classification of a particular detail in a scan.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Confidence"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/Confidence",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Confidence"
+        }
+      ],
+      "role": "symbol",
+      "title": "CapturedRoom.Confidence",
+      "type": "topic",
+      "url": "/documentation/roomplan/capturedroom/confidence"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/Object": {
+      "abstract": [
+        {
+          "text": "A 3D area in a room that the framework identifies as an object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Object"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/Object",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Object"
+        }
+      ],
+      "role": "symbol",
+      "title": "CapturedRoom.Object",
+      "type": "topic",
+      "url": "/documentation/roomplan/capturedroom/object"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/Section": {
+      "abstract": [
+        {
+          "text": "An object that identifies a particular area in a captured room in relation to common types of room areas in a building.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Section"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/Section",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Section"
+        }
+      ],
+      "role": "symbol",
+      "title": "CapturedRoom.Section",
+      "type": "topic",
+      "url": "/documentation/roomplan/capturedroom/section"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/Section/Label-swift.enum": {
+      "abstract": [
+        {
+          "text": "Textual names for one part of a larger structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Label"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/Section/Label-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Label"
+        }
+      ],
+      "role": "symbol",
+      "title": "CapturedRoom.Section.Label",
+      "type": "topic",
+      "url": "/documentation/roomplan/capturedroom/section/label-swift.enum"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/Section/Label-swift.enum/diningRoom": {
+      "abstract": [
+        {
+          "text": "A distinct area that resembles a dining room within a larger structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "diningRoom"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/Section/Label-swift.enum/diningRoom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CapturedRoom.Section.Label.diningRoom",
+      "type": "topic",
+      "url": "/documentation/roomplan/capturedroom/section/label-swift.enum/diningroom"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/Section/Label-swift.enum/kitchen": {
+      "abstract": [
+        {
+          "text": "A distinct area that resembles a kitchen within a larger structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kitchen"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/Section/Label-swift.enum/kitchen",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CapturedRoom.Section.Label.kitchen",
+      "type": "topic",
+      "url": "/documentation/roomplan/capturedroom/section/label-swift.enum/kitchen"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/Section/Label-swift.enum/livingRoom": {
+      "abstract": [
+        {
+          "text": "A distinct area that resembles a living room within a larger structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "livingRoom"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/Section/Label-swift.enum/livingRoom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CapturedRoom.Section.Label.livingRoom",
+      "type": "topic",
+      "url": "/documentation/roomplan/capturedroom/section/label-swift.enum/livingroom"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/Section/center": {
+      "abstract": [
+        {
+          "text": "The center position of a section.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "center"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@simd_float3",
+          "text": "simd_float3"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/Section/center",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "center",
+      "type": "topic",
+      "url": "/documentation/roomplan/capturedroom/section/center"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/Section/encode(to:)": {
+      "abstract": [
+        {
+          "text": "Serializes a section to the specified encoder.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "encode"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s7EncoderP",
+          "text": "Encoder"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/Section/encode(to:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encode(to:)",
+      "type": "topic",
+      "url": "/documentation/roomplan/capturedroom/section/encode(to:)"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/Section/init(from:)": {
+      "abstract": [
+        {
+          "text": "Creates a section by deserializing the given decoder.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s7DecoderP",
+          "text": "Decoder"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/Section/init(from:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(from:)",
+      "type": "topic",
+      "url": "/documentation/roomplan/capturedroom/section/init(from:)"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/Section/label-swift.property": {
+      "abstract": [
+        {
+          "text": "A textual name for the section.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "label"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8RoomPlan08CapturedA0V",
+          "text": "CapturedRoom"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8RoomPlan08CapturedA0V7SectionV",
+          "text": "Section"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8RoomPlan08CapturedA0V7SectionV5LabelO",
+          "text": "Label"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/Section/label-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "label",
+      "type": "topic",
+      "url": "/documentation/roomplan/capturedroom/section/label-swift.property"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/Section/story": {
+      "abstract": [
+        {
+          "text": "The story, floor number, or level on which the section resides in a structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "story"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/Section/story",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "story",
+      "type": "topic",
+      "url": "/documentation/roomplan/capturedroom/section/story"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/Surface": {
+      "abstract": [
+        {
+          "text": "A 2D area in a room that the framework identifies as a surface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Surface"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/Surface",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Surface"
+        }
+      ],
+      "role": "symbol",
+      "title": "CapturedRoom.Surface",
+      "type": "topic",
+      "url": "/documentation/roomplan/capturedroom/surface"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/doors": {
+      "abstract": [
+        {
+          "text": "An array of doors that the framework identifies during a scan.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "doors"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8RoomPlan08CapturedA0V",
+          "text": "CapturedRoom"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8RoomPlan08CapturedA0V7SurfaceV",
+          "text": "Surface"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/doors",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "doors",
+      "type": "topic",
+      "url": "/documentation/roomplan/capturedroom/doors"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/floors": {
+      "abstract": [
+        {
+          "text": "An array of floors that the framework identifies during a scan.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "floors"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8RoomPlan08CapturedA0V",
+          "text": "CapturedRoom"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8RoomPlan08CapturedA0V7SurfaceV",
+          "text": "Surface"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/floors",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "floors",
+      "type": "topic",
+      "url": "/documentation/roomplan/capturedroom/floors"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/identifier": {
+      "abstract": [
+        {
+          "text": "A unique alphanumeric value that the framework assigns the room.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "identifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4UUIDV",
+          "text": "UUID"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/identifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "identifier",
+      "type": "topic",
+      "url": "/documentation/roomplan/capturedroom/identifier"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/objects": {
+      "abstract": [
+        {
+          "text": "An array of objects that the framework identifies during a scan.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "objects"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8RoomPlan08CapturedA0V",
+          "text": "CapturedRoom"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8RoomPlan08CapturedA0V6ObjectV",
+          "text": "Object"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/objects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "objects",
+      "type": "topic",
+      "url": "/documentation/roomplan/capturedroom/objects"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/openings": {
+      "abstract": [
+        {
+          "text": "An array of openings that the framework identifies during a scan.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "openings"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8RoomPlan08CapturedA0V",
+          "text": "CapturedRoom"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8RoomPlan08CapturedA0V7SurfaceV",
+          "text": "Surface"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/openings",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "openings",
+      "type": "topic",
+      "url": "/documentation/roomplan/capturedroom/openings"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/sections": {
+      "abstract": [
+        {
+          "text": "One or more room types that the framework observes in the room.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sections"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8RoomPlan08CapturedA0V",
+          "text": "CapturedRoom"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8RoomPlan08CapturedA0V7SectionV",
+          "text": "Section"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/sections",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sections",
+      "type": "topic",
+      "url": "/documentation/roomplan/capturedroom/sections"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/story": {
+      "abstract": [
+        {
+          "text": "The story, floor number, or level on which the captured room resides within a larger structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "story"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/story",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "story",
+      "type": "topic",
+      "url": "/documentation/roomplan/capturedroom/story"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/version": {
+      "abstract": [
+        {
+          "text": "A version number for the captured room.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "version"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/version",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "version",
+      "type": "topic",
+      "url": "/documentation/roomplan/capturedroom/version"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/walls": {
+      "abstract": [
+        {
+          "text": "An array of walls that the framework identifies during a scan.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "walls"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8RoomPlan08CapturedA0V",
+          "text": "CapturedRoom"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8RoomPlan08CapturedA0V7SurfaceV",
+          "text": "Surface"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/walls",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "walls",
+      "type": "topic",
+      "url": "/documentation/roomplan/capturedroom/walls"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/windows": {
+      "abstract": [
+        {
+          "text": "An array of windows that the framework identifies during a scan.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "windows"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8RoomPlan08CapturedA0V",
+          "text": "CapturedRoom"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8RoomPlan08CapturedA0V7SurfaceV",
+          "text": "Surface"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/windows",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "windows",
+      "type": "topic",
+      "url": "/documentation/roomplan/capturedroom/windows"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:SE": {
+      "abstract": [
+        {
+          "text": "A type that can encode itself to an external representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Encodable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SE",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Encodable",
+      "type": "topic",
+      "url": "/documentation/Swift/Encodable"
+    },
+    "doc://com.externally.resolved.symbol/s:Se": {
+      "abstract": [
+        {
+          "text": "A type that can decode itself from an external representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Decodable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:Se",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Decodable",
+      "type": "topic",
+      "url": "/documentation/Swift/Decodable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:Se",
+        "doc://com.externally.resolved.symbol/s:SE",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Inspecting-room-details",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/identifier",
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/story",
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/floors",
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/Surface",
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/doors",
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/objects",
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/Object",
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/openings",
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/walls",
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/windows",
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/sections",
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/Confidence",
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/version"
+      ],
+      "title": "Inspecting room details"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-section",
+      "identifiers": [
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/Section/init(from:)"
+      ],
+      "title": "Creating a section"
+    },
+    {
+      "anchor": "Describing-a-section",
+      "identifiers": [
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/Section/label-swift.property",
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/Section/Label-swift.enum"
+      ],
+      "title": "Describing a section"
+    },
+    {
+      "anchor": "Locating-a-section",
+      "identifiers": [
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/Section/story",
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/Section/center"
+      ],
+      "title": "Locating a section"
+    },
+    {
+      "anchor": "Serializing-a-section",
+      "identifiers": [
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/Section/encode(to:)"
+      ],
+      "title": "Serializing a section"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/roomplan/capturedroom/section"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

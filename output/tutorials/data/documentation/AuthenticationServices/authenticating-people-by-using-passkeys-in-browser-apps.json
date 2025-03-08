@@ -1,0 +1,1234 @@
+{
+  "abstract": [
+    {
+      "text": "Provide a secure and convenient alternative to passwords.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/passkey-use-in-web-browsers"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/authenticating-people-by-using-passkeys-in-browser-apps"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Authentication Services"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Authenticating people by using passkeys in browser apps"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your browser app on macOS or iOS can authenticate people to websites by using passkeys stored in the keychain, and managed by third-party credential providers. It can also create passkeys that the operating system stores in the keychain, or that third-party credential providers store. Optionally, when someone authenticates with a website, present your own UI to list the passkeys available for the website so they can choose which passkey to use; otherwise, delegate to the operating system’s UI to choose passkeys or, on iOS, use AutoFill.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " when performing requests defined in the WebAuthentication standard. If you present your own passkey-selection UI, you can specify ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPlatformPublicKeyCredentialAssertionRequest/allowedCredentials",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to restrict the system UI to only show the selected passkey. Implement the authorization controller’s delegate callback to receive passkey request responses, which you return to the website that makes the request.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Request-access-to-passkeys",
+          "level": 3,
+          "text": "Request access to passkeys",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When someone wants to use a passkey to authenticate with a website, create an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationWebBrowserPublicKeyCredentialManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and follow these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Get the credential manager’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationWebBrowserPublicKeyCredentialManager/authorizationStateForPlatformCredentials",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property to check whether your app can use passkeys stored in the keychain or in third-party credential managers.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the state is ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationWebBrowserPublicKeyCredentialManager/AuthorizationState/authorized",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", then get the credentials associated with the relying party from the credential manager.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the state is ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationWebBrowserPublicKeyCredentialManager/AuthorizationState/notDetermined",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", call ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationWebBrowserPublicKeyCredentialManager/requestAuthorizationForPublicKeyCredentials(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", passing a completion handler that the operating system calls when someone grants or denies the request.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the state is ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationWebBrowserPublicKeyCredentialManager/AuthorizationState/denied",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", the person doesn’t allow your app to use their passkeys.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "code": [
+            "class BrowserAuthorizationController {",
+            "  func authenticatePerson(for relyingParty: String) throws {",
+            "    // Check the authorization state.",
+            "    let credentialManager = ASAuthorizationWebBrowserPublicKeyCredentialManager()",
+            "    switch(credentialManager.authorizationStateForPlatformCredentials) {",
+            "    case .authorized:",
+            "      // Use the credentials.",
+            "      let credentials = credentialManager.platformCredentials(forRelyingParty: relyingParty)",
+            "      self.respondToChallenge(for: relyingParty, using: credentials)",
+            "    case .denied:",
+            "      // Your app doesn't have access to the credentials.",
+            "      throw BrowserError(\"Unable to access passkeys to authenticate with \\(relyingParty)\")",
+            "    case .notDetermined:",
+            "      // Request access to the credentials.",
+            "      credentialManager.requestAuthorizationForPublicKeyCredentials() { authorizationState in",
+            "        // Check the updated authorizationState, and use the credentials if possible.",
+            "      }",
+            "    }",
+            "  }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-an-assertion-request",
+          "level": 3,
+          "text": "Create an assertion request",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The credentials you get from the credential manager don’t contain the key data; instead, they contain metadata that identifies the credentials to the operating system and to the authenticating person. If the array of credentials contains more than one credential, present them to the person so they can select which credential to use.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a credential assertion request, using the challenge data sent by the requesting website. If the person chose a credential to use, restrict the request to allow only that credential. Pass the request to an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance to complete the challenge.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "extension BrowserAuthorizationController {",
+            "  func startAuthenticationChallenge(for relyingParty: String,",
+            "    selectedCredential: ASAuthorizationWebBrowserPlatformPublicKeyCredential?,",
+            "    challengeData: Data) async {",
+            "    let clientData = ASPublicKeyCredentialClientData(challenge: challengeData,",
+            "      origin: self.requestOrigin)",
+            "    let request = ASAuthorizationPlatformPublicKeyCredentialProvider(relyingPartyIdentifier: relyingParty)",
+            "      .createCredentialAssertionRequest(clientData: clientData)",
+            "    if let selectedCredential {",
+            "      request.allowedCredentials = [ASAuthorizationPlatformPublicKeyCredentialDescriptor(credentialID: selectedCredential.credentialID)]",
+            "    }",
+            "    let controller = ASAuthorizationController(authorizationRequests: [request])",
+            "    controller.delegate = self",
+            "    controller.presentationContextProvider = self",
+            "    controller.performRequests()",
+            "  }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To start an authorization request using AutoFill presentation on iOS, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationController/performAutoFillAssistedRequests()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on the authorization controller instead of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationController/performRequests()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Supply-a-presentation-context-provider",
+          "level": 3,
+          "text": "Supply a presentation context provider",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " might need to present UI to complete the authentication challenge. Conform to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationControllerPresentationContextProviding",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to provide a window in which the controller can display its UI.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "extension BrowserAuthorizationController : ASAuthorizationControllerPresentationContextProviding {",
+            "  func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {",
+            "    guard let window = self.view.window else {",
+            "      fatalError(\"Started a credential request when the browser view isn't presented in a window.\")",
+            "    }",
+            "    return window",
+            "  }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Implement-authorization-controller-delegate-callbacks",
+          "level": 3,
+          "text": "Implement authorization controller delegate callbacks",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Conform to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationControllerDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to react to authorization completion. Implement methods to respond to successful authorization, and to get notified when errors occur.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "extension BrowserAuthorizationController : ASAuthorizationControllerDelegate {",
+            "  func authorizationController(controller: ASAuthorizationController,",
+            "    didCompleteWithAuthorization authorization: ASAuthorization) {",
+            "    // The authorization was successful.",
+            "    // Use the authorization parameter to retrieve the credential, and send that to the relying party website.",
+            "  }",
+            "",
+            "  func authorizationController(controller: ASAuthorizationController,",
+            "    didCompleteWithError error: Error) {",
+            "    // The authorization failed.",
+            "    // Use the error to find out what happened, and retry or notify someone.",
+            "  }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices": {
+      "abstract": [
+        {
+          "text": "Make it easy for users to log into apps and services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Authentication Services",
+      "type": "topic",
+      "url": "/documentation/authenticationservices"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationController": {
+      "abstract": [
+        {
+          "text": "A controller that manages authorization requests that a provider creates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationController"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationController"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAuthorizationController",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationcontroller"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationController/performAutoFillAssistedRequests()": {
+      "abstract": [
+        {
+          "text": "Initiates the authorization flows for requests that support AutoFill presentation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "performAutoFillAssistedRequests"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationController/performAutoFillAssistedRequests()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "performAutoFillAssistedRequests"
+        }
+      ],
+      "role": "symbol",
+      "title": "performAutoFillAssistedRequests()",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationcontroller/performautofillassistedrequests()"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationController/performRequests()": {
+      "abstract": [
+        {
+          "text": "Starts the specified authorization flows during controller initialization.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "performRequests"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationController/performRequests()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "performRequests"
+        }
+      ],
+      "role": "symbol",
+      "title": "performRequests()",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationcontroller/performrequests()"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationControllerDelegate": {
+      "abstract": [
+        {
+          "text": "An interface for providing information about the outcome of an authorization request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationControllerDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationControllerDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationControllerDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAuthorizationControllerDelegate",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationcontrollerdelegate"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationControllerPresentationContextProviding": {
+      "abstract": [
+        {
+          "text": "An interface the controller uses to ask a delegate for a presentation context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationControllerPresentationContextProviding"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationControllerPresentationContextProviding",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationControllerPresentationContextProviding"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAuthorizationControllerPresentationContextProviding",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationcontrollerpresentationcontextproviding"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPlatformPublicKeyCredentialAssertionRequest/allowedCredentials": {
+      "abstract": [
+        {
+          "text": "The array of allowed credentials.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowedCredentials"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ASAuthorizationPlatformPublicKeyCredentialDescriptor",
+          "text": "ASAuthorizationPlatformPublicKeyCredentialDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationPlatformPublicKeyCredentialAssertionRequest/allowedCredentials",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "allowedCredentials"
+        }
+      ],
+      "role": "symbol",
+      "title": "allowedCredentials",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationplatformpublickeycredentialassertionrequest/allowedcredentials"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationWebBrowserPublicKeyCredentialManager": {
+      "abstract": [
+        {
+          "text": "A class that you use to request access to a person’s passkeys in a web browser, and that reports on the access status.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationWebBrowserPublicKeyCredentialManager"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationWebBrowserPublicKeyCredentialManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationWebBrowserPublicKeyCredentialManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAuthorizationWebBrowserPublicKeyCredentialManager",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationwebbrowserpublickeycredentialmanager"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationWebBrowserPublicKeyCredentialManager/AuthorizationState/authorized": {
+      "abstract": [
+        {
+          "text": "Someone allows the browser app to use passkeys stored in the keychain, and managed by third-party credential manager apps.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "authorized"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationWebBrowserPublicKeyCredentialManager/AuthorizationState/authorized",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationWebBrowserPublicKeyCredentialManagerAuthorizationStateAuthorized"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAuthorizationWebBrowserPublicKeyCredentialManager.AuthorizationState.authorized",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationwebbrowserpublickeycredentialmanager/authorizationstate/authorized"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationWebBrowserPublicKeyCredentialManager/AuthorizationState/denied": {
+      "abstract": [
+        {
+          "text": "Someone forbids the browser app to use passkeys stored in the keychain, and managed by third-party credential manager apps.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "denied"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationWebBrowserPublicKeyCredentialManager/AuthorizationState/denied",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationWebBrowserPublicKeyCredentialManagerAuthorizationStateDenied"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAuthorizationWebBrowserPublicKeyCredentialManager.AuthorizationState.denied",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationwebbrowserpublickeycredentialmanager/authorizationstate/denied"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationWebBrowserPublicKeyCredentialManager/AuthorizationState/notDetermined": {
+      "abstract": [
+        {
+          "text": "The person has yet to choose whether to allow the browser app to access passkeys stored on the keychain, or managed by third-party credential managers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "notDetermined"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationWebBrowserPublicKeyCredentialManager/AuthorizationState/notDetermined",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationWebBrowserPublicKeyCredentialManagerAuthorizationStateNotDetermined"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAuthorizationWebBrowserPublicKeyCredentialManager.AuthorizationState.notDetermined",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationwebbrowserpublickeycredentialmanager/authorizationstate/notdetermined"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationWebBrowserPublicKeyCredentialManager/authorizationStateForPlatformCredentials": {
+      "abstract": [
+        {
+          "text": "Returns a value that indicates whether the browser app has access to a person’s passkeys.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "authorizationStateForPlatformCredentials"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ASAuthorizationWebBrowserPublicKeyCredentialManager",
+          "text": "ASAuthorizationWebBrowserPublicKeyCredentialManager"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ASAuthorizationWebBrowserPublicKeyCredentialManagerAuthorizationState",
+          "text": "AuthorizationState"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationWebBrowserPublicKeyCredentialManager/authorizationStateForPlatformCredentials",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "authorizationStateForPlatformCredentials"
+        }
+      ],
+      "role": "symbol",
+      "title": "authorizationStateForPlatformCredentials",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationwebbrowserpublickeycredentialmanager/authorizationstateforplatformcredentials"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationWebBrowserPublicKeyCredentialManager/requestAuthorizationForPublicKeyCredentials(_:)": {
+      "abstract": [
+        {
+          "text": "Requests a person’s permission to use their passkeys.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestAuthorizationForPublicKeyCredentials"
+        },
+        {
+          "kind": "text",
+          "text": "(("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ASAuthorizationWebBrowserPublicKeyCredentialManager",
+          "text": "ASAuthorizationWebBrowserPublicKeyCredentialManager"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ASAuthorizationWebBrowserPublicKeyCredentialManagerAuthorizationState",
+          "text": "AuthorizationState"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationWebBrowserPublicKeyCredentialManager/requestAuthorizationForPublicKeyCredentials(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "requestAuthorizationForPublicKeyCredentials:"
+        }
+      ],
+      "role": "symbol",
+      "title": "requestAuthorizationForPublicKeyCredentials(_:)",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationwebbrowserpublickeycredentialmanager/requestauthorizationforpublickeycredentials(_:)"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/passkey-use-in-web-browsers": {
+      "abstract": [
+        {
+          "text": "Register and authenticate website users by using passkeys.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/passkey-use-in-web-browsers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Passkey use in web browsers",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/passkey-use-in-web-browsers"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Website-authorization",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationWebBrowserPublicKeyCredentialManager"
+      ],
+      "title": "Website authorization"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Website-authorization",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationWebBrowserPublicKeyCredentialManager"
+              ],
+              "title": "Website authorization"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationWebBrowserPublicKeyCredentialManager~1authorizationStateForPlatformCredentials/title",
+          "value": "authorizationStateForPlatformCredentials"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationWebBrowserPublicKeyCredentialManager~1authorizationStateForPlatformCredentials/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "authorizationStateForPlatformCredentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationWebBrowserPublicKeyCredentialManager~1requestAuthorizationForPublicKeyCredentials(_:)/title",
+          "value": "requestAuthorizationForPublicKeyCredentials:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationWebBrowserPublicKeyCredentialManager~1requestAuthorizationForPublicKeyCredentials(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "requestAuthorizationForPublicKeyCredentials:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationWebBrowserPublicKeyCredentialManager~1AuthorizationState~1notDetermined/title",
+          "value": "ASAuthorizationWebBrowserPublicKeyCredentialManagerAuthorizationStateNotDetermined"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationWebBrowserPublicKeyCredentialManager~1AuthorizationState~1notDetermined/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationWebBrowserPublicKeyCredentialManagerAuthorizationStateNotDetermined"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationWebBrowserPublicKeyCredentialManager~1AuthorizationState~1authorized/title",
+          "value": "ASAuthorizationWebBrowserPublicKeyCredentialManagerAuthorizationStateAuthorized"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationWebBrowserPublicKeyCredentialManager~1AuthorizationState~1authorized/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationWebBrowserPublicKeyCredentialManagerAuthorizationStateAuthorized"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationControllerDelegate/title",
+          "value": "ASAuthorizationControllerDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationControllerDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationControllerDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationControllerPresentationContextProviding/title",
+          "value": "ASAuthorizationControllerPresentationContextProviding"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationControllerPresentationContextProviding/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationControllerPresentationContextProviding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationControllerPresentationContextProviding/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationControllerPresentationContextProviding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationWebBrowserPublicKeyCredentialManager~1AuthorizationState~1denied/title",
+          "value": "ASAuthorizationWebBrowserPublicKeyCredentialManagerAuthorizationStateDenied"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationWebBrowserPublicKeyCredentialManager~1AuthorizationState~1denied/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationWebBrowserPublicKeyCredentialManagerAuthorizationStateDenied"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationController/title",
+          "value": "ASAuthorizationController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationController~1performRequests()/title",
+          "value": "performRequests"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationController~1performRequests()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "performRequests"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationController~1performAutoFillAssistedRequests()/title",
+          "value": "performAutoFillAssistedRequests"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationController~1performAutoFillAssistedRequests()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "performAutoFillAssistedRequests"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationWebBrowserPublicKeyCredentialManager/title",
+          "value": "ASAuthorizationWebBrowserPublicKeyCredentialManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationWebBrowserPublicKeyCredentialManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationWebBrowserPublicKeyCredentialManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationWebBrowserPublicKeyCredentialManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationWebBrowserPublicKeyCredentialManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationPlatformPublicKeyCredentialAssertionRequest~1allowedCredentials/title",
+          "value": "allowedCredentials"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationPlatformPublicKeyCredentialAssertionRequest~1allowedCredentials/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "allowedCredentials"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/authenticationservices/authenticating-people-by-using-passkeys-in-browser-apps"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/authenticationservices/authenticating-people-by-using-passkeys-in-browser-apps"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,5578 @@
+{
+  "abstract": [
+    {
+      "text": "A view that allows displaying and minor editing of an image.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.quartz/documentation/Quartz"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.quartz/documentation/Quartz/IKImageView"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)IKImageView",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "IKImageView"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Quartz"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "IKImageView"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.5",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "IKImageView"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "IKImageView"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "IKImageView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class provides an efficient way to display images in a view while at the same time supporting a number of image editing operations such as rotating, zooming, and cropping. If possible, image rendering uses hardware acceleration to achieve optimal performance. The ",
+              "type": "text"
+            },
+            {
+              "code": "IKImageView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class is implemented as a subclass of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Similar to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSImageView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the ",
+              "type": "text"
+            },
+            {
+              "code": "IKImageView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class is used to display a single image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can provide an images for the view in any of these formats:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "File reference (",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfurl",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", or a path)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/ImageIO/CGImageSource",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Data (",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfdata",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ")",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Image (",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgimage",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ")",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Providing a file reference is the preferred way to set the the image for a view because in addition to the actual image data, ",
+              "type": "text"
+            },
+            {
+              "code": "IKImageView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " also handles the image metadata embedded in the file. The image view automatically fetches the metadata from a file reference, whereas for the other sources (except for a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ImageIO/CGImageSource",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " source), it cannot. For images set from other sources, you need to set the metadata separately.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "IKImageView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " supports multi-frame images (TIFF, GIF, and so forth) and animated images.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AppKit/NSImageView": {
+      "abstract": [
+        {
+          "text": "A display of image data in a frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSImageView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSImageView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSImageView",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSImageView"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSView": {
+      "abstract": [
+        {
+          "text": "The infrastructure for drawing, printing, and handling events in an app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSView",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSView"
+    },
+    "doc://com.apple.documentation/documentation/ImageIO/CGImageSource": {
+      "abstract": [
+        {
+          "text": "An opaque type that you use to read image data from a URL, data object, or data consumer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGImageSource"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ImageIO/CGImageSource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGImageSource",
+      "type": "topic",
+      "url": "/documentation/ImageIO/CGImageSource"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfdata": {
+      "abstract": [
+        {
+          "text": "A reference to an immutable CFData object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFData"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfdata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFData",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfdata"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfurl": {
+      "abstract": [
+        {
+          "text": "A reference to a CFURL object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFURL"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFURL",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfurl"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgimage": {
+      "abstract": [
+        {
+          "text": "A bitmap image or image mask.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgimage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGImage",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgimage"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage": {
+      "abstract": [
+        {
+          "text": "A representation of an image to be processed or produced by Core Image filters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CIImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIImage",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdata": {
+      "abstract": [
+        {
+          "text": "A static byte buffer that bridges to ; use  when you need reference semantics or other Foundation-specific behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSData"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSData",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdata"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurl": {
+      "abstract": [
+        {
+          "text": "An object representing the location of a resource that bridges to ; use  when you need reference semantics or other Foundation-specific behavior. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSURL"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURL",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurl"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.quartz/documentation/Quartz": {
+      "abstract": [
+        {
+          "text": "Allow users to browse, edit, and save images, using slideshows and Core Image filters.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Quartz",
+      "type": "topic",
+      "url": "/documentation/quartz"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/IKCameraDeviceView": {
+      "abstract": [
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "code": "IKCameraDeviceView",
+          "type": "codeVoice"
+        },
+        {
+          "text": " class displays the contents of the selected camera.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IKCameraDeviceView"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/IKCameraDeviceView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IKCameraDeviceView"
+        }
+      ],
+      "role": "symbol",
+      "title": "IKCameraDeviceView",
+      "type": "topic",
+      "url": "/documentation/quartz/ikcameradeviceview"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/IKDeviceBrowserView": {
+      "abstract": [
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "code": "IKDeviceBrowserView",
+          "type": "codeVoice"
+        },
+        {
+          "text": " allows you to select a camera or scanner from a list of the available devices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IKDeviceBrowserView"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/IKDeviceBrowserView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IKDeviceBrowserView"
+        }
+      ],
+      "role": "symbol",
+      "title": "IKDeviceBrowserView",
+      "type": "topic",
+      "url": "/documentation/quartz/ikdevicebrowserview"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/IKFilterBrowserPanel": {
+      "abstract": [
+        {
+          "text": "Presents a user interface for browsing filters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IKFilterBrowserPanel"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/IKFilterBrowserPanel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IKFilterBrowserPanel"
+        }
+      ],
+      "role": "symbol",
+      "title": "IKFilterBrowserPanel",
+      "type": "topic",
+      "url": "/documentation/quartz/ikfilterbrowserpanel"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/IKFilterBrowserView": {
+      "abstract": [
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "code": "IKFilterBrowserView",
+          "type": "codeVoice"
+        },
+        {
+          "text": " class is used as a container for the elements of an ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.quartz/documentation/Quartz/IKFilterBrowserPanel",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IKFilterBrowserView"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/IKFilterBrowserView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IKFilterBrowserView"
+        }
+      ],
+      "role": "symbol",
+      "title": "IKFilterBrowserView",
+      "type": "topic",
+      "url": "/documentation/quartz/ikfilterbrowserview"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/IKFilterUIView": {
+      "abstract": [
+        {
+          "text": "Input parameters for filtering core image filters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IKFilterUIView"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/IKFilterUIView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IKFilterUIView"
+        }
+      ],
+      "role": "symbol",
+      "title": "IKFilterUIView",
+      "type": "topic",
+      "url": "/documentation/quartz/ikfilteruiview"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/IKImageBrowserCell": {
+      "abstract": [
+        {
+          "text": "A class used to display a cell.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IKImageBrowserCell"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/IKImageBrowserCell",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IKImageBrowserCell"
+        }
+      ],
+      "role": "symbol",
+      "title": "IKImageBrowserCell",
+      "type": "topic",
+      "url": "/documentation/quartz/ikimagebrowsercell"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/IKImageEditPanel": {
+      "abstract": [
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "code": "IKImageEditPanel",
+          "type": "codeVoice"
+        },
+        {
+          "text": " class provides a panel, that is, a utility window that floats on top of document windows, optimized for image editing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IKImageEditPanel"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/IKImageEditPanel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IKImageEditPanel"
+        }
+      ],
+      "role": "symbol",
+      "title": "IKImageEditPanel",
+      "type": "topic",
+      "url": "/documentation/quartz/ikimageeditpanel"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/IKImageView": {
+      "abstract": [
+        {
+          "text": "A view that allows displaying and minor editing of an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IKImageView"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/IKImageView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IKImageView"
+        }
+      ],
+      "role": "symbol",
+      "title": "IKImageView",
+      "type": "topic",
+      "url": "/documentation/quartz/ikimageview"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/IKImageView/autohidesScrollers": {
+      "abstract": [
+        {
+          "text": "Specifies the automatic-hiding scroll bar state for the image view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "autohidesScrollers"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/IKImageView/autohidesScrollers",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "autohidesScrollers"
+        }
+      ],
+      "role": "symbol",
+      "title": "autohidesScrollers",
+      "type": "topic",
+      "url": "/documentation/quartz/ikimageview/autohidesscrollers"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/IKImageView/autoresizes": {
+      "abstract": [
+        {
+          "text": "Specifies the automatic resizing state for the image view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "autoresizes"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/IKImageView/autoresizes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "autoresizes"
+        }
+      ],
+      "role": "symbol",
+      "title": "autoresizes",
+      "type": "topic",
+      "url": "/documentation/quartz/ikimageview/autoresizes"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/IKImageView/backgroundColor": {
+      "abstract": [
+        {
+          "text": "Specifies the background color for the image view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "backgroundColor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSColor",
+          "text": "NSColor"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/IKImageView/backgroundColor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "backgroundColor"
+        }
+      ],
+      "role": "symbol",
+      "title": "backgroundColor",
+      "type": "topic",
+      "url": "/documentation/quartz/ikimageview/backgroundcolor"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/IKImageView/convertImagePoint(toViewPoint:)": {
+      "abstract": [
+        {
+          "text": "Converts an image coordinate to an image view coordinate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "convertImagePoint"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "toViewPoint"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPoint",
+          "text": "NSPoint"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPoint",
+          "text": "NSPoint"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/IKImageView/convertImagePoint(toViewPoint:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "convertImagePointToViewPoint:"
+        }
+      ],
+      "role": "symbol",
+      "title": "convertImagePoint(toViewPoint:)",
+      "type": "topic",
+      "url": "/documentation/quartz/ikimageview/convertimagepoint(toviewpoint:)"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/IKImageView/convertImageRect(toViewRect:)": {
+      "abstract": [
+        {
+          "text": "Converts an image rectangle to an image view rectangle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "convertImageRect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "toViewRect"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/IKImageView/convertImageRect(toViewRect:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "convertImageRectToViewRect:"
+        }
+      ],
+      "role": "symbol",
+      "title": "convertImageRect(toViewRect:)",
+      "type": "topic",
+      "url": "/documentation/quartz/ikimageview/convertimagerect(toviewrect:)"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/IKImageView/convertPoint(toImagePoint:)": {
+      "abstract": [
+        {
+          "text": "Converts an image view coordinate to an image coordinate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "convertPoint"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "toImagePoint"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPoint",
+          "text": "NSPoint"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPoint",
+          "text": "NSPoint"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/IKImageView/convertPoint(toImagePoint:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "convertViewPointToImagePoint:"
+        }
+      ],
+      "role": "symbol",
+      "title": "convertPoint(toImagePoint:)",
+      "type": "topic",
+      "url": "/documentation/quartz/ikimageview/convertpoint(toimagepoint:)"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/IKImageView/convertRect(toImageRect:)": {
+      "abstract": [
+        {
+          "text": "Converts an image view rectangle to an image rectangle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "convertRect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "toImageRect"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/IKImageView/convertRect(toImageRect:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "convertViewRectToImageRect:"
+        }
+      ],
+      "role": "symbol",
+      "title": "convertRect(toImageRect:)",
+      "type": "topic",
+      "url": "/documentation/quartz/ikimageview/convertrect(toimagerect:)"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/IKImageView/crop(_:)": {
+      "abstract": [
+        {
+          "text": "Crops the image using the current selection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "crop"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "!)"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/IKImageView/crop(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "crop:"
+        }
+      ],
+      "role": "symbol",
+      "title": "crop(_:)",
+      "type": "topic",
+      "url": "/documentation/quartz/ikimageview/crop(_:)"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/IKImageView/currentToolMode": {
+      "abstract": [
+        {
+          "text": "Specifies the current tool mode for the image view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "currentToolMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/IKImageView/currentToolMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "currentToolMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "currentToolMode",
+      "type": "topic",
+      "url": "/documentation/quartz/ikimageview/currenttoolmode"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/IKImageView/delegate": {
+      "abstract": [
+        {
+          "text": "Specifies the delegate object of the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": AnyObject!"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/IKImageView/delegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/quartz/ikimageview/delegate"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/IKImageView/doubleClickOpensImageEditPanel": {
+      "abstract": [
+        {
+          "text": "Specifies the image-opening state of the editing pane in the image view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "doubleClickOpensImageEditPanel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/IKImageView/doubleClickOpensImageEditPanel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "doubleClickOpensImageEditPanel"
+        }
+      ],
+      "role": "symbol",
+      "title": "doubleClickOpensImageEditPanel",
+      "type": "topic",
+      "url": "/documentation/quartz/ikimageview/doubleclickopensimageeditpanel"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/IKImageView/editable": {
+      "abstract": [
+        {
+          "text": "Specifies the editable state for the image view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "editable"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/IKImageView/editable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "editable"
+        }
+      ],
+      "role": "symbol",
+      "title": "editable",
+      "type": "topic",
+      "url": "/documentation/quartz/ikimageview/editable"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/IKImageView/flipImageHorizontal(_:)": {
+      "abstract": [
+        {
+          "text": "Flips an image along the horizontal axis.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "flipImageHorizontal"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "!)"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/IKImageView/flipImageHorizontal(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "flipImageHorizontal:"
+        }
+      ],
+      "role": "symbol",
+      "title": "flipImageHorizontal(_:)",
+      "type": "topic",
+      "url": "/documentation/quartz/ikimageview/flipimagehorizontal(_:)"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/IKImageView/flipImageVertical(_:)": {
+      "abstract": [
+        {
+          "text": "Flips an image along the vertical axis.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "flipImageVertical"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "!)"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/IKImageView/flipImageVertical(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "flipImageVertical:"
+        }
+      ],
+      "role": "symbol",
+      "title": "flipImageVertical(_:)",
+      "type": "topic",
+      "url": "/documentation/quartz/ikimageview/flipimagevertical(_:)"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/IKImageView/hasHorizontalScroller": {
+      "abstract": [
+        {
+          "text": "Specifies the horizontal scroll bar state for the image view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hasHorizontalScroller"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/IKImageView/hasHorizontalScroller",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "hasHorizontalScroller"
+        }
+      ],
+      "role": "symbol",
+      "title": "hasHorizontalScroller",
+      "type": "topic",
+      "url": "/documentation/quartz/ikimageview/hashorizontalscroller"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/IKImageView/hasVerticalScroller": {
+      "abstract": [
+        {
+          "text": "Specifies the vertical scroll bar state for the image view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hasVerticalScroller"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/IKImageView/hasVerticalScroller",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "hasVerticalScroller"
+        }
+      ],
+      "role": "symbol",
+      "title": "hasVerticalScroller",
+      "type": "topic",
+      "url": "/documentation/quartz/ikimageview/hasverticalscroller"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/IKImageView/image()": {
+      "abstract": [
+        {
+          "text": "Returns the image associated with the view, after any image corrections.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "image"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGImageRef",
+          "text": "CGImage"
+        },
+        {
+          "kind": "text",
+          "text": ">!"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/IKImageView/image()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "image"
+        }
+      ],
+      "role": "symbol",
+      "title": "image()",
+      "type": "topic",
+      "url": "/documentation/quartz/ikimageview/image()"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/IKImageView/imageCorrection": {
+      "abstract": [
+        {
+          "text": "Specifies a Core Image filter for image correction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "imageCorrection"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CIFilter",
+          "text": "CIFilter"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/IKImageView/imageCorrection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "imageCorrection"
+        }
+      ],
+      "role": "symbol",
+      "title": "imageCorrection",
+      "type": "topic",
+      "url": "/documentation/quartz/ikimageview/imagecorrection"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/IKImageView/imageProperties()": {
+      "abstract": [
+        {
+          "text": "Returns the metadata for the image in the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "imageProperties"
+        },
+        {
+          "kind": "text",
+          "text": "() -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s11AnyHashableV",
+          "text": "AnyHashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]!"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/IKImageView/imageProperties()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "imageProperties"
+        }
+      ],
+      "role": "symbol",
+      "title": "imageProperties()",
+      "type": "topic",
+      "url": "/documentation/quartz/ikimageview/imageproperties()"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/IKImageView/imageSize()": {
+      "abstract": [
+        {
+          "text": "Returns the size of the image in the image view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "imageSize"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSSize",
+          "text": "NSSize"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/IKImageView/imageSize()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "imageSize"
+        }
+      ],
+      "role": "symbol",
+      "title": "imageSize()",
+      "type": "topic",
+      "url": "/documentation/quartz/ikimageview/imagesize()"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/IKImageView/overlay(forType:)": {
+      "abstract": [
+        {
+          "text": "Returns the Core Animation layer associated with a layer type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "overlay"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "!) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CALayer",
+          "text": "CALayer"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/IKImageView/overlay(forType:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "overlayForType:"
+        }
+      ],
+      "role": "symbol",
+      "title": "overlay(forType:)",
+      "type": "topic",
+      "url": "/documentation/quartz/ikimageview/overlay(fortype:)"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/IKImageView/rotateImageLeft(_:)": {
+      "abstract": [
+        {
+          "text": "Rotates the image left (counter-clockwise).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rotateImageLeft"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "!)"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/IKImageView/rotateImageLeft(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "rotateImageLeft:"
+        }
+      ],
+      "role": "symbol",
+      "title": "rotateImageLeft(_:)",
+      "type": "topic",
+      "url": "/documentation/quartz/ikimageview/rotateimageleft(_:)"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/IKImageView/rotateImageRight(_:)": {
+      "abstract": [
+        {
+          "text": "Rotates the image right (clockwise).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rotateImageRight"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "!)"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/IKImageView/rotateImageRight(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "rotateImageRight:"
+        }
+      ],
+      "role": "symbol",
+      "title": "rotateImageRight(_:)",
+      "type": "topic",
+      "url": "/documentation/quartz/ikimageview/rotateimageright(_:)"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/IKImageView/rotationAngle": {
+      "abstract": [
+        {
+          "text": "Specifies the rotation angle for the image view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rotationAngle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/IKImageView/rotationAngle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "rotationAngle"
+        }
+      ],
+      "role": "symbol",
+      "title": "rotationAngle",
+      "type": "topic",
+      "url": "/documentation/quartz/ikimageview/rotationangle"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/IKImageView/scroll(to:)-535q6": {
+      "abstract": [
+        {
+          "text": "Scrolls the view so that it includes the provided rectangular area.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scroll"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/IKImageView/scroll(to:)-535q6",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "scrollToRect:"
+        }
+      ],
+      "role": "symbol",
+      "title": "scroll(to:)",
+      "type": "topic",
+      "url": "/documentation/quartz/ikimageview/scroll(to:)-535q6"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/IKImageView/scroll(to:)-myqk": {
+      "abstract": [
+        {
+          "text": "Scrolls the view to the specified point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scroll"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPoint",
+          "text": "NSPoint"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/IKImageView/scroll(to:)-myqk",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "scrollToPoint:"
+        }
+      ],
+      "role": "symbol",
+      "title": "scroll(to:)",
+      "type": "topic",
+      "url": "/documentation/quartz/ikimageview/scroll(to:)-myqk"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/IKImageView/setImage(_:imageProperties:)": {
+      "abstract": [
+        {
+          "text": "Sets the image to display in an image view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setImage"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGImageRef",
+          "text": "CGImage"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "imageProperties"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s11AnyHashableV",
+          "text": "AnyHashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]!)"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/IKImageView/setImage(_:imageProperties:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setImage:imageProperties:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setImage(_:imageProperties:)",
+      "type": "topic",
+      "url": "/documentation/quartz/ikimageview/setimage(_:imageproperties:)"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/IKImageView/setImageWith(_:)": {
+      "abstract": [
+        {
+          "text": "Initializes an image view with the image specified by a URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setImageWith"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "!)"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/IKImageView/setImageWith(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setImageWithURL:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setImageWith(_:)",
+      "type": "topic",
+      "url": "/documentation/quartz/ikimageview/setimagewith(_:)"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/IKImageView/setImageZoomFactor(_:center:)": {
+      "abstract": [
+        {
+          "text": "Sets the zoom factor at the provided origin.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setImageZoomFactor"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "center"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPoint",
+          "text": "NSPoint"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/IKImageView/setImageZoomFactor(_:center:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setImageZoomFactor:centerPoint:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setImageZoomFactor(_:center:)",
+      "type": "topic",
+      "url": "/documentation/quartz/ikimageview/setimagezoomfactor(_:center:)"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/IKImageView/setOverlay(_:forType:)": {
+      "abstract": [
+        {
+          "text": "Sets an overlay type for a Core Animation layer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setOverlay"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CALayer",
+          "text": "CALayer"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "!)"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/IKImageView/setOverlay(_:forType:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setOverlay:forType:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setOverlay(_:forType:)",
+      "type": "topic",
+      "url": "/documentation/quartz/ikimageview/setoverlay(_:fortype:)"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/IKImageView/setRotationAngle(_:center:)": {
+      "abstract": [
+        {
+          "text": "Sets the rotation angle at the provided origin.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setRotationAngle"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "center"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPoint",
+          "text": "NSPoint"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/IKImageView/setRotationAngle(_:center:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setRotationAngle:centerPoint:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setRotationAngle(_:center:)",
+      "type": "topic",
+      "url": "/documentation/quartz/ikimageview/setrotationangle(_:center:)"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/IKImageView/supportsDragAndDrop": {
+      "abstract": [
+        {
+          "text": "Specifies the drag-and-drop support state for the image view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "supportsDragAndDrop"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/IKImageView/supportsDragAndDrop",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "supportsDragAndDrop"
+        }
+      ],
+      "role": "symbol",
+      "title": "supportsDragAndDrop",
+      "type": "topic",
+      "url": "/documentation/quartz/ikimageview/supportsdraganddrop"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/IKImageView/zoomFactor": {
+      "abstract": [
+        {
+          "text": "Specifies the zoom factor for the image view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "zoomFactor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/IKImageView/zoomFactor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "zoomFactor"
+        }
+      ],
+      "role": "symbol",
+      "title": "zoomFactor",
+      "type": "topic",
+      "url": "/documentation/quartz/ikimageview/zoomfactor"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/IKImageView/zoomImage(to:)": {
+      "abstract": [
+        {
+          "text": "Zooms the image so that it fits in the specified rectangle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "zoomImage"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/IKImageView/zoomImage(to:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "zoomImageToRect:"
+        }
+      ],
+      "role": "symbol",
+      "title": "zoomImage(to:)",
+      "type": "topic",
+      "url": "/documentation/quartz/ikimageview/zoomimage(to:)"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/IKImageView/zoomImageToActualSize(_:)": {
+      "abstract": [
+        {
+          "text": "Zooms the image so that it is displayed using its true size.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "zoomImageToActualSize"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "!)"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/IKImageView/zoomImageToActualSize(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "zoomImageToActualSize:"
+        }
+      ],
+      "role": "symbol",
+      "title": "zoomImageToActualSize(_:)",
+      "type": "topic",
+      "url": "/documentation/quartz/ikimageview/zoomimagetoactualsize(_:)"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/IKImageView/zoomImageToFit(_:)": {
+      "abstract": [
+        {
+          "text": "Zooms the image so that it fits in the image view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "zoomImageToFit"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "!)"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/IKImageView/zoomImageToFit(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "zoomImageToFit:"
+        }
+      ],
+      "role": "symbol",
+      "title": "zoomImageToFit(_:)",
+      "type": "topic",
+      "url": "/documentation/quartz/ikimageview/zoomimagetofit(_:)"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/IKImageView/zoomIn(_:)": {
+      "abstract": [
+        {
+          "text": "Zooms the image in.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "zoomIn"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "!)"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/IKImageView/zoomIn(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "zoomIn:"
+        }
+      ],
+      "role": "symbol",
+      "title": "zoomIn(_:)",
+      "type": "topic",
+      "url": "/documentation/quartz/ikimageview/zoomin(_:)"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/IKImageView/zoomOut(_:)": {
+      "abstract": [
+        {
+          "text": "Zooms the image out.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "zoomOut"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "!)"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/IKImageView/zoomOut(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "zoomOut:"
+        }
+      ],
+      "role": "symbol",
+      "title": "zoomOut(_:)",
+      "type": "topic",
+      "url": "/documentation/quartz/ikimageview/zoomout(_:)"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/IKPictureTaker": {
+      "abstract": [
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "code": "IKPictureTaker",
+          "type": "codeVoice"
+        },
+        {
+          "text": " class represents a panel that allows users to choose images by browsing the file system. The picture taker panel provides an Open Recent menu, supports image cropping, and supports taking snapshots from an iSight or other digital camera.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IKPictureTaker"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/IKPictureTaker",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IKPictureTaker"
+        }
+      ],
+      "role": "symbol",
+      "title": "IKPictureTaker",
+      "type": "topic",
+      "url": "/documentation/quartz/ikpicturetaker"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/IKSaveOptions": {
+      "abstract": [
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "code": "IKSaveOptions",
+          "type": "codeVoice"
+        },
+        {
+          "text": " class initializes, adds, and manages user interface options for saving image data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IKSaveOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/IKSaveOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IKSaveOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "IKSaveOptions",
+      "type": "topic",
+      "url": "/documentation/quartz/iksaveoptions"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/IKScannerDeviceView": {
+      "abstract": [
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "code": "IKScannerDeviceView",
+          "type": "codeVoice"
+        },
+        {
+          "text": " class displays a view that allows scanning. It can be customized by specifying the display mode. The delegate receives the scanned data and must implement the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.quartz/documentation/Quartz/IKScannerDeviceViewDelegate",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " protocol.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IKScannerDeviceView"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/IKScannerDeviceView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IKScannerDeviceView"
+        }
+      ],
+      "role": "symbol",
+      "title": "IKScannerDeviceView",
+      "type": "topic",
+      "url": "/documentation/quartz/ikscannerdeviceview"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/IKScannerDeviceViewDelegate": {
+      "abstract": [
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "code": "IKScannerDeviceViewDelegate",
+          "type": "codeVoice"
+        },
+        {
+          "text": " protocol defines the delegate protocol that the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.quartz/documentation/Quartz/IKScannerDeviceView",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " delegate must conform to.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IKScannerDeviceViewDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/IKScannerDeviceViewDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IKScannerDeviceViewDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "IKScannerDeviceViewDelegate",
+      "type": "topic",
+      "url": "/documentation/quartz/ikscannerdeviceviewdelegate"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/IKSlideshow": {
+      "abstract": [
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "code": "IKSlideshow",
+          "type": "codeVoice"
+        },
+        {
+          "text": " class encapsulates a data source and options for a slideshow.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IKSlideshow"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/IKSlideshow",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IKSlideshow"
+        }
+      ],
+      "role": "symbol",
+      "title": "IKSlideshow",
+      "type": "topic",
+      "url": "/documentation/quartz/ikslideshow"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/overlay-types": {
+      "abstract": [
+        {
+          "text": "A layer level.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/overlay-types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Overlay Types",
+      "type": "topic",
+      "url": "/documentation/quartz/overlay-types"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/tool-modes": {
+      "abstract": [
+        {
+          "text": "Image Kit tools modes referenced by the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.quartz/documentation/Quartz/IKImageView/currentToolMode",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " property.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/tool-modes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Tool Modes",
+      "type": "topic",
+      "url": "/documentation/quartz/tool-modes"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSView": {
+      "abstract": [
+        {
+          "text": "The infrastructure for drawing, printing, and handling events in an app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSView"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSView",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSView"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSAccessibility": {
+      "abstract": [
+        {
+          "text": "The complete list of properties and methods for accessible elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityProtocol"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSAccessibility",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSAccessibilityProtocol",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSAccessibilityProtocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSAccessibilityElement": {
+      "abstract": [
+        {
+          "text": "A role-based protocol that declares the minimum interface necessary to interact with an assistive app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityElementProtocol"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSAccessibilityElement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSAccessibilityElementProtocol",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSAccessibilityElementProtocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSAnimatablePropertyContainer": {
+      "abstract": [
+        {
+          "text": "A set of methods that defines a way to add animation to an existing class with a minimum of API impact.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAnimatablePropertyContainer"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSAnimatablePropertyContainer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSAnimatablePropertyContainer",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSAnimatablePropertyContainer"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSAppearanceCustomization": {
+      "abstract": [
+        {
+          "text": "A set of methods for getting and setting the appearance attributes of a view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAppearanceCustomization"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSAppearanceCustomization",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSAppearanceCustomization",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSAppearanceCustomization"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSDraggingDestination": {
+      "abstract": [
+        {
+          "text": "A set of methods that the destination object (or recipient) of a dragged image must implement.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDraggingDestination"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSDraggingDestination",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDraggingDestination",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSDraggingDestination"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSStandardKeyBindingResponding": {
+      "abstract": [
+        {
+          "text": "Methods that responder subclasses implement to support key binding commands, such as inserting tabs and newlines, or moving the insertion point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSStandardKeyBindingResponding"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSStandardKeyBindingResponding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSStandardKeyBindingResponding",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSStandardKeyBindingResponding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSTouchBarProvider": {
+      "abstract": [
+        {
+          "text": "A protocol that an object adopts to create a bar object in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTouchBarProvider"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSTouchBarProvider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSTouchBarProvider",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSTouchBarProvider"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSUserActivityRestoring": {
+      "abstract": [
+        {
+          "text": "A protocol that marks classes to restore the state of your app to continue a user activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUserActivityRestoring"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSUserActivityRestoring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUserActivityRestoring",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSUserActivityRestoring"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSUserInterfaceItemIdentification": {
+      "abstract": [
+        {
+          "text": "A set of methods used to associate a unique identifier with objects in your user interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUserInterfaceItemIdentification"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSUserInterfaceItemIdentification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUserInterfaceItemIdentification",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSUserInterfaceItemIdentification"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSView"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSAccessibilityElement",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSAccessibility",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSAnimatablePropertyContainer",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSAppearanceCustomization",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSDraggingDestination",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSStandardKeyBindingResponding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSTouchBarProvider",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSUserActivityRestoring",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSUserInterfaceItemIdentification",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Classes",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.quartz/documentation/Quartz/IKCameraDeviceView",
+        "doc://com.apple.quartz/documentation/Quartz/IKDeviceBrowserView",
+        "doc://com.apple.quartz/documentation/Quartz/IKFilterBrowserPanel",
+        "doc://com.apple.quartz/documentation/Quartz/IKFilterBrowserView",
+        "doc://com.apple.quartz/documentation/Quartz/IKFilterUIView",
+        "doc://com.apple.quartz/documentation/Quartz/IKImageBrowserCell",
+        "doc://com.apple.quartz/documentation/Quartz/IKImageEditPanel",
+        "doc://com.apple.quartz/documentation/Quartz/IKPictureTaker",
+        "doc://com.apple.quartz/documentation/Quartz/IKSaveOptions",
+        "doc://com.apple.quartz/documentation/Quartz/IKScannerDeviceView",
+        "doc://com.apple.quartz/documentation/Quartz/IKSlideshow"
+      ],
+      "title": "Classes"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Getting-and-Setting-Image-View-Characteristics",
+      "identifiers": [
+        "doc://com.apple.quartz/documentation/Quartz/IKImageView/delegate",
+        "doc://com.apple.quartz/documentation/Quartz/IKImageView/zoomFactor",
+        "doc://com.apple.quartz/documentation/Quartz/IKImageView/rotationAngle",
+        "doc://com.apple.quartz/documentation/Quartz/IKImageView/currentToolMode",
+        "doc://com.apple.quartz/documentation/Quartz/IKImageView/autoresizes",
+        "doc://com.apple.quartz/documentation/Quartz/IKImageView/hasHorizontalScroller",
+        "doc://com.apple.quartz/documentation/Quartz/IKImageView/hasVerticalScroller",
+        "doc://com.apple.quartz/documentation/Quartz/IKImageView/autohidesScrollers",
+        "doc://com.apple.quartz/documentation/Quartz/IKImageView/supportsDragAndDrop",
+        "doc://com.apple.quartz/documentation/Quartz/IKImageView/editable",
+        "doc://com.apple.quartz/documentation/Quartz/IKImageView/doubleClickOpensImageEditPanel",
+        "doc://com.apple.quartz/documentation/Quartz/IKImageView/imageCorrection",
+        "doc://com.apple.quartz/documentation/Quartz/IKImageView/backgroundColor",
+        "doc://com.apple.quartz/documentation/Quartz/IKImageView/imageSize()",
+        "doc://com.apple.quartz/documentation/Quartz/IKImageView/imageProperties()"
+      ],
+      "title": "Getting and Setting Image View Characteristics"
+    },
+    {
+      "anchor": "Getting-and-Setting-Images",
+      "identifiers": [
+        "doc://com.apple.quartz/documentation/Quartz/IKImageView/image()",
+        "doc://com.apple.quartz/documentation/Quartz/IKImageView/setImage(_:imageProperties:)",
+        "doc://com.apple.quartz/documentation/Quartz/IKImageView/setImageWith(_:)"
+      ],
+      "title": "Getting and Setting Images"
+    },
+    {
+      "anchor": "Manipulating-the-Image-in-a-View",
+      "identifiers": [
+        "doc://com.apple.quartz/documentation/Quartz/IKImageView/setRotationAngle(_:center:)",
+        "doc://com.apple.quartz/documentation/Quartz/IKImageView/setImageZoomFactor(_:center:)",
+        "doc://com.apple.quartz/documentation/Quartz/IKImageView/zoomImageToFit(_:)",
+        "doc://com.apple.quartz/documentation/Quartz/IKImageView/zoomImageToActualSize(_:)",
+        "doc://com.apple.quartz/documentation/Quartz/IKImageView/zoomImage(to:)",
+        "doc://com.apple.quartz/documentation/Quartz/IKImageView/zoomIn(_:)",
+        "doc://com.apple.quartz/documentation/Quartz/IKImageView/zoomOut(_:)",
+        "doc://com.apple.quartz/documentation/Quartz/IKImageView/crop(_:)",
+        "doc://com.apple.quartz/documentation/Quartz/IKImageView/flipImageHorizontal(_:)",
+        "doc://com.apple.quartz/documentation/Quartz/IKImageView/flipImageVertical(_:)",
+        "doc://com.apple.quartz/documentation/Quartz/IKImageView/rotateImageLeft(_:)",
+        "doc://com.apple.quartz/documentation/Quartz/IKImageView/rotateImageRight(_:)"
+      ],
+      "title": "Manipulating the Image in a View"
+    },
+    {
+      "anchor": "Working-With-Core-Animation",
+      "identifiers": [
+        "doc://com.apple.quartz/documentation/Quartz/IKImageView/setOverlay(_:forType:)",
+        "doc://com.apple.quartz/documentation/Quartz/IKImageView/overlay(forType:)"
+      ],
+      "title": "Working With Core Animation"
+    },
+    {
+      "anchor": "Scrolling",
+      "identifiers": [
+        "doc://com.apple.quartz/documentation/Quartz/IKImageView/scroll(to:)-myqk",
+        "doc://com.apple.quartz/documentation/Quartz/IKImageView/scroll(to:)-535q6"
+      ],
+      "title": "Scrolling"
+    },
+    {
+      "anchor": "Converting-Points-and-Rectangles",
+      "identifiers": [
+        "doc://com.apple.quartz/documentation/Quartz/IKImageView/convertPoint(toImagePoint:)",
+        "doc://com.apple.quartz/documentation/Quartz/IKImageView/convertRect(toImageRect:)",
+        "doc://com.apple.quartz/documentation/Quartz/IKImageView/convertImagePoint(toViewPoint:)",
+        "doc://com.apple.quartz/documentation/Quartz/IKImageView/convertImageRect(toViewRect:)"
+      ],
+      "title": "Converting Points and Rectangles"
+    },
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.quartz/documentation/Quartz/tool-modes",
+        "doc://com.apple.quartz/documentation/Quartz/overlay-types"
+      ],
+      "title": "Constants"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.5",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "IKImageView"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IKImageView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IKImageView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.quartz/documentation/Quartz"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Getting-and-Setting-Image-View-Characteristics",
+              "identifiers": [
+                "doc://com.apple.quartz/documentation/Quartz/IKImageView/delegate",
+                "doc://com.apple.quartz/documentation/Quartz/IKImageView/zoomFactor",
+                "doc://com.apple.quartz/documentation/Quartz/IKImageView/rotationAngle",
+                "doc://com.apple.quartz/documentation/Quartz/IKImageView/currentToolMode",
+                "doc://com.apple.quartz/documentation/Quartz/IKImageView/autoresizes",
+                "doc://com.apple.quartz/documentation/Quartz/IKImageView/hasHorizontalScroller",
+                "doc://com.apple.quartz/documentation/Quartz/IKImageView/hasVerticalScroller",
+                "doc://com.apple.quartz/documentation/Quartz/IKImageView/autohidesScrollers",
+                "doc://com.apple.quartz/documentation/Quartz/IKImageView/supportsDragAndDrop",
+                "doc://com.apple.quartz/documentation/Quartz/IKImageView/editable",
+                "doc://com.apple.quartz/documentation/Quartz/IKImageView/doubleClickOpensImageEditPanel",
+                "doc://com.apple.quartz/documentation/Quartz/IKImageView/imageCorrection",
+                "doc://com.apple.quartz/documentation/Quartz/IKImageView/backgroundColor",
+                "doc://com.apple.quartz/documentation/Quartz/IKImageView/imageSize()",
+                "doc://com.apple.quartz/documentation/Quartz/IKImageView/imageProperties()"
+              ],
+              "title": "Getting and Setting Image View Characteristics"
+            },
+            {
+              "anchor": "Getting-and-Setting-Images",
+              "identifiers": [
+                "doc://com.apple.quartz/documentation/Quartz/IKImageView/image()",
+                "doc://com.apple.quartz/documentation/Quartz/IKImageView/setImage(_:imageProperties:)",
+                "doc://com.apple.quartz/documentation/Quartz/IKImageView/setImageWith(_:)"
+              ],
+              "title": "Getting and Setting Images"
+            },
+            {
+              "anchor": "Manipulating-the-Image-in-a-View",
+              "identifiers": [
+                "doc://com.apple.quartz/documentation/Quartz/IKImageView/setRotationAngle(_:center:)",
+                "doc://com.apple.quartz/documentation/Quartz/IKImageView/setImageZoomFactor(_:center:)",
+                "doc://com.apple.quartz/documentation/Quartz/IKImageView/zoomImageToFit(_:)",
+                "doc://com.apple.quartz/documentation/Quartz/IKImageView/zoomImageToActualSize(_:)",
+                "doc://com.apple.quartz/documentation/Quartz/IKImageView/zoomImage(to:)",
+                "doc://com.apple.quartz/documentation/Quartz/IKImageView/zoomIn(_:)",
+                "doc://com.apple.quartz/documentation/Quartz/IKImageView/zoomOut(_:)",
+                "doc://com.apple.quartz/documentation/Quartz/IKImageView/crop(_:)",
+                "doc://com.apple.quartz/documentation/Quartz/IKImageView/flipImageHorizontal(_:)",
+                "doc://com.apple.quartz/documentation/Quartz/IKImageView/flipImageVertical(_:)",
+                "doc://com.apple.quartz/documentation/Quartz/IKImageView/rotateImageLeft(_:)",
+                "doc://com.apple.quartz/documentation/Quartz/IKImageView/rotateImageRight(_:)"
+              ],
+              "title": "Manipulating the Image in a View"
+            },
+            {
+              "anchor": "Working-With-Core-Animation",
+              "identifiers": [
+                "doc://com.apple.quartz/documentation/Quartz/IKImageView/setOverlay(_:forType:)",
+                "doc://com.apple.quartz/documentation/Quartz/IKImageView/overlay(forType:)"
+              ],
+              "title": "Working With Core Animation"
+            },
+            {
+              "anchor": "Scrolling",
+              "identifiers": [
+                "doc://com.apple.quartz/documentation/Quartz/IKImageView/scroll(to:)-myqk",
+                "doc://com.apple.quartz/documentation/Quartz/IKImageView/scroll(to:)-535q6"
+              ],
+              "title": "Scrolling"
+            },
+            {
+              "anchor": "Converting-Points-and-Rectangles",
+              "identifiers": [
+                "doc://com.apple.quartz/documentation/Quartz/IKImageView/convertPoint(toImagePoint:)",
+                "doc://com.apple.quartz/documentation/Quartz/IKImageView/convertRect(toImageRect:)",
+                "doc://com.apple.quartz/documentation/Quartz/IKImageView/convertImagePoint(toViewPoint:)",
+                "doc://com.apple.quartz/documentation/Quartz/IKImageView/convertImageRect(toViewRect:)"
+              ],
+              "title": "Converting Points and Rectangles"
+            },
+            {
+              "anchor": "Constants",
+              "identifiers": [
+                "doc://com.apple.quartz/documentation/Quartz/tool-modes",
+                "doc://com.apple.quartz/documentation/Quartz/overlay-types"
+              ],
+              "title": "Constants"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSView"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Classes",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.quartz/documentation/Quartz/IKCameraDeviceView",
+                "doc://com.apple.quartz/documentation/Quartz/IKDeviceBrowserView",
+                "doc://com.apple.quartz/documentation/Quartz/IKFilterBrowserPanel",
+                "doc://com.apple.quartz/documentation/Quartz/IKFilterBrowserView",
+                "doc://com.apple.quartz/documentation/Quartz/IKFilterUIView",
+                "doc://com.apple.quartz/documentation/Quartz/IKImageBrowserCell",
+                "doc://com.apple.quartz/documentation/Quartz/IKImageEditPanel",
+                "doc://com.apple.quartz/documentation/Quartz/IKPictureTaker",
+                "doc://com.apple.quartz/documentation/Quartz/IKSaveOptions",
+                "doc://com.apple.quartz/documentation/Quartz/IKScannerDeviceView",
+                "doc://com.apple.quartz/documentation/Quartz/IKSlideshow"
+              ],
+              "title": "Classes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "IKImageView"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSView",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSView",
+                    "text": "NSView"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1zoomFactor/title",
+          "value": "zoomFactor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1zoomFactor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "zoomFactor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1zoomOut(_:)/title",
+          "value": "zoomOut:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1zoomOut(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "zoomOut:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1zoomIn(_:)/title",
+          "value": "zoomIn:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1zoomIn(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "zoomIn:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSResponder",
+              "text": "NSResponder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKFilterBrowserView/title",
+          "value": "IKFilterBrowserView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKFilterBrowserView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IKFilterBrowserView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKFilterBrowserView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IKFilterBrowserView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1supportsDragAndDrop/title",
+          "value": "supportsDragAndDrop"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1supportsDragAndDrop/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "supportsDragAndDrop"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1convertRect(toImageRect:)/title",
+          "value": "convertViewRectToImageRect:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1convertRect(toImageRect:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "convertViewRectToImageRect:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1setImage(_:imageProperties:)/title",
+          "value": "setImage:imageProperties:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1setImage(_:imageProperties:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setImage:imageProperties:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1convertPoint(toImagePoint:)/title",
+          "value": "convertViewPointToImagePoint:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1convertPoint(toImagePoint:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "convertViewPointToImagePoint:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSDraggingDestination/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSDraggingDestination"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1rotationAngle/title",
+          "value": "rotationAngle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1rotationAngle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "rotationAngle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSImageView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSImageView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSControl",
+              "text": "NSControl"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKFilterBrowserPanel/title",
+          "value": "IKFilterBrowserPanel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKFilterBrowserPanel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IKFilterBrowserPanel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKFilterBrowserPanel/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IKFilterBrowserPanel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ImageIO~1CGImageSource/title",
+          "value": "CGImageSourceRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ImageIO~1CGImageSource/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@CGImageSource",
+              "text": "CGImageSource"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "CGImageSourceRef"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1setImageZoomFactor(_:center:)/title",
+          "value": "setImageZoomFactor:centerPoint:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1setImageZoomFactor(_:center:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setImageZoomFactor:centerPoint:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKSlideshow/title",
+          "value": "IKSlideshow"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKSlideshow/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IKSlideshow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKSlideshow/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IKSlideshow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKScannerDeviceView/title",
+          "value": "IKScannerDeviceView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKScannerDeviceView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IKScannerDeviceView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKScannerDeviceView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IKScannerDeviceView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1doubleClickOpensImageEditPanel/title",
+          "value": "doubleClickOpensImageEditPanel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1doubleClickOpensImageEditPanel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "doubleClickOpensImageEditPanel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKPictureTaker/title",
+          "value": "IKPictureTaker"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKPictureTaker/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IKPictureTaker"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKPictureTaker/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IKPictureTaker"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1editable/title",
+          "value": "editable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1editable/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "editable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1backgroundColor/title",
+          "value": "backgroundColor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1backgroundColor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "backgroundColor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1setImageWith(_:)/title",
+          "value": "setImageWithURL:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1setImageWith(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setImageWithURL:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSUserActivityRestoring/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSUserActivityRestoring"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKCameraDeviceView/title",
+          "value": "IKCameraDeviceView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKCameraDeviceView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IKCameraDeviceView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKCameraDeviceView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IKCameraDeviceView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1setRotationAngle(_:center:)/title",
+          "value": "setRotationAngle:centerPoint:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1setRotationAngle(_:center:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setRotationAngle:centerPoint:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSAccessibility/title",
+          "value": "NSAccessibility"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSAccessibility/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSAccessibility"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageBrowserCell/title",
+          "value": "IKImageBrowserCell"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageBrowserCell/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IKImageBrowserCell"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageBrowserCell/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IKImageBrowserCell"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1zoomImage(to:)/title",
+          "value": "zoomImageToRect:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1zoomImage(to:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "zoomImageToRect:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1setOverlay(_:forType:)/title",
+          "value": "setOverlay:forType:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1setOverlay(_:forType:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setOverlay:forType:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1hasVerticalScroller/title",
+          "value": "hasVerticalScroller"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1hasVerticalScroller/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "hasVerticalScroller"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1coregraphics~1cgimage/title",
+          "value": "CGImageRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSAppearanceCustomization/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSAppearanceCustomization"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1zoomImageToActualSize(_:)/title",
+          "value": "zoomImageToActualSize:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1zoomImageToActualSize(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "zoomImageToActualSize:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1convertImageRect(toViewRect:)/title",
+          "value": "convertImageRectToViewRect:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1convertImageRect(toViewRect:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "convertImageRectToViewRect:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1rotateImageRight(_:)/title",
+          "value": "rotateImageRight:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1rotateImageRight(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "rotateImageRight:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1overlay(forType:)/title",
+          "value": "overlayForType:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1overlay(forType:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "overlayForType:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSAccessibilityElement/title",
+          "value": "NSAccessibilityElement"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSAccessibilityElement/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityElement"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView/title",
+          "value": "IKImageView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IKImageView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IKImageView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1corefoundation~1cfurl/title",
+          "value": "CFURLRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSUserInterfaceItemIdentification/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSUserInterfaceItemIdentification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1flipImageHorizontal(_:)/title",
+          "value": "flipImageHorizontal:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1flipImageHorizontal(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "flipImageHorizontal:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsurl/abstract",
+          "value": [
+            {
+              "text": "An object that represents the location of a resource, such as an item on a remote server or the path to a local file. ",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSStandardKeyBindingResponding/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSStandardKeyBindingResponding"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1scroll(to:)-myqk/title",
+          "value": "scrollToPoint:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1scroll(to:)-myqk/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "scrollToPoint:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKFilterUIView/title",
+          "value": "IKFilterUIView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKFilterUIView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IKFilterUIView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKFilterUIView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IKFilterUIView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1imageProperties()/title",
+          "value": "imageProperties"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1imageProperties()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "imageProperties"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1delegate/title",
+          "value": "delegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1delegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "delegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1currentToolMode/title",
+          "value": "currentToolMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1currentToolMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "currentToolMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1rotateImageLeft(_:)/title",
+          "value": "rotateImageLeft:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1rotateImageLeft(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "rotateImageLeft:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKSaveOptions/title",
+          "value": "IKSaveOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKSaveOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IKSaveOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKSaveOptions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IKSaveOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1hasHorizontalScroller/title",
+          "value": "hasHorizontalScroller"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1hasHorizontalScroller/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "hasHorizontalScroller"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSAnimatablePropertyContainer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSAnimatablePropertyContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKDeviceBrowserView/title",
+          "value": "IKDeviceBrowserView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKDeviceBrowserView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IKDeviceBrowserView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKDeviceBrowserView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IKDeviceBrowserView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1scroll(to:)-535q6/title",
+          "value": "scrollToRect:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1scroll(to:)-535q6/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "scrollToRect:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1corefoundation~1cfdata/title",
+          "value": "CFDataRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsdata/abstract",
+          "value": [
+            {
+              "text": "A static byte buffer in memory.",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageEditPanel/title",
+          "value": "IKImageEditPanel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageEditPanel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IKImageEditPanel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageEditPanel/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IKImageEditPanel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(cs)NSView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSResponder",
+              "text": "NSResponder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1crop(_:)/title",
+          "value": "crop:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1crop(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "crop:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1imageSize()/title",
+          "value": "imageSize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1imageSize()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "imageSize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1autohidesScrollers/title",
+          "value": "autohidesScrollers"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1autohidesScrollers/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "autohidesScrollers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1autoresizes/title",
+          "value": "autoresizes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1autoresizes/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "autoresizes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1zoomImageToFit(_:)/title",
+          "value": "zoomImageToFit:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1zoomImageToFit(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "zoomImageToFit:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1flipImageVertical(_:)/title",
+          "value": "flipImageVertical:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1flipImageVertical(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "flipImageVertical:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKScannerDeviceViewDelegate/title",
+          "value": "IKScannerDeviceViewDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKScannerDeviceViewDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IKScannerDeviceViewDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKScannerDeviceViewDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IKScannerDeviceViewDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1convertImagePoint(toViewPoint:)/title",
+          "value": "convertImagePointToViewPoint:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1convertImagePoint(toViewPoint:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "convertImagePointToViewPoint:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1imageCorrection/title",
+          "value": "imageCorrection"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1imageCorrection/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "imageCorrection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSTouchBarProvider/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSTouchBarProvider"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1image()/title",
+          "value": "image"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1IKImageView~1image()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "image"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quartz/ikimageview"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/quartz/ikimageview"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

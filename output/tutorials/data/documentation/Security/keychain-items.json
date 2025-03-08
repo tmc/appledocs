@@ -1,0 +1,5189 @@
+{
+  "abstract": [
+    {
+      "text": "Embed confidential information in items that you store in a keychain.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.security/documentation/Security",
+        "doc://com.apple.security/documentation/Security/keychain-services"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.security/documentation/Security/keychain-items"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Security"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Keychain items"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you want to store a secret such as a password or cryptographic key, you package it as a keychain item. Along with the data itself, you provide a set of publicly visible attributes both to control the item’s accessibility and to make it searchable. As shown in Figure 1, keychain services handles data encryption and storage (including data attributes) in a keychain, which is an encrypted database stored on disk. Later, authorized processes use keychain services to find the item and decrypt its data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2891903",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/keychain-access-groups": {
+      "abstract": [
+        {
+          "text": "The identifiers for the keychain groups that the app may share items with.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/keychain-access-groups",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Keychain Access Groups Entitlement",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/keychain-access-groups"
+    },
+    "doc://com.apple.documentation/documentation/Technotes/tn3137-on-mac-keychains": {
+      "abstract": [
+        {
+          "text": "Learn how the keychain on macOS differs from other Apple platforms.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Technotes/tn3137-on-mac-keychains",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3137: On Mac keychain APIs and implementations",
+      "type": "topic",
+      "url": "/documentation/Technotes/tn3137-on-mac-keychains"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.security/documentation/Security": {
+      "abstract": [
+        {
+          "text": "Secure the data your app manages, and control access to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Security",
+      "type": "topic",
+      "url": "/documentation/security"
+    },
+    "doc://com.apple.security/documentation/Security/SEC_KEY_IMPORT_EXPORT_PARAMS_VERSION": {
+      "abstract": [
+        {
+          "text": "The import/export parameter structure version.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SEC_KEY_IMPORT_EXPORT_PARAMS_VERSION"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SEC_KEY_IMPORT_EXPORT_PARAMS_VERSION",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SEC_KEY_IMPORT_EXPORT_PARAMS_VERSION"
+        }
+      ],
+      "role": "symbol",
+      "title": "SEC_KEY_IMPORT_EXPORT_PARAMS_VERSION",
+      "type": "topic",
+      "url": "/documentation/security/sec_key_import_export_params_version"
+    },
+    "doc://com.apple.security/documentation/Security/SecAFPServerSignature": {
+      "abstract": [
+        {
+          "text": "Represents a 16-byte Apple File Protocol server signature block.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecAFPServerSignature"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecAFPServerSignature",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecAFPServerSignature"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecAFPServerSignature",
+      "type": "topic",
+      "url": "/documentation/security/secafpserversignature"
+    },
+    "doc://com.apple.security/documentation/Security/SecAccessControl": {
+      "abstract": [
+        {
+          "text": "An opaque type that contains information about how a keychain item may be used.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecAccessControl"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecAccessControl",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecAccessControl"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecAccessControl",
+      "type": "topic",
+      "url": "/documentation/security/secaccesscontrol"
+    },
+    "doc://com.apple.security/documentation/Security/SecAccessControlCreateFlags": {
+      "abstract": [
+        {
+          "text": "Access control constants that dictate how a keychain item may be used.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecAccessControlCreateFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecAccessControlCreateFlags",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecAccessControlCreateFlags"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecAccessControlCreateFlags",
+      "type": "topic",
+      "url": "/documentation/security/secaccesscontrolcreateflags"
+    },
+    "doc://com.apple.security/documentation/Security/SecAccessControlCreateWithFlags(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a new access control object with the specified protection type and flags.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecAccessControlCreateWithFlags"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFAllocatorRef",
+          "text": "CFAllocator"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeRef",
+          "text": "CFTypeRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SecAccessControlCreateFlags",
+          "text": "SecAccessControlCreateFlags"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFErrorRef",
+          "text": "CFError"
+        },
+        {
+          "kind": "text",
+          "text": ">?>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecAccessControlRef",
+          "text": "SecAccessControl"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecAccessControlCreateWithFlags(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecAccessControlCreateWithFlags"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecAccessControlCreateWithFlags(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/secaccesscontrolcreatewithflags(_:_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecAccessControlGetTypeID()": {
+      "abstract": [
+        {
+          "text": "Returns the unique identifier of the opaque type to which a keychain item access control object belongs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecAccessControlGetTypeID"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeID",
+          "text": "CFTypeID"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecAccessControlGetTypeID()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecAccessControlGetTypeID"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecAccessControlGetTypeID()",
+      "type": "topic",
+      "url": "/documentation/security/secaccesscontrolgettypeid()"
+    },
+    "doc://com.apple.security/documentation/Security/SecAuthenticationType": {
+      "abstract": [
+        {
+          "text": "The authentication type to use for an Internet password.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecAuthenticationType"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecAuthenticationType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecAuthenticationType"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecAuthenticationType",
+      "type": "topic",
+      "url": "/documentation/security/secauthenticationtype"
+    },
+    "doc://com.apple.security/documentation/Security/SecExternalFormat": {
+      "abstract": [
+        {
+          "text": "The external format of a keychain item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecExternalFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecExternalFormat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecExternalFormat"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecExternalFormat",
+      "type": "topic",
+      "url": "/documentation/security/secexternalformat"
+    },
+    "doc://com.apple.security/documentation/Security/SecExternalItemType": {
+      "abstract": [
+        {
+          "text": "The import item type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecExternalItemType"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecExternalItemType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecExternalItemType"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecExternalItemType",
+      "type": "topic",
+      "url": "/documentation/security/secexternalitemtype"
+    },
+    "doc://com.apple.security/documentation/Security/SecItemAdd(_:_:)": {
+      "abstract": [
+        {
+          "text": "Adds one or more items to a keychain.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecItemAdd"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeRef",
+          "text": "CFTypeRef"
+        },
+        {
+          "kind": "text",
+          "text": "?>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecItemAdd(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecItemAdd"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecItemAdd(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/secitemadd(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecItemAttr": {
+      "abstract": [
+        {
+          "text": "Specifies a keychain item’s attributes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecItemAttr"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecItemAttr",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecItemAttr"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecItemAttr",
+      "type": "topic",
+      "url": "/documentation/security/secitemattr"
+    },
+    "doc://com.apple.security/documentation/Security/SecItemClass": {
+      "abstract": [
+        {
+          "text": "Specifies a keychain item’s class code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecItemClass"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecItemClass",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecItemClass"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecItemClass",
+      "type": "topic",
+      "url": "/documentation/security/secitemclass"
+    },
+    "doc://com.apple.security/documentation/Security/SecItemCopyMatching(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns one or more keychain items that match a search query, or copies attributes of specific keychain items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecItemCopyMatching"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeRef",
+          "text": "CFTypeRef"
+        },
+        {
+          "kind": "text",
+          "text": "?>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecItemCopyMatching(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecItemCopyMatching"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecItemCopyMatching(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/secitemcopymatching(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecItemDelete(_:)": {
+      "abstract": [
+        {
+          "text": "Deletes items that match a search query.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecItemDelete"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecItemDelete(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecItemDelete"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecItemDelete(_:)",
+      "type": "topic",
+      "url": "/documentation/security/secitemdelete(_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecItemExport(_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Exports one or more certificates, keys, or identities.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecItemExport"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeRef",
+          "text": "CFTypeRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SecExternalFormat",
+          "text": "SecExternalFormat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SecItemImportExportFlags",
+          "text": "SecItemImportExportFlags"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@SecItemImportExportKeyParameters",
+          "text": "SecItemImportExportKeyParameters"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDataRef",
+          "text": "CFData"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecItemExport(_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecItemExport"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecItemExport(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/secitemexport(_:_:_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecItemImport(_:_:_:_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Imports one or more certificates, keys, or identities and optionally adds them to a keychain.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecItemImport"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDataRef",
+          "text": "CFData"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SecExternalFormat",
+          "text": "SecExternalFormat"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SecExternalItemType",
+          "text": "SecExternalItemType"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SecItemImportExportFlags",
+          "text": "SecItemImportExportFlags"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@SecItemImportExportKeyParameters",
+          "text": "SecItemImportExportKeyParameters"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeychainRef",
+          "text": "SecKeychain"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFArrayRef",
+          "text": "CFArray"
+        },
+        {
+          "kind": "text",
+          "text": "?>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecItemImport(_:_:_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecItemImport"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecItemImport(_:_:_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/secitemimport(_:_:_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecItemImportExportFlags": {
+      "abstract": [
+        {
+          "text": "The import and export function flags.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecItemImportExportFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecItemImportExportFlags",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecItemImportExportFlags"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecItemImportExportFlags",
+      "type": "topic",
+      "url": "/documentation/security/secitemimportexportflags"
+    },
+    "doc://com.apple.security/documentation/Security/SecItemImportExportKeyParameters": {
+      "abstract": [
+        {
+          "text": "The import/export parameter structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecItemImportExportKeyParameters"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecItemImportExportKeyParameters",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecItemImportExportKeyParameters"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecItemImportExportKeyParameters",
+      "type": "topic",
+      "url": "/documentation/security/secitemimportexportkeyparameters"
+    },
+    "doc://com.apple.security/documentation/Security/SecItemUpdate(_:_:)": {
+      "abstract": [
+        {
+          "text": "Modifies items that match a search query.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecItemUpdate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecItemUpdate(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecItemUpdate"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecItemUpdate(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/secitemupdate(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeyImportExportFlags": {
+      "abstract": [
+        {
+          "text": "The import/export parameter structure flags.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeyImportExportFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeyImportExportFlags",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeyImportExportFlags"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeyImportExportFlags",
+      "type": "topic",
+      "url": "/documentation/security/seckeyimportexportflags"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeyImportExportParameters": {
+      "abstract": [
+        {
+          "text": "The legacy import/export parameter structure.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeyImportExportParameters"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeyImportExportParameters",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeyImportExportParameters"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeyImportExportParameters",
+      "type": "topic",
+      "url": "/documentation/security/seckeyimportexportparameters"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainAddGenericPassword(_:_:_:_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Adds a new generic password to a keychain.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeychainAddGenericPassword"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeychainRef",
+          "text": "SecKeychain"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeychainItemRef",
+          "text": "SecKeychainItem"
+        },
+        {
+          "kind": "text",
+          "text": "?>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainAddGenericPassword(_:_:_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainAddGenericPassword"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeychainAddGenericPassword(_:_:_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/seckeychainaddgenericpassword(_:_:_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainAddInternetPassword(_:_:_:_:_:_:_:_:_:_:_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Adds a new Internet password to a keychain.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeychainAddInternetPassword"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeychainRef",
+          "text": "SecKeychain"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt16V",
+          "text": "UInt16"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SecProtocolType",
+          "text": "SecProtocolType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SecAuthenticationType",
+          "text": "SecAuthenticationType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeychainItemRef",
+          "text": "SecKeychainItem"
+        },
+        {
+          "kind": "text",
+          "text": "?>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainAddInternetPassword(_:_:_:_:_:_:_:_:_:_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainAddInternetPassword"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeychainAddInternetPassword(_:_:_:_:_:_:_:_:_:_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/seckeychainaddinternetpassword(_:_:_:_:_:_:_:_:_:_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainAttrType": {
+      "abstract": [
+        {
+          "text": "The keychain attribute type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeychainAttrType"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainAttrType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainAttrType"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeychainAttrType",
+      "type": "topic",
+      "url": "/documentation/security/seckeychainattrtype"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainAttribute": {
+      "abstract": [
+        {
+          "text": "A structure that holds a single keychain attribute.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeychainAttribute"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainAttribute",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainAttribute"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeychainAttribute",
+      "type": "topic",
+      "url": "/documentation/security/seckeychainattribute"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainAttributeInfo": {
+      "abstract": [
+        {
+          "text": "A structure that represents an attribute.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeychainAttributeInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainAttributeInfo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainAttributeInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeychainAttributeInfo",
+      "type": "topic",
+      "url": "/documentation/security/seckeychainattributeinfo"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainAttributeInfoForItemID(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Obtains tags for all possible attributes of a given item class.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeychainAttributeInfoForItemID"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeychainRef",
+          "text": "SecKeychain"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@SecKeychainAttributeInfo",
+          "text": "SecKeychainAttributeInfo"
+        },
+        {
+          "kind": "text",
+          "text": ">?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainAttributeInfoForItemID(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainAttributeInfoForItemID"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeychainAttributeInfoForItemID(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/seckeychainattributeinfoforitemid(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainAttributeList": {
+      "abstract": [
+        {
+          "text": "A list of keychain attributes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeychainAttributeList"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainAttributeList",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainAttributeList"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeychainAttributeList",
+      "type": "topic",
+      "url": "/documentation/security/seckeychainattributelist"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainAttributePtr": {
+      "abstract": [
+        {
+          "text": "A pointer to a keychain attribute structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeychainAttributePtr"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainAttributePtr",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainAttributePtr"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeychainAttributePtr",
+      "type": "topic",
+      "url": "/documentation/security/seckeychainattributeptr"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainFindGenericPassword(_:_:_:_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Finds the first generic password based on the attributes passed.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeychainFindGenericPassword"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeRef",
+          "text": "CFTypeRef"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?>?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeychainItemRef",
+          "text": "SecKeychainItem"
+        },
+        {
+          "kind": "text",
+          "text": "?>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainFindGenericPassword(_:_:_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainFindGenericPassword"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeychainFindGenericPassword(_:_:_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/seckeychainfindgenericpassword(_:_:_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainFindInternetPassword(_:_:_:_:_:_:_:_:_:_:_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Finds the first Internet password based on the attributes passed.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeychainFindInternetPassword"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeRef",
+          "text": "CFTypeRef"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt16V",
+          "text": "UInt16"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SecProtocolType",
+          "text": "SecProtocolType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SecAuthenticationType",
+          "text": "SecAuthenticationType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?>?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeychainItemRef",
+          "text": "SecKeychainItem"
+        },
+        {
+          "kind": "text",
+          "text": "?>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainFindInternetPassword(_:_:_:_:_:_:_:_:_:_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainFindInternetPassword"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeychainFindInternetPassword(_:_:_:_:_:_:_:_:_:_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/seckeychainfindinternetpassword(_:_:_:_:_:_:_:_:_:_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainFreeAttributeInfo(_:)": {
+      "abstract": [
+        {
+          "text": "Releases the memory acquired by calling the ",
+          "type": "text"
+        },
+        {
+          "code": "SecKeychainAttributeInfoForItemID",
+          "type": "codeVoice"
+        },
+        {
+          "text": " function.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeychainFreeAttributeInfo"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@SecKeychainAttributeInfo",
+          "text": "SecKeychainAttributeInfo"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainFreeAttributeInfo(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainFreeAttributeInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeychainFreeAttributeInfo(_:)",
+      "type": "topic",
+      "url": "/documentation/security/seckeychainfreeattributeinfo(_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainItem": {
+      "abstract": [
+        {
+          "text": "An opaque type that represents a keychain item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeychainItem"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeychainItem",
+      "type": "topic",
+      "url": "/documentation/security/seckeychainitem"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainItemCopyAttributesAndData(_:_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the data and/or attributes stored in the given keychain item.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeychainItemCopyAttributesAndData"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeychainItemRef",
+          "text": "SecKeychainItem"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@SecKeychainAttributeInfo",
+          "text": "SecKeychainAttributeInfo"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SecItemClass",
+          "text": "SecItemClass"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@SecKeychainAttributeList",
+          "text": "SecKeychainAttributeList"
+        },
+        {
+          "kind": "text",
+          "text": ">?>?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainItemCopyAttributesAndData(_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainItemCopyAttributesAndData"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeychainItemCopyAttributesAndData(_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/seckeychainitemcopyattributesanddata(_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainItemCopyContent(_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Copies the data and attributes stored in the given keychain item.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeychainItemCopyContent"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeychainItemRef",
+          "text": "SecKeychainItem"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SecItemClass",
+          "text": "SecItemClass"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@SecKeychainAttributeList",
+          "text": "SecKeychainAttributeList"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainItemCopyContent(_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainItemCopyContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeychainItemCopyContent(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/seckeychainitemcopycontent(_:_:_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainItemCopyFromPersistentReference(_:_:)": {
+      "abstract": [
+        {
+          "text": "Provides a keychain item reference, given a persistent reference.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeychainItemCopyFromPersistentReference"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDataRef",
+          "text": "CFData"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeychainItemRef",
+          "text": "SecKeychainItem"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainItemCopyFromPersistentReference(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainItemCopyFromPersistentReference"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeychainItemCopyFromPersistentReference(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/seckeychainitemcopyfrompersistentreference(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainItemCopyKeychain(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns the keychain object of a given keychain item.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeychainItemCopyKeychain"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeychainItemRef",
+          "text": "SecKeychainItem"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeychainRef",
+          "text": "SecKeychain"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainItemCopyKeychain(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainItemCopyKeychain"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeychainItemCopyKeychain(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/seckeychainitemcopykeychain(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainItemCreateCopy(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Copies a keychain item from one keychain to another.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeychainItemCreateCopy"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeychainItemRef",
+          "text": "SecKeychainItem"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeychainRef",
+          "text": "SecKeychain"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecAccessRef",
+          "text": "SecAccess"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeychainItemRef",
+          "text": "SecKeychainItem"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainItemCreateCopy(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainItemCreateCopy"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeychainItemCreateCopy(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/seckeychainitemcreatecopy(_:_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainItemCreateFromContent(_:_:_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a new keychain item from the supplied parameters.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeychainItemCreateFromContent"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SecItemClass",
+          "text": "SecItemClass"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@SecKeychainAttributeList",
+          "text": "SecKeychainAttributeList"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeychainRef",
+          "text": "SecKeychain"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecAccessRef",
+          "text": "SecAccess"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeychainItemRef",
+          "text": "SecKeychainItem"
+        },
+        {
+          "kind": "text",
+          "text": "?>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainItemCreateFromContent(_:_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainItemCreateFromContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeychainItemCreateFromContent(_:_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/seckeychainitemcreatefromcontent(_:_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainItemCreatePersistentReference(_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a persistent reference for a keychain item.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeychainItemCreatePersistentReference"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeychainItemRef",
+          "text": "SecKeychainItem"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDataRef",
+          "text": "CFData"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainItemCreatePersistentReference(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainItemCreatePersistentReference"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeychainItemCreatePersistentReference(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/seckeychainitemcreatepersistentreference(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainItemDelete(_:)": {
+      "abstract": [
+        {
+          "text": "Deletes a keychain item from the default keychain’s permanent data store.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeychainItemDelete"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeychainItemRef",
+          "text": "SecKeychainItem"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainItemDelete(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainItemDelete"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeychainItemDelete(_:)",
+      "type": "topic",
+      "url": "/documentation/security/seckeychainitemdelete(_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainItemExport": {
+      "abstract": [
+        {
+          "text": "Exports one or more certificates, keys, or identities.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainItemExport"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainItemExport",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecKeychainItemExport",
+      "type": "topic",
+      "url": "/documentation/security/seckeychainitemexport"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainItemFreeAttributesAndData(_:_:)": {
+      "abstract": [
+        {
+          "text": "Releases the memory used by the keychain attribute list and/or the keychain data retrieved in a call to ",
+          "type": "text"
+        },
+        {
+          "code": "SecKeychainItemCopyAttributesAndData",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeychainItemFreeAttributesAndData"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@SecKeychainAttributeList",
+          "text": "SecKeychainAttributeList"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainItemFreeAttributesAndData(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainItemFreeAttributesAndData"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeychainItemFreeAttributesAndData(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/seckeychainitemfreeattributesanddata(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainItemFreeContent(_:_:)": {
+      "abstract": [
+        {
+          "text": "Releases the memory used by the keychain attribute list and the keychain data retrieved in a call to the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.security/documentation/Security/SecKeychainItemCopyContent(_:_:_:_:_:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " function.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeychainItemFreeContent"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@SecKeychainAttributeList",
+          "text": "SecKeychainAttributeList"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainItemFreeContent(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainItemFreeContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeychainItemFreeContent(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/seckeychainitemfreecontent(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainItemGetTypeID()": {
+      "abstract": [
+        {
+          "text": "Returns the unique identifier of the opaque type to which a keychain item object belongs.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeychainItemGetTypeID"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeID",
+          "text": "CFTypeID"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainItemGetTypeID()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainItemGetTypeID"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeychainItemGetTypeID()",
+      "type": "topic",
+      "url": "/documentation/security/seckeychainitemgettypeid()"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainItemImport": {
+      "abstract": [
+        {
+          "text": "Imports one or more certificates, keys, or identities and adds them to a keychain.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainItemImport"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainItemImport",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecKeychainItemImport",
+      "type": "topic",
+      "url": "/documentation/security/seckeychainitemimport"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainItemModifyAttributesAndData(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Updates an existing keychain item after changing its attributes or data.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeychainItemModifyAttributesAndData"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeychainItemRef",
+          "text": "SecKeychainItem"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@SecKeychainAttributeList",
+          "text": "SecKeychainAttributeList"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainItemModifyAttributesAndData(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainItemModifyAttributesAndData"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeychainItemModifyAttributesAndData(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/seckeychainitemmodifyattributesanddata(_:_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecKeychainItemModifyContent(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Updates an existing keychain item after changing its attributes and/or data.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecKeychainItemModifyContent"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecKeychainItemRef",
+          "text": "SecKeychainItem"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@SecKeychainAttributeList",
+          "text": "SecKeychainAttributeList"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecKeychainItemModifyContent(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecKeychainItemModifyContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecKeychainItemModifyContent(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/seckeychainitemmodifycontent(_:_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecPassword": {
+      "abstract": [
+        {
+          "text": "Contains information about a password.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecPassword"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecPassword",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecPassword"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecPassword",
+      "type": "topic",
+      "url": "/documentation/security/secpassword"
+    },
+    "doc://com.apple.security/documentation/Security/SecProtocolType": {
+      "abstract": [
+        {
+          "text": "The protocol type associated with an Internet password.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecProtocolType"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecProtocolType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecProtocolType"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecProtocolType",
+      "type": "topic",
+      "url": "/documentation/security/secprotocoltype"
+    },
+    "doc://com.apple.security/documentation/Security/adding-a-password-to-the-keychain": {
+      "abstract": [
+        {
+          "text": "Add network credentials to the keychain on behalf of the user.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/adding-a-password-to-the-keychain",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding a password to the keychain",
+      "type": "topic",
+      "url": "/documentation/security/adding-a-password-to-the-keychain"
+    },
+    "doc://com.apple.security/documentation/Security/item-attribute-keys-and-values": {
+      "abstract": [
+        {
+          "text": "Specify the attributes of keychain items.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/item-attribute-keys-and-values",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Item attribute keys and values",
+      "type": "topic",
+      "url": "/documentation/security/item-attribute-keys-and-values"
+    },
+    "doc://com.apple.security/documentation/Security/item-class-keys-and-values": {
+      "abstract": [
+        {
+          "text": "Specify the class of a keychain item.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/item-class-keys-and-values",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Item class keys and values",
+      "type": "topic",
+      "url": "/documentation/security/item-class-keys-and-values"
+    },
+    "doc://com.apple.security/documentation/Security/item-return-result-keys": {
+      "abstract": [
+        {
+          "text": "Specify how you want returned keychain item data formatted.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/item-return-result-keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Item return result keys",
+      "type": "topic",
+      "url": "/documentation/security/item-return-result-keys"
+    },
+    "doc://com.apple.security/documentation/Security/keychain-item-attribute-constants-for-keys": {
+      "abstract": [
+        {
+          "text": "Specifies the attributes for a key item in a keychain.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/keychain-item-attribute-constants-for-keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Keychain Item Attribute Constants For Keys",
+      "type": "topic",
+      "url": "/documentation/security/keychain-item-attribute-constants-for-keys"
+    },
+    "doc://com.apple.security/documentation/Security/keychain-items#Adding-keychain-items": {
+      "abstract": [],
+      "identifier": "doc://com.apple.security/documentation/Security/keychain-items#Adding-keychain-items",
+      "kind": "section",
+      "title": "Adding keychain items",
+      "type": "topic",
+      "url": "/documentation/security/keychain-items#Adding-keychain-items"
+    },
+    "doc://com.apple.security/documentation/Security/keychain-items#Keychain-item-search": {
+      "abstract": [],
+      "identifier": "doc://com.apple.security/documentation/Security/keychain-items#Keychain-item-search",
+      "kind": "section",
+      "title": "Keychain item search",
+      "type": "topic",
+      "url": "/documentation/security/keychain-items#Keychain-item-search"
+    },
+    "doc://com.apple.security/documentation/Security/keychain-services": {
+      "abstract": [
+        {
+          "text": "Securely store small chunks of data on behalf of the user.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/keychain-services",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Keychain services",
+      "type": "topic",
+      "url": "/documentation/security/keychain-services"
+    },
+    "doc://com.apple.security/documentation/Security/restricting-keychain-item-accessibility": {
+      "abstract": [
+        {
+          "text": "Set the conditions under which an app can access a keychain item such as a password.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/restricting-keychain-item-accessibility",
+      "kind": "article",
+      "role": "article",
+      "title": "Restricting keychain item accessibility",
+      "type": "topic",
+      "url": "/documentation/security/restricting-keychain-item-accessibility"
+    },
+    "doc://com.apple.security/documentation/Security/search-attribute-keys-and-values": {
+      "abstract": [
+        {
+          "text": "Filter a keychain item search.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/search-attribute-keys-and-values",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Search attribute keys and values",
+      "type": "topic",
+      "url": "/documentation/security/search-attribute-keys-and-values"
+    },
+    "doc://com.apple.security/documentation/Security/searching-for-keychain-items": {
+      "abstract": [
+        {
+          "text": "Find keychain items based on search criteria that you specify.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/searching-for-keychain-items",
+      "kind": "article",
+      "role": "article",
+      "title": "Searching for keychain items",
+      "type": "topic",
+      "url": "/documentation/security/searching-for-keychain-items"
+    },
+    "doc://com.apple.security/documentation/Security/sharing-access-to-keychain-items-among-a-collection-of-apps": {
+      "abstract": [
+        {
+          "text": "Enable apps to share keychain items with each other by adding the apps to an access group.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/sharing-access-to-keychain-items-among-a-collection-of-apps",
+      "kind": "article",
+      "role": "article",
+      "title": "Sharing access to keychain items among a collection of apps",
+      "type": "topic",
+      "url": "/documentation/security/sharing-access-to-keychain-items-among-a-collection-of-apps"
+    },
+    "doc://com.apple.security/documentation/Security/updating-and-deleting-keychain-items": {
+      "abstract": [
+        {
+          "text": "Modify items in the keychain when the user’s data changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/updating-and-deleting-keychain-items",
+      "kind": "article",
+      "role": "article",
+      "title": "Updating and deleting keychain items",
+      "type": "topic",
+      "url": "/documentation/security/updating-and-deleting-keychain-items"
+    },
+    "doc://com.apple.security/documentation/Security/using-the-keychain-to-manage-user-secrets": {
+      "abstract": [
+        {
+          "text": "Relieve the user of remembering small secrets by storing them in the keychain.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/using-the-keychain-to-manage-user-secrets",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Using the keychain to manage user secrets",
+      "type": "topic",
+      "url": "/documentation/security/using-the-keychain-to-manage-user-secrets"
+    },
+    "media-2891903": {
+      "alt": "Diagram showing data being encrypted and then combined with attributes into a keychain item before being stored in a keychain.",
+      "identifier": "media-2891903",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/192ae065b3c41c60bff42cbf95f0d33c/media-2891903@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/using-the-keychain-to-manage-user-secrets",
+        "doc://com.apple.documentation/documentation/Technotes/tn3137-on-mac-keychains",
+        "doc://com.apple.security/documentation/Security/SecKeychainItem",
+        "doc://com.apple.security/documentation/Security/SecKeychainItemGetTypeID()"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "Adding-keychain-items",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/adding-a-password-to-the-keychain",
+        "doc://com.apple.security/documentation/Security/SecItemAdd(_:_:)",
+        "doc://com.apple.security/documentation/Security/item-class-keys-and-values",
+        "doc://com.apple.security/documentation/Security/item-attribute-keys-and-values"
+      ],
+      "title": "Adding keychain items"
+    },
+    {
+      "anchor": "Keychain-item-search",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/searching-for-keychain-items",
+        "doc://com.apple.security/documentation/Security/SecItemCopyMatching(_:_:)",
+        "doc://com.apple.security/documentation/Security/search-attribute-keys-and-values",
+        "doc://com.apple.security/documentation/Security/item-return-result-keys"
+      ],
+      "title": "Keychain item search"
+    },
+    {
+      "anchor": "Keychain-item-modification",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/updating-and-deleting-keychain-items",
+        "doc://com.apple.security/documentation/Security/SecItemUpdate(_:_:)",
+        "doc://com.apple.security/documentation/Security/SecItemDelete(_:)"
+      ],
+      "title": "Keychain item modification"
+    },
+    {
+      "anchor": "Keychain-item-access",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/sharing-access-to-keychain-items-among-a-collection-of-apps",
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/keychain-access-groups",
+        "doc://com.apple.security/documentation/Security/restricting-keychain-item-accessibility",
+        "doc://com.apple.security/documentation/Security/SecAccessControlCreateWithFlags(_:_:_:_:)",
+        "doc://com.apple.security/documentation/Security/SecAccessControlCreateFlags",
+        "doc://com.apple.security/documentation/Security/SecAccessControl",
+        "doc://com.apple.security/documentation/Security/SecAccessControlGetTypeID()"
+      ],
+      "title": "Keychain item access"
+    },
+    {
+      "anchor": "Import-and-export",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/SecItemImport(_:_:_:_:_:_:_:_:)",
+        "doc://com.apple.security/documentation/Security/SecItemExport(_:_:_:_:_:)",
+        "doc://com.apple.security/documentation/Security/SecExternalFormat",
+        "doc://com.apple.security/documentation/Security/SecExternalItemType",
+        "doc://com.apple.security/documentation/Security/SecItemImportExportFlags",
+        "doc://com.apple.security/documentation/Security/SecItemImportExportKeyParameters",
+        "doc://com.apple.security/documentation/Security/SecKeyImportExportFlags",
+        "doc://com.apple.security/documentation/Security/SEC_KEY_IMPORT_EXPORT_PARAMS_VERSION",
+        "doc://com.apple.security/documentation/Security/SecKeyImportExportParameters"
+      ],
+      "title": "Import and export"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Use the functions in ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.security/documentation/Security/keychain-items#Adding-keychain-items",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " instead.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Legacy-keychain-item-creation",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/SecKeychainItemCreateFromContent(_:_:_:_:_:_:_:)",
+        "doc://com.apple.security/documentation/Security/SecKeychainItemCreateCopy(_:_:_:_:)",
+        "doc://com.apple.security/documentation/Security/SecKeychainItemCreatePersistentReference(_:_:)",
+        "doc://com.apple.security/documentation/Security/SecKeychainItemCopyFromPersistentReference(_:_:)",
+        "doc://com.apple.security/documentation/Security/SecItemClass"
+      ],
+      "title": "Legacy keychain item creation"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Use the functions in ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.security/documentation/Security/keychain-items#Keychain-item-search",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " instead.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Legacy-keychain-item-management",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/SecKeychainItemCopyAttributesAndData(_:_:_:_:_:_:)",
+        "doc://com.apple.security/documentation/Security/SecKeychainItemModifyAttributesAndData(_:_:_:_:)",
+        "doc://com.apple.security/documentation/Security/SecKeychainItemFreeAttributesAndData(_:_:)",
+        "doc://com.apple.security/documentation/Security/SecKeychainItemCopyContent(_:_:_:_:_:)",
+        "doc://com.apple.security/documentation/Security/SecKeychainItemModifyContent(_:_:_:_:)",
+        "doc://com.apple.security/documentation/Security/SecKeychainItemFreeContent(_:_:)",
+        "doc://com.apple.security/documentation/Security/SecKeychainItemCopyKeychain(_:_:)",
+        "doc://com.apple.security/documentation/Security/SecKeychainItemDelete(_:)",
+        "doc://com.apple.security/documentation/Security/SecKeychainAttrType",
+        "doc://com.apple.security/documentation/Security/SecKeychainAttribute",
+        "doc://com.apple.security/documentation/Security/SecKeychainAttributePtr",
+        "doc://com.apple.security/documentation/Security/SecKeychainAttributeList"
+      ],
+      "title": "Legacy keychain item management"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Use the functions in ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.security/documentation/Security/keychain-items#Adding-keychain-items",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " and ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.security/documentation/Security/keychain-items#Keychain-item-search",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " instead.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Legacy-attribute-info",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/SecKeychainAttributeInfoForItemID(_:_:_:)",
+        "doc://com.apple.security/documentation/Security/SecKeychainFreeAttributeInfo(_:)",
+        "doc://com.apple.security/documentation/Security/SecKeychainAttributeInfo",
+        "doc://com.apple.security/documentation/Security/SecItemAttr",
+        "doc://com.apple.security/documentation/Security/keychain-item-attribute-constants-for-keys",
+        "doc://com.apple.security/documentation/Security/SecAFPServerSignature"
+      ],
+      "title": "Legacy attribute info"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Use the functions in ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.security/documentation/Security/keychain-items#Adding-keychain-items",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " and ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.security/documentation/Security/keychain-items#Keychain-item-search",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " instead.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Legacy-password-storage",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/SecKeychainAddInternetPassword(_:_:_:_:_:_:_:_:_:_:_:_:_:_:_:)",
+        "doc://com.apple.security/documentation/Security/SecKeychainFindInternetPassword(_:_:_:_:_:_:_:_:_:_:_:_:_:_:_:)",
+        "doc://com.apple.security/documentation/Security/SecKeychainAddGenericPassword(_:_:_:_:_:_:_:_:)",
+        "doc://com.apple.security/documentation/Security/SecKeychainFindGenericPassword(_:_:_:_:_:_:_:_:)",
+        "doc://com.apple.security/documentation/Security/SecProtocolType",
+        "doc://com.apple.security/documentation/Security/SecAuthenticationType",
+        "doc://com.apple.security/documentation/Security/SecPassword"
+      ],
+      "title": "Legacy password storage"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/using-the-keychain-to-manage-user-secrets",
+                "doc://com.apple.documentation/documentation/Technotes/tn3137-on-mac-keychains",
+                "doc://com.apple.security/documentation/Security/SecKeychainItem",
+                "doc://com.apple.security/documentation/Security/SecKeychainItemGetTypeID()"
+              ],
+              "title": "Essentials"
+            },
+            {
+              "anchor": "Adding-keychain-items",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/adding-a-password-to-the-keychain",
+                "doc://com.apple.security/documentation/Security/SecItemAdd(_:_:)",
+                "doc://com.apple.security/documentation/Security/item-class-keys-and-values",
+                "doc://com.apple.security/documentation/Security/item-attribute-keys-and-values"
+              ],
+              "title": "Adding keychain items"
+            },
+            {
+              "anchor": "Keychain-item-search",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/searching-for-keychain-items",
+                "doc://com.apple.security/documentation/Security/SecItemCopyMatching(_:_:)",
+                "doc://com.apple.security/documentation/Security/search-attribute-keys-and-values",
+                "doc://com.apple.security/documentation/Security/item-return-result-keys"
+              ],
+              "title": "Keychain item search"
+            },
+            {
+              "anchor": "Keychain-item-modification",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/updating-and-deleting-keychain-items",
+                "doc://com.apple.security/documentation/Security/SecItemUpdate(_:_:)",
+                "doc://com.apple.security/documentation/Security/SecItemDelete(_:)"
+              ],
+              "title": "Keychain item modification"
+            },
+            {
+              "anchor": "Keychain-item-access",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/sharing-access-to-keychain-items-among-a-collection-of-apps",
+                "doc://com.apple.documentation/documentation/BundleResources/Entitlements/keychain-access-groups",
+                "doc://com.apple.security/documentation/Security/restricting-keychain-item-accessibility",
+                "doc://com.apple.security/documentation/Security/SecAccessControlCreateWithFlags(_:_:_:_:)",
+                "doc://com.apple.security/documentation/Security/SecAccessControlCreateFlags",
+                "doc://com.apple.security/documentation/Security/SecAccessControl",
+                "doc://com.apple.security/documentation/Security/SecAccessControlGetTypeID()"
+              ],
+              "title": "Keychain item access"
+            },
+            {
+              "anchor": "Import-and-export",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SecItemImport(_:_:_:_:_:_:_:_:)",
+                "doc://com.apple.security/documentation/Security/SecItemExport(_:_:_:_:_:)",
+                "doc://com.apple.security/documentation/Security/SecExternalFormat",
+                "doc://com.apple.security/documentation/Security/SecExternalItemType",
+                "doc://com.apple.security/documentation/Security/SecItemImportExportFlags",
+                "doc://com.apple.security/documentation/Security/SecItemImportExportKeyParameters",
+                "doc://com.apple.security/documentation/Security/SecKeyImportExportFlags",
+                "doc://com.apple.security/documentation/Security/SEC_KEY_IMPORT_EXPORT_PARAMS_VERSION",
+                "doc://com.apple.security/documentation/Security/SecKeychainItemImport",
+                "doc://com.apple.security/documentation/Security/SecKeychainItemExport",
+                "doc://com.apple.security/documentation/Security/SecKeyImportExportParameters"
+              ],
+              "title": "Import and export"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Use the functions in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.security/documentation/Security/keychain-items#Adding-keychain-items",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " instead.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Legacy-keychain-item-creation",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SecKeychainItemCreateFromContent(_:_:_:_:_:_:_:)",
+                "doc://com.apple.security/documentation/Security/SecKeychainItemCreateCopy(_:_:_:_:)",
+                "doc://com.apple.security/documentation/Security/SecKeychainItemCreatePersistentReference(_:_:)",
+                "doc://com.apple.security/documentation/Security/SecKeychainItemCopyFromPersistentReference(_:_:)",
+                "doc://com.apple.security/documentation/Security/SecItemClass"
+              ],
+              "title": "Legacy keychain item creation"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Use the functions in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.security/documentation/Security/keychain-items#Keychain-item-search",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " instead.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Legacy-keychain-item-management",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SecKeychainItemCopyAttributesAndData(_:_:_:_:_:_:)",
+                "doc://com.apple.security/documentation/Security/SecKeychainItemModifyAttributesAndData(_:_:_:_:)",
+                "doc://com.apple.security/documentation/Security/SecKeychainItemFreeAttributesAndData(_:_:)",
+                "doc://com.apple.security/documentation/Security/SecKeychainItemCopyContent(_:_:_:_:_:)",
+                "doc://com.apple.security/documentation/Security/SecKeychainItemModifyContent(_:_:_:_:)",
+                "doc://com.apple.security/documentation/Security/SecKeychainItemFreeContent(_:_:)",
+                "doc://com.apple.security/documentation/Security/SecKeychainItemCopyKeychain(_:_:)",
+                "doc://com.apple.security/documentation/Security/SecKeychainItemDelete(_:)",
+                "doc://com.apple.security/documentation/Security/SecKeychainAttrType",
+                "doc://com.apple.security/documentation/Security/SecKeychainAttribute",
+                "doc://com.apple.security/documentation/Security/SecKeychainAttributePtr",
+                "doc://com.apple.security/documentation/Security/SecKeychainAttributeList"
+              ],
+              "title": "Legacy keychain item management"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Use the functions in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.security/documentation/Security/keychain-items#Adding-keychain-items",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.security/documentation/Security/keychain-items#Keychain-item-search",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " instead.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Legacy-attribute-info",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SecKeychainAttributeInfoForItemID(_:_:_:)",
+                "doc://com.apple.security/documentation/Security/SecKeychainFreeAttributeInfo(_:)",
+                "doc://com.apple.security/documentation/Security/SecKeychainAttributeInfo",
+                "doc://com.apple.security/documentation/Security/SecItemAttr",
+                "doc://com.apple.security/documentation/Security/keychain-item-attribute-constants-for-keys",
+                "doc://com.apple.security/documentation/Security/SecAFPServerSignature"
+              ],
+              "title": "Legacy attribute info"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Use the functions in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.security/documentation/Security/keychain-items#Adding-keychain-items",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.security/documentation/Security/keychain-items#Keychain-item-search",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " instead.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Legacy-password-storage",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SecKeychainAddInternetPassword(_:_:_:_:_:_:_:_:_:_:_:_:_:_:_:)",
+                "doc://com.apple.security/documentation/Security/SecKeychainFindInternetPassword(_:_:_:_:_:_:_:_:_:_:_:_:_:_:_:)",
+                "doc://com.apple.security/documentation/Security/SecKeychainAddGenericPassword(_:_:_:_:_:_:_:_:)",
+                "doc://com.apple.security/documentation/Security/SecKeychainFindGenericPassword(_:_:_:_:_:_:_:_:)",
+                "doc://com.apple.security/documentation/Security/SecProtocolType",
+                "doc://com.apple.security/documentation/Security/SecAuthenticationType",
+                "doc://com.apple.security/documentation/Security/SecPassword"
+              ],
+              "title": "Legacy password storage"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainAddGenericPassword(_:_:_:_:_:_:_:_:)/title",
+          "value": "SecKeychainAddGenericPassword"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainAddGenericPassword(_:_:_:_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainAddGenericPassword"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SEC_KEY_IMPORT_EXPORT_PARAMS_VERSION/title",
+          "value": "SEC_KEY_IMPORT_EXPORT_PARAMS_VERSION"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SEC_KEY_IMPORT_EXPORT_PARAMS_VERSION/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SEC_KEY_IMPORT_EXPORT_PARAMS_VERSION"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainAttributeInfo/title",
+          "value": "SecKeychainAttributeInfo"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainAttributeInfo/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainAttributeInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainAttributeInfo/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainAttributeInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainFindGenericPassword(_:_:_:_:_:_:_:_:)/title",
+          "value": "SecKeychainFindGenericPassword"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainFindGenericPassword(_:_:_:_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainFindGenericPassword"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeyImportExportParameters/title",
+          "value": "SecKeyImportExportParameters"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeyImportExportParameters/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeyImportExportParameters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeyImportExportParameters/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeyImportExportParameters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecItemClass/title",
+          "value": "SecItemClass"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecItemClass/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecItemClass"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecItemClass/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecItemClass"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainItemModifyContent(_:_:_:_:)/title",
+          "value": "SecKeychainItemModifyContent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainItemModifyContent(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainItemModifyContent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainItemCreatePersistentReference(_:_:)/title",
+          "value": "SecKeychainItemCreatePersistentReference"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainItemCreatePersistentReference(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainItemCreatePersistentReference"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecExternalFormat/title",
+          "value": "SecExternalFormat"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecExternalFormat/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecExternalFormat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecExternalFormat/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecExternalFormat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainAttributeInfoForItemID(_:_:_:)/title",
+          "value": "SecKeychainAttributeInfoForItemID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainAttributeInfoForItemID(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainAttributeInfoForItemID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainItemModifyAttributesAndData(_:_:_:_:)/title",
+          "value": "SecKeychainItemModifyAttributesAndData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainItemModifyAttributesAndData(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainItemModifyAttributesAndData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecItemUpdate(_:_:)/title",
+          "value": "SecItemUpdate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecItemUpdate(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecItemUpdate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAccessControlCreateFlags/title",
+          "value": "SecAccessControlCreateFlags"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAccessControlCreateFlags/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecAccessControlCreateFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAccessControlCreateFlags/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecAccessControlCreateFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAccessControl/title",
+          "value": "SecAccessControlRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAccessControl/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecAccessControlRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAccessControl/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecAccessControlRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainAttribute/title",
+          "value": "SecKeychainAttribute"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainAttribute/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainAttribute"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainAttribute/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainAttribute"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainItemCreateCopy(_:_:_:_:)/title",
+          "value": "SecKeychainItemCreateCopy"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainItemCreateCopy(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainItemCreateCopy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecItemAdd(_:_:)/title",
+          "value": "SecItemAdd"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecItemAdd(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecItemAdd"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainItemCreateFromContent(_:_:_:_:_:_:_:)/title",
+          "value": "SecKeychainItemCreateFromContent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainItemCreateFromContent(_:_:_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainItemCreateFromContent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainAttributeList/title",
+          "value": "SecKeychainAttributeList"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainAttributeList/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainAttributeList"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainAttributeList/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainAttributeList"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecExternalItemType/title",
+          "value": "SecExternalItemType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecExternalItemType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecExternalItemType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecExternalItemType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecExternalItemType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainItemGetTypeID()/title",
+          "value": "SecKeychainItemGetTypeID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainItemGetTypeID()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainItemGetTypeID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecItemDelete(_:)/title",
+          "value": "SecItemDelete"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecItemDelete(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecItemDelete"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainItemCopyAttributesAndData(_:_:_:_:_:_:)/title",
+          "value": "SecKeychainItemCopyAttributesAndData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainItemCopyAttributesAndData(_:_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainItemCopyAttributesAndData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecItemImportExportFlags/title",
+          "value": "SecItemImportExportFlags"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecItemImportExportFlags/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecItemImportExportFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecItemImportExportFlags/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecItemImportExportFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainAttributePtr/title",
+          "value": "SecKeychainAttributePtr"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainAttributePtr/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainAttributePtr"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainAttributePtr/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainAttributePtr"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainItemFreeContent(_:_:)/title",
+          "value": "SecKeychainItemFreeContent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainItemFreeContent(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainItemFreeContent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecItemCopyMatching(_:_:)/title",
+          "value": "SecItemCopyMatching"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecItemCopyMatching(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecItemCopyMatching"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainItemFreeAttributesAndData(_:_:)/title",
+          "value": "SecKeychainItemFreeAttributesAndData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainItemFreeAttributesAndData(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainItemFreeAttributesAndData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecItemImport(_:_:_:_:_:_:_:_:)/title",
+          "value": "SecItemImport"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecItemImport(_:_:_:_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecItemImport"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecPassword/title",
+          "value": "SecPasswordRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecPassword/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecPasswordRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecPassword/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecPasswordRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainItemCopyKeychain(_:_:)/title",
+          "value": "SecKeychainItemCopyKeychain"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainItemCopyKeychain(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainItemCopyKeychain"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAccessControlCreateWithFlags(_:_:_:_:)/title",
+          "value": "SecAccessControlCreateWithFlags"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAccessControlCreateWithFlags(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecAccessControlCreateWithFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainFindInternetPassword(_:_:_:_:_:_:_:_:_:_:_:_:_:_:_:)/title",
+          "value": "SecKeychainFindInternetPassword"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainFindInternetPassword(_:_:_:_:_:_:_:_:_:_:_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainFindInternetPassword"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAFPServerSignature/title",
+          "value": "SecAFPServerSignature"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAFPServerSignature/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecAFPServerSignature"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAFPServerSignature/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecAFPServerSignature"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAuthenticationType/title",
+          "value": "SecAuthenticationType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAuthenticationType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecAuthenticationType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAuthenticationType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecAuthenticationType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainAttrType/title",
+          "value": "SecKeychainAttrType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainAttrType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainAttrType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainAttrType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainAttrType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeyImportExportFlags/title",
+          "value": "SecKeyImportExportFlags"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeyImportExportFlags/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeyImportExportFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeyImportExportFlags/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeyImportExportFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainItemDelete(_:)/title",
+          "value": "SecKeychainItemDelete"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainItemDelete(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainItemDelete"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainItemCopyFromPersistentReference(_:_:)/title",
+          "value": "SecKeychainItemCopyFromPersistentReference"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainItemCopyFromPersistentReference(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainItemCopyFromPersistentReference"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainAddInternetPassword(_:_:_:_:_:_:_:_:_:_:_:_:_:_:_:)/title",
+          "value": "SecKeychainAddInternetPassword"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainAddInternetPassword(_:_:_:_:_:_:_:_:_:_:_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainAddInternetPassword"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAccessControlGetTypeID()/title",
+          "value": "SecAccessControlGetTypeID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecAccessControlGetTypeID()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecAccessControlGetTypeID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainItemCopyContent(_:_:_:_:_:)/title",
+          "value": "SecKeychainItemCopyContent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainItemCopyContent(_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainItemCopyContent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecItemExport(_:_:_:_:_:)/title",
+          "value": "SecItemExport"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecItemExport(_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecItemExport"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecItemAttr/title",
+          "value": "SecItemAttr"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecItemAttr/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecItemAttr"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecItemAttr/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecItemAttr"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainFreeAttributeInfo(_:)/title",
+          "value": "SecKeychainFreeAttributeInfo"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainFreeAttributeInfo(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainFreeAttributeInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainItem/title",
+          "value": "SecKeychainItemRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainItemRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecKeychainItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecKeychainItemRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecProtocolType/title",
+          "value": "SecProtocolType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecProtocolType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecProtocolType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecProtocolType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecProtocolType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecItemImportExportKeyParameters/title",
+          "value": "SecItemImportExportKeyParameters"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecItemImportExportKeyParameters/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecItemImportExportKeyParameters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecItemImportExportKeyParameters/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecItemImportExportKeyParameters"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/security/keychain-items"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/security/keychain-items"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

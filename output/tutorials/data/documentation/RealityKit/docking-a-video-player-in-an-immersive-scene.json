@@ -1,0 +1,1140 @@
+{
+  "abstract": [
+    {
+      "text": "Secure a video player in an immersive scene with a docking region you can specify.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit",
+        "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-videos"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/docking-a-video-player-in-an-immersive-scene"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "2.0",
+        "name": "visionOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Docking a video player in an immersive scene"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In visionOS, all full-screen videos automatically dock when an immersive space is open.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This behavior places the video in a fixed position within your immersive space.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/DockingRegionComponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to customize the width and location of the docking region.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code project demonstrates how to use the RealityKit API for the docking-region component.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You define and specify the boundary of the docking region and docking position using a docking-region component, and attach it to an entity within the immersive scene.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Then you position the entity that has the docking-region component to customize the docking position.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The docking-region component allows developers to customize the docking region.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Alternatively, you can add and define a docking-region component using Reality Composer Pro.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/realitykit/building_an_immersive_experience_with_realitykit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more details.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app presents an AV player view controller with default playback controls, and a scene picker for selecting immersive scenes.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can start video playback with the default controls, and enter an immersive scene with the immersive view picker.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "identifier": "docking-demo",
+          "type": "video"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can dock a video player by following the steps below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-an-immersive-visionOS-app",
+          "level": 3,
+          "text": "Create an immersive visionOS app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Xcode, choose File > New > Project, select visionOS and Immersive Environment App in the New Project dialog, and click Next.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "docking-xcode",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Enter your product name and organization identifier, and choose between a progressive and full immersive space.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can change the immersive setting later.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To continue, include a video in the bundle or provide a URL to an external video in ",
+              "type": "text"
+            },
+            {
+              "code": "AVPlayerViewModel.swift",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The Immersive Environment App template launches with a window that includes a single button to show the immersive space.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Showing the immersive space starts playing the video and displays the ",
+              "type": "text"
+            },
+            {
+              "code": "AVPlayerView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " full screen in the window.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The system automatically docks this full-screen video in the default docking position.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Play-the-video-in-the-shared-space",
+          "level": 3,
+          "text": "Play the video in the shared space",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To play the video in the shared space and immersive space, remove the calls to the ",
+              "type": "text"
+            },
+            {
+              "code": "avPlayerViewModel",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/onAppear(perform:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/onDisappear(perform:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods of ",
+              "type": "text"
+            },
+            {
+              "code": "ImmersiveView",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Remove the ",
+              "type": "text"
+            },
+            {
+              "code": "ToggleImmersiveSpaceButton",
+              "type": "codeVoice"
+            },
+            {
+              "text": " from the ",
+              "type": "text"
+            },
+            {
+              "code": "ContentView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and replace it with a button that plays the video.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "At this point, the app plays the video full screen after someone taps the Play Video button, but the custom immersive space doesn’t appear.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-an-immersive-scene-viewing-option-to-your-video-player",
+          "level": 3,
+          "text": "Add an immersive scene-viewing option to your video player",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create an immersive picker view that toggles the immersive scene through existing immersive space APIs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct ImmersivePickerView: View {",
+            "    let appModel: AppModel",
+            "    ",
+            "    /// An asynchronous call returns after dismissing the immersive space.",
+            "    @Environment(\\.dismissImmersiveSpace) private var dismissImmersiveSpace",
+            "    /// An asynchronous call returns after opening the immersive space.",
+            "    @Environment(\\.openImmersiveSpace) private var openImmersiveSpace",
+            "    ",
+            "    var body: some View {",
+            "        // Add a button to toggle the immersive environment.",
+            "        Button(\"Sky Dome\", systemImage: \"photo\") {",
+            "            Task {",
+            "                if appModel.immersiveSpaceIsShown {",
+            "                    await dismissImmersiveSpace()",
+            "                } else {",
+            "                    await openImmersiveSpace(id: appModel.immersiveSpaceID)",
+            "                }",
+            "            }",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/immersiveEnvironmentPicker(content:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to include this picker as an option in the list of immersive scene selections.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "AVPlayerView(viewModel: avPlayerViewModel)",
+            "    .immersiveEnvironmentPicker {",
+            "        ImmersivePickerView(appModel: appModel)",
+            "    }"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "docking-immersive-picker",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-docking-region-component-with-a-docking-entity",
+          "level": 3,
+          "text": "Create a docking-region component with a docking entity",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Immersive Environment App template comes with a Reality Composer Pro project that includes a ",
+              "type": "text"
+            },
+            {
+              "code": "Player",
+              "type": "codeVoice"
+            },
+            {
+              "text": " entity with the docking region.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To customize the docking-region settings in Xcode, open the Reality Composer Pro package and remove the ",
+              "type": "text"
+            },
+            {
+              "code": "Video_Dock",
+              "type": "codeVoice"
+            },
+            {
+              "text": " entity that contains the ",
+              "type": "text"
+            },
+            {
+              "code": "Player",
+              "type": "codeVoice"
+            },
+            {
+              "text": " entity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Within your ",
+              "type": "text"
+            },
+            {
+              "code": "ImmersiveView",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", create a docking-region component with a width of your choice.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The docking region uses a cinematic ",
+              "type": "text"
+            },
+            {
+              "code": "2.4:1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " width-height ratio to determine the height.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create a docking-region component to customize your docking region.",
+            "var dockingRegionComponent = DockingRegionComponent()",
+            "// Set the docking region width to 9.6 meters.",
+            "dockingRegionComponent.width = 9.6"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a docking entity and position the entity where you want to dock the AV player.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Then attach the docking-region component to the docking entity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create a docking entity as a docking anchor.",
+            "let dockingEntity = Entity()",
+            "",
+            "// Set the position of your dock, in meters.",
+            "dockingEntity.position = [0, 2, -10]",
+            "",
+            "// Attach the docking-region component to the docking entity.",
+            "dockingEntity.components.set(dockingRegionComponent)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "And, finally, add it to your ",
+              "type": "text"
+            },
+            {
+              "code": "RealityView",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "content.add(dockingEntity)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "docking-base",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "2ad11e450281/DockingAVideoPlayerInAnImmersiveScene.zip": {
+      "checksum": "2ad11e450281f8e2c622caefcfa023ea51962ff4bb312fb1854212e112bc590b83c17495a4d49515cbada6160e65dcb81da85aa00f33dd777346ce69d755c611",
+      "identifier": "2ad11e450281/DockingAVideoPlayerInAnImmersiveScene.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/2ad11e450281/DockingAVideoPlayerInAnImmersiveScene.zip"
+    },
+    "Destination-Video-intro.png": {
+      "alt": null,
+      "identifier": "Destination-Video-intro.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/648c665254129674ce04bbc64dbeeb2d/Destination-Video-intro@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/DockingRegionComponent": {
+      "abstract": [
+        {
+          "text": "A component that docks a scene within a region of an immersive space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DockingRegionComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/DockingRegionComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DockingRegionComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "DockingRegionComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/dockingregioncomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-videos": {
+      "abstract": [
+        {
+          "text": "Present videos in your RealityKit experiences.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-videos",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Videos",
+      "type": "topic",
+      "url": "/documentation/realitykit/scene-content-videos"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/immersiveEnvironmentPicker(content:)": {
+      "abstract": [
+        {
+          "text": "Add menu items to open immersive spaces from a media player’s environment picker.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "immersiveEnvironmentPicker"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:7SwiftUI11ViewBuilderV",
+          "text": "ViewBuilder"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/immersiveEnvironmentPicker(content:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "immersiveEnvironmentPicker(content:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/immersiveEnvironmentPicker(content:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/onAppear(perform:)": {
+      "abstract": [
+        {
+          "text": "Adds an action to perform before this view appears.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "onAppear"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "perform"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "action"
+        },
+        {
+          "kind": "text",
+          "text": ": (() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")? = nil) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/onAppear(perform:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "onAppear(perform:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/onAppear(perform:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/onDisappear(perform:)": {
+      "abstract": [
+        {
+          "text": "Adds an action to perform after this view disappears.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "onDisappear"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "perform"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "action"
+        },
+        {
+          "kind": "text",
+          "text": ": (() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")? = nil) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/onDisappear(perform:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "onDisappear(perform:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/onDisappear(perform:)"
+    },
+    "doc://com.apple.documentation/documentation/realitykit/building_an_immersive_experience_with_realitykit": {
+      "abstract": [
+        {
+          "text": "Use systems and postprocessing effects to create a realistic underwater scene.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/realitykit/building_an_immersive_experience_with_realitykit",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Building an Immersive Experience with RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit/building_an_immersive_experience_with_realitykit"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/visionOS/destination-video": {
+      "abstract": [
+        {
+          "text": "Leverage SwiftUI to build an immersive media experience in a multiplatform app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/visionOS/destination-video",
+      "images": [
+        {
+          "identifier": "Destination-Video-intro.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Destination Video",
+      "type": "topic",
+      "url": "/documentation/visionOS/destination-video"
+    },
+    "docking-base": {
+      "alt": "A screenshot of the visionOS app in Simulator showing the overview of the docking sample.",
+      "identifier": "docking-base",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9a25afb8e59b390f9bd2cdfcfcb55951/docking-base.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0eedf3d9c20f384e39b43d86a081292a/docking-base@2x.png"
+        }
+      ]
+    },
+    "docking-demo": {
+      "alt": "A video of a screen recording that shows an AV player view controller docking in an immersive scene.",
+      "identifier": "docking-demo",
+      "poster": "docking-demo-poster",
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bc02f20216428a9fc28b5261cef0f5a5/docking-demo.mp4"
+        }
+      ]
+    },
+    "docking-demo-poster": {
+      "alt": null,
+      "identifier": "docking-demo-poster",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62ff49466f2903a9a0b056a628c07e72/docking-demo-poster.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4dd96510ba12291d676fad81e7c76473/docking-demo-poster@2x.png"
+        }
+      ]
+    },
+    "docking-immersive-picker": {
+      "alt": "A screenshot of the visionOS app in Simulator showing the immersive scene picker.",
+      "identifier": "docking-immersive-picker",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7ae57a9f2ddc05dfffd603c70bf90bfe/docking-immersive-picker.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4159420c30cf4b4db95f9a3ca01d68e4/docking-immersive-picker@2x.png"
+        }
+      ]
+    },
+    "docking-xcode": {
+      "alt": "An Xcode screenshot of the New Project dialog with the visionOS and Immersive Environment App options selected.",
+      "identifier": "docking-xcode",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e29ccbc63b318822f320394d48ee3f79/docking-xcode.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/89ee513d474328ebe4b6ffea043a3b1d/docking-xcode@2x.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "2ad11e450281/DockingAVideoPlayerInAnImmersiveScene.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "SwiftUI-video-content",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/visionOS/destination-video"
+      ],
+      "title": "SwiftUI video content"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/docking-a-video-player-in-an-immersive-scene"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

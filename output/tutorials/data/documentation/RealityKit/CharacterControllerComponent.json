@@ -1,1 +1,2306 @@
-{"sections":[],"relationshipsSections":[{"type":"conformsTo","kind":"relationships","title":"Conforms To","identifiers":["doc://com.apple.RealityKit/documentation/RealityKit/Component"]}],"variants":[{"traits":[{"interfaceLanguage":"swift"}],"paths":["/documentation/realitykit/charactercontrollercomponent"]}],"seeAlsoSections":[{"title":"Character control","generated":true,"identifiers":["doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/Collision","doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/CollisionFlags","doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerStateComponent"],"anchor":"Character-control"}],"metadata":{"platforms":[{"deprecated":false,"name":"iOS","unavailable":false,"introducedAt":"15.0","beta":false},{"deprecated":false,"name":"iPadOS","unavailable":false,"introducedAt":"15.0","beta":false},{"deprecated":false,"name":"Mac Catalyst","unavailable":false,"introducedAt":"15.0","beta":false},{"deprecated":false,"name":"macOS","unavailable":false,"introducedAt":"12.0","beta":false},{"deprecated":false,"name":"visionOS","unavailable":false,"beta":false}],"symbolKind":"struct","roleHeading":"Structure","role":"symbol","title":"CharacterControllerComponent","navigatorTitle":[{"text":"CharacterControllerComponent","kind":"identifier"}],"fragments":[{"text":"struct","kind":"keyword"},{"text":" ","kind":"text"},{"text":"CharacterControllerComponent","kind":"identifier"}],"modules":[{"name":"RealityKit"}],"externalID":"s:17RealityFoundation28CharacterControllerComponentV"},"schemaVersion":{"major":0,"minor":3,"patch":0},"abstract":[{"type":"text","text":"A component that manages character movement."}],"hierarchy":{"paths":[["doc://com.apple.documentation/documentation/technologies","doc://com.apple.RealityKit/documentation/RealityKit"]]},"kind":"symbol","identifier":{"url":"doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent","interfaceLanguage":"swift"},"primaryContentSections":[{"kind":"declarations","declarations":[{"platforms":["iOS","iPadOS","Mac Catalyst","macOS","visionOS"],"tokens":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"CharacterControllerComponent"}],"languages":["swift"]}]},{"kind":"content","content":[{"anchor":"overview","level":2,"type":"heading","text":"Overview"},{"inlineContent":[{"text":"To use a character controller, add a ","type":"text"},{"code":"CharacterControllerComponent","type":"codeVoice"},{"text":" to your entity to make it a character entity.","type":"text"},{"text":" ","type":"text"},{"text":"Use ","type":"text"},{"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/Entity/moveCharacter(by:deltaTime:relativeTo:collisionHandler:)","isActive":true,"type":"reference"},{"text":" to move your character and respond to collisions, or ","type":"text"},{"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/Entity/teleportCharacter(to:relativeTo:)","isActive":true,"type":"reference"},{"text":" to place your character instantaneously in 3D space.","type":"text"}],"type":"paragraph"},{"name":"Note","content":[{"inlineContent":[{"text":"","type":"text"},{"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/PhysicsBodyComponent","isActive":true,"type":"reference"},{"text":" and ","type":"text"},{"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/CollisionComponent","isActive":true,"type":"reference"},{"text":" are incompatible with ","type":"text"},{"type":"codeVoice","code":"CharacterControllerComponent"},{"text":", and RealityKit deactivates them if you add them to the same entity.","type":"text"}],"type":"paragraph"}],"type":"aside","style":"note"},{"anchor":"Handle-collision","level":2,"type":"heading","text":"Handle collision"},{"inlineContent":[{"type":"text","text":"Character entities are capsular, and you can specify their height and radius in the component’s initializer."},{"type":"text","text":" "},{"type":"text","text":"A character’s capsule shape aligns with its "},{"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/upVector","type":"reference","isActive":true},{"type":"text","text":" so that the top and bottom of the capsule pass through that direction vector."}],"type":"paragraph"},{"inlineContent":[{"type":"text","text":"Although characters don’t have a "},{"code":"CollisionComponent","type":"codeVoice"},{"type":"text","text":", they can still interact with colliders."},{"type":"text","text":" "},{"type":"text","text":"The collision handler in "},{"code":"moveCharacter(by:deltaTime:relativeTo:collisionHandler:)","type":"codeVoice"},{"type":"text","text":" allows you to respond to collisions with solid colliders in your scene."}],"type":"paragraph"},{"syntax":"swift","code":["entity.moveCharacter(by: velocity * deltaTime, deltaTime: deltaTime, relativeTo: nil) {","    event in","    // Your character collided with `event.hitEntity`.","}"],"type":"codeListing"},{"inlineContent":[{"text":"To handle collisions with colliders that have a ","type":"text"},{"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/CollisionComponent/mode-swift.property","isActive":true,"type":"reference"},{"text":" of ","type":"text"},{"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/CollisionComponent/Mode-swift.enum/trigger","isActive":true,"type":"reference"},{"text":", subscribe to the ","type":"text"},{"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/CollisionEvents/Began","isActive":true,"type":"reference"},{"text":" event for your ","type":"text"},{"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/RealityView","isActive":true,"type":"reference"},{"text":".","type":"text"},{"text":" ","type":"text"},{"text":"This event doesn’t occur for solid collisions with your character, but RealityKit invokes it when your character enters a trigger.","type":"text"},{"text":" ","type":"text"},{"text":"This is useful for collecting coins, claiming checkpoints, activating enemy behavior when your character enters an area, and many other interactions within games.","type":"text"}],"type":"paragraph"},{"anchor":"Update-your-character","level":2,"type":"heading","text":"Update your character"},{"inlineContent":[{"type":"text","text":"A common use case for "},{"code":"CharacterControllerComponent","type":"codeVoice"},{"type":"text","text":" is to control a character in a video game."},{"type":"text","text":" "},{"type":"text","text":"Video games have update loops where characters and game logic update once each frame, allowing them to respond to player input in real time."},{"type":"text","text":" "},{"code":"CharacterControllerComponent","type":"codeVoice"},{"type":"text","text":" works well in such a setup."}],"type":"paragraph"},{"inlineContent":[{"type":"text","text":"To move your character in response to player input, subscribe to "},{"type":"reference","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/PhysicsSimulationEvents/WillSimulate","isActive":true},{"type":"text","text":" on "},{"type":"reference","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/RealityViewContent","isActive":true},{"type":"text","text":" for your scene."},{"type":"text","text":" "},{"type":"text","text":"The event object contains information like the time delta since the last update, and you can treat this callback as the update loop for your game."}],"type":"paragraph"},{"name":"Note","content":[{"inlineContent":[{"type":"text","text":"You can also use "},{"type":"reference","isActive":true,"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/SceneEvents/Update"},{"type":"text","text":" to run code for each frame, but avoid using it to control physics-based motion in your scene."}],"type":"paragraph"}],"type":"aside","style":"note"},{"inlineContent":[{"type":"text","text":"Read the values from "},{"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerStateComponent","isActive":true,"type":"reference"},{"type":"text","text":" to accumulate forces (such as gravity) and to check whether the character is on the ground."},{"type":"text","text":" "},{"type":"text","text":"RealityKit calculates "},{"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerStateComponent/isOnGround","isActive":true,"type":"reference"},{"type":"text","text":" and  "},{"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerStateComponent/velocity","isActive":true,"type":"reference"},{"type":"text","text":" only after you call "},{"code":"moveCharacter(by:deltaTime:relativeTo:collisionHandler:)","type":"codeVoice"},{"type":"text","text":", so it’s a good idea to call this function at each update."}],"type":"paragraph"},{"syntax":"swift","code":["let gravity: SIMD3<Float> = [0, -50, 0]","let jumpSpeed: Float = 10","content.subscribe(to: PhysicsSimulationEvents.WillSimulate.self, on: playerEntity) {","    event in","    let deltaTime: Float = event.deltaTime","    var velocity: SIMD3<Float> = .zero","    var isOnGround: Bool = false","","    // RealityKit automatically adds `CharacterControllerStateComponent` after moving the character for the first time.","    if let ccState = playerEntity.components[CharacterControllerStateComponent.self] {","        velocity = ccState.velocity","        isOnGround = ccState.isOnGround","    }","","    if !isOnGround {","        // Gravity is a force, so you need to accumulate it for each frame.","        velocity += gravity * deltaTime","    } else if myPlayerInput.jump {","        // Set the character's velocity directly to launch it in the air when the player jumps.","        velocity.y = jumpSpeed","    }","","    playerEntity.moveCharacter(by: velocity * deltaTime, deltaTime: deltaTime, relativeTo: nil) {","        event in","        print(\"playerEntity collided with \\(event.hitEntity.name)\")","    }","}"],"type":"codeListing"},{"inlineContent":[{"text":"The following video shows a character entity jumping in response to player input:","type":"text"}],"type":"paragraph"},{"type":"video","identifier":"character_controller_component_jump.mp4"}]}],"topicSections":[{"title":"Creating a character controller component","anchor":"Creating-a-character-controller-component","identifiers":["doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/init()","doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/init(radius:height:skinWidth:slopeLimit:stepLimit:upVector:collisionFilter:)"]},{"title":"Configuring a character","anchor":"Configuring-a-character","identifiers":["doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/height","doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/radius","doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/skinWidth","doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/slopeLimit","doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/stepLimit","doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/upVector"]},{"title":"Managing character collisions","anchor":"Managing-character-collisions","identifiers":["doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/collisionFilter"]},{"title":"Reading default values","anchor":"Reading-default-values","identifiers":["doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/defaultHeight","doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/defaultRadius","doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/defaultSkinWidth","doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/defaultSlopeLimit","doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/defaultStepLimit","doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/defaultUpVector"]},{"title":"Animating a character","anchor":"Animating-a-character","identifiers":["doc://com.apple.RealityKit/documentation/RealityKit/JointTransforms"]},{"title":"Handling collisions","anchor":"Handling-collisions","identifiers":["doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/Collision","doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/CollisionFlags"]},{"title":"Default Implementations","generated":true,"identifiers":["doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/Component-Implementations"],"anchor":"Default-Implementations"}],"references":{"doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/init(radius:height:skinWidth:slopeLimit:stepLimit:upVector:collisionFilter:)":{"abstract":[{"type":"text","text":"Creates a character controller component using specified values."}],"fragments":[{"text":"init","kind":"identifier"},{"text":"(","kind":"text"},{"text":"radius","kind":"externalParam"},{"text":": ","kind":"text"},{"text":"Float","kind":"typeIdentifier","preciseIdentifier":"s:Sf"},{"text":", ","kind":"text"},{"text":"height","kind":"externalParam"},{"text":": ","kind":"text"},{"text":"Float","kind":"typeIdentifier","preciseIdentifier":"s:Sf"},{"text":", ","kind":"text"},{"text":"skinWidth","kind":"externalParam"},{"text":": ","kind":"text"},{"text":"Float","kind":"typeIdentifier","preciseIdentifier":"s:Sf"},{"text":", ","kind":"text"},{"text":"slopeLimit","kind":"externalParam"},{"text":": ","kind":"text"},{"text":"Float","kind":"typeIdentifier","preciseIdentifier":"s:Sf"},{"text":", ","kind":"text"},{"text":"stepLimit","kind":"externalParam"},{"text":": ","kind":"text"},{"text":"Float","kind":"typeIdentifier","preciseIdentifier":"s:Sf"},{"text":", ","kind":"text"},{"text":"upVector","kind":"externalParam"},{"text":": ","kind":"text"},{"text":"SIMD3","kind":"typeIdentifier","preciseIdentifier":"s:s5SIMD3V"},{"text":"<","kind":"text"},{"text":"Float","kind":"typeIdentifier","preciseIdentifier":"s:Sf"},{"text":">, ","kind":"text"},{"text":"collisionFilter","kind":"externalParam"},{"text":": ","kind":"text"},{"text":"CollisionFilter","kind":"typeIdentifier","preciseIdentifier":"s:17RealityFoundation15CollisionFilterV"},{"text":")","kind":"text"}],"type":"topic","role":"symbol","kind":"symbol","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/init(radius:height:skinWidth:slopeLimit:stepLimit:upVector:collisionFilter:)","title":"init(radius:height:skinWidth:slopeLimit:stepLimit:upVector:collisionFilter:)","url":"/documentation/realitykit/charactercontrollercomponent/init(radius:height:skinwidth:slopelimit:steplimit:upvector:collisionfilter:)"},"doc://com.apple.RealityKit/documentation/RealityKit/CollisionEvents/Began":{"fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"Began"}],"navigatorTitle":[{"kind":"identifier","text":"Began"}],"abstract":[{"type":"text","text":"An event raised when two objects collide."}],"url":"/documentation/realitykit/collisionevents/began","type":"topic","kind":"symbol","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/CollisionEvents/Began","title":"CollisionEvents.Began","role":"symbol"},"doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/Component-Implementations":{"kind":"article","abstract":[],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/Component-Implementations","type":"topic","title":"Component Implementations","role":"collectionGroup","url":"/documentation/realitykit/charactercontrollercomponent/component-implementations"},"doc://com.apple.RealityKit/documentation/RealityKit/Component":{"role":"symbol","navigatorTitle":[{"text":"Component","kind":"identifier"}],"type":"topic","title":"Component","kind":"symbol","fragments":[{"text":"protocol","kind":"keyword"},{"text":" ","kind":"text"},{"text":"Component","kind":"identifier"}],"abstract":[{"text":"A representation of a geometry or a behavior that you apply to an entity.","type":"text"}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/Component","url":"/documentation/realitykit/component"},"doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerStateComponent/velocity":{"fragments":[{"kind":"keyword","text":"let"},{"kind":"text","text":" "},{"kind":"identifier","text":"velocity"},{"kind":"text","text":": "},{"kind":"typeIdentifier","preciseIdentifier":"s:s5SIMD3V","text":"SIMD3"},{"kind":"text","text":"<"},{"kind":"typeIdentifier","preciseIdentifier":"s:Sf","text":"Float"},{"text":">","kind":"text"}],"role":"symbol","type":"topic","abstract":[{"type":"text","text":"The linear speed relative to the origin in physics space."}],"title":"velocity","kind":"symbol","url":"/documentation/realitykit/charactercontrollerstatecomponent/velocity","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerStateComponent/velocity"},"doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/CollisionFlags":{"role":"symbol","navigatorTitle":[{"kind":"identifier","text":"CollisionFlags"}],"type":"topic","title":"CharacterControllerComponent.CollisionFlags","kind":"symbol","fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"CollisionFlags"}],"abstract":[{"type":"text","text":"An option set that specifies which parts of the character capsule have collided with other objects."}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/CollisionFlags","url":"/documentation/realitykit/charactercontrollercomponent/collisionflags"},"character_controller_component_jump_poster.png":{"identifier":"character_controller_component_jump_poster.png","type":"image","variants":[{"traits":["1x","light"],"url":"https://docs-assets.developer.apple.com/published/66103c7062ff7a453eefc06ba62fd282/character_controller_component_jump_poster.png"}],"alt":null},"doc://com.apple.RealityKit/documentation/RealityKit/SceneEvents/Update":{"abstract":[{"text":"An event invoked once per frame interval that you can use to execute","type":"text"},{"text":" ","type":"text"},{"type":"text","text":"custom logic for each frame."}],"title":"SceneEvents.Update","kind":"symbol","type":"topic","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/SceneEvents/Update","navigatorTitle":[{"text":"Update","kind":"identifier"}],"url":"/documentation/realitykit/sceneevents/update","role":"symbol","fragments":[{"kind":"keyword","text":"struct"},{"text":" ","kind":"text"},{"kind":"identifier","text":"Update"}]},"doc://com.apple.RealityKit/documentation/RealityKit/RealityViewContent":{"kind":"symbol","url":"/documentation/realitykit/realityviewcontent","abstract":[{"type":"text","text":"The content of a visionOS reality view."}],"fragments":[{"text":"struct","kind":"keyword"},{"text":" ","kind":"text"},{"text":"RealityViewContent","kind":"identifier"}],"navigatorTitle":[{"text":"RealityViewContent","kind":"identifier"}],"role":"symbol","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/RealityViewContent","title":"RealityViewContent","type":"topic"},"doc://com.apple.RealityKit/documentation/RealityKit/PhysicsBodyComponent":{"title":"PhysicsBodyComponent","abstract":[{"text":"A component that defines an entity’s behavior in physics body simulations.","type":"text"}],"type":"topic","navigatorTitle":[{"kind":"identifier","text":"PhysicsBodyComponent"}],"fragments":[{"text":"struct","kind":"keyword"},{"kind":"text","text":" "},{"kind":"identifier","text":"PhysicsBodyComponent"}],"kind":"symbol","url":"/documentation/realitykit/physicsbodycomponent","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/PhysicsBodyComponent","role":"symbol"},"doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/radius":{"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/radius","url":"/documentation/realitykit/charactercontrollercomponent/radius","fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"radius"},{"kind":"text","text":": "},{"kind":"typeIdentifier","preciseIdentifier":"s:Sf","text":"Float"}],"kind":"symbol","type":"topic","abstract":[{"type":"text","text":"The capsule radius."}],"role":"symbol","title":"radius"},"doc://com.apple.RealityKit/documentation/RealityKit/RealityView":{"navigatorTitle":[{"kind":"identifier","text":"RealityView"}],"url":"/documentation/realitykit/realityview","fragments":[{"text":"struct","kind":"keyword"},{"text":" ","kind":"text"},{"kind":"identifier","text":"RealityView"}],"abstract":[{"text":"A view that contains RealityKit content.","type":"text"}],"kind":"symbol","type":"topic","role":"symbol","title":"RealityView","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/RealityView"},"doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/defaultUpVector":{"abstract":[{"text":"The default up vector RealityKit applies when you use the default initializer.","type":"text"}],"title":"defaultUpVector","kind":"symbol","type":"topic","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/defaultUpVector","url":"/documentation/realitykit/charactercontrollercomponent/defaultupvector","role":"symbol","fragments":[{"text":"static","kind":"keyword"},{"text":" ","kind":"text"},{"text":"let","kind":"keyword"},{"text":" ","kind":"text"},{"text":"defaultUpVector","kind":"identifier"},{"text":": ","kind":"text"},{"text":"SIMD3","preciseIdentifier":"s:s5SIMD3V","kind":"typeIdentifier"},{"text":"<","kind":"text"},{"text":"Float","preciseIdentifier":"s:Sf","kind":"typeIdentifier"},{"text":">","kind":"text"}]},"doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/collisionFilter":{"title":"collisionFilter","url":"/documentation/realitykit/charactercontrollercomponent/collisionfilter","role":"symbol","fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"collisionFilter"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"CollisionFilter","preciseIdentifier":"s:17RealityFoundation15CollisionFilterV"}],"type":"topic","kind":"symbol","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/collisionFilter","abstract":[{"type":"text","text":"The character’s collision filter."}]},"doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/height":{"kind":"symbol","url":"/documentation/realitykit/charactercontrollercomponent/height","title":"height","abstract":[{"text":"The capsule height.","type":"text"}],"fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"height"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"Float","preciseIdentifier":"s:Sf"}],"type":"topic","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/height","role":"symbol"},"doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/defaultStepLimit":{"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/defaultStepLimit","url":"/documentation/realitykit/charactercontrollercomponent/defaultsteplimit","abstract":[{"type":"text","text":"The step limit value RealityKit applies when you use the default initializer."}],"title":"defaultStepLimit","role":"symbol","type":"topic","fragments":[{"kind":"keyword","text":"static"},{"kind":"text","text":" "},{"kind":"keyword","text":"let"},{"kind":"text","text":" "},{"kind":"identifier","text":"defaultStepLimit"},{"kind":"text","text":": "},{"kind":"typeIdentifier","preciseIdentifier":"s:Sf","text":"Float"}],"kind":"symbol"},"doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/slopeLimit":{"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/slopeLimit","url":"/documentation/realitykit/charactercontrollercomponent/slopelimit","fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"slopeLimit"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"Float","preciseIdentifier":"s:Sf"}],"kind":"symbol","type":"topic","abstract":[{"type":"text","text":"The slope limit expressed as a limit angle in radians."}],"role":"symbol","title":"slopeLimit"},"doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/upVector":{"kind":"symbol","url":"/documentation/realitykit/charactercontrollercomponent/upvector","title":"upVector","abstract":[{"text":"The y-axis direction relative to the physics origin.","type":"text"}],"fragments":[{"text":"var","kind":"keyword"},{"text":" ","kind":"text"},{"text":"upVector","kind":"identifier"},{"text":": ","kind":"text"},{"text":"SIMD3","preciseIdentifier":"s:s5SIMD3V","kind":"typeIdentifier"},{"text":"<","kind":"text"},{"text":"Float","preciseIdentifier":"s:Sf","kind":"typeIdentifier"},{"text":">","kind":"text"}],"type":"topic","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/upVector","role":"symbol"},"doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/stepLimit":{"kind":"symbol","url":"/documentation/realitykit/charactercontrollercomponent/steplimit","title":"stepLimit","abstract":[{"text":"The maximum obstacle height that the controller can move over.","type":"text"}],"fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"stepLimit"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"Float","preciseIdentifier":"s:Sf"}],"type":"topic","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/stepLimit","role":"symbol"},"doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/defaultSkinWidth":{"kind":"symbol","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/defaultSkinWidth","abstract":[{"type":"text","text":"The skin width value RealityKit applies when you use the default initializer."}],"title":"defaultSkinWidth","url":"/documentation/realitykit/charactercontrollercomponent/defaultskinwidth","type":"topic","role":"symbol","fragments":[{"kind":"keyword","text":"static"},{"kind":"text","text":" "},{"kind":"keyword","text":"let"},{"kind":"text","text":" "},{"kind":"identifier","text":"defaultSkinWidth"},{"kind":"text","text":": "},{"preciseIdentifier":"s:Sf","kind":"typeIdentifier","text":"Float"}]},"doc://com.apple.documentation/documentation/technologies":{"url":"/documentation/technologies","abstract":[{"text":"","type":"text"}],"kind":"technologies","type":"topic","role":"overview","title":"Technologies","identifier":"doc://com.apple.documentation/documentation/technologies"},"doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/init()":{"title":"init()","type":"topic","abstract":[{"type":"text","text":"Creates a character controller component using default values."}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/init()","kind":"symbol","fragments":[{"kind":"identifier","text":"init"},{"kind":"text","text":"()"}],"role":"symbol","url":"/documentation/realitykit/charactercontrollercomponent/init()"},"doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/defaultSlopeLimit":{"kind":"symbol","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/defaultSlopeLimit","abstract":[{"type":"text","text":"The slope limit value RealityKit applies when you use the default initializer."}],"title":"defaultSlopeLimit","url":"/documentation/realitykit/charactercontrollercomponent/defaultslopelimit","type":"topic","role":"symbol","fragments":[{"kind":"keyword","text":"static"},{"kind":"text","text":" "},{"kind":"keyword","text":"let"},{"kind":"text","text":" "},{"kind":"identifier","text":"defaultSlopeLimit"},{"kind":"text","text":": "},{"preciseIdentifier":"s:Sf","kind":"typeIdentifier","text":"Float"}]},"doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerStateComponent/isOnGround":{"url":"/documentation/realitykit/charactercontrollerstatecomponent/isonground","type":"topic","kind":"symbol","fragments":[{"kind":"keyword","text":"let"},{"kind":"text","text":" "},{"kind":"identifier","text":"isOnGround"},{"kind":"text","text":": "},{"preciseIdentifier":"s:Sb","kind":"typeIdentifier","text":"Bool"}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerStateComponent/isOnGround","abstract":[{"type":"text","text":"A Boolean value that indicates whether the character controller is on the ground."}],"role":"symbol","title":"isOnGround"},"doc://com.apple.RealityKit/documentation/RealityKit/CollisionComponent/mode-swift.property":{"role":"symbol","type":"topic","title":"mode","kind":"symbol","fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"mode"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"CollisionComponent","preciseIdentifier":"s:17RealityFoundation18CollisionComponentV"},{"kind":"text","text":"."},{"kind":"typeIdentifier","text":"Mode","preciseIdentifier":"s:17RealityFoundation18CollisionComponentV4ModeO"}],"abstract":[{"text":"The collision mode.","type":"text"}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/CollisionComponent/mode-swift.property","url":"/documentation/realitykit/collisioncomponent/mode-swift.property"},"doc://com.apple.RealityKit/documentation/RealityKit/Entity/teleportCharacter(to:relativeTo:)":{"type":"topic","abstract":[{"type":"text","text":"Moves the character instantly to a new position."}],"role":"symbol","kind":"symbol","url":"/documentation/realitykit/entity/teleportcharacter(to:relativeto:)","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/Entity/teleportCharacter(to:relativeTo:)","title":"teleportCharacter(to:relativeTo:)","fragments":[{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"teleportCharacter"},{"kind":"text","text":"("},{"kind":"externalParam","text":"to"},{"kind":"text","text":": "},{"preciseIdentifier":"s:s5SIMD3V","kind":"typeIdentifier","text":"SIMD3"},{"text":"<","kind":"text"},{"text":"Float","preciseIdentifier":"s:Sf","kind":"typeIdentifier"},{"text":">, ","kind":"text"},{"text":"relativeTo","kind":"externalParam"},{"text":": ","kind":"text"},{"text":"Entity","preciseIdentifier":"s:17RealityFoundation6EntityC","kind":"typeIdentifier"},{"text":"?)","kind":"text"}]},"doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/Collision":{"kind":"symbol","title":"CharacterControllerComponent.Collision","abstract":[{"text":"A container that holds collision state for the character controller.","type":"text"}],"url":"/documentation/realitykit/charactercontrollercomponent/collision","type":"topic","fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"Collision"}],"navigatorTitle":[{"kind":"identifier","text":"Collision"}],"role":"symbol","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/Collision"},"doc://com.apple.RealityKit/documentation/RealityKit":{"url":"/documentation/realitykit","abstract":[{"text":"Simulate and render 3D content for use in your augmented reality apps.","type":"text"}],"kind":"symbol","type":"topic","role":"collection","title":"RealityKit","identifier":"doc://com.apple.RealityKit/documentation/RealityKit"},"doc://com.apple.RealityKit/documentation/RealityKit/Entity/moveCharacter(by:deltaTime:relativeTo:collisionHandler:)":{"kind":"symbol","role":"symbol","abstract":[{"type":"text","text":"Moves the character along a specified vector over a period of time."}],"type":"topic","url":"/documentation/realitykit/entity/movecharacter(by:deltatime:relativeto:collisionhandler:)","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/Entity/moveCharacter(by:deltaTime:relativeTo:collisionHandler:)","title":"moveCharacter(by:deltaTime:relativeTo:collisionHandler:)","fragments":[{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"moveCharacter"},{"kind":"text","text":"("},{"kind":"externalParam","text":"by"},{"kind":"text","text":": "},{"preciseIdentifier":"s:s5SIMD3V","kind":"typeIdentifier","text":"SIMD3"},{"text":"<","kind":"text"},{"text":"Float","preciseIdentifier":"s:Sf","kind":"typeIdentifier"},{"text":">, ","kind":"text"},{"text":"deltaTime","kind":"externalParam"},{"text":": ","kind":"text"},{"text":"Float","preciseIdentifier":"s:Sf","kind":"typeIdentifier"},{"text":", ","kind":"text"},{"text":"relativeTo","kind":"externalParam"},{"text":": ","kind":"text"},{"text":"Entity","preciseIdentifier":"s:17RealityFoundation6EntityC","kind":"typeIdentifier"},{"text":"?, ","kind":"text"},{"text":"collisionHandler","kind":"externalParam"},{"text":": ((","kind":"text"},{"text":"CharacterControllerComponent","preciseIdentifier":"s:17RealityFoundation28CharacterControllerComponentV","kind":"typeIdentifier"},{"text":".","kind":"text"},{"text":"Collision","preciseIdentifier":"s:17RealityFoundation28CharacterControllerComponentV9CollisionV","kind":"typeIdentifier"},{"text":") -> ","kind":"text"},{"text":"Void","preciseIdentifier":"s:s4Voida","kind":"typeIdentifier"},{"text":")?) -> ","kind":"text"},{"text":"CharacterControllerComponent","preciseIdentifier":"s:17RealityFoundation28CharacterControllerComponentV","kind":"typeIdentifier"},{"text":".","kind":"text"},{"text":"CollisionFlags","preciseIdentifier":"s:17RealityFoundation28CharacterControllerComponentV14CollisionFlagsV","kind":"typeIdentifier"}]},"doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/skinWidth":{"kind":"symbol","url":"/documentation/realitykit/charactercontrollercomponent/skinwidth","title":"skinWidth","abstract":[{"text":"An added tolerance around the character capsule.","type":"text"}],"fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"skinWidth"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"Float","preciseIdentifier":"s:Sf"}],"type":"topic","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/skinWidth","role":"symbol"},"doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent":{"abstract":[{"text":"A component that manages character movement.","type":"text"}],"navigatorTitle":[{"text":"CharacterControllerComponent","kind":"identifier"}],"role":"symbol","url":"/documentation/realitykit/charactercontrollercomponent","kind":"symbol","title":"CharacterControllerComponent","fragments":[{"text":"struct","kind":"keyword"},{"text":" ","kind":"text"},{"text":"CharacterControllerComponent","kind":"identifier"}],"type":"topic","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent"},"character_controller_component_jump.mp4":{"identifier":"character_controller_component_jump.mp4","alt":"A video of a white capsule jumping on a flat gray plane in response to player input.","type":"video","poster":"character_controller_component_jump_poster.png","variants":[{"url":"https://docs-assets.developer.apple.com/published/7e8575eaf8dacb4a63140b1edb9c1add/character_controller_component_jump.mp4","traits":["1x","light"]}]},"doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/defaultRadius":{"abstract":[{"text":"The capsule default radius RealityKit applies when you use the default initializer.","type":"text"}],"title":"defaultRadius","kind":"symbol","type":"topic","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/defaultRadius","url":"/documentation/realitykit/charactercontrollercomponent/defaultradius","role":"symbol","fragments":[{"text":"static","kind":"keyword"},{"text":" ","kind":"text"},{"text":"let","kind":"keyword"},{"text":" ","kind":"text"},{"text":"defaultRadius","kind":"identifier"},{"text":": ","kind":"text"},{"text":"Float","preciseIdentifier":"s:Sf","kind":"typeIdentifier"}]},"doc://com.apple.RealityKit/documentation/RealityKit/CollisionComponent/Mode-swift.enum/trigger":{"role":"symbol","type":"topic","title":"CollisionComponent.Mode.trigger","kind":"symbol","fragments":[{"kind":"keyword","text":"case"},{"kind":"text","text":" "},{"kind":"identifier","text":"trigger"}],"abstract":[{"text":"A trigger collision object.","type":"text"}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/CollisionComponent/Mode-swift.enum/trigger","url":"/documentation/realitykit/collisioncomponent/mode-swift.enum/trigger"},"doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/defaultHeight":{"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/defaultHeight","url":"/documentation/realitykit/charactercontrollercomponent/defaultheight","abstract":[{"type":"text","text":"The capsule height value RealityKit applies when you use the default initializer."}],"title":"defaultHeight","role":"symbol","type":"topic","fragments":[{"kind":"keyword","text":"static"},{"kind":"text","text":" "},{"kind":"keyword","text":"let"},{"kind":"text","text":" "},{"kind":"identifier","text":"defaultHeight"},{"kind":"text","text":": "},{"kind":"typeIdentifier","preciseIdentifier":"s:Sf","text":"Float"}],"kind":"symbol"},"doc://com.apple.RealityKit/documentation/RealityKit/PhysicsSimulationEvents/WillSimulate":{"abstract":[{"type":"text","text":"The event raised before the simulation advances to the current frame."}],"navigatorTitle":[{"text":"WillSimulate","kind":"identifier"}],"fragments":[{"text":"struct","kind":"keyword"},{"text":" ","kind":"text"},{"text":"WillSimulate","kind":"identifier"}],"type":"topic","role":"symbol","kind":"symbol","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/PhysicsSimulationEvents/WillSimulate","title":"PhysicsSimulationEvents.WillSimulate","url":"/documentation/realitykit/physicssimulationevents/willsimulate"},"doc://com.apple.RealityKit/documentation/RealityKit/CollisionComponent":{"abstract":[{"type":"text","text":"A component that gives an entity the ability to collide with other entities"},{"type":"text","text":" "},{"type":"text","text":"that also have collision components."}],"type":"topic","url":"/documentation/realitykit/collisioncomponent","title":"CollisionComponent","role":"symbol","navigatorTitle":[{"text":"CollisionComponent","kind":"identifier"}],"fragments":[{"text":"struct","kind":"keyword"},{"text":" ","kind":"text"},{"text":"CollisionComponent","kind":"identifier"}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/CollisionComponent","kind":"symbol"},"doc://com.apple.RealityKit/documentation/RealityKit/JointTransforms":{"title":"JointTransforms","role":"symbol","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/JointTransforms","url":"/documentation/realitykit/jointtransforms","abstract":[{"text":"A set of animatable transform values for joints that collectively represent","type":"text"},{"type":"text","text":" "},{"text":"a single skeletal pose.","type":"text"}],"fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"JointTransforms"}],"kind":"symbol","navigatorTitle":[{"kind":"identifier","text":"JointTransforms"}],"type":"topic"},"doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerStateComponent":{"type":"topic","abstract":[{"type":"text","text":"A component that represents the state of a character controller."}],"title":"CharacterControllerStateComponent","role":"symbol","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerStateComponent","url":"/documentation/realitykit/charactercontrollerstatecomponent","fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"CharacterControllerStateComponent"}],"kind":"symbol","navigatorTitle":[{"kind":"identifier","text":"CharacterControllerStateComponent"}]}},"legalNotices":{"copyright":"Copyright &copy; 2025 Apple Inc. All rights reserved.","termsOfUse":"https://www.apple.com/legal/internet-services/terms/site.html","privacyPolicy":"https://www.apple.com/privacy/privacy-policy"}}
+{
+  "abstract": [
+    {
+      "text": "A component that manages character movement.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:17RealityFoundation28CharacterControllerComponentV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "CharacterControllerComponent"
+      }
+    ],
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "CharacterControllerComponent"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "CharacterControllerComponent"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CharacterControllerComponent"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use a character controller, add a ",
+              "type": "text"
+            },
+            {
+              "code": "CharacterControllerComponent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to your entity to make it a character entity.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/moveCharacter(by:deltaTime:relativeTo:collisionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to move your character and respond to collisions, or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/teleportCharacter(to:relativeTo:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to place your character instantaneously in 3D space.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicsBodyComponent",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CollisionComponent",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " are incompatible with ",
+                  "type": "text"
+                },
+                {
+                  "code": "CharacterControllerComponent",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", and RealityKit deactivates them if you add them to the same entity.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Handle-collision",
+          "level": 2,
+          "text": "Handle collision",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Character entities are capsular, and you can specify their height and radius in the component’s initializer.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "A character’s capsule shape aligns with its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/upVector",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " so that the top and bottom of the capsule pass through that direction vector.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Although characters don’t have a ",
+              "type": "text"
+            },
+            {
+              "code": "CollisionComponent",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", they can still interact with colliders.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The collision handler in ",
+              "type": "text"
+            },
+            {
+              "code": "moveCharacter(by:deltaTime:relativeTo:collisionHandler:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " allows you to respond to collisions with solid colliders in your scene.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "entity.moveCharacter(by: velocity * deltaTime, deltaTime: deltaTime, relativeTo: nil) {",
+            "    event in",
+            "    // Your character collided with `event.hitEntity`.",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To handle collisions with colliders that have a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CollisionComponent/mode-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CollisionComponent/Mode-swift.enum/trigger",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", subscribe to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CollisionEvents/Began",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " event for your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/RealityView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This event doesn’t occur for solid collisions with your character, but RealityKit invokes it when your character enters a trigger.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This is useful for collecting coins, claiming checkpoints, activating enemy behavior when your character enters an area, and many other interactions within games.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Update-your-character",
+          "level": 2,
+          "text": "Update your character",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A common use case for ",
+              "type": "text"
+            },
+            {
+              "code": "CharacterControllerComponent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is to control a character in a video game.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Video games have update loops where characters and game logic update once each frame, allowing them to respond to player input in real time.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "CharacterControllerComponent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " works well in such a setup.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To move your character in response to player input, subscribe to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicsSimulationEvents/WillSimulate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/RealityViewContent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for your scene.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The event object contains information like the time delta since the last update, and you can treat this callback as the update loop for your game.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You can also use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SceneEvents/Update",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to run code for each frame, but avoid using it to control physics-based motion in your scene.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Read the values from ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerStateComponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to accumulate forces (such as gravity) and to check whether the character is on the ground.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "RealityKit calculates ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerStateComponent/isOnGround",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerStateComponent/velocity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " only after you call ",
+              "type": "text"
+            },
+            {
+              "code": "moveCharacter(by:deltaTime:relativeTo:collisionHandler:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", so it’s a good idea to call this function at each update.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let gravity: SIMD3<Float> = [0, -50, 0]",
+            "let jumpSpeed: Float = 10",
+            "content.subscribe(to: PhysicsSimulationEvents.WillSimulate.self, on: playerEntity) {",
+            "    event in",
+            "    let deltaTime: Float = event.deltaTime",
+            "    var velocity: SIMD3<Float> = .zero",
+            "    var isOnGround: Bool = false",
+            "",
+            "    // RealityKit automatically adds `CharacterControllerStateComponent` after moving the character for the first time.",
+            "    if let ccState = playerEntity.components[CharacterControllerStateComponent.self] {",
+            "        velocity = ccState.velocity",
+            "        isOnGround = ccState.isOnGround",
+            "    }",
+            "",
+            "    if !isOnGround {",
+            "        // Gravity is a force, so you need to accumulate it for each frame.",
+            "        velocity += gravity * deltaTime",
+            "    } else if myPlayerInput.jump {",
+            "        // Set the character's velocity directly to launch it in the air when the player jumps.",
+            "        velocity.y = jumpSpeed",
+            "    }",
+            "",
+            "    playerEntity.moveCharacter(by: velocity * deltaTime, deltaTime: deltaTime, relativeTo: nil) {",
+            "        event in",
+            "        print(\"playerEntity collided with \\(event.hitEntity.name)\")",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following video shows a character entity jumping in response to player input:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "identifier": "character_controller_component_jump.mp4",
+          "type": "video"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "character_controller_component_jump.mp4": {
+      "alt": "A video of a white capsule jumping on a flat gray plane in response to player input.",
+      "identifier": "character_controller_component_jump.mp4",
+      "poster": "character_controller_component_jump_poster.png",
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7e8575eaf8dacb4a63140b1edb9c1add/character_controller_component_jump.mp4"
+        }
+      ]
+    },
+    "character_controller_component_jump_poster.png": {
+      "alt": null,
+      "identifier": "character_controller_component_jump_poster.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/66103c7062ff7a453eefc06ba62fd282/character_controller_component_jump_poster.png"
+        }
+      ]
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent": {
+      "abstract": [
+        {
+          "text": "A component that manages character movement.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CharacterControllerComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CharacterControllerComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "CharacterControllerComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/charactercontrollercomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/Collision": {
+      "abstract": [
+        {
+          "text": "A container that holds collision state for the character controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Collision"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/Collision",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Collision"
+        }
+      ],
+      "role": "symbol",
+      "title": "CharacterControllerComponent.Collision",
+      "type": "topic",
+      "url": "/documentation/realitykit/charactercontrollercomponent/collision"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/CollisionFlags": {
+      "abstract": [
+        {
+          "text": "An option set that specifies which parts of the character capsule have collided with other objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CollisionFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/CollisionFlags",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CollisionFlags"
+        }
+      ],
+      "role": "symbol",
+      "title": "CharacterControllerComponent.CollisionFlags",
+      "type": "topic",
+      "url": "/documentation/realitykit/charactercontrollercomponent/collisionflags"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/Component-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/Component-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Component Implementations",
+      "type": "topic",
+      "url": "/documentation/realitykit/charactercontrollercomponent/component-implementations"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/collisionFilter": {
+      "abstract": [
+        {
+          "text": "The character’s collision filter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "collisionFilter"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation15CollisionFilterV",
+          "text": "CollisionFilter"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/collisionFilter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "collisionFilter",
+      "type": "topic",
+      "url": "/documentation/realitykit/charactercontrollercomponent/collisionfilter"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/defaultHeight": {
+      "abstract": [
+        {
+          "text": "The capsule height value RealityKit applies when you use the default initializer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultHeight"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/defaultHeight",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "defaultHeight",
+      "type": "topic",
+      "url": "/documentation/realitykit/charactercontrollercomponent/defaultheight"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/defaultRadius": {
+      "abstract": [
+        {
+          "text": "The capsule default radius RealityKit applies when you use the default initializer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultRadius"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/defaultRadius",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "defaultRadius",
+      "type": "topic",
+      "url": "/documentation/realitykit/charactercontrollercomponent/defaultradius"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/defaultSkinWidth": {
+      "abstract": [
+        {
+          "text": "The skin width value RealityKit applies when you use the default initializer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultSkinWidth"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/defaultSkinWidth",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "defaultSkinWidth",
+      "type": "topic",
+      "url": "/documentation/realitykit/charactercontrollercomponent/defaultskinwidth"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/defaultSlopeLimit": {
+      "abstract": [
+        {
+          "text": "The slope limit value RealityKit applies when you use the default initializer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultSlopeLimit"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/defaultSlopeLimit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "defaultSlopeLimit",
+      "type": "topic",
+      "url": "/documentation/realitykit/charactercontrollercomponent/defaultslopelimit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/defaultStepLimit": {
+      "abstract": [
+        {
+          "text": "The step limit value RealityKit applies when you use the default initializer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultStepLimit"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/defaultStepLimit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "defaultStepLimit",
+      "type": "topic",
+      "url": "/documentation/realitykit/charactercontrollercomponent/defaultsteplimit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/defaultUpVector": {
+      "abstract": [
+        {
+          "text": "The default up vector RealityKit applies when you use the default initializer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultUpVector"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5SIMD3V",
+          "text": "SIMD3"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/defaultUpVector",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "defaultUpVector",
+      "type": "topic",
+      "url": "/documentation/realitykit/charactercontrollercomponent/defaultupvector"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/height": {
+      "abstract": [
+        {
+          "text": "The capsule height.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "height"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/height",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "height",
+      "type": "topic",
+      "url": "/documentation/realitykit/charactercontrollercomponent/height"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/init()": {
+      "abstract": [
+        {
+          "text": "Creates a character controller component using default values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/init()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/realitykit/charactercontrollercomponent/init()"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/init(radius:height:skinWidth:slopeLimit:stepLimit:upVector:collisionFilter:)": {
+      "abstract": [
+        {
+          "text": "Creates a character controller component using specified values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "radius"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "height"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "skinWidth"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "slopeLimit"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "stepLimit"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "upVector"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5SIMD3V",
+          "text": "SIMD3"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "collisionFilter"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation15CollisionFilterV",
+          "text": "CollisionFilter"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/init(radius:height:skinWidth:slopeLimit:stepLimit:upVector:collisionFilter:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(radius:height:skinWidth:slopeLimit:stepLimit:upVector:collisionFilter:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/charactercontrollercomponent/init(radius:height:skinwidth:slopelimit:steplimit:upvector:collisionfilter:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/radius": {
+      "abstract": [
+        {
+          "text": "The capsule radius.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "radius"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/radius",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "radius",
+      "type": "topic",
+      "url": "/documentation/realitykit/charactercontrollercomponent/radius"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/skinWidth": {
+      "abstract": [
+        {
+          "text": "An added tolerance around the character capsule.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "skinWidth"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/skinWidth",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "skinWidth",
+      "type": "topic",
+      "url": "/documentation/realitykit/charactercontrollercomponent/skinwidth"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/slopeLimit": {
+      "abstract": [
+        {
+          "text": "The slope limit expressed as a limit angle in radians.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "slopeLimit"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/slopeLimit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "slopeLimit",
+      "type": "topic",
+      "url": "/documentation/realitykit/charactercontrollercomponent/slopelimit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/stepLimit": {
+      "abstract": [
+        {
+          "text": "The maximum obstacle height that the controller can move over.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stepLimit"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/stepLimit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stepLimit",
+      "type": "topic",
+      "url": "/documentation/realitykit/charactercontrollercomponent/steplimit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/upVector": {
+      "abstract": [
+        {
+          "text": "The y-axis direction relative to the physics origin.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "upVector"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5SIMD3V",
+          "text": "SIMD3"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/upVector",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "upVector",
+      "type": "topic",
+      "url": "/documentation/realitykit/charactercontrollercomponent/upvector"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerStateComponent": {
+      "abstract": [
+        {
+          "text": "A component that represents the state of a character controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CharacterControllerStateComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerStateComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CharacterControllerStateComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "CharacterControllerStateComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/charactercontrollerstatecomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerStateComponent/isOnGround": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the character controller is on the ground.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isOnGround"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerStateComponent/isOnGround",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isOnGround",
+      "type": "topic",
+      "url": "/documentation/realitykit/charactercontrollerstatecomponent/isonground"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerStateComponent/velocity": {
+      "abstract": [
+        {
+          "text": "The linear speed relative to the origin in physics space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "velocity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5SIMD3V",
+          "text": "SIMD3"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerStateComponent/velocity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "velocity",
+      "type": "topic",
+      "url": "/documentation/realitykit/charactercontrollerstatecomponent/velocity"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CollisionComponent": {
+      "abstract": [
+        {
+          "text": "A component that gives an entity the ability to collide with other entities",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "that also have collision components.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CollisionComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CollisionComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CollisionComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "CollisionComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/collisioncomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CollisionComponent/Mode-swift.enum/trigger": {
+      "abstract": [
+        {
+          "text": "A trigger collision object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "trigger"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CollisionComponent/Mode-swift.enum/trigger",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CollisionComponent.Mode.trigger",
+      "type": "topic",
+      "url": "/documentation/realitykit/collisioncomponent/mode-swift.enum/trigger"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CollisionComponent/mode-swift.property": {
+      "abstract": [
+        {
+          "text": "The collision mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation18CollisionComponentV",
+          "text": "CollisionComponent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation18CollisionComponentV4ModeO",
+          "text": "Mode"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CollisionComponent/mode-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mode",
+      "type": "topic",
+      "url": "/documentation/realitykit/collisioncomponent/mode-swift.property"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CollisionEvents/Began": {
+      "abstract": [
+        {
+          "text": "An event raised when two objects collide.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Began"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CollisionEvents/Began",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Began"
+        }
+      ],
+      "role": "symbol",
+      "title": "CollisionEvents.Began",
+      "type": "topic",
+      "url": "/documentation/realitykit/collisionevents/began"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Component": {
+      "abstract": [
+        {
+          "text": "A representation of a geometry or a behavior that you apply to an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Component"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Component",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Component"
+        }
+      ],
+      "role": "symbol",
+      "title": "Component",
+      "type": "topic",
+      "url": "/documentation/realitykit/component"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/moveCharacter(by:deltaTime:relativeTo:collisionHandler:)": {
+      "abstract": [
+        {
+          "text": "Moves the character along a specified vector over a period of time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "moveCharacter"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "by"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5SIMD3V",
+          "text": "SIMD3"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "deltaTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "relativeTo"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation6EntityC",
+          "text": "Entity"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "collisionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation28CharacterControllerComponentV",
+          "text": "CharacterControllerComponent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation28CharacterControllerComponentV9CollisionV",
+          "text": "Collision"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation28CharacterControllerComponentV",
+          "text": "CharacterControllerComponent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation28CharacterControllerComponentV14CollisionFlagsV",
+          "text": "CollisionFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/moveCharacter(by:deltaTime:relativeTo:collisionHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "moveCharacter(by:deltaTime:relativeTo:collisionHandler:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/movecharacter(by:deltatime:relativeto:collisionhandler:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/teleportCharacter(to:relativeTo:)": {
+      "abstract": [
+        {
+          "text": "Moves the character instantly to a new position.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "teleportCharacter"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5SIMD3V",
+          "text": "SIMD3"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "relativeTo"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation6EntityC",
+          "text": "Entity"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/teleportCharacter(to:relativeTo:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "teleportCharacter(to:relativeTo:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/teleportcharacter(to:relativeto:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/JointTransforms": {
+      "abstract": [
+        {
+          "text": "A set of animatable transform values for joints that collectively represent",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "a single skeletal pose.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "JointTransforms"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/JointTransforms",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "JointTransforms"
+        }
+      ],
+      "role": "symbol",
+      "title": "JointTransforms",
+      "type": "topic",
+      "url": "/documentation/realitykit/jointtransforms"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PhysicsBodyComponent": {
+      "abstract": [
+        {
+          "text": "A component that defines an entity’s behavior in physics body simulations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PhysicsBodyComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicsBodyComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PhysicsBodyComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "PhysicsBodyComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/physicsbodycomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PhysicsSimulationEvents/WillSimulate": {
+      "abstract": [
+        {
+          "text": "The event raised before the simulation advances to the current frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WillSimulate"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicsSimulationEvents/WillSimulate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WillSimulate"
+        }
+      ],
+      "role": "symbol",
+      "title": "PhysicsSimulationEvents.WillSimulate",
+      "type": "topic",
+      "url": "/documentation/realitykit/physicssimulationevents/willsimulate"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/RealityView": {
+      "abstract": [
+        {
+          "text": "A view that contains RealityKit content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RealityView"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/RealityView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RealityView"
+        }
+      ],
+      "role": "symbol",
+      "title": "RealityView",
+      "type": "topic",
+      "url": "/documentation/realitykit/realityview"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/RealityViewContent": {
+      "abstract": [
+        {
+          "text": "The content of a visionOS reality view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RealityViewContent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/RealityViewContent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RealityViewContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "RealityViewContent",
+      "type": "topic",
+      "url": "/documentation/realitykit/realityviewcontent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SceneEvents/Update": {
+      "abstract": [
+        {
+          "text": "An event invoked once per frame interval that you can use to execute",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "custom logic for each frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Update"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SceneEvents/Update",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Update"
+        }
+      ],
+      "role": "symbol",
+      "title": "SceneEvents.Update",
+      "type": "topic",
+      "url": "/documentation/realitykit/sceneevents/update"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/Component"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Character-control",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/Collision",
+        "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/CollisionFlags",
+        "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerStateComponent"
+      ],
+      "title": "Character control"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-character-controller-component",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/init()",
+        "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/init(radius:height:skinWidth:slopeLimit:stepLimit:upVector:collisionFilter:)"
+      ],
+      "title": "Creating a character controller component"
+    },
+    {
+      "anchor": "Configuring-a-character",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/height",
+        "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/radius",
+        "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/skinWidth",
+        "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/slopeLimit",
+        "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/stepLimit",
+        "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/upVector"
+      ],
+      "title": "Configuring a character"
+    },
+    {
+      "anchor": "Managing-character-collisions",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/collisionFilter"
+      ],
+      "title": "Managing character collisions"
+    },
+    {
+      "anchor": "Reading-default-values",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/defaultHeight",
+        "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/defaultRadius",
+        "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/defaultSkinWidth",
+        "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/defaultSlopeLimit",
+        "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/defaultStepLimit",
+        "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/defaultUpVector"
+      ],
+      "title": "Reading default values"
+    },
+    {
+      "anchor": "Animating-a-character",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/JointTransforms"
+      ],
+      "title": "Animating a character"
+    },
+    {
+      "anchor": "Handling-collisions",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/Collision",
+        "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/CollisionFlags"
+      ],
+      "title": "Handling collisions"
+    },
+    {
+      "anchor": "Default-Implementations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/CharacterControllerComponent/Component-Implementations"
+      ],
+      "title": "Default Implementations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/charactercontrollercomponent"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

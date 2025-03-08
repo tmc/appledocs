@@ -1,0 +1,1826 @@
+{
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.dnssd/documentation/dnssd"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceInterfaceIndexAny"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@macro@kDNSServiceInterfaceIndexAny",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "var"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "kDNSServiceInterfaceIndexAny"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:s5Int32V",
+        "text": "Int32"
+      }
+    ],
+    "modules": [
+      {
+        "name": "dnssd"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "kDNSServiceInterfaceIndexAny"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.12",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "3.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Global Variable",
+    "symbolKind": "var",
+    "title": "kDNSServiceInterfaceIndexAny"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "kDNSServiceInterfaceIndexAny"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:s5Int32V",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:s5Int32V",
+              "text": "Int32"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Specific interface indexes are identified via a 32-bit unsigned integer returned by the if_nametoindex() family of calls.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the client passes 0 for interface index, that means “do the right thing”, which (at present) means, “if the name is in an mDNS local multicast domain (e.g. ‘local.’, ‘254.169.in-addr.arpa.’, ‘{8,9,A,B}.E.F.ip6.arpa.’) then multicast on all applicable interfaces, otherwise send via unicast to the appropriate DNS server.” Normally, most clients will use 0 for interface index to automatically get the default sensible behaviour.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the client passes a positive interface index, then that indicates to do the operation only on that one specified interface.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the client passes ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceInterfaceIndexLocalOnly",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " when registering a service, then that service will be found *only* by other local clients on the same machine that are browsing using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceInterfaceIndexLocalOnly",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceInterfaceIndexAny",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If a client has a ‘private’ service, accessible only to other processes running on the same machine, this allows the client to advertise that service in a way such that it does not inadvertently appear in service lists on all the other machines on the network.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the client passes ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceInterfaceIndexLocalOnly",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " when browsing then it will find *all* records registered on that same local machine. Clients explicitly wishing to discover *only* LocalOnly services can accomplish this by inspecting the interfaceIndex of each service reported to their ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.dnssd/documentation/dnssd/DNSServiceBrowseReply",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " callback function, and discarding those where the interface index is not ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceInterfaceIndexLocalOnly",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceInterfaceIndexP2P",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is meaningful only in Browse, QueryRecord, Register, and Resolve operations. It should not be used in other DNSService APIs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceInterfaceIndexP2P",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " is passed to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.dnssd/documentation/dnssd/DNSServiceBrowse(_:_:_:_:_:_:_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.dnssd/documentation/dnssd/DNSServiceQueryRecord(_:_:_:_:_:_:_:_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", it restricts the operation to P2P.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If kDNSServiceInterfaceIndexP2P is passed to DNSServiceRegister, it is mapped internally to kDNSServiceInterfaceIndexAny with the kDNSServiceFlagsIncludeP2P set.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceInterfaceIndexP2P",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " is passed to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.dnssd/documentation/dnssd/DNSServiceResolve(_:_:_:_:_:_:_:_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", it is mapped internally to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceInterfaceIndexAny",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " with the kDNSServiceFlagsIncludeP2P set, because resolving a P2P service may create and/or enable an interface whose index is not known a priori. The resolve callback will indicate the index of the interface via which the service can be accessed.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If applications pass ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceInterfaceIndexAny",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.dnssd/documentation/dnssd/DNSServiceBrowse(_:_:_:_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.dnssd/documentation/dnssd/DNSServiceQueryRecord(_:_:_:_:_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", they must set the kDNSServiceFlagsIncludeP2P flag to include P2P. In this case, if a service instance or the record being queried is found over P2P, the resulting ADD event will indicate ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceInterfaceIndexP2P",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as the interface index.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.dnssd/documentation/dnssd": {
+      "abstract": [
+        {
+          "text": "Discover, publish, and resolve network services on a local area or wide area network.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.dnssd/documentation/dnssd",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "dnssd",
+      "type": "topic",
+      "url": "/documentation/dnssd"
+    },
+    "doc://com.apple.dnssd/documentation/dnssd/DNSServiceBrowse(_:_:_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Browses for available services.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DNSServiceBrowse"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@DNSServiceRef",
+          "text": "DNSServiceRef"
+        },
+        {
+          "kind": "text",
+          "text": "?>!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@DNSServiceFlags",
+          "text": "DNSServiceFlags"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@DNSServiceBrowseReply",
+          "text": "DNSServiceBrowseReply"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "!) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@DNSServiceErrorType",
+          "text": "DNSServiceErrorType"
+        }
+      ],
+      "identifier": "doc://com.apple.dnssd/documentation/dnssd/DNSServiceBrowse(_:_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DNSServiceBrowse"
+        }
+      ],
+      "role": "symbol",
+      "title": "DNSServiceBrowse(_:_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/dnssd/dnsservicebrowse(_:_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.dnssd/documentation/dnssd/DNSServiceBrowseReply": {
+      "abstract": [
+        {
+          "text": "Callback for handling the results of previous calls to DNSServiceBrowse.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DNSServiceBrowseReply"
+        }
+      ],
+      "identifier": "doc://com.apple.dnssd/documentation/dnssd/DNSServiceBrowseReply",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DNSServiceBrowseReply"
+        }
+      ],
+      "role": "symbol",
+      "title": "DNSServiceBrowseReply",
+      "type": "topic",
+      "url": "/documentation/dnssd/dnsservicebrowsereply"
+    },
+    "doc://com.apple.dnssd/documentation/dnssd/DNSServiceQueryRecord(_:_:_:_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Query for an arbitrary DNS record.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DNSServiceQueryRecord"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@DNSServiceRef",
+          "text": "DNSServiceRef"
+        },
+        {
+          "kind": "text",
+          "text": "?>!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@DNSServiceFlags",
+          "text": "DNSServiceFlags"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt16V",
+          "text": "UInt16"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt16V",
+          "text": "UInt16"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@DNSServiceQueryRecordReply",
+          "text": "DNSServiceQueryRecordReply"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "!) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@DNSServiceErrorType",
+          "text": "DNSServiceErrorType"
+        }
+      ],
+      "identifier": "doc://com.apple.dnssd/documentation/dnssd/DNSServiceQueryRecord(_:_:_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DNSServiceQueryRecord"
+        }
+      ],
+      "role": "symbol",
+      "title": "DNSServiceQueryRecord(_:_:_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/dnssd/dnsservicequeryrecord(_:_:_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.dnssd/documentation/dnssd/DNSServiceResolve(_:_:_:_:_:_:_:_:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DNSServiceResolve"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@DNSServiceRef",
+          "text": "DNSServiceRef"
+        },
+        {
+          "kind": "text",
+          "text": "?>!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@DNSServiceFlags",
+          "text": "DNSServiceFlags"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@DNSServiceResolveReply",
+          "text": "DNSServiceResolveReply"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "!) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@DNSServiceErrorType",
+          "text": "DNSServiceErrorType"
+        }
+      ],
+      "identifier": "doc://com.apple.dnssd/documentation/dnssd/DNSServiceResolve(_:_:_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DNSServiceResolve"
+        }
+      ],
+      "role": "symbol",
+      "title": "DNSServiceResolve(_:_:_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/dnssd/dnsserviceresolve(_:_:_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.dnssd/documentation/dnssd/DNS_SD_ORIGINAL_ENCODING_VERSION_NUMBER_MAX": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DNS_SD_ORIGINAL_ENCODING_VERSION_NUMBER_MAX"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.dnssd/documentation/dnssd/DNS_SD_ORIGINAL_ENCODING_VERSION_NUMBER_MAX",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DNS_SD_ORIGINAL_ENCODING_VERSION_NUMBER_MAX"
+        }
+      ],
+      "role": "symbol",
+      "title": "DNS_SD_ORIGINAL_ENCODING_VERSION_NUMBER_MAX",
+      "type": "topic",
+      "url": "/documentation/dnssd/dns_sd_original_encoding_version_number_max"
+    },
+    "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceAttributeAAAAFallback": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kDNSServiceAttributeAAAAFallback"
+        },
+        {
+          "kind": "text",
+          "text": ": <<error type>>"
+        }
+      ],
+      "identifier": "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceAttributeAAAAFallback",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kDNSServiceAttributeAAAAFallback"
+        }
+      ],
+      "role": "symbol",
+      "title": "kDNSServiceAttributeAAAAFallback",
+      "type": "topic",
+      "url": "/documentation/dnssd/kdnsserviceattributeaaaafallback"
+    },
+    "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceInterfaceIndexAny": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kDNSServiceInterfaceIndexAny"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceInterfaceIndexAny",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kDNSServiceInterfaceIndexAny"
+        }
+      ],
+      "role": "symbol",
+      "title": "kDNSServiceInterfaceIndexAny",
+      "type": "topic",
+      "url": "/documentation/dnssd/kdnsserviceinterfaceindexany"
+    },
+    "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceInterfaceIndexBLE": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kDNSServiceInterfaceIndexBLE"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceInterfaceIndexBLE",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kDNSServiceInterfaceIndexBLE"
+        }
+      ],
+      "role": "symbol",
+      "title": "kDNSServiceInterfaceIndexBLE",
+      "type": "topic",
+      "url": "/documentation/dnssd/kdnsserviceinterfaceindexble"
+    },
+    "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceInterfaceIndexInfra": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kDNSServiceInterfaceIndexInfra"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceInterfaceIndexInfra",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kDNSServiceInterfaceIndexInfra"
+        }
+      ],
+      "role": "symbol",
+      "title": "kDNSServiceInterfaceIndexInfra",
+      "type": "topic",
+      "url": "/documentation/dnssd/kdnsserviceinterfaceindexinfra"
+    },
+    "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceInterfaceIndexLocalOnly": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kDNSServiceInterfaceIndexLocalOnly"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceInterfaceIndexLocalOnly",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kDNSServiceInterfaceIndexLocalOnly"
+        }
+      ],
+      "role": "symbol",
+      "title": "kDNSServiceInterfaceIndexLocalOnly",
+      "type": "topic",
+      "url": "/documentation/dnssd/kdnsserviceinterfaceindexlocalonly"
+    },
+    "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceInterfaceIndexP2P": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kDNSServiceInterfaceIndexP2P"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceInterfaceIndexP2P",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kDNSServiceInterfaceIndexP2P"
+        }
+      ],
+      "role": "symbol",
+      "title": "kDNSServiceInterfaceIndexP2P",
+      "type": "topic",
+      "url": "/documentation/dnssd/kdnsserviceinterfaceindexp2p"
+    },
+    "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceInterfaceIndexUnicast": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kDNSServiceInterfaceIndexUnicast"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceInterfaceIndexUnicast",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kDNSServiceInterfaceIndexUnicast"
+        }
+      ],
+      "role": "symbol",
+      "title": "kDNSServiceInterfaceIndexUnicast",
+      "type": "topic",
+      "url": "/documentation/dnssd/kdnsserviceinterfaceindexunicast"
+    },
+    "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceMaxDomainName": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kDNSServiceMaxDomainName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceMaxDomainName",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kDNSServiceMaxDomainName"
+        }
+      ],
+      "role": "symbol",
+      "title": "kDNSServiceMaxDomainName",
+      "type": "topic",
+      "url": "/documentation/dnssd/kdnsservicemaxdomainname"
+    },
+    "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceMaxServiceName": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kDNSServiceMaxServiceName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceMaxServiceName",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kDNSServiceMaxServiceName"
+        }
+      ],
+      "role": "symbol",
+      "title": "kDNSServiceMaxServiceName",
+      "type": "topic",
+      "url": "/documentation/dnssd/kdnsservicemaxservicename"
+    },
+    "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceProperty_DaemonVersion": {
+      "abstract": [
+        {
+          "text": "The daemon version property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kDNSServiceProperty_DaemonVersion"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceProperty_DaemonVersion",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kDNSServiceProperty_DaemonVersion"
+        }
+      ],
+      "role": "symbol",
+      "title": "kDNSServiceProperty_DaemonVersion",
+      "type": "topic",
+      "url": "/documentation/dnssd/kdnsserviceproperty_daemonversion"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:s5Int32V": {
+      "abstract": [
+        {
+          "text": "A 32-bit signed integer value type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s5Int32V",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Int32",
+      "type": "topic",
+      "url": "/documentation/Swift/Int32"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Constants",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.dnssd/documentation/dnssd/DNS_SD_ORIGINAL_ENCODING_VERSION_NUMBER_MAX",
+        "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceAttributeAAAAFallback",
+        "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceInterfaceIndexBLE",
+        "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceInterfaceIndexInfra",
+        "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceInterfaceIndexLocalOnly",
+        "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceInterfaceIndexP2P",
+        "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceInterfaceIndexUnicast",
+        "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceMaxDomainName",
+        "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceMaxServiceName",
+        "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceProperty_DaemonVersion"
+      ],
+      "title": "Constants"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.12",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "3.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Macro"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "kDNSServiceInterfaceIndexAny"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "macro"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kDNSServiceInterfaceIndexAny"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.dnssd/documentation/dnssd"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Constants",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.dnssd/documentation/dnssd/DNS_SD_ORIGINAL_ENCODING_VERSION_NUMBER_MAX",
+                "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceAttributeAAAAFallback",
+                "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceInterfaceIndexBLE",
+                "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceInterfaceIndexInfra",
+                "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceInterfaceIndexLocalOnly",
+                "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceInterfaceIndexP2P",
+                "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceInterfaceIndexUnicast",
+                "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceMaxDomainName",
+                "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceMaxServiceName",
+                "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceProperty_DaemonVersion"
+              ],
+              "title": "Constants"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "#define"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "kDNSServiceInterfaceIndexAny"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1kDNSServiceAttributeAAAAFallback/title",
+          "value": "kDNSServiceAttributeAAAAFallback"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1kDNSServiceAttributeAAAAFallback/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kDNSServiceAttributeAAAAFallback"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1DNSServiceBrowseReply/title",
+          "value": "DNSServiceBrowseReply"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1DNSServiceBrowseReply/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DNSServiceBrowseReply"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1DNSServiceBrowseReply/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DNSServiceBrowseReply"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1kDNSServiceInterfaceIndexUnicast/title",
+          "value": "kDNSServiceInterfaceIndexUnicast"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1kDNSServiceInterfaceIndexUnicast/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kDNSServiceInterfaceIndexUnicast"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1kDNSServiceMaxDomainName/title",
+          "value": "kDNSServiceMaxDomainName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1kDNSServiceMaxDomainName/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kDNSServiceMaxDomainName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1DNS_SD_ORIGINAL_ENCODING_VERSION_NUMBER_MAX/title",
+          "value": "DNS_SD_ORIGINAL_ENCODING_VERSION_NUMBER_MAX"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1DNS_SD_ORIGINAL_ENCODING_VERSION_NUMBER_MAX/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DNS_SD_ORIGINAL_ENCODING_VERSION_NUMBER_MAX"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1kDNSServiceProperty_DaemonVersion/title",
+          "value": "kDNSServiceProperty_DaemonVersion"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1kDNSServiceProperty_DaemonVersion/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kDNSServiceProperty_DaemonVersion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1DNSServiceResolve(_:_:_:_:_:_:_:_:)/title",
+          "value": "DNSServiceResolve"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1DNSServiceResolve(_:_:_:_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DNSServiceResolve"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1kDNSServiceInterfaceIndexLocalOnly/title",
+          "value": "kDNSServiceInterfaceIndexLocalOnly"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1kDNSServiceInterfaceIndexLocalOnly/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kDNSServiceInterfaceIndexLocalOnly"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1DNSServiceQueryRecord(_:_:_:_:_:_:_:_:)/title",
+          "value": "DNSServiceQueryRecord"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1DNSServiceQueryRecord(_:_:_:_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DNSServiceQueryRecord"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1DNSServiceBrowse(_:_:_:_:_:_:_:)/title",
+          "value": "DNSServiceBrowse"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1DNSServiceBrowse(_:_:_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DNSServiceBrowse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1kDNSServiceMaxServiceName/title",
+          "value": "kDNSServiceMaxServiceName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1kDNSServiceMaxServiceName/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kDNSServiceMaxServiceName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1kDNSServiceInterfaceIndexBLE/title",
+          "value": "kDNSServiceInterfaceIndexBLE"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1kDNSServiceInterfaceIndexBLE/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kDNSServiceInterfaceIndexBLE"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1kDNSServiceInterfaceIndexAny/title",
+          "value": "kDNSServiceInterfaceIndexAny"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1kDNSServiceInterfaceIndexAny/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kDNSServiceInterfaceIndexAny"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1kDNSServiceInterfaceIndexInfra/title",
+          "value": "kDNSServiceInterfaceIndexInfra"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1kDNSServiceInterfaceIndexInfra/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kDNSServiceInterfaceIndexInfra"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1kDNSServiceInterfaceIndexP2P/title",
+          "value": "kDNSServiceInterfaceIndexP2P"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1kDNSServiceInterfaceIndexP2P/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kDNSServiceInterfaceIndexP2P"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/dnssd/kdnsserviceinterfaceindexany"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/dnssd/kdnsserviceinterfaceindexany"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

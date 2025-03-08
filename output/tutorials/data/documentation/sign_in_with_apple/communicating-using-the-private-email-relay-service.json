@@ -1,0 +1,355 @@
+{
+  "abstract": [
+    {
+      "text": "Stay in touch with users who opt for an anonymous email address with Sign in with Apple.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.signinwithapple/documentation/SigninwithApple",
+        "doc://com.apple.signinwithapple/documentation/SigninwithAppleJS"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.signinwithapple/documentation/sign_in_with_apple/communicating-using-the-private-email-relay-service"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Sign in with Apple JS"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Communicating using the private email relay service"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "People who communicate with you about your app may choose to protect their private email information. To facilitate communication between users and developers, Sign in with Apple gives users the ability to use an anonymous email address. When a user provides such an address to your app, the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "private relay email service",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " routes all emails between you and the user. A private relay email service sends email to a recipient using an automatically generated email address. This hides the real email address to preserve privacy.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Private relay email addresses have the following characteristics:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "They end in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "@privaterelay.appleid.com",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "@icloud.com",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "They route emails to one of the Apple ID’s verified email addresses.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "They’re the same for a user across all apps written by a single development team, and different for the same user across apps written by different development teams.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "They’re active whether or not the user is signed into a device, and whether or not your app is installed on the device. You may send and receive email to the private email address at any time.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the user has shared a private relay email address with your app, they can find, view, and manage it in their account settings at Settings > Apple ID > Password & Security > Apps Using Your Apple ID.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Each private relay email address has a daily limit of 100 emails, which includes emails from the developer to the relay address, as well as user replies.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following sequence chart shows how the private email relay service works:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3385259",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Register-Your-Email-Domain",
+          "level": 3,
+          "text": "Register Your Email Domain",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To send emails to users with private email addresses, you must register your outbound emails or email domains and use Sender Policy Framework (SPF) to authenticate your outbound emails. These mechanisms ensure that only you can communicate with your users through this channel, and they prevent spam from getting through.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Send-and-Receive-Emails",
+          "level": 3,
+          "text": "Send and Receive Emails",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you register your outbound email domains, you can send emails to users through the private email relay service. When they reply, the relay server routes the replies back to the email address used in your original email. To enable this functionality, the relay server transforms your email address so it’s readable to the user. For example, ",
+              "type": "text"
+            },
+            {
+              "code": "sales@example.com",
+              "type": "codeVoice"
+            },
+            {
+              "text": " may become ",
+              "type": "text"
+            },
+            {
+              "code": "sales_at_example_com_<something>@icloud.com",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instead of a random email address. Replies from the user continue to route back through the service to preserve the user’s privacy.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If a user chooses to stop receiving email from your app, the relay server rejects all future emails sent to that address. Because the address is the same for all apps written by a development team, disabling the relay service informs the user of all other affected apps.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.signinwithapple/documentation/SigninwithApple": {
+      "abstract": [
+        {
+          "text": "Provide users the ability to sign in to your apps and websites using their Apple ID.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.signinwithapple/documentation/SigninwithApple",
+      "kind": "article",
+      "role": "collection",
+      "title": "Sign in with Apple",
+      "type": "topic",
+      "url": "/documentation/signinwithapple"
+    },
+    "doc://com.apple.signinwithapple/documentation/SigninwithAppleJS": {
+      "abstract": [
+        {
+          "text": "Provide users a fast, secure way to sign in to your web service with their Apple ID.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.signinwithapple/documentation/SigninwithAppleJS",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Sign in with Apple JS",
+      "type": "topic",
+      "url": "/documentation/signinwithapplejs"
+    },
+    "doc://com.apple.signinwithapple/documentation/sign_in_with_apple/configuring-your-webpage-for-sign-in-with-apple": {
+      "abstract": [
+        {
+          "text": "Prepare your webpage to authorize users through Sign in with Apple.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.signinwithapple/documentation/sign_in_with_apple/configuring-your-webpage-for-sign-in-with-apple",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring your webpage for Sign in with Apple",
+      "type": "topic",
+      "url": "/documentation/sign_in_with_apple/configuring-your-webpage-for-sign-in-with-apple"
+    },
+    "media-3385259": {
+      "alt": "A sequence diagram that describes how a user sends and receives an email through the private email relay service. At the top of the diagram are five actors, including: Developer Mail Client, Developer Mail Transfer Agent, Private Relay Mail Transfer Client, User Mail Transfer Client, and User Mail Client. The steps of the private email relay service are illustrated in the diagram with horizontal arrows across the actors’ lifelines, beginning with Submit email and ending with Receive reply.",
+      "identifier": "media-3385259",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/81869c7c38f1dc5850d7a4dfe056220b/media-3385259@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2bf435d125d963f933093df3b862afcc/media-3385259~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.signinwithapple/documentation/sign_in_with_apple/configuring-your-webpage-for-sign-in-with-apple"
+      ],
+      "title": "Essentials"
+    }
+  ]
+}

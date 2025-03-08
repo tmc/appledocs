@@ -1,0 +1,2861 @@
+{
+  "abstract": [
+    {
+      "text": "The ",
+      "type": "text"
+    },
+    {
+      "code": "QCPlugInInputImageSource",
+      "type": "codeVoice"
+    },
+    {
+      "text": " protocol eliminates the need to use explicit image types for the image input ports on your custom patch. Not only does using the protocol avoid restrictions of a specific image type, but it avoids impedance mismatches, and provides better performance by deferring pixel computation until it is needed. When you need to access the pixels in an image, you simply convert the image to a representation (texture or buffer) using one of the methods defined by the ",
+      "type": "text"
+    },
+    {
+      "code": "QCPlugInInputImageSource",
+      "type": "codeVoice"
+    },
+    {
+      "text": " protocol. Use a texture representation when you want to use input images on the GPU. Use a buffer representation when you want to use input images on the CPU.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "QuartzComposer API deprecated. (Define QC_SILENCE_DEPRECATION to silence these warnings)",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.quartz/documentation/Quartz"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)QCPlugInInputImageSource",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "QCPlugInInputImageSource"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Quartz"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "QCPlugInInputImageSource"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "10.15",
+        "introducedAt": "10.4",
+        "message": "QuartzComposer API deprecated. (Define QC_SILENCE_DEPRECATION to silence these warnings)",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "QCPlugInInputImageSource"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "QCPlugInInputImageSource"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Input images are opaque source objects that comply to this protocol. To create an image input port as an Objective-C 2.0 property, declare it as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@property(dynamic) id<QCPlugInInputImageSource> inputImage;"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create an image input port dynamically. use the type ",
+              "type": "text"
+            },
+            {
+              "code": "QCPortTypeImage",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[self addInputPortWithType:QCPortTypeImage",
+            "                    forKey:@\"inputImage\"",
+            "            withAttributes:nil];"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.quartz/documentation/Quartz": {
+      "abstract": [
+        {
+          "text": "Allow users to browse, edit, and save images, using slideshows and Core Image filters.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Quartz",
+      "type": "topic",
+      "url": "/documentation/quartz"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/QCCompositionLayer": {
+      "abstract": [
+        {
+          "text": "A layer that loads, plays, and controls Quartz Composer compositions in a Core Animation layer hierarchy.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "QCCompositionLayer"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/QCCompositionLayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "QCCompositionLayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "QCCompositionLayer",
+      "type": "topic",
+      "url": "/documentation/quartz/qccompositionlayer"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/QCCompositionPickerView": {
+      "abstract": [
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "code": "QCCompositionPickerView",
+          "type": "codeVoice"
+        },
+        {
+          "text": " class allows users to browse compositions that are in the Quartz Composer composition repository, and to preview them. You can set the default input parameters for a composition preview  by using the method setDefaultValue:forInputKey:.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "QCCompositionPickerView"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/QCCompositionPickerView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "QCCompositionPickerView"
+        }
+      ],
+      "role": "symbol",
+      "title": "QCCompositionPickerView",
+      "type": "topic",
+      "url": "/documentation/quartz/qccompositionpickerview"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/QCCompositionRenderer": {
+      "abstract": [
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "code": "QCRenderer",
+          "type": "codeVoice"
+        },
+        {
+          "text": " protocol defines the methods used to pass data to the input ports or retrieve data from the output ports of the root patch of a Quartz Composer composition. This protocol is adopted by the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.quartz/documentation/Quartz/QCRenderer",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ", ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.quartz/documentation/Quartz/QCView",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ", and ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.quartz/documentation/Quartz/QCCompositionLayer",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " classes.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "QCCompositionRenderer"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/QCCompositionRenderer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "QCCompositionRenderer"
+        }
+      ],
+      "role": "symbol",
+      "title": "QCCompositionRenderer",
+      "type": "topic",
+      "url": "/documentation/quartz/qccompositionrenderer"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/QCPlugIn/execute(_:atTime:withArguments:)": {
+      "abstract": [
+        {
+          "text": "Performs the processing or rendering tasks appropriate for the custom patch.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "execute"
+        },
+        {
+          "kind": "text",
+          "text": "((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)QCPlugInContext",
+          "text": "QCPlugInContext"
+        },
+        {
+          "kind": "text",
+          "text": ")!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "atTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withArguments"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s11AnyHashableV",
+          "text": "AnyHashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]!) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/QCPlugIn/execute(_:atTime:withArguments:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "execute:atTime:withArguments:"
+        }
+      ],
+      "role": "symbol",
+      "title": "execute(_:atTime:withArguments:)",
+      "type": "topic",
+      "url": "/documentation/quartz/qcplugin/execute(_:attime:witharguments:)"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/QCPlugInContext": {
+      "abstract": [
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "code": "QCPlugInContext",
+          "type": "codeVoice"
+        },
+        {
+          "text": " protocol defines methods that you use only from within the execution method (",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.quartz/documentation/Quartz/QCPlugIn/execute(_:atTime:withArguments:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ") of a ",
+          "type": "text"
+        },
+        {
+          "code": "QCPlugIn",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "QCPlugInContext"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/QCPlugInContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "QCPlugInContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "QCPlugInContext",
+      "type": "topic",
+      "url": "/documentation/quartz/qcplugincontext"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource": {
+      "abstract": [
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "code": "QCPlugInInputImageSource",
+          "type": "codeVoice"
+        },
+        {
+          "text": " protocol eliminates the need to use explicit image types for the image input ports on your custom patch. Not only does using the protocol avoid restrictions of a specific image type, but it avoids impedance mismatches, and provides better performance by deferring pixel computation until it is needed. When you need to access the pixels in an image, you simply convert the image to a representation (texture or buffer) using one of the methods defined by the ",
+          "type": "text"
+        },
+        {
+          "code": "QCPlugInInputImageSource",
+          "type": "codeVoice"
+        },
+        {
+          "text": " protocol. Use a texture representation when you want to use input images on the GPU. Use a buffer representation when you want to use input images on the CPU.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "QCPlugInInputImageSource"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "QCPlugInInputImageSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "QCPlugInInputImageSource",
+      "type": "topic",
+      "url": "/documentation/quartz/qcplugininputimagesource"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/bindTextureRepresentation(toCGLContext:textureUnit:normalizeCoordinates:)": {
+      "abstract": [
+        {
+          "text": "Binds the texture to a given texture unit and optionally scales or flips the texture.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bindTextureRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "toCGLContext"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGLContextObj",
+          "text": "CGLContextObj"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "textureUnit"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@GLenum",
+          "text": "GLenum"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "normalizeCoordinates"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/bindTextureRepresentation(toCGLContext:textureUnit:normalizeCoordinates:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "bindTextureRepresentationToCGLContext:textureUnit:normalizeCoordinates:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "bindTextureRepresentation(toCGLContext:textureUnit:normalizeCoordinates:)",
+      "type": "topic",
+      "url": "/documentation/quartz/qcplugininputimagesource/bindtexturerepresentation(tocglcontext:textureunit:normalizecoordinates:)"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/bufferBaseAddress()": {
+      "abstract": [
+        {
+          "text": "Returns the base address of the image buffer.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bufferBaseAddress"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/bufferBaseAddress()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "bufferBaseAddress"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "bufferBaseAddress()",
+      "type": "topic",
+      "url": "/documentation/quartz/qcplugininputimagesource/bufferbaseaddress()"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/bufferBytesPerRow()": {
+      "abstract": [
+        {
+          "text": "Returns the  bytes per row of the buffer representation.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bufferBytesPerRow"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/bufferBytesPerRow()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "bufferBytesPerRow"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "bufferBytesPerRow()",
+      "type": "topic",
+      "url": "/documentation/quartz/qcplugininputimagesource/bufferbytesperrow()"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/bufferColorSpace()": {
+      "abstract": [
+        {
+          "text": "Returns the color space of the image buffer representation.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bufferColorSpace"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGColorSpaceRef",
+          "text": "CGColorSpace"
+        },
+        {
+          "kind": "text",
+          "text": ">!"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/bufferColorSpace()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "bufferColorSpace"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "bufferColorSpace()",
+      "type": "topic",
+      "url": "/documentation/quartz/qcplugininputimagesource/buffercolorspace()"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/bufferPixelFormat()": {
+      "abstract": [
+        {
+          "text": "Returns the pixel format of the image buffer representation.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bufferPixelFormat"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/bufferPixelFormat()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "bufferPixelFormat"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "bufferPixelFormat()",
+      "type": "topic",
+      "url": "/documentation/quartz/qcplugininputimagesource/bufferpixelformat()"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/bufferPixelsHigh()": {
+      "abstract": [
+        {
+          "text": "Returns the height of the image buffer representation.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bufferPixelsHigh"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/bufferPixelsHigh()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "bufferPixelsHigh"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "bufferPixelsHigh()",
+      "type": "topic",
+      "url": "/documentation/quartz/qcplugininputimagesource/bufferpixelshigh()"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/bufferPixelsWide()": {
+      "abstract": [
+        {
+          "text": "Returns the width of the image buffer representation.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bufferPixelsWide"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/bufferPixelsWide()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "bufferPixelsWide"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "bufferPixelsWide()",
+      "type": "topic",
+      "url": "/documentation/quartz/qcplugininputimagesource/bufferpixelswide()"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/imageBounds()": {
+      "abstract": [
+        {
+          "text": "Returns the actual bounds of the image source expressed in pixels and aligned to integer boundaries.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "imageBounds"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/imageBounds()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "imageBounds"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "imageBounds()",
+      "type": "topic",
+      "url": "/documentation/quartz/qcplugininputimagesource/imagebounds()"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/imageColorSpace()": {
+      "abstract": [
+        {
+          "text": "Returns the color space of the image source.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "imageColorSpace"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGColorSpaceRef",
+          "text": "CGColorSpace"
+        },
+        {
+          "kind": "text",
+          "text": ">!"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/imageColorSpace()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "imageColorSpace"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "imageColorSpace()",
+      "type": "topic",
+      "url": "/documentation/quartz/qcplugininputimagesource/imagecolorspace()"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/lockBufferRepresentation(withPixelFormat:colorSpace:forBounds:)": {
+      "abstract": [
+        {
+          "text": "Creates a memory buffer representation from a subregion of the image source using the provided pixel format and color space.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "lockBufferRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withPixelFormat"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "colorSpace"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGColorSpaceRef",
+          "text": "CGColorSpace"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forBounds"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/lockBufferRepresentation(withPixelFormat:colorSpace:forBounds:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "lockBufferRepresentationWithPixelFormat:colorSpace:forBounds:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "lockBufferRepresentation(withPixelFormat:colorSpace:forBounds:)",
+      "type": "topic",
+      "url": "/documentation/quartz/qcplugininputimagesource/lockbufferrepresentation(withpixelformat:colorspace:forbounds:)"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/lockTextureRepresentation(with:forBounds:)": {
+      "abstract": [
+        {
+          "text": "Creates an OpenGL texture representation from a subregion of the image source using the provided color space.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "lockTextureRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGColorSpaceRef",
+          "text": "CGColorSpace"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forBounds"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/lockTextureRepresentation(with:forBounds:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "lockTextureRepresentationWithColorSpace:forBounds:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "lockTextureRepresentation(with:forBounds:)",
+      "type": "topic",
+      "url": "/documentation/quartz/qcplugininputimagesource/locktexturerepresentation(with:forbounds:)"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/shouldColorMatch()": {
+      "abstract": [
+        {
+          "text": "Returns whether or not the image source should be color matched.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shouldColorMatch"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/shouldColorMatch()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "shouldColorMatch"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "shouldColorMatch()",
+      "type": "topic",
+      "url": "/documentation/quartz/qcplugininputimagesource/shouldcolormatch()"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/textureColorSpace()": {
+      "abstract": [
+        {
+          "text": "Returns the color space of the texture representation.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "textureColorSpace"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGColorSpaceRef",
+          "text": "CGColorSpace"
+        },
+        {
+          "kind": "text",
+          "text": ">!"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/textureColorSpace()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "textureColorSpace"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "textureColorSpace()",
+      "type": "topic",
+      "url": "/documentation/quartz/qcplugininputimagesource/texturecolorspace()"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/textureFlipped()": {
+      "abstract": [
+        {
+          "text": "Returns whether or not the contents of the texture are flipped vertically.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "textureFlipped"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/textureFlipped()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "textureFlipped"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "textureFlipped()",
+      "type": "topic",
+      "url": "/documentation/quartz/qcplugininputimagesource/textureflipped()"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/textureMatrix()": {
+      "abstract": [
+        {
+          "text": "Returns a texture matrix.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "textureMatrix"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@GLfloat",
+          "text": "GLfloat"
+        },
+        {
+          "kind": "text",
+          "text": ">!"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/textureMatrix()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "textureMatrix"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "textureMatrix()",
+      "type": "topic",
+      "url": "/documentation/quartz/qcplugininputimagesource/texturematrix()"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/textureName()": {
+      "abstract": [
+        {
+          "text": "Returns the texture name.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "textureName"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@GLuint",
+          "text": "GLuint"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/textureName()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "textureName"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "textureName()",
+      "type": "topic",
+      "url": "/documentation/quartz/qcplugininputimagesource/texturename()"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/texturePixelsHigh()": {
+      "abstract": [
+        {
+          "text": "Returns the height of the texture representation.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "texturePixelsHigh"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/texturePixelsHigh()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "texturePixelsHigh"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "texturePixelsHigh()",
+      "type": "topic",
+      "url": "/documentation/quartz/qcplugininputimagesource/texturepixelshigh()"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/texturePixelsWide()": {
+      "abstract": [
+        {
+          "text": "Returns the width of the texture representation.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "texturePixelsWide"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/texturePixelsWide()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "texturePixelsWide"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "texturePixelsWide()",
+      "type": "topic",
+      "url": "/documentation/quartz/qcplugininputimagesource/texturepixelswide()"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/textureTarget()": {
+      "abstract": [
+        {
+          "text": "Returns the texture target.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "textureTarget"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@GLenum",
+          "text": "GLenum"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/textureTarget()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "textureTarget"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "textureTarget()",
+      "type": "topic",
+      "url": "/documentation/quartz/qcplugininputimagesource/texturetarget()"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/unbindTextureRepresentation(fromCGLContext:textureUnit:)": {
+      "abstract": [
+        {
+          "text": "Unbinds the texture from a texture unit.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unbindTextureRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "fromCGLContext"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGLContextObj",
+          "text": "CGLContextObj"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "textureUnit"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@GLenum",
+          "text": "GLenum"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/unbindTextureRepresentation(fromCGLContext:textureUnit:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "unbindTextureRepresentationFromCGLContext:textureUnit:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "unbindTextureRepresentation(fromCGLContext:textureUnit:)",
+      "type": "topic",
+      "url": "/documentation/quartz/qcplugininputimagesource/unbindtexturerepresentation(fromcglcontext:textureunit:)"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/unlockBufferRepresentation()": {
+      "abstract": [
+        {
+          "text": "Releases the memory buffer representation of the image source.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unlockBufferRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/unlockBufferRepresentation()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "unlockBufferRepresentation"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "unlockBufferRepresentation()",
+      "type": "topic",
+      "url": "/documentation/quartz/qcplugininputimagesource/unlockbufferrepresentation()"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/unlockTextureRepresentation()": {
+      "abstract": [
+        {
+          "text": "Releases the OpenGL texture representation of the image source.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unlockTextureRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/unlockTextureRepresentation()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "unlockTextureRepresentation"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "unlockTextureRepresentation()",
+      "type": "topic",
+      "url": "/documentation/quartz/qcplugininputimagesource/unlocktexturerepresentation()"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/QCPlugInOutputImageProvider": {
+      "abstract": [
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "code": "QCPlugInOuputImageProvider",
+          "type": "codeVoice"
+        },
+        {
+          "text": " protocol eliminates the need to use explicit image types for the image output ports on a custom patch. The methods in this protocol are called by the Quartz Composer engine when the output image is needed. If your custom patch has an image output port, you need to implement the appropriate methods for rendering image data and to supply information about the rendering destination and the image bounds.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "QCPlugInOutputImageProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/QCPlugInOutputImageProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "QCPlugInOutputImageProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "QCPlugInOutputImageProvider",
+      "type": "topic",
+      "url": "/documentation/quartz/qcpluginoutputimageprovider"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/QCRenderer": {
+      "abstract": [
+        {
+          "text": "A base class for low-level rendering.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "QCRenderer"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/QCRenderer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "QCRenderer"
+        }
+      ],
+      "role": "symbol",
+      "title": "QCRenderer",
+      "type": "topic",
+      "url": "/documentation/quartz/qcrenderer"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/QCView": {
+      "abstract": [
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "code": "QCView",
+          "type": "codeVoice"
+        },
+        {
+          "text": " class is a custom ",
+          "type": "text"
+        },
+        {
+          "code": "NSView",
+          "type": "codeVoice"
+        },
+        {
+          "text": " class that loads, plays, and controls Quartz Composer compositions. It is an autonomous view that is driven by an internal timer running on the main thread.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "QCView"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/QCView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "QCView"
+        }
+      ],
+      "role": "symbol",
+      "title": "QCView",
+      "type": "topic",
+      "url": "/documentation/quartz/qcview"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/qccompositionparameterviewdelegate": {
+      "abstract": [
+        {
+          "text": "A protocol for composition parameter view’s delegate.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/qccompositionparameterviewdelegate",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "QCCompositionParameterViewDelegate",
+      "type": "topic",
+      "url": "/documentation/quartz/qccompositionparameterviewdelegate"
+    },
+    "doc://com.apple.quartz/documentation/Quartz/qccompositionpickerviewdelegate": {
+      "abstract": [
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "code": "QCCompositionPickerViewDelegate",
+          "type": "codeVoice"
+        },
+        {
+          "text": " informal protocol defines methods that allow  your application to respond to changes in a composition picker view (a ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.quartz/documentation/Quartz/QCCompositionPickerView",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " object).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.quartz/documentation/Quartz/qccompositionpickerviewdelegate",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "QCCompositionPickerViewDelegate",
+      "type": "topic",
+      "url": "/documentation/quartz/qccompositionpickerviewdelegate"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Protocols",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.quartz/documentation/Quartz/qccompositionparameterviewdelegate",
+        "doc://com.apple.quartz/documentation/Quartz/qccompositionpickerviewdelegate",
+        "doc://com.apple.quartz/documentation/Quartz/QCCompositionRenderer",
+        "doc://com.apple.quartz/documentation/Quartz/QCPlugInContext",
+        "doc://com.apple.quartz/documentation/Quartz/QCPlugInOutputImageProvider"
+      ],
+      "title": "Protocols"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Converting-an-Image-to-a-Representation",
+      "identifiers": [
+        "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/lockTextureRepresentation(with:forBounds:)",
+        "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/unlockTextureRepresentation()",
+        "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/lockBufferRepresentation(withPixelFormat:colorSpace:forBounds:)",
+        "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/bindTextureRepresentation(toCGLContext:textureUnit:normalizeCoordinates:)",
+        "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/unbindTextureRepresentation(fromCGLContext:textureUnit:)",
+        "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/unlockBufferRepresentation()"
+      ],
+      "title": "Converting an Image to a Representation"
+    },
+    {
+      "anchor": "Getting-Color-Space-Information",
+      "identifiers": [
+        "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/imageColorSpace()",
+        "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/shouldColorMatch()"
+      ],
+      "title": "Getting Color Space Information"
+    },
+    {
+      "anchor": "Getting-Texture-Information",
+      "identifiers": [
+        "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/texturePixelsWide()",
+        "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/texturePixelsHigh()",
+        "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/textureTarget()",
+        "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/textureName()",
+        "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/textureColorSpace()",
+        "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/textureFlipped()",
+        "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/textureMatrix()"
+      ],
+      "title": "Getting Texture Information"
+    },
+    {
+      "anchor": "Getting-Image-Buffer-Information",
+      "identifiers": [
+        "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/imageBounds()",
+        "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/bufferPixelsWide()",
+        "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/bufferPixelsHigh()",
+        "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/bufferPixelFormat()",
+        "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/bufferColorSpace()",
+        "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/bufferBaseAddress()",
+        "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/bufferBytesPerRow()"
+      ],
+      "title": "Getting Image Buffer Information"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "10.15",
+              "introducedAt": "10.4",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "QCPlugInInputImageSource"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "QCPlugInInputImageSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "QCPlugInInputImageSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.quartz/documentation/Quartz"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Converting-an-Image-to-a-Representation",
+              "identifiers": [
+                "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/lockTextureRepresentation(with:forBounds:)",
+                "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/unlockTextureRepresentation()",
+                "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/lockBufferRepresentation(withPixelFormat:colorSpace:forBounds:)",
+                "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/bindTextureRepresentation(toCGLContext:textureUnit:normalizeCoordinates:)",
+                "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/unbindTextureRepresentation(fromCGLContext:textureUnit:)",
+                "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/unlockBufferRepresentation()"
+              ],
+              "title": "Converting an Image to a Representation"
+            },
+            {
+              "anchor": "Getting-Color-Space-Information",
+              "identifiers": [
+                "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/imageColorSpace()",
+                "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/shouldColorMatch()"
+              ],
+              "title": "Getting Color Space Information"
+            },
+            {
+              "anchor": "Getting-Texture-Information",
+              "identifiers": [
+                "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/texturePixelsWide()",
+                "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/texturePixelsHigh()",
+                "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/textureTarget()",
+                "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/textureName()",
+                "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/textureColorSpace()",
+                "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/textureFlipped()",
+                "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/textureMatrix()"
+              ],
+              "title": "Getting Texture Information"
+            },
+            {
+              "anchor": "Getting-Image-Buffer-Information",
+              "identifiers": [
+                "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/imageBounds()",
+                "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/bufferPixelsWide()",
+                "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/bufferPixelsHigh()",
+                "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/bufferPixelFormat()",
+                "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/bufferColorSpace()",
+                "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/bufferBaseAddress()",
+                "doc://com.apple.quartz/documentation/Quartz/QCPlugInInputImageSource/bufferBytesPerRow()"
+              ],
+              "title": "Getting Image Buffer Information"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Protocols",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.quartz/documentation/Quartz/qccompositionparameterviewdelegate",
+                "doc://com.apple.quartz/documentation/Quartz/qccompositionpickerviewdelegate",
+                "doc://com.apple.quartz/documentation/Quartz/QCCompositionRenderer",
+                "doc://com.apple.quartz/documentation/Quartz/QCPlugInContext",
+                "doc://com.apple.quartz/documentation/Quartz/QCPlugInOutputImageProvider"
+              ],
+              "title": "Protocols"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "QCPlugInInputImageSource"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/deprecationSummary",
+          "value": [
+            {
+              "inlineContent": [
+                {
+                  "text": "QuartzComposer API deprecated. (Define QC_SILENCE_DEPRECATION to silence these warnings)",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1QCView/title",
+          "value": "QCView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1QCView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "QCView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1QCView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "QCView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1QCPlugInInputImageSource~1texturePixelsWide()/title",
+          "value": "texturePixelsWide"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1QCPlugInInputImageSource~1texturePixelsWide()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "texturePixelsWide"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1QCPlugInInputImageSource~1textureMatrix()/title",
+          "value": "textureMatrix"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1QCPlugInInputImageSource~1textureMatrix()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "textureMatrix"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1QCPlugInInputImageSource~1textureName()/title",
+          "value": "textureName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1QCPlugInInputImageSource~1textureName()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "textureName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1QCPlugInInputImageSource~1bufferPixelFormat()/title",
+          "value": "bufferPixelFormat"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1QCPlugInInputImageSource~1bufferPixelFormat()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "bufferPixelFormat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1QCPlugInInputImageSource~1lockTextureRepresentation(with:forBounds:)/title",
+          "value": "lockTextureRepresentationWithColorSpace:forBounds:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1QCPlugInInputImageSource~1lockTextureRepresentation(with:forBounds:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "lockTextureRepresentationWithColorSpace:forBounds:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1QCCompositionPickerView/title",
+          "value": "QCCompositionPickerView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1QCCompositionPickerView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "QCCompositionPickerView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1QCCompositionPickerView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "QCCompositionPickerView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1QCPlugInInputImageSource~1bufferPixelsWide()/title",
+          "value": "bufferPixelsWide"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1QCPlugInInputImageSource~1bufferPixelsWide()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "bufferPixelsWide"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1QCPlugInInputImageSource~1bufferBytesPerRow()/title",
+          "value": "bufferBytesPerRow"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1QCPlugInInputImageSource~1bufferBytesPerRow()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "bufferBytesPerRow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1QCPlugInInputImageSource/title",
+          "value": "QCPlugInInputImageSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1QCPlugInInputImageSource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "QCPlugInInputImageSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1QCPlugInInputImageSource/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "QCPlugInInputImageSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1QCPlugInInputImageSource~1unlockBufferRepresentation()/title",
+          "value": "unlockBufferRepresentation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1QCPlugInInputImageSource~1unlockBufferRepresentation()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "unlockBufferRepresentation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1QCPlugInInputImageSource~1textureFlipped()/title",
+          "value": "textureFlipped"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1QCPlugInInputImageSource~1textureFlipped()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "textureFlipped"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1QCPlugInInputImageSource~1unlockTextureRepresentation()/title",
+          "value": "unlockTextureRepresentation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1QCPlugInInputImageSource~1unlockTextureRepresentation()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "unlockTextureRepresentation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1QCPlugInInputImageSource~1bindTextureRepresentation(toCGLContext:textureUnit:normalizeCoordinates:)/title",
+          "value": "bindTextureRepresentationToCGLContext:textureUnit:normalizeCoordinates:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1QCPlugInInputImageSource~1bindTextureRepresentation(toCGLContext:textureUnit:normalizeCoordinates:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "bindTextureRepresentationToCGLContext:textureUnit:normalizeCoordinates:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1QCPlugIn~1execute(_:atTime:withArguments:)/title",
+          "value": "execute:atTime:withArguments:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1QCPlugIn~1execute(_:atTime:withArguments:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "execute:atTime:withArguments:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1QCPlugInInputImageSource~1lockBufferRepresentation(withPixelFormat:colorSpace:forBounds:)/title",
+          "value": "lockBufferRepresentationWithPixelFormat:colorSpace:forBounds:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1QCPlugInInputImageSource~1lockBufferRepresentation(withPixelFormat:colorSpace:forBounds:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "lockBufferRepresentationWithPixelFormat:colorSpace:forBounds:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1QCPlugInContext/title",
+          "value": "QCPlugInContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1QCPlugInContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "QCPlugInContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1QCPlugInContext/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "QCPlugInContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1QCPlugInInputImageSource~1shouldColorMatch()/title",
+          "value": "shouldColorMatch"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1QCPlugInInputImageSource~1shouldColorMatch()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "shouldColorMatch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1QCPlugInInputImageSource~1bufferPixelsHigh()/title",
+          "value": "bufferPixelsHigh"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1QCPlugInInputImageSource~1bufferPixelsHigh()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "bufferPixelsHigh"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1QCPlugInInputImageSource~1textureTarget()/title",
+          "value": "textureTarget"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1QCPlugInInputImageSource~1textureTarget()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "textureTarget"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1QCPlugInInputImageSource~1imageColorSpace()/title",
+          "value": "imageColorSpace"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1QCPlugInInputImageSource~1imageColorSpace()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "imageColorSpace"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1QCPlugInInputImageSource~1unbindTextureRepresentation(fromCGLContext:textureUnit:)/title",
+          "value": "unbindTextureRepresentationFromCGLContext:textureUnit:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1QCPlugInInputImageSource~1unbindTextureRepresentation(fromCGLContext:textureUnit:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "unbindTextureRepresentationFromCGLContext:textureUnit:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1QCCompositionLayer/title",
+          "value": "QCCompositionLayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1QCCompositionLayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "QCCompositionLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1QCCompositionLayer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "QCCompositionLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1QCPlugInOutputImageProvider/title",
+          "value": "QCPlugInOutputImageProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1QCPlugInOutputImageProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "QCPlugInOutputImageProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1QCPlugInOutputImageProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "QCPlugInOutputImageProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1QCPlugInInputImageSource~1bufferColorSpace()/title",
+          "value": "bufferColorSpace"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1QCPlugInInputImageSource~1bufferColorSpace()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "bufferColorSpace"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1QCRenderer/title",
+          "value": "QCRenderer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1QCRenderer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "QCRenderer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1QCRenderer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "QCRenderer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1QCPlugInInputImageSource~1bufferBaseAddress()/title",
+          "value": "bufferBaseAddress"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1QCPlugInInputImageSource~1bufferBaseAddress()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "bufferBaseAddress"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1QCPlugInInputImageSource~1textureColorSpace()/title",
+          "value": "textureColorSpace"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1QCPlugInInputImageSource~1textureColorSpace()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "textureColorSpace"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1QCCompositionRenderer/title",
+          "value": "QCCompositionRenderer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1QCCompositionRenderer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "QCCompositionRenderer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1QCCompositionRenderer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "QCCompositionRenderer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1QCPlugInInputImageSource~1texturePixelsHigh()/title",
+          "value": "texturePixelsHigh"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1QCPlugInInputImageSource~1texturePixelsHigh()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "texturePixelsHigh"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1QCPlugInInputImageSource~1imageBounds()/title",
+          "value": "imageBounds"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartz~1documentation~1Quartz~1QCPlugInInputImageSource~1imageBounds()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "imageBounds"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quartz/qcplugininputimagesource"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/quartz/qcplugininputimagesource"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

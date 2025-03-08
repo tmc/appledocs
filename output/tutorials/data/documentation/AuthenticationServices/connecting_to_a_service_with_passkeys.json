@@ -1,0 +1,376 @@
+{
+  "abstract": [
+    {
+      "text": "Allow users to sign in to a service without typing a password.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/authenticationservices"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/authenticationservices",
+        "doc://com.apple.documentation/documentation/authenticationservices/public-private_key_authentication"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/authenticationservices/connecting_to_a_service_with_passkeys"
+  },
+  "kind": "article",
+  "legacy_identifier": 3761121,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Authentication Services"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "16.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "16.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "16.3",
+        "introducedAt": "14.0",
+        "name": "Xcode"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "16.0",
+        "name": "Mac Catalyst"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Connecting to a service with passkeys"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC22 session ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "link-4035450",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and WWDC21 session ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "link-4035451",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "4035449",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To build and run this sample:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open the sample with Xcode 14 or later.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the Shiny project.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For the project’s target, select your team from the Team drop-down menu in the Signing & Capabilities pane to let Xcode automatically manage your provisioning profile.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add the Associated Domains capability using the “+ Capability” button in the same pane, and specify your domain with the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "webcredentials",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " service.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Ensure an ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "apple-app-site-association",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (AASA) file is present on your domain in the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".well-known",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " directory, and that it contains an entry for this app’s App ID for the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "webcredentials",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " service.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "AccountManager.swift",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file, replace all occurrences of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "example.com",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " with the name of your domain.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/authenticationservices": {
+      "identifier": "doc://com.apple.documentation/documentation/authenticationservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Authentication Services",
+      "type": "topic",
+      "url": "/documentation/authenticationservices"
+    },
+    "doc://com.apple.documentation/documentation/authenticationservices/connecting_to_a_service_with_passkeys": {
+      "abstract": [
+        {
+          "text": "Allow users to sign in to a service without typing a password.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/authenticationservices/connecting_to_a_service_with_passkeys",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Connecting to a service with passkeys",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/connecting_to_a_service_with_passkeys"
+    },
+    "doc://com.apple.documentation/documentation/authenticationservices/passkey_use_in_web_browsers": {
+      "abstract": [
+        {
+          "text": "Register and authenticate website users by using passkeys.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/authenticationservices/passkey_use_in_web_browsers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Passkey use in web browsers",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/passkey_use_in_web_browsers"
+    },
+    "doc://com.apple.documentation/documentation/authenticationservices/public-private_key_authentication": {
+      "abstract": [
+        {
+          "text": "Register and authenticate users with passkeys and security keys, without using passwords.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/authenticationservices/public-private_key_authentication",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Public-Private Key Authentication",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/public-private_key_authentication"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://docs-assets.developer.apple.com/published/0dc46a3bfa/ConnectingToAServiceWithPasskeys.zip": {
+      "checksum": "0230b55dda40c8553a476b370f3b0cb5c51b2c324d5365457051ad6360aaed1e9fdca0c6725970ebb1fecfc20f142da3d99ed21de4952a10a68e3694b96a6c1a",
+      "identifier": "https://docs-assets.developer.apple.com/published/0dc46a3bfa/ConnectingToAServiceWithPasskeys.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/0dc46a3bfa/ConnectingToAServiceWithPasskeys.zip"
+    },
+    "link-4035450": {
+      "identifier": "link-4035450",
+      "kind": "article",
+      "role": "link",
+      "title": "10092: Meet passkeys",
+      "type": "topic",
+      "url": "https://developer.apple.com/wwdc22/10092/"
+    },
+    "link-4035451": {
+      "identifier": "link-4035451",
+      "kind": "article",
+      "role": "link",
+      "title": "10106: Move beyond passwords",
+      "type": "topic",
+      "url": "https://developer.apple.com/wwdc21/10106/"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "https://docs-assets.developer.apple.com/published/0dc46a3bfa/ConnectingToAServiceWithPasskeys.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/authenticationservices/public-private_key_authentication",
+        "doc://com.apple.documentation/documentation/authenticationservices/passkey_use_in_web_browsers"
+      ],
+      "title": "Passkeys"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/authenticationservices/connecting_to_a_service_with_passkeys",
+        "documentation/authenticationservices/public-private_key_authentication/connecting_to_a_service_with_passkeys"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,455 @@
+{
+  "abstract": [
+    {
+      "text": "Determines whether the specified network host or node name is reachable using the current network configuration.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "See the discussion for a coding alternative.",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkCheckReachabilityByName"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@SCNetworkCheckReachabilityByName",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "SCNetworkCheckReachabilityByName"
+      }
+    ],
+    "modules": [
+      {
+        "name": "System Configuration"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SCNetworkCheckReachabilityByName"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "10.6",
+        "introducedAt": "10.1",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "SCNetworkCheckReachabilityByName"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@Boolean",
+              "text": "Boolean"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SCNetworkCheckReachabilityByName"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:C",
+              "text": "char"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "nodename"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionFlags",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@SCNetworkConnectionFlags",
+              "text": "SCNetworkConnectionFlags"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "flags"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The node name of the desired host. This is the same name that would be passed to the gethostbyname(3) or getaddrinfo(3) functions.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "nodename"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A pointer to memory that, on output, will be filled with a set of ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionFlags",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " values detailing the reachability of the specified address",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "flags"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "code": "TRUE",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if the network connection flags are valid; ",
+              "type": "text"
+            },
+            {
+              "code": "FALSE",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if the status could not be determined.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This function is deprecated, but you can get equivalent results using the following code:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "SCNetworkReachabilityRef target;",
+            "SCNetworkConnectionFlags flags = 0;",
+            "Boolean ok;",
+            "target = SCNetworkReachabilityCreateWithName(NULL, name);",
+            "ok = SCNetworkReachabilityGetFlags(target, &flags);",
+            "CFRelease(target);"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration": {
+      "abstract": [
+        {
+          "text": "Allow applications to access a device’s network configuration settings. Determine the reachability of the device, such as whether Wi-Fi or cell connectivity are active.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "System Configuration",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkCheckReachabilityByAddress": {
+      "abstract": [
+        {
+          "text": "Determines whether the specified network address is reachable using the current network configuration.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SCNetworkCheckReachabilityByAddress"
+        }
+      ],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkCheckReachabilityByAddress",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SCNetworkCheckReachabilityByAddress",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scnetworkcheckreachabilitybyaddress"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkCheckReachabilityByName": {
+      "abstract": [
+        {
+          "text": "Determines whether the specified network host or node name is reachable using the current network configuration.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SCNetworkCheckReachabilityByName"
+        }
+      ],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkCheckReachabilityByName",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SCNetworkCheckReachabilityByName",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scnetworkcheckreachabilitybyname"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionFlags": {
+      "abstract": [
+        {
+          "text": "Flags that indicate whether the specified network node name or address is reachable, whether a connection is required, and whether some user intervention may be required when establishing a connection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNetworkConnectionFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionFlags",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNetworkConnectionFlags"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNetworkConnectionFlags",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scnetworkconnectionflags"
+    },
+    "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkInterfaceRefreshConfiguration": {
+      "abstract": [
+        {
+          "text": "Sends a notification to interested configuration agents to have them immediately retry their configuration over a particular network interface.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SCNetworkInterfaceRefreshConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkInterfaceRefreshConfiguration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SCNetworkInterfaceRefreshConfiguration",
+      "type": "topic",
+      "url": "/documentation/systemconfiguration/scnetworkinterfacerefreshconfiguration"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Group",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkCheckReachabilityByAddress",
+        "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkInterfaceRefreshConfiguration"
+      ],
+      "title": "Group"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkConnectionFlags/title",
+          "value": "SCNetworkConnectionFlags"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkConnectionFlags/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNetworkConnectionFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.systemconfiguration~1documentation~1SystemConfiguration~1SCNetworkConnectionFlags/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNetworkConnectionFlags"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/systemconfiguration/scnetworkcheckreachabilitybyname"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

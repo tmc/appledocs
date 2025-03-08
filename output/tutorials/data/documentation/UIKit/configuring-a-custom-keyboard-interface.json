@@ -1,1 +1,1475 @@
-{"abstract":[{"type":"text","text":"Design a flexible, functional, and responsive interface for editing text."}],"primaryContentSections":[{"content":[{"text":"Overview","type":"heading","level":2,"anchor":"overview"},{"inlineContent":[{"text":"You can create a custom keyboard to provide a systemwide interface for manipulating text input. Because you’ll be integrating your keyboard with a system-provided service, you must fulfill certain requirements, and meet common user expectations.","type":"text"}],"type":"paragraph"},{"inlineContent":[{"type":"text","text":"Among other things, your keyboard must:"}],"type":"paragraph"},{"type":"unorderedList","items":[{"content":[{"inlineContent":[{"type":"text","text":"Handle different types of input, like email addresses, phone numbers, URLs, and more."}],"type":"paragraph"}]},{"content":[{"inlineContent":[{"text":"Adapt to the space that’s available. For example, iPadOS can display keyboard docked to the bottom of the screen or floating with a compact width.","type":"text"}],"type":"paragraph"}]},{"content":[{"type":"paragraph","inlineContent":[{"type":"text","text":"Enable users to switch to other keyboards."}]}]}]},{"text":"Support different input types","type":"heading","level":3,"anchor":"Support-different-input-types"},{"inlineContent":[{"text":"Use the ","type":"text"},{"identifier":"doc://com.apple.uikit/documentation/UIKit/UIInputViewController/textDocumentProxy","isActive":true,"type":"reference"},{"text":" to determine the current text input view’s keyboard input type. For each keyboard type that your app supports, configure your interface accordingly. One way to do this is by implementing ","type":"text"},{"identifier":"doc://com.apple.uikit/documentation/UIKit/UITextInputDelegate/textWillChange(_:)","isActive":true,"type":"reference"},{"text":" in your view controller, then compare the ","type":"text"},{"identifier":"doc://com.apple.uikit/documentation/UIKit/UIInputViewController/textDocumentProxy","isActive":true,"type":"reference"},{"type":"text","text":"‘s "},{"identifier":"doc://com.apple.uikit/documentation/UIKit/UITextInputTraits/keyboardType","type":"reference","isActive":true},{"type":"text","text":" to your keyboard’s current display. If it’s different, update your interface accordingly."}],"type":"paragraph"},{"syntax":"swift","type":"codeListing","code":["let keyboardType = textDocumentProxy.keyboardType","","switch(keyboardType) {","case .asciiCapable: …","case .emailAddress: …","case .numberPad: …","…","}"]},{"inlineContent":[{"type":"text","text":"Some text input views don’t allow custom keyboards:"}],"type":"paragraph"},{"type":"unorderedList","items":[{"content":[{"inlineContent":[{"text":"Secure text field entries always show the system keyboard when the user begins entering text in a secure text field, temporarily removing your custom keyboard if it’s active. The system shows your keyboard again when the user begins entering text into a non-secure text field.","type":"text"}],"type":"paragraph"}]},{"content":[{"inlineContent":[{"type":"text","text":"Text input fields configured with a keyboard type of "},{"isActive":true,"identifier":"doc://com.apple.uikit/documentation/UIKit/UIKeyboardType/phonePad","type":"reference"},{"type":"text","text":" or "},{"isActive":true,"identifier":"doc://com.apple.uikit/documentation/UIKit/UIKeyboardType/namePhonePad","type":"reference"},{"type":"text","text":" show the system keyboard."}],"type":"paragraph"}]}]},{"inlineContent":[{"text":"An app can disallow the use of third-party keyboards entirely by implementing ","type":"text"},{"identifier":"doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/application(_:shouldAllowExtensionPointIdentifier:)","isActive":true,"type":"reference"},{"text":" and returning ","type":"text"},{"identifier":"doc://com.apple.documentation/documentation/swift/false","isActive":true,"type":"reference"},{"text":" when called with the ","type":"text"},{"type":"codeVoice","code":"com.apple.keyboard-service"},{"text":" identifier. If an app disallows third-party keyboards, your keyboard won’t be shown in that app.","type":"text"}],"type":"paragraph"},{"text":"Adapt to different layouts","type":"heading","level":3,"anchor":"Adapt-to-different-layouts"},{"inlineContent":[{"type":"text","text":"By default, iOS sizes custom keyboards to match the system keyboard according to screen size and device orientation. A custom keyboard’s width is always set by the system, typically matching the screen width. You can adjust the height of your custom keyboard’s primary view using Auto Layout. To change a keyboard’s height, adjust the height constraints on the UIInputViewController’s view to achieve the desired height for your interface."}],"type":"paragraph"},{"inlineContent":[{"type":"text","text":"For more information about laying out your view, see "},{"type":"reference","identifier":"doc://com.apple.uikit/documentation/UIKit/view-layout","isActive":true},{"type":"text","text":"."}],"type":"paragraph"},{"text":"Handle common keyboard behaviors","type":"heading","level":3,"anchor":"Handle-common-keyboard-behaviors"},{"inlineContent":[{"type":"text","text":"Users expect various behaviors from keyboards. One example is autocapitalization: In a standard text field, the first letter of a sentence in a case-sensitive language is automatically capitalized."}],"type":"paragraph"},{"inlineContent":[{"text":"Features that users commonly expect from any keyboard include:","type":"text"}],"type":"paragraph"},{"type":"unorderedList","items":[{"content":[{"type":"paragraph","inlineContent":[{"type":"text","text":"Appropriate layout and features based on keyboard type trait, such as automatically displaying relevant keys when editing email addresses or phone numbers"}]}]},{"content":[{"inlineContent":[{"type":"text","text":"Autocorrection and suggestion"}],"type":"paragraph"}]},{"content":[{"type":"paragraph","inlineContent":[{"text":"Automatic capitalization","type":"text"}]}]},{"content":[{"inlineContent":[{"type":"text","text":"Automatic period upon double space"}],"type":"paragraph"}]},{"content":[{"inlineContent":[{"type":"text","text":"Smart quotes"}],"type":"paragraph"}]},{"content":[{"inlineContent":[{"type":"text","text":"Caps lock support"}],"type":"paragraph"}]},{"content":[{"inlineContent":[{"type":"text","text":"Multistage input for languages that use ideographic characters and symbols, such as Kanji (Japanese) and Hanzi (Chinese)"}],"type":"paragraph"}]}]},{"inlineContent":[{"text":"UIInputViewController conforms to the ","type":"text"},{"isActive":true,"identifier":"doc://com.apple.uikit/documentation/UIKit/UITextInputTraits","type":"reference"},{"text":" protocol to give access to a wide variety of properties related to these common behaviors. These properties indicate which settings are currently active for things like autocompletion type, autocapitalization type, enabling the Return key, smart quotes, dashes, and more. See ","type":"text"},{"isActive":true,"identifier":"doc://com.apple.uikit/documentation/UIKit/UITextInputTraits","type":"reference"},{"text":" for a complete list.","type":"text"}],"type":"paragraph"},{"inlineContent":[{"type":"text","text":"Another common behavior is the ability to dismiss the keyboard. Users can end editing in the current text input view by dismissing the keyboard. You can implement a button to dismiss the keyboard by calling "},{"type":"reference","identifier":"doc://com.apple.uikit/documentation/UIKit/UIInputViewController/dismissKeyboard()","isActive":true},{"type":"text","text":":"}],"type":"paragraph"},{"syntax":"swift","type":"codeListing","code":["@IBAction func dismissButtonTapped(_ sender: Any) {","    dismissKeyboard()","}"]},{"inlineContent":[{"type":"text","text":"Custom keyboards also have to provide a way for users to switch keyboards. For more information on implementing a button to switch keyboards, see "},{"type":"reference","isActive":true,"identifier":"doc://com.apple.uikit/documentation/UIKit/creating-a-custom-keyboard#Add-your-custom-user-interface"},{"type":"text","text":"."}],"type":"paragraph"},{"text":"Support autocomplete","type":"heading","level":3,"anchor":"Support-autocomplete"},{"inlineContent":[{"type":"text","text":"To support autocomplete functionality your keyboard has access to "},{"identifier":"doc://com.apple.uikit/documentation/UIKit/UILexicon","type":"reference","isActive":true},{"type":"text","text":". Make use of this class, along with a lexicon of your own design, to provide suggestions and autocorrections as users are entering text. The "},{"identifier":"doc://com.apple.uikit/documentation/UIKit/UILexicon","type":"reference","isActive":true},{"type":"text","text":" object contains words from various sources, including:"}],"type":"paragraph"},{"type":"unorderedList","items":[{"content":[{"type":"paragraph","inlineContent":[{"type":"text","text":"Unpaired first names and last names from the user’s Contacts database."}]}]},{"content":[{"inlineContent":[{"text":"Text shortcuts defined in the Settings > General > Keyboard > Shortcuts list.","type":"text"}],"type":"paragraph"}]},{"content":[{"type":"paragraph","inlineContent":[{"text":"A dictionary of common words.","type":"text"}]}]}]},{"text":"Indicate dictation support","type":"heading","level":3,"anchor":"Indicate-dictation-support"},{"inlineContent":[{"text":"If your keyboard provides a way to input text using dictation, set the ","type":"text"},{"identifier":"doc://com.apple.uikit/documentation/UIKit/UIInputViewController/hasDictationKey","type":"reference","isActive":true},{"text":" property of your UIInputViewController’s subclass to ","type":"text"},{"identifier":"doc://com.apple.documentation/documentation/swift/true","type":"reference","isActive":true},{"text":". In some cases, iOS may automatically show a dictation button (for example, on iPhone devices with Face ID). When you set ","type":"text"},{"identifier":"doc://com.apple.uikit/documentation/UIKit/UIInputViewController/hasDictationKey","type":"reference","isActive":true},{"text":" to ","type":"text"},{"identifier":"doc://com.apple.documentation/documentation/swift/true","type":"reference","isActive":true},{"text":", iOS won’t show the system button, because having two buttons to perform dictation would be confusing to users.","type":"text"}],"type":"paragraph"},{"text":"Leverage your containing app","type":"heading","level":3,"anchor":"Leverage-your-containing-app"},{"inlineContent":[{"text":"When designing your custom keyboard, keep in mind that you can leverage your containing app for some functionality. For example, a tutorial would be best suited in your parent app. You could also configure settings or options in the containing app, then save those settings to a shared group container which your keyboard could then read. If your containing app’s sole purpose is to deliver your custom keyboard, there must be some utility provided even if it’s purely informational.","type":"text"}],"type":"paragraph"},{"inlineContent":[{"text":"For further design guidance, see ","type":"text"},{"type":"reference","isActive":true,"identifier":"https://developer.apple.com/design/human-interface-guidelines/components/selection-and-input/onscreen-keyboards"},{"text":".","type":"text"}],"type":"paragraph"}],"kind":"content"}],"seeAlsoSections":[{"title":"Keyboard configuration","generated":true,"identifiers":["doc://com.apple.uikit/documentation/UIKit/configuring-open-access-for-a-custom-keyboard"],"anchor":"Keyboard-configuration"}],"kind":"article","metadata":{"role":"article","title":"Configuring a custom keyboard interface","roleHeading":"Article","modules":[{"name":"UIKit"}]},"sections":[],"schemaVersion":{"major":0,"minor":3,"patch":0},"identifier":{"url":"doc://com.apple.uikit/documentation/UIKit/configuring-a-custom-keyboard-interface","interfaceLanguage":"swift"},"hierarchy":{"paths":[["doc://com.apple.documentation/documentation/technologies","doc://com.apple.uikit/documentation/UIKit","doc://com.apple.uikit/documentation/UIKit/keyboards-and-input","doc://com.apple.uikit/documentation/UIKit/creating-a-custom-keyboard"]]},"variants":[{"paths":["/documentation/uikit/configuring-a-custom-keyboard-interface"],"traits":[{"interfaceLanguage":"swift"}]},{"paths":["/documentation/uikit/configuring-a-custom-keyboard-interface"],"traits":[{"interfaceLanguage":"occ"}]}],"references":{"doc://com.apple.uikit/documentation/UIKit/creating-a-custom-keyboard#Add-your-custom-user-interface":{"identifier":"doc://com.apple.uikit/documentation/UIKit/creating-a-custom-keyboard#Add-your-custom-user-interface","title":"Add your custom user interface","url":"/documentation/uikit/creating-a-custom-keyboard#Add-your-custom-user-interface","type":"topic","kind":"section","abstract":[]},"doc://com.apple.uikit/documentation/UIKit/UITextInputDelegate/textWillChange(_:)":{"navigatorTitle":[{"kind":"identifier","text":"textWillChange:"}],"identifier":"doc://com.apple.uikit/documentation/UIKit/UITextInputDelegate/textWillChange(_:)","abstract":[{"text":"Tells the input delegate when text is about to change in the document.","type":"text"}],"fragments":[{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"textWillChange"},{"kind":"text","text":"((any "},{"preciseIdentifier":"c:objc(pl)UITextInput","kind":"typeIdentifier","text":"UITextInput"},{"kind":"text","text":")?)"}],"type":"topic","title":"textWillChange(_:)","required":true,"role":"symbol","kind":"symbol","url":"/documentation/uikit/uitextinputdelegate/textwillchange(_:)"},"doc://com.apple.uikit/documentation/UIKit/view-layout":{"title":"View layout","type":"topic","abstract":[{"type":"text","text":"Use stack views to lay out the views of your interface automatically. Use Auto Layout when you require precise placement of your views."}],"identifier":"doc://com.apple.uikit/documentation/UIKit/view-layout","kind":"article","url":"/documentation/uikit/view-layout","role":"collectionGroup"},"doc://com.apple.uikit/documentation/UIKit/configuring-open-access-for-a-custom-keyboard":{"identifier":"doc://com.apple.uikit/documentation/UIKit/configuring-open-access-for-a-custom-keyboard","role":"article","kind":"article","url":"/documentation/uikit/configuring-open-access-for-a-custom-keyboard","title":"Configuring open access for a custom keyboard","type":"topic","abstract":[{"text":"Enable network access and write access to a shared group container.","type":"text"}]},"doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/application(_:shouldAllowExtensionPointIdentifier:)":{"kind":"symbol","abstract":[{"type":"text","text":"Asks the delegate to grant permission to use app extensions that are based on a specified extension point identifier."}],"title":"application(_:shouldAllowExtensionPointIdentifier:)","identifier":"doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/application(_:shouldAllowExtensionPointIdentifier:)","role":"symbol","url":"/documentation/uikit/uiapplicationdelegate/application(_:shouldallowextensionpointidentifier:)","type":"topic","fragments":[{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"text":"application","kind":"identifier"},{"text":"(","kind":"text"},{"preciseIdentifier":"c:objc(cs)UIApplication","text":"UIApplication","kind":"typeIdentifier"},{"text":", ","kind":"text"},{"kind":"externalParam","text":"shouldAllowExtensionPointIdentifier"},{"kind":"text","text":": "},{"preciseIdentifier":"c:objc(cs)UIApplication","kind":"typeIdentifier","text":"UIApplication"},{"kind":"text","text":"."},{"preciseIdentifier":"c:@T@UIApplicationExtensionPointIdentifier","kind":"typeIdentifier","text":"ExtensionPointIdentifier"},{"kind":"text","text":") -> "},{"kind":"typeIdentifier","text":"Bool","preciseIdentifier":"s:Sb"}],"navigatorTitle":[{"kind":"identifier","text":"application:shouldAllowExtensionPointIdentifier:"}]},"doc://com.apple.uikit/documentation/UIKit/keyboards-and-input":{"role":"collectionGroup","abstract":[{"type":"text","text":"Configure the system keyboard, create your own keyboards to handle input, or detect key presses on a physical keyboard."}],"url":"/documentation/uikit/keyboards-and-input","title":"Keyboards and input","type":"topic","identifier":"doc://com.apple.uikit/documentation/UIKit/keyboards-and-input","kind":"article"},"doc://com.apple.uikit/documentation/UIKit/UIInputViewController/textDocumentProxy":{"title":"textDocumentProxy","kind":"symbol","role":"symbol","identifier":"doc://com.apple.uikit/documentation/UIKit/UIInputViewController/textDocumentProxy","abstract":[{"text":"A proxy to the text input object that the custom keyboard is interacting with.","type":"text"}],"type":"topic","navigatorTitle":[{"kind":"identifier","text":"textDocumentProxy"}],"url":"/documentation/uikit/uiinputviewcontroller/textdocumentproxy","fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"textDocumentProxy"},{"kind":"text","text":": any "},{"kind":"typeIdentifier","text":"UITextDocumentProxy","preciseIdentifier":"c:objc(pl)UITextDocumentProxy"}]},"doc://com.apple.documentation/documentation/technologies":{"role":"overview","url":"/documentation/technologies","title":"Technologies","identifier":"doc://com.apple.documentation/documentation/technologies","abstract":[{"text":"","type":"text"}],"kind":"technologies","type":"topic"},"doc://com.apple.documentation/documentation/swift/false":{"role":"symbol","url":"/documentation/swift/false","title":"false","identifier":"doc://com.apple.documentation/documentation/swift/false","abstract":[{"text":"A false value.","type":"text"}],"kind":"symbol","type":"topic"},"doc://com.apple.uikit/documentation/UIKit":{"kind":"symbol","role":"collection","title":"UIKit","identifier":"doc://com.apple.uikit/documentation/UIKit","url":"/documentation/uikit","abstract":[{"type":"text","text":"Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app."}],"type":"topic"},"doc://com.apple.uikit/documentation/UIKit/UIInputViewController/dismissKeyboard()":{"fragments":[{"kind":"keyword","text":"func"},{"text":" ","kind":"text"},{"text":"dismissKeyboard","kind":"identifier"},{"text":"()","kind":"text"}],"identifier":"doc://com.apple.uikit/documentation/UIKit/UIInputViewController/dismissKeyboard()","title":"dismissKeyboard()","url":"/documentation/uikit/uiinputviewcontroller/dismisskeyboard()","type":"topic","navigatorTitle":[{"text":"dismissKeyboard","kind":"identifier"}],"role":"symbol","kind":"symbol","abstract":[{"type":"text","text":"Dismisses the custom keyboard from the screen."}]},"doc://com.apple.uikit/documentation/UIKit/UITextInputTraits/keyboardType":{"fragments":[{"text":"var","kind":"keyword"},{"text":" ","kind":"text"},{"text":"keyboardType","kind":"identifier"},{"text":": ","kind":"text"},{"preciseIdentifier":"c:@E@UIKeyboardType","text":"UIKeyboardType","kind":"typeIdentifier"}],"title":"keyboardType","url":"/documentation/uikit/uitextinputtraits/keyboardtype","type":"topic","navigatorTitle":[{"text":"keyboardType","kind":"identifier"}],"kind":"symbol","identifier":"doc://com.apple.uikit/documentation/UIKit/UITextInputTraits/keyboardType","role":"symbol","abstract":[{"type":"text","text":"The keyboard type for the text object."}]},"doc://com.apple.uikit/documentation/UIKit/UITextInputTraits":{"abstract":[{"type":"text","text":"A set of methods that defines features for keyboard input to a text object."}],"kind":"symbol","identifier":"doc://com.apple.uikit/documentation/UIKit/UITextInputTraits","fragments":[{"kind":"keyword","text":"protocol"},{"kind":"text","text":" "},{"kind":"identifier","text":"UITextInputTraits"}],"title":"UITextInputTraits","role":"symbol","navigatorTitle":[{"kind":"identifier","text":"UITextInputTraits"}],"type":"topic","url":"/documentation/uikit/uitextinputtraits"},"https://developer.apple.com/design/human-interface-guidelines/components/selection-and-input/onscreen-keyboards":{"identifier":"https://developer.apple.com/design/human-interface-guidelines/components/selection-and-input/onscreen-keyboards","title":"Human Interface Guidelines","url":"https://developer.apple.com/design/human-interface-guidelines/components/selection-and-input/onscreen-keyboards","type":"link","titleInlineContent":[{"type":"text","text":"Human Interface Guidelines"}]},"doc://com.apple.uikit/documentation/UIKit/creating-a-custom-keyboard":{"title":"Creating a custom keyboard","kind":"article","role":"collectionGroup","identifier":"doc://com.apple.uikit/documentation/UIKit/creating-a-custom-keyboard","abstract":[{"type":"text","text":"Add an extension to your Xcode project to provide systemwide customized text input."}],"type":"topic","url":"/documentation/uikit/creating-a-custom-keyboard"},"doc://com.apple.uikit/documentation/UIKit/UIInputViewController/hasDictationKey":{"navigatorTitle":[{"kind":"identifier","text":"hasDictationKey"}],"role":"symbol","fragments":[{"kind":"keyword","text":"var"},{"text":" ","kind":"text"},{"text":"hasDictationKey","kind":"identifier"},{"kind":"text","text":": "},{"kind":"typeIdentifier","preciseIdentifier":"s:Sb","text":"Bool"}],"url":"/documentation/uikit/uiinputviewcontroller/hasdictationkey","kind":"symbol","identifier":"doc://com.apple.uikit/documentation/UIKit/UIInputViewController/hasDictationKey","type":"topic","abstract":[{"type":"text","text":"A Boolean value that indicates whether the keyboard has a dictation key."}],"title":"hasDictationKey"},"doc://com.apple.uikit/documentation/UIKit/UIKeyboardType/namePhonePad":{"fragments":[{"kind":"keyword","text":"case"},{"kind":"text","text":" "},{"kind":"identifier","text":"namePhonePad"}],"type":"topic","abstract":[{"text":"Specifies a keypad for entering a person’s name or phone number.","type":"text"}],"role":"symbol","navigatorTitle":[{"kind":"identifier","text":"UIKeyboardTypeNamePhonePad"}],"kind":"symbol","url":"/documentation/uikit/uikeyboardtype/namephonepad","identifier":"doc://com.apple.uikit/documentation/UIKit/UIKeyboardType/namePhonePad","title":"UIKeyboardType.namePhonePad"},"doc://com.apple.documentation/documentation/swift/true":{"abstract":[{"text":"A true value.","type":"text"}],"role":"symbol","url":"/documentation/swift/true","identifier":"doc://com.apple.documentation/documentation/swift/true","type":"topic","title":"true","kind":"symbol"},"doc://com.apple.uikit/documentation/UIKit/UILexicon":{"type":"topic","kind":"symbol","title":"UILexicon","role":"symbol","navigatorTitle":[{"text":"UILexicon","kind":"identifier"}],"url":"/documentation/uikit/uilexicon","fragments":[{"text":"class","kind":"keyword"},{"text":" ","kind":"text"},{"text":"UILexicon","kind":"identifier"}],"abstract":[{"text":"A read-only array of term pairs, each in a lexicon entry object, for a custom keyboard.","type":"text"}],"identifier":"doc://com.apple.uikit/documentation/UIKit/UILexicon"},"doc://com.apple.uikit/documentation/UIKit/UIKeyboardType/phonePad":{"role":"symbol","title":"UIKeyboardType.phonePad","navigatorTitle":[{"text":"UIKeyboardTypePhonePad","kind":"identifier"}],"fragments":[{"text":"case","kind":"keyword"},{"text":" ","kind":"text"},{"text":"phonePad","kind":"identifier"}],"kind":"symbol","abstract":[{"text":"Specifies a keypad for entering telephone numbers.","type":"text"}],"url":"/documentation/uikit/uikeyboardtype/phonepad","type":"topic","identifier":"doc://com.apple.uikit/documentation/UIKit/UIKeyboardType/phonePad"}},"variantOverrides":[{"traits":[{"interfaceLanguage":"occ"}],"patch":[{"value":"occ","path":"/identifier/interfaceLanguage","op":"replace"},{"value":null,"path":"/topicSections","op":"add"},{"value":[{"identifiers":["doc://com.apple.uikit/documentation/UIKit/configuring-open-access-for-a-custom-keyboard"],"title":"Keyboard configuration","anchor":"Keyboard-configuration","generated":true}],"path":"/seeAlsoSections","op":"replace"},{"value":"textWillChange:","path":"/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInputDelegate~1textWillChange(_:)/title","op":"replace"},{"value":[{"kind":"text","text":"- "},{"text":"textWillChange:","kind":"identifier"}],"path":"/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInputDelegate~1textWillChange(_:)/fragments","op":"replace"},{"value":"application:shouldAllowExtensionPointIdentifier:","path":"/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationDelegate~1application(_:shouldAllowExtensionPointIdentifier:)/title","op":"replace"},{"value":[{"text":"- ","kind":"text"},{"text":"application:shouldAllowExtensionPointIdentifier:","kind":"identifier"}],"path":"/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationDelegate~1application(_:shouldAllowExtensionPointIdentifier:)/fragments","op":"replace"},{"value":"textDocumentProxy","path":"/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIInputViewController~1textDocumentProxy/title","op":"replace"},{"value":[{"text":"textDocumentProxy","kind":"identifier"}],"path":"/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIInputViewController~1textDocumentProxy/fragments","op":"replace"},{"value":"dismissKeyboard","path":"/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIInputViewController~1dismissKeyboard()/title","op":"replace"},{"value":[{"kind":"text","text":"- "},{"kind":"identifier","text":"dismissKeyboard"}],"path":"/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIInputViewController~1dismissKeyboard()/fragments","op":"replace"},{"value":"keyboardType","path":"/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInputTraits~1keyboardType/title","op":"replace"},{"value":[{"text":"keyboardType","kind":"identifier"}],"path":"/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInputTraits~1keyboardType/fragments","op":"replace"},{"value":"UITextInputTraits","path":"/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInputTraits/title","op":"replace"},{"value":[{"kind":"identifier","text":"UITextInputTraits"}],"path":"/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInputTraits/fragments","op":"replace"},{"value":[{"kind":"identifier","text":"UITextInputTraits"}],"path":"/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInputTraits/navigatorTitle","op":"replace"},{"op":"replace","value":"hasDictationKey","path":"/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIInputViewController~1hasDictationKey/title"},{"op":"replace","value":[{"kind":"identifier","text":"hasDictationKey"}],"path":"/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIInputViewController~1hasDictationKey/fragments"},{"op":"replace","value":"UIKeyboardTypeNamePhonePad","path":"/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIKeyboardType~1namePhonePad/title"},{"op":"replace","value":[{"text":"UIKeyboardTypeNamePhonePad","kind":"identifier"}],"path":"/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIKeyboardType~1namePhonePad/fragments"},{"op":"replace","value":"UILexicon","path":"/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILexicon/title"},{"op":"replace","value":[{"kind":"identifier","text":"UILexicon"}],"path":"/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILexicon/fragments"},{"op":"replace","value":[{"text":"UILexicon","kind":"identifier"}],"path":"/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILexicon/navigatorTitle"},{"op":"replace","value":"UIKeyboardTypePhonePad","path":"/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIKeyboardType~1phonePad/title"},{"op":"replace","value":[{"text":"UIKeyboardTypePhonePad","kind":"identifier"}],"path":"/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIKeyboardType~1phonePad/fragments"}]}],"legalNotices":{"copyright":"Copyright &copy; 2025 Apple Inc. All rights reserved.","termsOfUse":"https://www.apple.com/legal/internet-services/terms/site.html","privacyPolicy":"https://www.apple.com/privacy/privacy-policy"}}
+{
+  "abstract": [
+    {
+      "text": "Design a flexible, functional, and responsive interface for editing text.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/keyboards-and-input",
+        "doc://com.apple.uikit/documentation/UIKit/creating-a-custom-keyboard"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/configuring-a-custom-keyboard-interface"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Configuring a custom keyboard interface"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can create a custom keyboard to provide a systemwide interface for manipulating text input. Because you’ll be integrating your keyboard with a system-provided service, you must fulfill certain requirements, and meet common user expectations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Among other things, your keyboard must:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Handle different types of input, like email addresses, phone numbers, URLs, and more.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Adapt to the space that’s available. For example, iPadOS can display keyboard docked to the bottom of the screen or floating with a compact width.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enable users to switch to other keyboards.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Support-different-input-types",
+          "level": 3,
+          "text": "Support different input types",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIInputViewController/textDocumentProxy",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to determine the current text input view’s keyboard input type. For each keyboard type that your app supports, configure your interface accordingly. One way to do this is by implementing ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextInputDelegate/textWillChange(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in your view controller, then compare the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIInputViewController/textDocumentProxy",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "‘s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextInputTraits/keyboardType",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to your keyboard’s current display. If it’s different, update your interface accordingly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let keyboardType = textDocumentProxy.keyboardType",
+            "",
+            "switch(keyboardType) {",
+            "case .asciiCapable: …",
+            "case .emailAddress: …",
+            "case .numberPad: …",
+            "…",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some text input views don’t allow custom keyboards:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Secure text field entries always show the system keyboard when the user begins entering text in a secure text field, temporarily removing your custom keyboard if it’s active. The system shows your keyboard again when the user begins entering text into a non-secure text field.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Text input fields configured with a keyboard type of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIKeyboardType/phonePad",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIKeyboardType/namePhonePad",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " show the system keyboard.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An app can disallow the use of third-party keyboards entirely by implementing ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/application(_:shouldAllowExtensionPointIdentifier:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and returning ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/false",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " when called with the ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.keyboard-service",
+              "type": "codeVoice"
+            },
+            {
+              "text": " identifier. If an app disallows third-party keyboards, your keyboard won’t be shown in that app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Adapt-to-different-layouts",
+          "level": 3,
+          "text": "Adapt to different layouts",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, iOS sizes custom keyboards to match the system keyboard according to screen size and device orientation. A custom keyboard’s width is always set by the system, typically matching the screen width. You can adjust the height of your custom keyboard’s primary view using Auto Layout. To change a keyboard’s height, adjust the height constraints on the UIInputViewController’s view to achieve the desired height for your interface.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about laying out your view, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/view-layout",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Handle-common-keyboard-behaviors",
+          "level": 3,
+          "text": "Handle common keyboard behaviors",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Users expect various behaviors from keyboards. One example is autocapitalization: In a standard text field, the first letter of a sentence in a case-sensitive language is automatically capitalized.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Features that users commonly expect from any keyboard include:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Appropriate layout and features based on keyboard type trait, such as automatically displaying relevant keys when editing email addresses or phone numbers",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Autocorrection and suggestion",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Automatic capitalization",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Automatic period upon double space",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Smart quotes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Caps lock support",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Multistage input for languages that use ideographic characters and symbols, such as Kanji (Japanese) and Hanzi (Chinese)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "UIInputViewController conforms to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextInputTraits",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol to give access to a wide variety of properties related to these common behaviors. These properties indicate which settings are currently active for things like autocompletion type, autocapitalization type, enabling the Return key, smart quotes, dashes, and more. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextInputTraits",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for a complete list.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Another common behavior is the ability to dismiss the keyboard. Users can end editing in the current text input view by dismissing the keyboard. You can implement a button to dismiss the keyboard by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIInputViewController/dismissKeyboard()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@IBAction func dismissButtonTapped(_ sender: Any) {",
+            "    dismissKeyboard()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Custom keyboards also have to provide a way for users to switch keyboards. For more information on implementing a button to switch keyboards, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/creating-a-custom-keyboard#Add-your-custom-user-interface",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Support-autocomplete",
+          "level": 3,
+          "text": "Support autocomplete",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To support autocomplete functionality your keyboard has access to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UILexicon",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Make use of this class, along with a lexicon of your own design, to provide suggestions and autocorrections as users are entering text. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UILexicon",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object contains words from various sources, including:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Unpaired first names and last names from the user’s Contacts database.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Text shortcuts defined in the Settings > General > Keyboard > Shortcuts list.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A dictionary of common words.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Indicate-dictation-support",
+          "level": 3,
+          "text": "Indicate dictation support",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your keyboard provides a way to input text using dictation, set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIInputViewController/hasDictationKey",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of your UIInputViewController’s subclass to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". In some cases, iOS may automatically show a dictation button (for example, on iPhone devices with Face ID). When you set ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIInputViewController/hasDictationKey",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", iOS won’t show the system button, because having two buttons to perform dictation would be confusing to users.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Leverage-your-containing-app",
+          "level": 3,
+          "text": "Leverage your containing app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When designing your custom keyboard, keep in mind that you can leverage your containing app for some functionality. For example, a tutorial would be best suited in your parent app. You could also configure settings or options in the containing app, then save those settings to a shared group container which your keyboard could then read. If your containing app’s sole purpose is to deliver your custom keyboard, there must be some utility provided even if it’s purely informational.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For further design guidance, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/design/human-interface-guidelines/components/selection-and-input/onscreen-keyboards",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/swift/false": {
+      "abstract": [
+        {
+          "text": "A false value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "false",
+      "type": "topic",
+      "url": "/documentation/swift/false"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/application(_:shouldAllowExtensionPointIdentifier:)": {
+      "abstract": [
+        {
+          "text": "Asks the delegate to grant permission to use app extensions that are based on a specified extension point identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "application"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplication",
+          "text": "UIApplication"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "shouldAllowExtensionPointIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplication",
+          "text": "UIApplication"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UIApplicationExtensionPointIdentifier",
+          "text": "ExtensionPointIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/application(_:shouldAllowExtensionPointIdentifier:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "application:shouldAllowExtensionPointIdentifier:"
+        }
+      ],
+      "role": "symbol",
+      "title": "application(_:shouldAllowExtensionPointIdentifier:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiapplicationdelegate/application(_:shouldallowextensionpointidentifier:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIInputViewController/dismissKeyboard()": {
+      "abstract": [
+        {
+          "text": "Dismisses the custom keyboard from the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dismissKeyboard"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIInputViewController/dismissKeyboard()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dismissKeyboard"
+        }
+      ],
+      "role": "symbol",
+      "title": "dismissKeyboard()",
+      "type": "topic",
+      "url": "/documentation/uikit/uiinputviewcontroller/dismisskeyboard()"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIInputViewController/hasDictationKey": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the keyboard has a dictation key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hasDictationKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIInputViewController/hasDictationKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "hasDictationKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "hasDictationKey",
+      "type": "topic",
+      "url": "/documentation/uikit/uiinputviewcontroller/hasdictationkey"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIInputViewController/textDocumentProxy": {
+      "abstract": [
+        {
+          "text": "A proxy to the text input object that the custom keyboard is interacting with.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "textDocumentProxy"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UITextDocumentProxy",
+          "text": "UITextDocumentProxy"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIInputViewController/textDocumentProxy",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "textDocumentProxy"
+        }
+      ],
+      "role": "symbol",
+      "title": "textDocumentProxy",
+      "type": "topic",
+      "url": "/documentation/uikit/uiinputviewcontroller/textdocumentproxy"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIKeyboardType/namePhonePad": {
+      "abstract": [
+        {
+          "text": "Specifies a keypad for entering a person’s name or phone number.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "namePhonePad"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIKeyboardType/namePhonePad",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIKeyboardTypeNamePhonePad"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIKeyboardType.namePhonePad",
+      "type": "topic",
+      "url": "/documentation/uikit/uikeyboardtype/namephonepad"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIKeyboardType/phonePad": {
+      "abstract": [
+        {
+          "text": "Specifies a keypad for entering telephone numbers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "phonePad"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIKeyboardType/phonePad",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIKeyboardTypePhonePad"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIKeyboardType.phonePad",
+      "type": "topic",
+      "url": "/documentation/uikit/uikeyboardtype/phonepad"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UILexicon": {
+      "abstract": [
+        {
+          "text": "A read-only array of term pairs, each in a lexicon entry object, for a custom keyboard.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UILexicon"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UILexicon",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UILexicon"
+        }
+      ],
+      "role": "symbol",
+      "title": "UILexicon",
+      "type": "topic",
+      "url": "/documentation/uikit/uilexicon"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextInputDelegate/textWillChange(_:)": {
+      "abstract": [
+        {
+          "text": "Tells the input delegate when text is about to change in the document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "textWillChange"
+        },
+        {
+          "kind": "text",
+          "text": "((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UITextInput",
+          "text": "UITextInput"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextInputDelegate/textWillChange(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "textWillChange:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "textWillChange(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextinputdelegate/textwillchange(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextInputTraits": {
+      "abstract": [
+        {
+          "text": "A set of methods that defines features for keyboard input to a text object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITextInputTraits"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextInputTraits",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITextInputTraits"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITextInputTraits",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextinputtraits"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextInputTraits/keyboardType": {
+      "abstract": [
+        {
+          "text": "The keyboard type for the text object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "keyboardType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIKeyboardType",
+          "text": "UIKeyboardType"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextInputTraits/keyboardType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "keyboardType"
+        }
+      ],
+      "role": "symbol",
+      "title": "keyboardType",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextinputtraits/keyboardtype"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/configuring-open-access-for-a-custom-keyboard": {
+      "abstract": [
+        {
+          "text": "Enable network access and write access to a shared group container.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/configuring-open-access-for-a-custom-keyboard",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring open access for a custom keyboard",
+      "type": "topic",
+      "url": "/documentation/uikit/configuring-open-access-for-a-custom-keyboard"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/creating-a-custom-keyboard": {
+      "abstract": [
+        {
+          "text": "Add an extension to your Xcode project to provide systemwide customized text input.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/creating-a-custom-keyboard",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Creating a custom keyboard",
+      "type": "topic",
+      "url": "/documentation/uikit/creating-a-custom-keyboard"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/creating-a-custom-keyboard#Add-your-custom-user-interface": {
+      "abstract": [],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/creating-a-custom-keyboard#Add-your-custom-user-interface",
+      "kind": "section",
+      "title": "Add your custom user interface",
+      "type": "topic",
+      "url": "/documentation/uikit/creating-a-custom-keyboard#Add-your-custom-user-interface"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/keyboards-and-input": {
+      "abstract": [
+        {
+          "text": "Configure the system keyboard, create your own keyboards to handle input, or detect key presses on a physical keyboard.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/keyboards-and-input",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Keyboards and input",
+      "type": "topic",
+      "url": "/documentation/uikit/keyboards-and-input"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/view-layout": {
+      "abstract": [
+        {
+          "text": "Use stack views to lay out the views of your interface automatically. Use Auto Layout when you require precise placement of your views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/view-layout",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "View layout",
+      "type": "topic",
+      "url": "/documentation/uikit/view-layout"
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/components/selection-and-input/onscreen-keyboards": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/components/selection-and-input/onscreen-keyboards",
+      "title": "Human Interface Guidelines",
+      "titleInlineContent": [
+        {
+          "text": "Human Interface Guidelines",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/components/selection-and-input/onscreen-keyboards"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Keyboard-configuration",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/configuring-open-access-for-a-custom-keyboard"
+      ],
+      "title": "Keyboard configuration"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Keyboard-configuration",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/configuring-open-access-for-a-custom-keyboard"
+              ],
+              "title": "Keyboard configuration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInputDelegate~1textWillChange(_:)/title",
+          "value": "textWillChange:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInputDelegate~1textWillChange(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "textWillChange:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationDelegate~1application(_:shouldAllowExtensionPointIdentifier:)/title",
+          "value": "application:shouldAllowExtensionPointIdentifier:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationDelegate~1application(_:shouldAllowExtensionPointIdentifier:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "application:shouldAllowExtensionPointIdentifier:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIInputViewController~1textDocumentProxy/title",
+          "value": "textDocumentProxy"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIInputViewController~1textDocumentProxy/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "textDocumentProxy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIInputViewController~1dismissKeyboard()/title",
+          "value": "dismissKeyboard"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIInputViewController~1dismissKeyboard()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "dismissKeyboard"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInputTraits~1keyboardType/title",
+          "value": "keyboardType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInputTraits~1keyboardType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "keyboardType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInputTraits/title",
+          "value": "UITextInputTraits"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInputTraits/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextInputTraits"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInputTraits/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextInputTraits"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIInputViewController~1hasDictationKey/title",
+          "value": "hasDictationKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIInputViewController~1hasDictationKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "hasDictationKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIKeyboardType~1namePhonePad/title",
+          "value": "UIKeyboardTypeNamePhonePad"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIKeyboardType~1namePhonePad/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIKeyboardTypeNamePhonePad"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILexicon/title",
+          "value": "UILexicon"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILexicon/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UILexicon"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILexicon/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UILexicon"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIKeyboardType~1phonePad/title",
+          "value": "UIKeyboardTypePhonePad"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIKeyboardType~1phonePad/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIKeyboardTypePhonePad"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/configuring-a-custom-keyboard-interface"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/configuring-a-custom-keyboard-interface"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

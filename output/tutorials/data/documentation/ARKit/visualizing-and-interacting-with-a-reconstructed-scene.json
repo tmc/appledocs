@@ -1,0 +1,2072 @@
+{
+  "abstract": [
+    {
+      "text": "Estimate the shape of the physical environment using a polygonal mesh.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.arkit/documentation/ARKit",
+        "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios",
+        "doc://com.apple.arkit/documentation/ARKit/camera-lighting-and-effects"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.arkit/documentation/ARKit",
+        "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios",
+        "doc://com.apple.arkit/documentation/ARKit/content-anchors"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.arkit/documentation/ARKit/visualizing-and-interacting-with-a-reconstructed-scene"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "ARKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "13.4",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.4",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Visualizing and interacting with a reconstructed scene"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On a fourth-generation iPad Pro running iPad OS 13.4 or later, ARKit uses the LiDAR Scanner to create a polygonal model of the physical environment. The LiDAR Scanner quickly retrieves depth information from a wide area in front of the user, so ARKit can estimate the shape of the real world without requiring the user to move. ARKit converts the depth information into a series of vertices that connect to form a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "mesh",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". To partition the information, ARKit makes multiple anchors, each assigned a unique portion of the mesh. Collectively, the mesh anchors represent the real-world ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "scene",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " around the user.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With these meshes, you can:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "More accurately locate points on real-world surfaces.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Classify real-world objects that ARKit can recognize.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Occlude your app’s virtual content with real-world objects that are in front of it.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Have virtual content interact with the physical environment realistically, for example, by bouncing a virtual ball off a real-world wall and having the ball follow the laws of physics.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample app presents an AR experience using RealityKit. The figure below illustrates how RealityKit leverages real-world information from ARKit, and creates a debug visualization when you run this app and point the device at a real-world chair.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "meshing3-annotated",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Visualize-the-shape-of-the-physical-environment",
+          "level": 2,
+          "text": "Visualize the shape of the physical environment",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To enable scene meshes, the sample sets a world-configuration’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/sceneReconstruction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to one of the mesh options.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "arView.automaticallyConfigureSession = false",
+            "let configuration = ARWorldTrackingConfiguration()",
+            "configuration.sceneReconstruction = .meshWithClassification"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample uses RealityKit’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/ARView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to render its graphics. To visualize meshes at runtime, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/ARView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " offers the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/ARView/Environment-swift.struct/sceneUnderstanding-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " debugging option.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "arView.debugOptions.insert(.showSceneUnderstanding)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The sample enables mesh visualization only to demonstrate the mesh feature; similarly, you normally enable mesh visualization only for debugging purposes.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To begin the AR experience, the sample configures and runs the session when the app first starts, in the main view controller’s ",
+              "type": "text"
+            },
+            {
+              "code": "viewDidLoad",
+              "type": "codeVoice"
+            },
+            {
+              "text": " callback.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "arView.session.run(configuration)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Add-plane-detection",
+          "level": 3,
+          "text": "Add plane detection",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When an app enables plane detection with scene reconstruction, ARKit considers that information when making the mesh. Where the LiDAR scanner may produce a slightly uneven mesh on a real-world surface, ARKit smooths out the mesh where it detects a plane on that surface.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To demonstrate the difference that plane detection makes on meshes, this app displays a toggle button. In the button handler, the sample adjusts the plane-detection configuration and restarts the session to effect the change.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@IBAction func togglePlaneDetectionButtonPressed(_ button: UIButton) {",
+            "    guard let configuration = arView.session.configuration as? ARWorldTrackingConfiguration else {",
+            "        return",
+            "    }",
+            "    if configuration.planeDetection == [] {",
+            "        configuration.planeDetection = [.horizontal, .vertical]",
+            "        button.setTitle(\"Stop Plane Detection\", for: [])",
+            "    } else {",
+            "        configuration.planeDetection = []",
+            "        button.setTitle(\"Start Plane Detection\", for: [])",
+            "    }",
+            "    arView.session.run(configuration)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Locate-a-Point-on-an-Objects-Surface",
+          "level": 2,
+          "text": "Locate a Point on an Object’s Surface",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apps that retrieve surface locations using meshes can achieve unprecedented accuracy. By considering the mesh, raycasts can intersect with nonplanar surfaces, or surfaces with little or no features, like white walls.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To demonstrate accurate raycast results, this app casts a ray when the user taps the screen. The sample specifies the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARRaycastQuery/Target-swift.enum/estimatedPlane",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " allowable-target, and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARRaycastQuery/TargetAlignment-swift.enum/any",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " alignment option, as required to retrieve a point on a meshed, real-world object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if let result = arView.raycast(from: tapLocation, allowing: .estimatedPlane, alignment: .any).first {",
+            "    // ..."
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "armchair-annotated",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the user’s raycast returns a result, this app gives visual feedback by placing a small sphere at the intersection point.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let resultAnchor = AnchorEntity(world: result.worldTransform)",
+            "resultAnchor.addChild(sphere(radius: 0.01, color: .lightGray))",
+            "arView.scene.addAnchor(resultAnchor, removeAfter: 3)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "insersection-sphere-annotated",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Classify-Real-World-Objects",
+          "level": 2,
+          "text": "Classify Real-World Objects",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "ARKit has a classification feature that analyzes its meshed model of the world to recognize specific, real-world objects. Within the mesh, ARKit can classify floors, tables, seats, windows, and ceilings. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARMeshClassification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for the full list.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the user taps the screen and the raycast intersects with a meshed, real-world object, this app displays text of the mesh’s classification.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "classified-sized",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/ARView/automaticallyConfigureSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/ARView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", RealityKit disables classification by default because it isn’t required for occlusion and physics. To enable mesh classification, the sample overrides the default by setting the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/sceneReconstruction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARConfiguration/SceneReconstruction/meshWithClassification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "arView.automaticallyConfigureSession = false",
+            "let configuration = ARWorldTrackingConfiguration()",
+            "configuration.sceneReconstruction = .meshWithClassification"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This app attempts to retrieve a classification for the intersection point from the mesh.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "nearbyFaceWithClassification(to: result.worldTransform.position) { (centerOfFace, classification) in",
+            "    // ..."
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Every three vertices in the mesh form a triangle, called a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "face.",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " ARKit assigns a classification for each face, so the sample searches through the mesh for a face near the intersection point. If the face has a classification, this app displays it on screen. Because this routine involves extensive processing, the sample does the work asynchronously, so the renderer does not stall.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "DispatchQueue.global().async {",
+            "    for anchor in meshAnchors {",
+            "        for index in 0..<anchor.geometry.faces.count {",
+            "            // Get the center of the face so that we can compare it to the given location.",
+            "            let geometricCenterOfFace = anchor.geometry.centerOf(faceWithIndex: index)",
+            "            ",
+            "            // Convert the face's center to world coordinates.",
+            "            var centerLocalTransform = matrix_identity_float4x4",
+            "            centerLocalTransform.columns.3 = SIMD4<Float>(geometricCenterOfFace.0, geometricCenterOfFace.1, geometricCenterOfFace.2, 1)",
+            "            let centerWorldPosition = (anchor.transform * centerLocalTransform).position",
+            "             ",
+            "            // We're interested in a classification that is sufficiently close to the given location––within 5 cm.",
+            "            let distanceToFace = distance(centerWorldPosition, location)",
+            "            if distanceToFace <= 0.05 {",
+            "                // Get the semantic classification of the face and finish the search.",
+            "                let classification: ARMeshClassification = anchor.geometry.classificationOf(faceWithIndex: index)",
+            "                completionBlock(centerWorldPosition, classification)",
+            "                return",
+            "            }",
+            "        }",
+            "    }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With the classification in-hand, the sample creates 3D text to display it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let textEntity = self.model(for: classification)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To prevent the mesh from partially occluding the text, the sample offsets the text slightly to help readability. The sample calculates the offset in the negative direction of the ray, which effectively moves the text slightly toward the camera, which is away from the surface.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let rayDirection = normalize(result.worldTransform.position - self.arView.cameraTransform.translation)",
+            "let textPositionInWorldCoordinates = result.worldTransform.position - (rayDirection * 0.1)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To make the text always appear the same size on screen, the sample applies a scale based on text’s distance from the camera.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let raycastDistance = distance(result.worldTransform.position, self.arView.cameraTransform.translation)",
+            "textEntity.scale = .one * raycastDistance"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To display the text, the sample puts it in an anchored entity at the adjusted intersection-point, which is oriented to face the camera.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var resultWithCameraOrientation = self.arView.cameraTransform",
+            "resultWithCameraOrientation.translation = textPositionInWorldCoordinates",
+            "let textAnchor = AnchorEntity(world: resultWithCameraOrientation.matrix)",
+            "textAnchor.addChild(textEntity)",
+            "self.arView.scene.addAnchor(textAnchor, removeAfter: 3)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To visualize the location of the face’s vertex from which the classification was retrieved, the sample creates a small sphere at the vertex’s real-world position.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if let centerOfFace = centerOfFace {",
+            "    let faceAnchor = AnchorEntity(world: centerOfFace)",
+            "    faceAnchor.addChild(self.sphere(radius: 0.01, color: classification.color))",
+            "    self.arView.scene.addAnchor(faceAnchor, removeAfter: 3)",
+            "    // ...",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "classified-text-annotated",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Occlude-virtual-content-with-a-mesh",
+          "level": 3,
+          "text": "Occlude virtual content with a mesh",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Occlusion",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " is a feature where parts of the real world cover an app’s virtual content, from the camera’s perspective. To achieve this illusion, RealityKit checks for any meshes in front of virtual content, viewed by the user, and omits drawing any part of the virtual content obscured by those meshes. The sample enables occlusion by adding the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/ARView/Environment-swift.struct/SceneUnderstanding-swift.struct/Options-swift.struct",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " option to the environment’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/ARView/Environment-swift.struct/sceneUnderstanding-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "arView.environment.sceneUnderstanding.options.insert(.occlusion)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At runtime, this app omits drawing portions of the virtual text that are behind any part of the meshed, real world.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "table-floor-annotated",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Interact-with-real-world-objects-using-physics",
+          "level": 3,
+          "text": "Interact with real-world objects using physics",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With scene meshes, virtual content can interact with the physical environment realistically because the meshes give RealityKit’s physics engine an accurate model of the world. The sample enables physics by adding the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/ARView/Environment-swift.struct/SceneUnderstanding-swift.struct/Options-swift.struct/physics",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " option to the environment’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/ARView/Environment-swift.struct/sceneUnderstanding-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "arView.environment.sceneUnderstanding.options.insert(.physics)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To detect when virtual content comes in contact with a meshed, real-world object, the sample defines the text’s proportions using a collision shape in the ",
+              "type": "text"
+            },
+            {
+              "code": "addAnchor(_:,removeAfter:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/Scene",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if model.collision == nil {",
+            "    model.generateCollisionShapes(recursive: true)",
+            "    model.physicsBody = .init()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When this app classifies an object and displays some text, it waits three seconds before dropping the virtual text. When the sample sets the text’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/ModelEntity/physicsBody",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/PhysicsBodyComponent/mode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/PhysicsBodyMode/dynamic",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the text reacts to gravity by falling.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Timer.scheduledTimer(withTimeInterval: seconds, repeats: false) { (timer) in",
+            "    model.physicsBody?.mode = .dynamic",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As the text falls, it reacts when colliding with a meshed, real-world object, such as landing on the floor.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "windows-annotated",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "4ecffc064c76/VisualizingAndInteractingWithAReconstructedScene.zip": {
+      "checksum": "4ecffc064c76b7102b7be981397d0f15876f85a4b9f0005f98c0781b01ff722ef80b80fb9bedfe7a9b59981b645430b659626c2ee52fdf5231be68f298a7b4b2",
+      "identifier": "4ecffc064c76/VisualizingAndInteractingWithAReconstructedScene.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/4ecffc064c76/VisualizingAndInteractingWithAReconstructedScene.zip"
+    },
+    "armchair-annotated": {
+      "alt": "Figure of a meshed, real-world vase with a ray intersecting its surface.",
+      "identifier": "armchair-annotated",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8e1b0cf9f959aa288390653880cef84b/armchair-annotated.png"
+        }
+      ]
+    },
+    "classified-sized": {
+      "alt": "Figure of a meshed, real-world vase with a label that displays its classification.",
+      "identifier": "classified-sized",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/088d0505c5e78f580315ab0614265770/classified-sized.png"
+        }
+      ]
+    },
+    "classified-text-annotated": {
+      "alt": "Screenshot of a virtual sphere that identifies the origin of a classified mesh.",
+      "identifier": "classified-text-annotated",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fbb582ff4cccac286b4809b2209cd530/classified-text-annotated.png"
+        }
+      ]
+    },
+    "doc://com.apple.arkit/documentation/ARKit": {
+      "abstract": [
+        {
+          "text": "Integrate hardware sensing features to produce augmented reality apps and games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ARKit",
+      "type": "topic",
+      "url": "/documentation/arkit"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARConfiguration/SceneReconstruction/meshWithClassification": {
+      "abstract": [
+        {
+          "text": "An approximate shape of the physical environment, including classification of the real-world objects within it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "meshWithClassification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARConfiguration",
+          "text": "ARConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ARSceneReconstruction",
+          "text": "SceneReconstruction"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARConfiguration/SceneReconstruction/meshWithClassification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARSceneReconstructionMeshWithClassification"
+        }
+      ],
+      "role": "symbol",
+      "title": "meshWithClassification",
+      "type": "topic",
+      "url": "/documentation/arkit/arconfiguration/scenereconstruction/meshwithclassification"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARMatteGenerator": {
+      "abstract": [
+        {
+          "text": "An object that creates matte textures you use to occlude your app’s virtual content with people, that ARKit recognizes in the camera feed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARMatteGenerator"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARMatteGenerator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARMatteGenerator"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARMatteGenerator",
+      "type": "topic",
+      "url": "/documentation/arkit/armattegenerator"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARMeshClassification": {
+      "abstract": [
+        {
+          "text": "Enumeration of different classes of real-world objects that ARKit can identify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARMeshClassification"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARMeshClassification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARMeshClassification"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARMeshClassification",
+      "type": "topic",
+      "url": "/documentation/arkit/armeshclassification"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARRaycastQuery/Target-swift.enum/estimatedPlane": {
+      "abstract": [
+        {
+          "text": "A raycast target that specifies nonplanar surfaces, or planes about which ARKit can only estimate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "estimatedPlane"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARRaycastQuery/Target-swift.enum/estimatedPlane",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARRaycastTargetEstimatedPlane"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARRaycastQuery.Target.estimatedPlane",
+      "type": "topic",
+      "url": "/documentation/arkit/arraycastquery/target-swift.enum/estimatedplane"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARRaycastQuery/TargetAlignment-swift.enum/any": {
+      "abstract": [
+        {
+          "text": "The case that indicates a target may be aligned in any way with respect to gravity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "any"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARRaycastQuery/TargetAlignment-swift.enum/any",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARRaycastTargetAlignmentAny"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARRaycastQuery.TargetAlignment.any",
+      "type": "topic",
+      "url": "/documentation/arkit/arraycastquery/targetalignment-swift.enum/any"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/sceneReconstruction": {
+      "abstract": [
+        {
+          "text": "A flag that enables scene reconstruction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sceneReconstruction"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARConfiguration",
+          "text": "ARConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ARSceneReconstruction",
+          "text": "SceneReconstruction"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/sceneReconstruction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sceneReconstruction"
+        }
+      ],
+      "role": "symbol",
+      "title": "sceneReconstruction",
+      "type": "topic",
+      "url": "/documentation/arkit/arworldtrackingconfiguration/scenereconstruction"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios": {
+      "abstract": [
+        {
+          "text": "Integrate iOS device camera and motion features to produce augmented reality experiences in your app or game.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ARKit in iOS",
+      "type": "topic",
+      "url": "/documentation/arkit/arkit-in-ios"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/camera-lighting-and-effects": {
+      "abstract": [
+        {
+          "text": "Determine the camera position and lighting for the current session, and apply effects, such as occlusion, to elements of the environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/camera-lighting-and-effects",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Camera, Lighting, and Effects",
+      "type": "topic",
+      "url": "/documentation/arkit/camera-lighting-and-effects"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/content-anchors": {
+      "abstract": [
+        {
+          "text": "Identify items in the physical environment, including planar surfaces, images, physical objects, body positions, and faces.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/content-anchors",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Content Anchors",
+      "type": "topic",
+      "url": "/documentation/arkit/content-anchors"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/effecting-people-occlusion-in-custom-renderers": {
+      "abstract": [
+        {
+          "text": "Occlude your app’s virtual content where ARKit recognizes people in the camera feed by using matte generator.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/effecting-people-occlusion-in-custom-renderers",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Effecting People Occlusion in Custom Renderers",
+      "type": "topic",
+      "url": "/documentation/arkit/effecting-people-occlusion-in-custom-renderers"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/occluding-virtual-content-with-people": {
+      "abstract": [
+        {
+          "text": "Cover your app’s virtual content with people that ARKit perceives in the camera feed.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/occluding-virtual-content-with-people",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Occluding virtual content with people",
+      "type": "topic",
+      "url": "/documentation/arkit/occluding-virtual-content-with-people"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/ARView": {
+      "abstract": [
+        {
+          "text": "A view that enables you to display an AR experience with RealityKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@objc"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/ARView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ARView",
+      "type": "topic",
+      "url": "/documentation/RealityKit/ARView"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/ARView/Environment-swift.struct/SceneUnderstanding-swift.struct/Options-swift.struct": {
+      "abstract": [
+        {
+          "text": "Available scene-understanding options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Options"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/ARView/Environment-swift.struct/SceneUnderstanding-swift.struct/Options-swift.struct",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ARView.Environment.SceneUnderstanding.Options",
+      "type": "topic",
+      "url": "/documentation/RealityKit/ARView/Environment-swift.struct/SceneUnderstanding-swift.struct/Options-swift.struct"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/ARView/Environment-swift.struct/SceneUnderstanding-swift.struct/Options-swift.struct/physics": {
+      "abstract": [
+        {
+          "text": "No abstract",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "physics"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@M@RealityKit@objc(cs)ARView",
+          "text": "ARView"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10RealityKit6ARViewC11EnvironmentV",
+          "text": "Environment"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10RealityKit6ARViewC11EnvironmentV18SceneUnderstandingV",
+          "text": "SceneUnderstanding"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10RealityKit6ARViewC11EnvironmentV18SceneUnderstandingV7OptionsV",
+          "text": "Options"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/ARView/Environment-swift.struct/SceneUnderstanding-swift.struct/Options-swift.struct/physics",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "physics",
+      "type": "topic",
+      "url": "/documentation/RealityKit/ARView/Environment-swift.struct/SceneUnderstanding-swift.struct/Options-swift.struct/physics"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/ARView/Environment-swift.struct/sceneUnderstanding-swift.property": {
+      "abstract": [
+        {
+          "text": "The scene-understanding options for the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sceneUnderstanding"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@M@RealityKit@objc(cs)ARView",
+          "text": "ARView"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10RealityKit6ARViewC11EnvironmentV",
+          "text": "Environment"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10RealityKit6ARViewC11EnvironmentV18SceneUnderstandingV",
+          "text": "SceneUnderstanding"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "mutating"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/ARView/Environment-swift.struct/sceneUnderstanding-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sceneUnderstanding",
+      "type": "topic",
+      "url": "/documentation/RealityKit/ARView/Environment-swift.struct/sceneUnderstanding-swift.property"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/ARView/automaticallyConfigureSession": {
+      "abstract": [
+        {
+          "text": "An indication of whether to use an automatically configured AR session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "automaticallyConfigureSession"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/ARView/automaticallyConfigureSession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "automaticallyConfigureSession",
+      "type": "topic",
+      "url": "/documentation/RealityKit/ARView/automaticallyConfigureSession"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/ModelEntity/physicsBody": {
+      "abstract": [
+        {
+          "text": "A component that is used for physics simulations of the model entity in accordance with the laws of Newtonian mechanics.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "physicsBody"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation20PhysicsBodyComponentV",
+          "text": "PhysicsBodyComponent"
+        },
+        {
+          "kind": "text",
+          "text": "? { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/ModelEntity/physicsBody",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "physicsBody",
+      "type": "topic",
+      "url": "/documentation/RealityKit/ModelEntity/physicsBody"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/PhysicsBodyComponent/mode": {
+      "abstract": [
+        {
+          "text": "The behavioral mode that controls the way the physics body moves and interacts with other physics bodies in a simulation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation15PhysicsBodyModeO",
+          "text": "PhysicsBodyMode"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/PhysicsBodyComponent/mode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mode",
+      "type": "topic",
+      "url": "/documentation/RealityKit/PhysicsBodyComponent/mode"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/PhysicsBodyMode/dynamic": {
+      "abstract": [
+        {
+          "text": "Forces and collisions control body movement.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dynamic"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/PhysicsBodyMode/dynamic",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PhysicsBodyMode.dynamic",
+      "type": "topic",
+      "url": "/documentation/RealityKit/PhysicsBodyMode/dynamic"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/Scene": {
+      "abstract": [
+        {
+          "text": "A container that holds the collection of entities that an AR view renders.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/Scene",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Scene",
+      "type": "topic",
+      "url": "/documentation/RealityKit/Scene"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "insersection-sphere-annotated": {
+      "alt": "Screenshot of a virtual sphere placed on the surface of a mesh that intersected the user's raycast.",
+      "identifier": "insersection-sphere-annotated",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f44bcf3882c5044d5d363edacec8867e/insersection-sphere-annotated.png"
+        }
+      ]
+    },
+    "meshing3-annotated": {
+      "alt": "Screenshot of a chair visible in the camera feed with a mesh overlay visualized by RealityKit.",
+      "identifier": "meshing3-annotated",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/29bde685f765a041c1b8598d443ece07/meshing3-annotated.png"
+        }
+      ]
+    },
+    "table-floor-annotated": {
+      "alt": "Screenshot of a real-world table that occludes a virtual object placed by the app.",
+      "identifier": "table-floor-annotated",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0c1bd38500afe3c9d33badfc08a024fb/table-floor-annotated.png"
+        }
+      ]
+    },
+    "windows-annotated": {
+      "alt": "Screenshot of a virtual ball falling through the basket of a real-world basketball hoop.",
+      "identifier": "windows-annotated",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/611d960874841264017cc8bd2604b392/windows-annotated.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "4ecffc064c76/VisualizingAndInteractingWithAReconstructedScene.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Occlusion",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/occluding-virtual-content-with-people",
+        "doc://com.apple.arkit/documentation/ARKit/effecting-people-occlusion-in-custom-renderers",
+        "doc://com.apple.arkit/documentation/ARKit/ARMatteGenerator"
+      ],
+      "title": "Occlusion"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Occlusion",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/occluding-virtual-content-with-people",
+                "doc://com.apple.arkit/documentation/ARKit/effecting-people-occlusion-in-custom-renderers",
+                "doc://com.apple.arkit/documentation/ARKit/ARMatteGenerator"
+              ],
+              "title": "Occlusion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARRaycastQuery~1Target-swift.enum~1estimatedPlane/title",
+          "value": "ARRaycastTargetEstimatedPlane"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARRaycastQuery~1Target-swift.enum~1estimatedPlane/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARRaycastTargetEstimatedPlane"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARMeshClassification/title",
+          "value": "ARMeshClassification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARMeshClassification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARMeshClassification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARMeshClassification/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARMeshClassification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARConfiguration~1SceneReconstruction~1meshWithClassification/title",
+          "value": "ARSceneReconstructionMeshWithClassification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARConfiguration~1SceneReconstruction~1meshWithClassification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARSceneReconstructionMeshWithClassification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARMatteGenerator/title",
+          "value": "ARMatteGenerator"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARMatteGenerator/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARMatteGenerator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARMatteGenerator/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARMatteGenerator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARRaycastQuery~1TargetAlignment-swift.enum~1any/title",
+          "value": "ARRaycastTargetAlignmentAny"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARRaycastQuery~1TargetAlignment-swift.enum~1any/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARRaycastTargetAlignmentAny"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1sceneReconstruction/title",
+          "value": "sceneReconstruction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1sceneReconstruction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "sceneReconstruction"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/arkit/visualizing-and-interacting-with-a-reconstructed-scene"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/arkit/visualizing-and-interacting-with-a-reconstructed-scene"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

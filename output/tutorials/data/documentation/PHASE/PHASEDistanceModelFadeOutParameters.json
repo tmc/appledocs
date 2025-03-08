@@ -1,0 +1,1217 @@
+{
+  "abstract": [
+    {
+      "text": "A distance over which the framework fades out sound.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.phase/documentation/PHASE"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.phase/documentation/PHASE/PHASEDistanceModelFadeOutParameters"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)PHASEDistanceModelFadeOutParameters",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "PHASEDistanceModelFadeOutParameters"
+      }
+    ],
+    "modules": [
+      {
+        "name": "PHASE"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "PHASEDistanceModelFadeOutParameters"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "PHASEDistanceModelFadeOutParameters"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "PHASEDistanceModelFadeOutParameters"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For spatial sound output, the framework stops playing a sound when its distance from the listener surpases ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEDistanceModelFadeOutParameters/cullDistance",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The framework gradually fades out the sound’s volume as the distance between the source and listener approaches ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEDistanceModelFadeOutParameters/cullDistance",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Likewise, the framework gradually fades in the sound as the distance between the source and listener approaches ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". A ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEDistanceModelParameters",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object provides an instance of this class to a spatial mixer; for more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEDistanceModelParameters/fadeOutParameters",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Specifying-a-Maximum-Distance-That-Sound-Reaches",
+          "level": 3,
+          "text": "Specifying a Maximum Distance That Sound Reaches",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code demonstrates a spatial mixer’s additional fade out. By setting ",
+              "type": "text"
+            },
+            {
+              "code": "fadeOutLength",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "1.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the framework begins to fade out a sound after its distance to the listener surpases ",
+              "type": "text"
+            },
+            {
+              "code": "1.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "let fadeOut = PHASEDistanceModelFadeOutParameters(maximumDistance: 10.0,",
+                    " fadeOutLength: 1.0,",
+                    " curveType: PHASECurveType.linear)",
+                    "piecewiseModel.fadeOutParameters = fadeOut",
+                    "spatialMixer.distanceModelParameters = piecewiseModel"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "PHASEDistanceModelFadeOutParameters* fadeOut = ",
+                    "    [[PHASEDistanceModelFadeOutParameters alloc] ",
+                    "        initWithMaximumDistance:10.f ",
+                    "        fadeOutLength:1.f curveType:PHASECurveTypeLinear];",
+                    "piecewiseModel.fadeOutParameters = fadeOut;",
+                    "spatialMixer.distanceModelParameters = piecewiseModel;"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.phase/documentation/PHASE": {
+      "abstract": [
+        {
+          "text": "Create dynamic audio experiences in your game or app that react to events and cues in the environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "PHASE",
+      "type": "topic",
+      "url": "/documentation/phase"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEDistanceModelFadeOutParameters": {
+      "abstract": [
+        {
+          "text": "A distance over which the framework fades out sound.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHASEDistanceModelFadeOutParameters"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEDistanceModelFadeOutParameters",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASEDistanceModelFadeOutParameters"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASEDistanceModelFadeOutParameters",
+      "type": "topic",
+      "url": "/documentation/phase/phasedistancemodelfadeoutparameters"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEDistanceModelFadeOutParameters/cullDistance": {
+      "abstract": [
+        {
+          "text": "The distance beyond which the framework doesn’t process the sound.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cullDistance"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEDistanceModelFadeOutParameters/cullDistance",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cullDistance"
+        }
+      ],
+      "role": "symbol",
+      "title": "cullDistance",
+      "type": "topic",
+      "url": "/documentation/phase/phasedistancemodelfadeoutparameters/culldistance"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEDistanceModelFadeOutParameters/init(cullDistance:)": {
+      "abstract": [
+        {
+          "text": "Creates a distance beyond which sound sources stop playing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "cullDistance"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEDistanceModelFadeOutParameters/init(cullDistance:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithCullDistance:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(cullDistance:)",
+      "type": "topic",
+      "url": "/documentation/phase/phasedistancemodelfadeoutparameters/init(culldistance:)"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEDistanceModelParameters": {
+      "abstract": [
+        {
+          "text": "A base class for a sound’s rate of change over distance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHASEDistanceModelParameters"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEDistanceModelParameters",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASEDistanceModelParameters"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASEDistanceModelParameters",
+      "type": "topic",
+      "url": "/documentation/phase/phasedistancemodelparameters"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEDistanceModelParameters/fadeOutParameters": {
+      "abstract": [
+        {
+          "text": "A distance over which the framework fades out the mixer’s sound.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fadeOutParameters"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHASEDistanceModelFadeOutParameters",
+          "text": "PHASEDistanceModelFadeOutParameters"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEDistanceModelParameters/fadeOutParameters",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fadeOutParameters"
+        }
+      ],
+      "role": "symbol",
+      "title": "fadeOutParameters",
+      "type": "topic",
+      "url": "/documentation/phase/phasedistancemodelparameters/fadeoutparameters"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEEnvelopeDistanceModelParameters": {
+      "abstract": [
+        {
+          "text": "A graph of points and curves that shapes the volume of a sound over distance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHASEEnvelopeDistanceModelParameters"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEEnvelopeDistanceModelParameters",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASEEnvelopeDistanceModelParameters"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASEEnvelopeDistanceModelParameters",
+      "type": "topic",
+      "url": "/documentation/phase/phaseenvelopedistancemodelparameters"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEGeometricSpreadingDistanceModelParameters": {
+      "abstract": [
+        {
+          "text": "An object that dissipates sound frequencies over distance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHASEGeometricSpreadingDistanceModelParameters"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEGeometricSpreadingDistanceModelParameters",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASEGeometricSpreadingDistanceModelParameters"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASEGeometricSpreadingDistanceModelParameters",
+      "type": "topic",
+      "url": "/documentation/phase/phasegeometricspreadingdistancemodelparameters"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Distance-Modeling",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.phase/documentation/PHASE/PHASEGeometricSpreadingDistanceModelParameters",
+        "doc://com.apple.phase/documentation/PHASE/PHASEEnvelopeDistanceModelParameters",
+        "doc://com.apple.phase/documentation/PHASE/PHASEDistanceModelParameters"
+      ],
+      "title": "Distance Modeling"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-the-Distance-Model-Fade-Out-Parameters",
+      "identifiers": [
+        "doc://com.apple.phase/documentation/PHASE/PHASEDistanceModelFadeOutParameters/init(cullDistance:)"
+      ],
+      "title": "Creating the Distance Model Fade-Out Parameters"
+    },
+    {
+      "anchor": "Inspecting-the-Cull-Distance",
+      "identifiers": [
+        "doc://com.apple.phase/documentation/PHASE/PHASEDistanceModelFadeOutParameters/cullDistance"
+      ],
+      "title": "Inspecting the Cull Distance"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "15.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "15.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "15.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "12.0",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "17.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "PHASEDistanceModelFadeOutParameters"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEDistanceModelFadeOutParameters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEDistanceModelFadeOutParameters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.phase/documentation/PHASE"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-the-Distance-Model-Fade-Out-Parameters",
+              "identifiers": [
+                "doc://com.apple.phase/documentation/PHASE/PHASEDistanceModelFadeOutParameters/init(cullDistance:)"
+              ],
+              "title": "Creating the Distance Model Fade-Out Parameters"
+            },
+            {
+              "anchor": "Inspecting-the-Cull-Distance",
+              "identifiers": [
+                "doc://com.apple.phase/documentation/PHASE/PHASEDistanceModelFadeOutParameters/cullDistance"
+              ],
+              "title": "Inspecting the Cull Distance"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Distance-Modeling",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.phase/documentation/PHASE/PHASEGeometricSpreadingDistanceModelParameters",
+                "doc://com.apple.phase/documentation/PHASE/PHASEEnvelopeDistanceModelParameters",
+                "doc://com.apple.phase/documentation/PHASE/PHASEDistanceModelParameters"
+              ],
+              "title": "Distance Modeling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "PHASEDistanceModelFadeOutParameters"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEDistanceModelParameters~1fadeOutParameters/title",
+          "value": "fadeOutParameters"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEDistanceModelParameters~1fadeOutParameters/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "fadeOutParameters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEDistanceModelFadeOutParameters~1cullDistance/title",
+          "value": "cullDistance"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEDistanceModelFadeOutParameters~1cullDistance/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cullDistance"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEDistanceModelFadeOutParameters/title",
+          "value": "PHASEDistanceModelFadeOutParameters"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEDistanceModelFadeOutParameters/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEDistanceModelFadeOutParameters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEDistanceModelFadeOutParameters/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEDistanceModelFadeOutParameters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEGeometricSpreadingDistanceModelParameters/title",
+          "value": "PHASEGeometricSpreadingDistanceModelParameters"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEGeometricSpreadingDistanceModelParameters/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEGeometricSpreadingDistanceModelParameters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEGeometricSpreadingDistanceModelParameters/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEGeometricSpreadingDistanceModelParameters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEEnvelopeDistanceModelParameters/title",
+          "value": "PHASEEnvelopeDistanceModelParameters"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEEnvelopeDistanceModelParameters/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEEnvelopeDistanceModelParameters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEEnvelopeDistanceModelParameters/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEEnvelopeDistanceModelParameters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEDistanceModelParameters/title",
+          "value": "PHASEDistanceModelParameters"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEDistanceModelParameters/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEDistanceModelParameters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEDistanceModelParameters/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEDistanceModelParameters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEDistanceModelFadeOutParameters~1init(cullDistance:)/title",
+          "value": "initWithCullDistance:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEDistanceModelFadeOutParameters~1init(cullDistance:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithCullDistance:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/phase/phasedistancemodelfadeoutparameters"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/phase/phasedistancemodelfadeoutparameters"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

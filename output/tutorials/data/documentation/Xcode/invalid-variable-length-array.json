@@ -1,0 +1,437 @@
+{
+  "abstract": [
+    {
+      "text": "Detects negative array bounds.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/debugging",
+        "doc://com.apple.Xcode/documentation/Xcode/diagnosing-memory-thread-and-crash-issues-early"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/invalid-variable-length-array"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Invalid variable-length array"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this check to detect negative array bounds. Variable-length arrays with a negative length have undefined behavior, and may cause stack corruption. Available in Xcode 9 and later.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Negative-variable-length-array-bounds-in-C",
+          "level": 3,
+          "text": "Negative variable-length array bounds in C",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the following code, the call to the ",
+              "type": "text"
+            },
+            {
+              "code": "invalid_index_returning_function",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function returns a negative number that results in an invalid array:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "int invalid_index_returning_function() {",
+            "    return -1;",
+            "}",
+            "int idx = invalid_index_returning_function();",
+            "int array[idx]; // Error: invalid array length"
+          ],
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Solution",
+          "level": 4,
+          "text": "Solution",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Fix the issue by checking array bounds before constructing arrays.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/debugging": {
+      "abstract": [
+        {
+          "text": "Identify and address issues in your app using the Xcode debugger, Xcode Organizer, Metal debugger, and Instruments.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/debugging",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Debugging",
+      "type": "topic",
+      "url": "/documentation/xcode/debugging"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/diagnosing-memory-thread-and-crash-issues-early": {
+      "abstract": [
+        {
+          "text": "Identify runtime crashes and undefined behaviors in your app during testing using",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Xcode’s sanitizer tools.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/diagnosing-memory-thread-and-crash-issues-early",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Diagnosing memory, thread, and crash issues early",
+      "type": "topic",
+      "url": "/documentation/xcode/diagnosing-memory-thread-and-crash-issues-early"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/division-by-zero": {
+      "abstract": [
+        {
+          "text": "Detects division where the divisor is zero.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/division-by-zero",
+      "kind": "article",
+      "role": "article",
+      "title": "Division by zero",
+      "type": "topic",
+      "url": "/documentation/xcode/division-by-zero"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/dynamic-type-violation": {
+      "abstract": [
+        {
+          "text": "Detects when an object has the wrong dynamic type.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/dynamic-type-violation",
+      "kind": "article",
+      "role": "article",
+      "title": "Dynamic type violation",
+      "type": "topic",
+      "url": "/documentation/xcode/dynamic-type-violation"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/integer-overflow": {
+      "abstract": [
+        {
+          "text": "Detects overflow in arithmetic.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/integer-overflow",
+      "kind": "article",
+      "role": "article",
+      "title": "Integer overflow",
+      "type": "topic",
+      "url": "/documentation/xcode/integer-overflow"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/invalid-boolean": {
+      "abstract": [
+        {
+          "text": "Detects when a program accesses a Boolean variable and its value isn’t true or false.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/invalid-boolean",
+      "kind": "article",
+      "role": "article",
+      "title": "Invalid Boolean value",
+      "type": "topic",
+      "url": "/documentation/xcode/invalid-boolean"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/invalid-enumeration-value": {
+      "abstract": [
+        {
+          "text": "Detects when an enumeration variable has an invalid value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/invalid-enumeration-value",
+      "kind": "article",
+      "role": "article",
+      "title": "Invalid enumeration value",
+      "type": "topic",
+      "url": "/documentation/xcode/invalid-enumeration-value"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/invalid-float-cast": {
+      "abstract": [
+        {
+          "text": "Detects out-of-range casts to, from, or between floating-point types.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/invalid-float-cast",
+      "kind": "article",
+      "role": "article",
+      "title": "Invalid float cast",
+      "type": "topic",
+      "url": "/documentation/xcode/invalid-float-cast"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/invalid-object-size": {
+      "abstract": [
+        {
+          "text": "Detects invalid pointer casts due to differences in the sizes of types.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/invalid-object-size",
+      "kind": "article",
+      "role": "article",
+      "title": "Invalid object size",
+      "type": "topic",
+      "url": "/documentation/xcode/invalid-object-size"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/invalid-shift": {
+      "abstract": [
+        {
+          "text": "Detects invalid and overflowing shifts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/invalid-shift",
+      "kind": "article",
+      "role": "article",
+      "title": "Invalid shift",
+      "type": "topic",
+      "url": "/documentation/xcode/invalid-shift"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/misaligned-pointer": {
+      "abstract": [
+        {
+          "text": "Detects when code accesses a misaligned pointer or creates a misaligned reference.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/misaligned-pointer",
+      "kind": "article",
+      "role": "article",
+      "title": "Misaligned pointer",
+      "type": "topic",
+      "url": "/documentation/xcode/misaligned-pointer"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/nonnull-argument-violation": {
+      "abstract": [
+        {
+          "text": "Detects when an argument incorrectly receives a null value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/nonnull-argument-violation",
+      "kind": "article",
+      "role": "article",
+      "title": "Nonnull argument violation",
+      "type": "topic",
+      "url": "/documentation/xcode/nonnull-argument-violation"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/nonnull-return-value-violation": {
+      "abstract": [
+        {
+          "text": "Detects when a function incorrectly returns null.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/nonnull-return-value-violation",
+      "kind": "article",
+      "role": "article",
+      "title": "Nonnull return value violation",
+      "type": "topic",
+      "url": "/documentation/xcode/nonnull-return-value-violation"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/nonnull-variable-assignment-violation": {
+      "abstract": [
+        {
+          "text": "Detects when you incorrectly assign null to a variable.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/nonnull-variable-assignment-violation",
+      "kind": "article",
+      "role": "article",
+      "title": "Nonnull variable assignment violation",
+      "type": "topic",
+      "url": "/documentation/xcode/nonnull-variable-assignment-violation"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/null-reference-creation-and-null-pointer-dereference": {
+      "abstract": [
+        {
+          "text": "Detects the creation of null references and null pointer dereferences.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/null-reference-creation-and-null-pointer-dereference",
+      "kind": "article",
+      "role": "article",
+      "title": "Null reference creation and null pointer dereference",
+      "type": "topic",
+      "url": "/documentation/xcode/null-reference-creation-and-null-pointer-dereference"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/out-of-bounds-array-access": {
+      "abstract": [
+        {
+          "text": "Detects out-of-bounds access of arrays.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/out-of-bounds-array-access",
+      "kind": "article",
+      "role": "article",
+      "title": "Out-of-bounds array access",
+      "type": "topic",
+      "url": "/documentation/xcode/out-of-bounds-array-access"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/reaching-of-unreachable-point": {
+      "abstract": [
+        {
+          "text": "Detects when a program reaches an unreachable point.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/reaching-of-unreachable-point",
+      "kind": "article",
+      "role": "article",
+      "title": "Reaching of unreachable point",
+      "type": "topic",
+      "url": "/documentation/xcode/reaching-of-unreachable-point"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Undefined-Behavior-Sanitizer",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/misaligned-pointer",
+        "doc://com.apple.Xcode/documentation/Xcode/invalid-boolean",
+        "doc://com.apple.Xcode/documentation/Xcode/out-of-bounds-array-access",
+        "doc://com.apple.Xcode/documentation/Xcode/invalid-enumeration-value",
+        "doc://com.apple.Xcode/documentation/Xcode/reaching-of-unreachable-point",
+        "doc://com.apple.Xcode/documentation/Xcode/dynamic-type-violation",
+        "doc://com.apple.Xcode/documentation/Xcode/invalid-float-cast",
+        "doc://com.apple.Xcode/documentation/Xcode/division-by-zero",
+        "doc://com.apple.Xcode/documentation/Xcode/nonnull-argument-violation",
+        "doc://com.apple.Xcode/documentation/Xcode/nonnull-return-value-violation",
+        "doc://com.apple.Xcode/documentation/Xcode/nonnull-variable-assignment-violation",
+        "doc://com.apple.Xcode/documentation/Xcode/null-reference-creation-and-null-pointer-dereference",
+        "doc://com.apple.Xcode/documentation/Xcode/invalid-object-size",
+        "doc://com.apple.Xcode/documentation/Xcode/invalid-shift",
+        "doc://com.apple.Xcode/documentation/Xcode/integer-overflow"
+      ],
+      "title": "Undefined Behavior Sanitizer"
+    }
+  ]
+}

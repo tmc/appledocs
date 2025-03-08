@@ -1,0 +1,918 @@
+{
+  "abstract": [
+    {
+      "text": "The basic data unit in a QuickTime file is the atom.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.qtff/documentation/quicktime-file-format",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Storing_and_sharing_media_with_QuickTime_files"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Atoms"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "QuickTime File Format"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Atoms"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The basic data unit in a QuickTime file is the atom. Each atom contains size and type fields that precede any other data. The size field indicates the total number of bytes in the atom, including the size and type fields. The type field specifies the type of data stored in the atom and, by implication, the format of that data. In some cases, the size and type fields are followed by a version field and a flags field. An atom with these version and flags fields is sometimes called a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "full atom",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An atom, as this documentation describes, is functionally identical to a ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "box",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": ", as the ISO specifications describe for MPEG-4 and Motion JPEG-2000. An atom that includes version and flags fields is functionally identical to a ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "full box",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": " as those specifications define.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Atom types are specified by a 32-bit unsigned integer, typically interpreted as a four-character ASCII code. Apple, Inc. reserves all four-character codes consisting entirely of lowercase letters. Unless otherwise stated, all data in a QuickTime movie is stored in big-endian byte ordering, also known as network byte ordering, in which the most significant bytes are stored and transmitted first.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Atoms are hierarchical in nature. That is, one atom can contain other atoms, which can contain still others, and so on. This hierarchy is sometimes described in terms of a parent, children, siblings, grandchildren, and so on. An atom that contains other atoms is called a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "container atom",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". The ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "parent atom",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " is the container atom exactly one level above a given atom in the hierarchy.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, a movie atom contains several different kinds of atoms, including one track atom for each track in the movie. The track atoms, in turn, contain one media atom each, along with other atoms that define other track characteristics. The movie atom is the parent atom of the track atoms. The track atoms are siblings. The track atoms are parent atoms of the media atoms. The movie atom is ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "not",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " the parent of the media atoms, because it is more than one layer above them in the hierarchy.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An atom that does not contain other atoms is called a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "leaf atom",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", and typically contains data as one or more fields or tables. Some leaf atoms act as flags or placeholders, however, and contain no data beyond their size and type fields.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The format of the data stored within a given atom cannot always be determined by the type field of the atom alone; the type of the parent atom may also be significant. In other words, a given atom type can contain different kinds of information depending on its parent atom. For example, the profile atom inside a movie atom contains information about the movie, while the profile atom inside a track atom contains information about the track. This means that all QuickTime file readers must take into consideration not only the atom type, but also the atom’s containment hierarchy.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Atom-layout",
+          "level": 2,
+          "text": "Atom layout",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following figure shows the layout of a sample atom. Each atom carries its own size and type information as well as its data. Leaf atoms contain data, usually in the form of tables.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "sample-atom",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A leaf atom, as shown in the preceeding figure, simply contains a series of data fields accessible by offsets.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Atoms within container atoms do not generally have to be in any particular order, unless such an order is specifically called out in this documentation. One such example is the handler description atom, which must come before the data being handled. For example, a media handler description atom must come before a media information atom, and a data handler description atom must come before a data information atom.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Atom-structure",
+          "level": 2,
+          "text": "Atom structure",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Atoms consist of a header, followed by atom data. The header contains the atom’s size and type fields, giving the size of the atom in bytes and its type. It may also contain an extended size field, giving the size of a large atom as a 64-bit integer. If an extended size field is present, the size field is set to 1. The actual size of an atom cannot be less than 8 bytes (the minimum size of the type and size fields).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some atoms also contain version and flags fields. These are sometimes called full atoms. The flag and version fields are not treated as part of the atom header in this documentation; they are treated as data fields specific to each atom type that contains them. Such fields must always be set to zero, unless otherwise specified.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An atom header consists of the following fields:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A 32-bit integer that indicates the size of the atom, including both the atom header and the atom’s contents, including any contained atoms. Normally, the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "size",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " field contains the actual size of the atom, in bytes, expressed as a 32-bit unsigned integer. However, the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "size",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " field can contain special values that indicate an alternate method of determining the atom size. (These special values are normally used only for media data (",
+                        "type": "text"
+                      },
+                      {
+                        "code": "'mdat'",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ") atoms.)",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Atom size",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Two special values are valid for the ",
+              "type": "text"
+            },
+            {
+              "code": "size",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", which is allowed only for a top-level atom, designates the last atom in the file and indicates that the atom extends to the end of the file.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", which means that the actual size is given in the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "extended size",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " field, an optional 64-bit field that follows the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "type",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " field. This accommodates media data atoms that contain more than 2^32 bytes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following figure shows how to calculate the size of an atom.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "calculating-atom-sizes",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A 32-bit integer that contains the type of the atom. This can often be usefully treated as a four-character field with a mnemonic value, such as ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "'moov'",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " (",
+                        "type": "text"
+                      },
+                      {
+                        "code": "0x6D6F6F76",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ") for a movie atom, or ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "'trak'",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " (",
+                        "type": "text"
+                      },
+                      {
+                        "code": "0x7472616B",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ") for a track atom, but non-ASCII values (such as ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "0x00000001",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ") are also used. Knowing an atom’s type allows you to interpret its data. An atom’s data can be arranged as any arbitrary collection of fields, tables, or other atoms. The data structure is specific to the atom type. An atom of a given type has a defined data structure. If your application encounters an atom of an unknown type, it should not attempt to interpret the atom’s data. Use the atom’s ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "size",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " field to skip this atom and all of its contents. This allows a degree of forward compatibility with extensions to the QuickTime file format.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Type",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The internal structure of a given type of atom can change when a new version is introduced. Always check the version field, if one exists. Never attempt to interpret data that falls outside of the atom, as defined by the Size or Extended Size fields.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Warning",
+          "style": "warning",
+          "type": "aside"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "If the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "size",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " field of an atom is set to 1, the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "type",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " field is followed by a 64-bit ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "extended size",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " field, which contains the actual size of the atom as a 64-bit unsigned integer. This is used when the size of a media data atom exceeds 2^32 bytes.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Extended size",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the ",
+              "type": "text"
+            },
+            {
+              "code": "size",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field contains the actual size of the atom, the ",
+              "type": "text"
+            },
+            {
+              "code": "extended size",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field is not present. This means that when a QuickTime atom is modified by adding data, and its size crosses the 2^32 byte limit, there is no ",
+              "type": "text"
+            },
+            {
+              "code": "extended size",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field in which to record the new atom size. Consequently, it is not always possible to enlarge an atom beyond 2^32 bytes without copying its contents to a new atom.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To prevent this inconvenience, media data atoms are typically created with a 64-bit placeholder atom immediately preceding them in the movie file. The placeholder atom has a type of ",
+              "type": "text"
+            },
+            {
+              "code": "kWideAtomPlaceholderType",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (",
+              "type": "text"
+            },
+            {
+              "code": "'wide'",
+              "type": "codeVoice"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Much like a ",
+              "type": "text"
+            },
+            {
+              "code": "'free'",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "'skip'",
+              "type": "codeVoice"
+            },
+            {
+              "text": " atom, the ",
+              "type": "text"
+            },
+            {
+              "code": "'wide'",
+              "type": "codeVoice"
+            },
+            {
+              "text": " atom is reserved space, but in this case the space is reserved for a specific purpose. If a ",
+              "type": "text"
+            },
+            {
+              "code": "'wide'",
+              "type": "codeVoice"
+            },
+            {
+              "text": " atom immediately precedes a second atom, the second atom can be extended from a 32-bit size to a 64-bit size simply by starting the atom header 8 bytes earlier (overwriting the ",
+              "type": "text"
+            },
+            {
+              "code": "'wide'",
+              "type": "codeVoice"
+            },
+            {
+              "text": " atom), setting the size field to 1, and adding an ",
+              "type": "text"
+            },
+            {
+              "code": "extended size",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field. This way the offsets for sample data do not need to be recalculated.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "'wide'",
+              "type": "codeVoice"
+            },
+            {
+              "text": " atom is exactly 8 bytes in size, and consists solely of its ",
+              "type": "text"
+            },
+            {
+              "code": "size",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "type",
+              "type": "codeVoice"
+            },
+            {
+              "text": " fields. It contains no other data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A common error is thinking that the ",
+                  "type": "text"
+                },
+                {
+                  "code": "'wide'",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " atom contains the extended size. The ",
+                  "type": "text"
+                },
+                {
+                  "code": "'wide'",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " atom is merely a placeholder that can be overwritten if necessary, by an atom header containing an ",
+                  "type": "text"
+                },
+                {
+                  "code": "extended size",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " field.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "calculating-atom-sizes": {
+      "alt": "A diagram that illustrates three different scenarios to determine atom size. Each scenario is a group of vertically stacked boxes, where each box contains a label indicating the data field, or is blank for a general data field. Each stack of boxes has a line to the immediate right of the stack, that stretches from the top of the stack to the bottom of the stack, and each line has a label for the size data field that indicates the size of the atom. The first scenario shows an atom represented by four vertically stacked boxes. The first box is labeled Size, the second box is labeled Type, and the remaining boxes are not labeled. The line to the right of the boxes is labeled Size, meaning the value of the data field Size is the size of the atom. The second scenario shows an atom represented by five vertically stacked boxes. The first box is labeled Size and has the value 1, the second box is labeled Type, the third box is labeled Extended Size (if size = 1), and the remaining boxes are not labeled. The line to the right of the boxes is labeled Extended Size, meaning the value of the data field Extended Size is the size of the atom. The third scenario shows an atom represented by four vertically stacked boxes. The first box is labeled Size and has the value 0, the second box is labeled Type, and the remaining boxes are not labeled. The line to the right of the boxes is labeled Size, meaning that QuickTime interprets the value 0 to mean that the atom’s size is the same as the remaining data size to the end of the file.",
+      "identifier": "calculating-atom-sizes",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6098276b4549095abe8546c698d90692/calculating-atom-sizes@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3dae9f66b1d2e991bf7cb3b9744d2091/calculating-atom-sizes~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Creating_copying_and_disposing_of_atom_containers": {
+      "abstract": [
+        {
+          "text": "Manage atoms in atom containers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Creating_copying_and_disposing_of_atom_containers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Creating, copying, and disposing of atom containers",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/creating_copying_and_disposing_of_atom_containers"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/QT_atoms_and_atom_containers": {
+      "abstract": [
+        {
+          "text": "An enhanced data structure that provide a more general-purpose storage format.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/QT_atoms_and_atom_containers",
+      "kind": "article",
+      "role": "article",
+      "title": "QT atoms and atom containers",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/qt_atoms_and_atom_containers"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/QuickTime_movie_files": {
+      "abstract": [
+        {
+          "text": "The QuickTime file format describes the characteristics of QuickTime movie files.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/QuickTime_movie_files",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "QuickTime movie files",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/quicktime_movie_files"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Storing_and_sharing_media_with_QuickTime_files": {
+      "abstract": [
+        {
+          "text": "Build QuickTime files with atoms, QT atoms, and atom containers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Storing_and_sharing_media_with_QuickTime_files",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Storing and sharing media with QuickTime files",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/storing_and_sharing_media_with_quicktime_files"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format": {
+      "abstract": [
+        {
+          "text": "An object-oriented file format for the storage and exchange of digital media between devices, applications, and operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "QuickTime File Format",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format"
+    },
+    "sample-atom": {
+      "alt": "A container atom with an atom size and atom type, that contains another container atom with an atom size and atom type. The inner container atom contains a leaf atom, with an atom size, atom type, and atom data.",
+      "identifier": "sample-atom",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/22e145ee537d8e6ed9bb16ad89f55176/sample-atom@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2579cfdeca4506b895b19138b92c1ae8/sample-atom~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Building-in-QuickTime",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/QT_atoms_and_atom_containers",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Creating_copying_and_disposing_of_atom_containers",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/QuickTime_movie_files"
+      ],
+      "title": "Building in QuickTime"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quicktime-file-format/atoms"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

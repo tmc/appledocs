@@ -1,0 +1,608 @@
+{
+  "abstract": [
+    {
+      "text": "Understand the basic composition for a live session playlist.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming",
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/example-playlists-for-http-live-streaming"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/live-playlist-sliding-window-construction"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Live Playlist (sliding window) construction"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In live sessions, the index file is updated by removing media URIs from the file",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as new media files are created and made available. The ",
+              "type": "text"
+            },
+            {
+              "code": "EXT-X-ENDLIST",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tag isn’t",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "present in the live playlist, indicating that new media files will be added to the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "index file as they become available.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Example",
+          "level": 3,
+          "text": "Example",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This code is an example of a Live Playlist as it appears at the beginning of a session:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "#EXTM3U",
+            "#EXT-X-TARGETDURATION:10",
+            "#EXT-X-VERSION:4",
+            "#EXT-X-MEDIA-SEQUENCE:1",
+            "#EXTINF:10.0,",
+            "fileSequence1.ts",
+            "#EXTINF:10.0,",
+            "fileSequence2.ts",
+            "#EXTINF:10.0,",
+            "fileSequence3.ts",
+            "#EXTINF:10.0,",
+            "fileSequence4.ts",
+            "#EXTINF:10.0,",
+            "fileSequence5.ts"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "These are the tags used in the live playlist example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "EXTM3U:",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " Indicates that the playlist is an extended M3U file. This type of file",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "is distinguished from a basic M3U file by changing the tag on the first line to ",
+              "type": "text"
+            },
+            {
+              "code": "EXTM3U",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "All HLS playlists must start with this tag.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "EXT-X-TARGETDURATION:",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " Specifies the maximum media-file duration.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "EXT-X-VERSION:",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " Indicates the compatibility version of the playlist file. The",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "playlist media and its server must comply with all provisions of the most recent",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "version of the IETF Internet-Draft of the HTTP Live Streaming specification that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "defines that protocol version.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "EXT-X-MEDIA-SEQUENCE:",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " Indicates the sequence number of the first URL that appears",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in a playlist file. Each media file URL in a playlist has a unique integer sequence",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "number. The sequence number of a URL is higher by 1 than the sequence number of the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "URL that preceded it. The media sequence numbers have no relation to the names of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the files.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The ",
+                  "type": "text"
+                },
+                {
+                  "code": "EXT-X-MEDIA-SEQUENCE",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " tag value must be incremented by 1 for every",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "media URI that’s removed from the playlist file. Media URIs must be removed from",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "the playlist file in the order that they appear in the playlist. The updated index",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "file presents a moving window into a continuous stream. This type of session is suitable",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "for continuous broadcasts.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "EXTINF:",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " A record marker that describes the media file identified by the URL that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "follows it. Each media file URL must be preceded by an ",
+              "type": "text"
+            },
+            {
+              "code": "EXTINF",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tag. This tag contains",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a duration attribute that’s an integer or floating-point number in decimal positional",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "notation that specifies the duration of the media segment in seconds. This value",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "must be less than or equal to the target duration.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Always use floating-point ",
+                  "type": "text"
+                },
+                {
+                  "code": "EXTINF",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " durations (supported in protocol",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "version 3). This allows the client to minimize round-off errors when seeking within",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "the stream.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example shows the same playlist after it’s been updated with new media",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "URIs:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "#EXTM3U",
+            "#EXT-X-TARGETDURATION:10",
+            "#EXT-X-VERSION:4",
+            "#EXT-X-MEDIA-SEQUENCE:2",
+            "#EXTINF:10.0,",
+            "fileSequence2.ts",
+            "#EXTINF:10.0,",
+            "fileSequence3.ts",
+            "#EXTINF:10.00,",
+            "fileSequence4.ts",
+            "#EXTINF:10.00,",
+            "fileSequence5.ts",
+            "#EXTINF:10.0,",
+            "fileSequence6.ts"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The playlist continues to be updated as new media URIs are added:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "#EXTM3U",
+            "#EXT-X-TARGETDURATION:10",
+            "#EXT-X-VERSION:4",
+            "#EXT-X-MEDIA-SEQUENCE:4",
+            "#EXTINF:10.00,",
+            "fileSequence4.ts",
+            "#EXTINF:10.00,",
+            "fileSequence5.ts",
+            "#EXTINF:10.0,",
+            "fileSequence6.ts,",
+            "#EXTINF:10.0,",
+            "fileSequence7.ts,",
+            "#EXTINF:10.0,",
+            "fileSequence8.ts,",
+            "#EXTINF:10.0,",
+            "fileSequence9.ts"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming": {
+      "abstract": [
+        {
+          "text": "Send audio and video to iOS, tvOS, and macOS devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming",
+      "kind": "article",
+      "role": "collection",
+      "title": "HTTP Live Streaming",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming"
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/creating-a-multivariant-playlist": {
+      "abstract": [
+        {
+          "text": "Offer multiple playlist files to provide different encodings of the same content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/creating-a-multivariant-playlist",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a Multivariant Playlist",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming/creating-a-multivariant-playlist"
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/event-playlist-construction": {
+      "abstract": [
+        {
+          "text": "Learn about the basic composition of an event session playlist.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/event-playlist-construction",
+      "kind": "article",
+      "role": "article",
+      "title": "Event playlist construction",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming/event-playlist-construction"
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/example-playlists-for-http-live-streaming": {
+      "abstract": [
+        {
+          "text": "View and compare playlists for different HLS applications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/example-playlists-for-http-live-streaming",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Example playlists for HTTP Live Streaming",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming/example-playlists-for-http-live-streaming"
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/video-on-demand-playlist-construction": {
+      "abstract": [
+        {
+          "text": "Understand the basic composition for a Video on Demand playlist.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/video-on-demand-playlist-construction",
+      "kind": "article",
+      "role": "article",
+      "title": "Video on Demand playlist construction",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming/video-on-demand-playlist-construction"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Basic-playlists",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/video-on-demand-playlist-construction",
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/event-playlist-construction",
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/creating-a-multivariant-playlist"
+      ],
+      "title": "Basic playlists"
+    }
+  ]
+}

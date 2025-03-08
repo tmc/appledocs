@@ -1,0 +1,840 @@
+{
+  "abstract": [
+    {
+      "text": "An invisible material that hides objects rendered behind it.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/OcclusionMaterial"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:17RealityFoundation17OcclusionMaterialV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "OcclusionMaterial"
+      }
+    ],
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "OcclusionMaterial"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.15",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "OcclusionMaterial"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "OcclusionMaterial"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add an ",
+              "type": "text"
+            },
+            {
+              "code": "OcclusionMaterial",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to a model by setting it as one of the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelComponent/materials",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelComponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let model = ModelComponent(",
+            "    mesh: .generateBox(size: 1),",
+            "    materials: [OcclusionMaterial()]",
+            ")",
+            "smallBoxEntity.components.set(model)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, on the left is a case of two cubes, the larger red cube is slightly further from the camera and has a simple material.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The slightly smaller and closer cube has no material in the left image and an occlusion material on the right image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "alignments": [
+            "center",
+            "center"
+          ],
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "No material",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Occlusion material",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "occlusionmaterial-not-applied",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "occlusionmaterial-applied",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Material": {
+      "abstract": [
+        {
+          "text": "A type that describes the material aspects of a mesh, like color and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Material"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Material",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Material"
+        }
+      ],
+      "role": "symbol",
+      "title": "Material",
+      "type": "topic",
+      "url": "/documentation/realitykit/material"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ModelComponent": {
+      "abstract": [
+        {
+          "text": "A component that contains a mesh and materials for the visual appearance of an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ModelComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ModelComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "ModelComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/modelcomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ModelComponent/materials": {
+      "abstract": [
+        {
+          "text": "The materials that define the model’s visual appearance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "materials"
+        },
+        {
+          "kind": "text",
+          "text": ": [any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation8MaterialP",
+          "text": "Material"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelComponent/materials",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "materials",
+      "type": "topic",
+      "url": "/documentation/realitykit/modelcomponent/materials"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/OcclusionMaterial": {
+      "abstract": [
+        {
+          "text": "An invisible material that hides objects rendered behind it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OcclusionMaterial"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/OcclusionMaterial",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OcclusionMaterial"
+        }
+      ],
+      "role": "symbol",
+      "title": "OcclusionMaterial",
+      "type": "topic",
+      "url": "/documentation/realitykit/occlusionmaterial"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/OcclusionMaterial/FaceCulling-swift.typealias": {
+      "abstract": [
+        {
+          "text": "An alias for the cull mode object that’s appropriate for this material class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FaceCulling"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/OcclusionMaterial/FaceCulling-swift.typealias",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FaceCulling"
+        }
+      ],
+      "role": "symbol",
+      "title": "OcclusionMaterial.FaceCulling",
+      "type": "topic",
+      "url": "/documentation/realitykit/occlusionmaterial/faceculling-swift.typealias"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/OcclusionMaterial/Material-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/OcclusionMaterial/Material-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Material Implementations",
+      "type": "topic",
+      "url": "/documentation/realitykit/occlusionmaterial/material-implementations"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/OcclusionMaterial/faceCulling-swift.property": {
+      "abstract": [
+        {
+          "text": "A process in which the system specifies polygons to remove before",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "rendering a mesh using this material.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "faceCulling"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation17OcclusionMaterialV",
+          "text": "OcclusionMaterial"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation17OcclusionMaterialVAAE11FaceCullinga",
+          "text": "FaceCulling"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/OcclusionMaterial/faceCulling-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "faceCulling",
+      "type": "topic",
+      "url": "/documentation/realitykit/occlusionmaterial/faceculling-swift.property"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/OcclusionMaterial/init()": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/OcclusionMaterial/init()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/realitykit/occlusionmaterial/init()"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/OcclusionMaterial/init(receivesDynamicLighting:)": {
+      "abstract": [
+        {
+          "text": "Creates an occlusion material.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "receivesDynamicLighting"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/OcclusionMaterial/init(receivesDynamicLighting:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(receivesDynamicLighting:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/occlusionmaterial/init(receivesdynamiclighting:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/OcclusionMaterial/readsDepth": {
+      "abstract": [
+        {
+          "text": "A boolean value that determines whether this material performs the depth test by reading RealityKit’s depth buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "readsDepth"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/OcclusionMaterial/readsDepth",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "readsDepth",
+      "type": "topic",
+      "url": "/documentation/realitykit/occlusionmaterial/readsdepth"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/OcclusionMaterial/receivesDynamicLighting": {
+      "abstract": [
+        {
+          "text": "A Boolean that indicates whether the occlusion material receives dynamic",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "lighting.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "receivesDynamicLighting"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/OcclusionMaterial/receivesDynamicLighting",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "receivesDynamicLighting",
+      "type": "topic",
+      "url": "/documentation/realitykit/occlusionmaterial/receivesdynamiclighting"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    },
+    "occlusionmaterial-applied": {
+      "alt": "A screenshot of a partial red shape in a living room scene. The shape is of a cube with a cut-out in the shape of another cube slightly towards the upper right corner of the cube.",
+      "identifier": "occlusionmaterial-applied",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4829d1d102fa2b00dbce41407e1ea834/occlusionmaterial-applied.jpg"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f6657f1e7d45c2cfe27c69def8fda483/occlusionmaterial-applied~dark.jpg"
+        }
+      ]
+    },
+    "occlusionmaterial-not-applied": {
+      "alt": "A screenshot of two cubes in a living room scene. One cube is red and is slightly further from the camera, the other cube has a magenta striped material, is slightly closer to the camera, and is smaller than the red cube.",
+      "identifier": "occlusionmaterial-not-applied",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4c31cbb7ff4c44e34d587750a711c63d/occlusionmaterial-not-applied.jpg"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/16eccf54323b584d9d05ab5386f1b52f/occlusionmaterial-not-applied~dark.jpg"
+        }
+      ]
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/Material",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Object-occlusion",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/OcclusionMaterial/FaceCulling-swift.typealias"
+      ],
+      "title": "Object occlusion"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-an-occlusion-material",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/OcclusionMaterial/init(receivesDynamicLighting:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/OcclusionMaterial/init()"
+      ],
+      "title": "Creating an occlusion material"
+    },
+    {
+      "anchor": "Receiving-dynamic-lighting",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/OcclusionMaterial/receivesDynamicLighting"
+      ],
+      "title": "Receiving dynamic lighting"
+    },
+    {
+      "anchor": "Setting-depth-testing-properties",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/OcclusionMaterial/readsDepth"
+      ],
+      "title": "Setting depth testing properties"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/OcclusionMaterial/faceCulling-swift.property"
+      ],
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "Type-Aliases",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/OcclusionMaterial/FaceCulling-swift.typealias"
+      ],
+      "title": "Type Aliases"
+    },
+    {
+      "anchor": "Default-Implementations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/OcclusionMaterial/Material-Implementations"
+      ],
+      "title": "Default Implementations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/occlusionmaterial"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

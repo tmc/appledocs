@@ -1,1 +1,1672 @@
-{"identifier":{"url":"doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReference","interfaceLanguage":"swift"},"variants":[{"paths":["/documentation/appkit/nscollectionviewdiffabledatasourcereference"],"traits":[{"interfaceLanguage":"swift"}]},{"paths":["/documentation/appkit/nscollectionviewdiffabledatasourcereference"],"traits":[{"interfaceLanguage":"occ"}]}],"metadata":{"navigatorTitle":[{"text":"NSCollectionViewDiffableDataSourceReference","kind":"identifier"}],"symbolKind":"class","roleHeading":"Class","fragments":[{"text":"class","kind":"keyword"},{"text":" ","kind":"text"},{"text":"NSCollectionViewDiffableDataSourceReference","kind":"identifier"}],"platforms":[{"name":"macOS","introducedAt":"10.15","beta":false,"deprecated":false,"unavailable":false}],"modules":[{"name":"AppKit"}],"title":"NSCollectionViewDiffableDataSourceReference","externalID":"c:objc(cs)NSCollectionViewDiffableDataSource","role":"symbol"},"topicSections":[{"identifiers":["doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReference/init(collectionView:itemProvider:)","doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReferenceItemProvider"],"anchor":"Creating-a-Diffable-Data-Source","title":"Creating a Diffable Data Source"},{"identifiers":["doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReference/supplementaryViewProvider","doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReferenceSupplementaryViewProvider"],"anchor":"Creating-Supplementary-Views","title":"Creating Supplementary Views"},{"identifiers":["doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReference/itemIdentifier(for:)","doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReference/indexPath(forItemIdentifier:)"],"anchor":"Identifying-Items","title":"Identifying Items"},{"identifiers":["doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReference/snapshot()","doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReference/applySnapshot(_:animatingDifferences:)"],"anchor":"Updating-Data","title":"Updating Data"},{"identifiers":["doc://com.apple.appkit/documentation/AppKit/protocol-implementations"],"anchor":"Supporting-Protocol-Requirements","title":"Supporting Protocol Requirements"},{"identifiers":["doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSource-axww"],"anchor":"Supporting-Bridging","title":"Supporting Bridging"}],"abstract":[{"type":"text","text":"The object you use to manage data and provide items for a collection view."}],"kind":"symbol","hierarchy":{"paths":[["doc://com.apple.documentation/documentation/technologies","doc://com.apple.appkit/documentation/AppKit"]]},"schemaVersion":{"major":0,"minor":3,"patch":0},"primaryContentSections":[{"declarations":[{"languages":["swift"],"tokens":[{"text":"class","kind":"keyword"},{"text":" ","kind":"text"},{"text":"NSCollectionViewDiffableDataSourceReference","kind":"identifier"}],"platforms":["macOS"]}],"kind":"declarations"},{"content":[{"text":"Overview","type":"heading","anchor":"overview","level":2},{"name":"Important","type":"aside","content":[{"type":"paragraph","inlineContent":[{"type":"text","text":""},{"type":"text","text":" "},{"type":"text","text":"If you’re working in a Swift codebase, always use "},{"identifier":"doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSource-axww","isActive":true,"type":"reference"},{"type":"text","text":" instead of "},{"code":"NSCollectionViewDiffableDataSourceReference","type":"codeVoice"},{"text":".","type":"text"}]}],"style":"important"},{"type":"paragraph","inlineContent":[{"text":"A ","type":"text"},{"type":"emphasis","inlineContent":[{"text":"diffable data source","type":"text"}]},{"text":" object is a specialized type of data source that works together with your collection view object. It provides the behavior you need to manage updates to your collection view’s data and UI in a simple, efficient way. It also conforms to the ","type":"text"},{"isActive":true,"type":"reference","identifier":"doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDataSource"},{"text":" protocol and provides implementations for all of the protocol’s methods.","type":"text"}]},{"type":"paragraph","inlineContent":[{"text":"To fill a collection view with data:","type":"text"}]},{"type":"orderedList","items":[{"content":[{"type":"paragraph","inlineContent":[{"type":"text","text":"Connect a diffable data source to your collection view."}]}]},{"content":[{"inlineContent":[{"type":"text","text":"Implement an item provider to configure your collection view’s items."}],"type":"paragraph"}]},{"content":[{"inlineContent":[{"text":"Generate the current state of the data.","type":"text"}],"type":"paragraph"}]},{"content":[{"type":"paragraph","inlineContent":[{"type":"text","text":"Display the data in the UI."}]}]}]},{"type":"paragraph","inlineContent":[{"type":"text","text":"To connect a diffable data source to a collection view, you create the diffable data source using its "},{"type":"reference","identifier":"doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReference/init(collectionView:itemProvider:)","isActive":true},{"type":"text","text":" initializer, passing in the collection view you want to associate with that data source. You also pass in an item provider, where you configure each of your items to determine how to display your data in the UI."}]},{"code":["dataSource = NSCollectionViewDiffableDataSource<Int, UUID>(collectionView: collectionView) {","    (collectionView: NSCollectionView, indexPath: IndexPath, itemIdentifier: UUID) -> NSCollectionViewItem? in","    // configure and return item","}"],"syntax":"swift","type":"codeListing"},{"type":"paragraph","inlineContent":[{"text":"Then, you generate the current state of the data and display the data in the UI by constructing and applying a snapshot. For more information, see ","type":"text"},{"identifier":"doc://com.apple.appkit/documentation/AppKit/NSDiffableDataSourceSnapshotReference","isActive":true,"type":"reference"},{"text":".","type":"text"}]}],"kind":"content"}],"relationshipsSections":[{"identifiers":["doc://com.externally.resolved.symbol/c:objc(cs)NSObject"],"type":"inheritsFrom","kind":"relationships","title":"Inherits From"},{"identifiers":["doc://com.externally.resolved.symbol/s:s7CVarArgP","doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP","doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP","doc://com.externally.resolved.symbol/s:SQ","doc://com.externally.resolved.symbol/s:SH","doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDataSource","doc://com.externally.resolved.symbol/c:objc(pl)NSObject"],"type":"conformsTo","kind":"relationships","title":"Conforms To"}],"sections":[],"references":{"doc://com.apple.documentation/documentation/technologies":{"identifier":"doc://com.apple.documentation/documentation/technologies","role":"overview","type":"topic","url":"/documentation/technologies","abstract":[{"type":"text","text":""}],"title":"Technologies","kind":"technologies"},"doc://com.externally.resolved.symbol/s:SQ":{"abstract":[{"text":"A type that can be compared for value equality.","type":"text"}],"type":"topic","title":"Equatable","fragments":[{"text":"protocol","kind":"keyword"},{"text":" ","kind":"text"},{"text":"Equatable","kind":"identifier"}],"kind":"symbol","identifier":"doc://com.externally.resolved.symbol/s:SQ","role":"symbol","url":"/documentation/Swift/Equatable"},"doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSource-axww":{"type":"topic","navigatorTitle":[{"kind":"identifier","text":"NSCollectionViewDiffableDataSource"}],"role":"symbol","fragments":[{"kind":"keyword","text":"class"},{"kind":"text","text":" "},{"kind":"identifier","text":"NSCollectionViewDiffableDataSource"}],"url":"/documentation/appkit/nscollectionviewdiffabledatasource-axww","identifier":"doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSource-axww","title":"NSCollectionViewDiffableDataSource","abstract":[{"text":"The object you use to manage data and provide items for a collection view.","type":"text"}],"kind":"symbol"},"doc://com.externally.resolved.symbol/c:objc(pl)NSObject":{"type":"topic","fragments":[{"text":"protocol ","kind":"text"},{"text":"NSObjectProtocol","kind":"identifier"}],"url":"/documentation/objectivec/nsobjectprotocol","title":"NSObjectProtocol","abstract":[{"text":"The group of methods that are fundamental to all Objective-C objects.","type":"text"}],"identifier":"doc://com.externally.resolved.symbol/c:objc(pl)NSObject","kind":"symbol","role":"symbol"},"doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReferenceSupplementaryViewProvider":{"role":"symbol","title":"NSCollectionViewDiffableDataSourceReferenceSupplementaryViewProvider","kind":"symbol","type":"topic","identifier":"doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReferenceSupplementaryViewProvider","url":"/documentation/appkit/nscollectionviewdiffabledatasourcereferencesupplementaryviewprovider","navigatorTitle":[{"kind":"identifier","text":"NSCollectionViewDiffableDataSourceReferenceSupplementaryViewProvider"}],"fragments":[{"kind":"keyword","text":"typealias"},{"kind":"text","text":" "},{"kind":"identifier","text":"NSCollectionViewDiffableDataSourceReferenceSupplementaryViewProvider"}],"abstract":[{"type":"text","text":"A closure that configures and returns a collection view’s supplementary view, such as a header or footer, from a diffable data source."}]},"doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP":{"kind":"symbol","url":"/documentation/Swift/CustomStringConvertible","role":"symbol","abstract":[{"text":"A type with a customized textual representation.","type":"text"}],"title":"CustomStringConvertible","fragments":[{"kind":"keyword","text":"protocol"},{"kind":"text","text":" "},{"kind":"identifier","text":"CustomStringConvertible"}],"identifier":"doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP","type":"topic"},"doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDataSource":{"identifier":"doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDataSource","role":"symbol","type":"topic","url":"/documentation/appkit/nscollectionviewdatasource","navigatorTitle":[{"kind":"identifier","text":"NSCollectionViewDataSource"}],"abstract":[{"type":"text","text":"A set of methods that a data source object implements to provide the information and view objects that a collection view requires to present content."}],"fragments":[{"kind":"keyword","text":"protocol"},{"kind":"text","text":" "},{"kind":"identifier","text":"NSCollectionViewDataSource"}],"title":"NSCollectionViewDataSource","kind":"symbol"},"doc://com.apple.appkit/documentation/AppKit":{"kind":"symbol","url":"/documentation/appkit","title":"AppKit","type":"topic","abstract":[{"text":"Construct and manage a graphical, event-driven user interface for your macOS app.","type":"text"}],"identifier":"doc://com.apple.appkit/documentation/AppKit","role":"collection"},"doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDelegate":{"kind":"symbol","url":"/documentation/appkit/nscollectionviewdelegate","role":"symbol","navigatorTitle":[{"kind":"identifier","text":"NSCollectionViewDelegate"}],"abstract":[{"type":"text","text":"A set of methods that you use to manage the behavior of a collection view."}],"title":"NSCollectionViewDelegate","fragments":[{"kind":"keyword","text":"protocol"},{"kind":"text","text":" "},{"kind":"identifier","text":"NSCollectionViewDelegate"}],"identifier":"doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDelegate","type":"topic"},"doc://com.externally.resolved.symbol/s:SH":{"fragments":[{"kind":"keyword","text":"protocol"},{"kind":"text","text":" "},{"kind":"identifier","text":"Hashable"},{"kind":"text","text":" : "},{"kind":"typeIdentifier","preciseIdentifier":"s:SQ","text":"Equatable"}],"url":"/documentation/Swift/Hashable","identifier":"doc://com.externally.resolved.symbol/s:SH","role":"symbol","kind":"symbol","type":"topic","abstract":[{"type":"text","text":"A type that can be hashed into a `Hasher` to produce an integer hash value."}],"title":"Hashable"},"doc://com.apple.appkit/documentation/AppKit/protocol-implementations":{"kind":"article","url":"/documentation/appkit/protocol-implementations","role":"collectionGroup","type":"topic","title":"Protocol Implementations","identifier":"doc://com.apple.appkit/documentation/AppKit/protocol-implementations","abstract":[{"type":"text","text":"Access the diffable data source’s implementations of protocol methods."}]},"doc://com.externally.resolved.symbol/c:objc(cs)NSObject":{"abstract":[{"type":"text","text":"The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects."}],"url":"/documentation/objectivec/nsobject","fragments":[{"kind":"text","text":"class "},{"kind":"identifier","text":"NSObject"}],"kind":"symbol","identifier":"doc://com.externally.resolved.symbol/c:objc(cs)NSObject","role":"symbol","type":"topic","title":"NSObject"},"doc://com.externally.resolved.symbol/s:s7CVarArgP":{"url":"/documentation/Swift/CVarArg","title":"CVarArg","kind":"symbol","abstract":[{"type":"text","text":"A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`."}],"identifier":"doc://com.externally.resolved.symbol/s:s7CVarArgP","type":"topic","fragments":[{"text":"protocol","kind":"keyword"},{"text":" ","kind":"text"},{"text":"CVarArg","kind":"identifier"}],"role":"symbol"},"doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReference/init(collectionView:itemProvider:)":{"identifier":"doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReference/init(collectionView:itemProvider:)","navigatorTitle":[{"kind":"identifier","text":"initWithCollectionView:itemProvider:"}],"abstract":[{"text":"Creates a diffable data source with the specified item provider, and connects it to the specified collection view.","type":"text"}],"kind":"symbol","fragments":[{"kind":"identifier","text":"init"},{"kind":"text","text":"("},{"text":"collectionView","kind":"externalParam"},{"text":": ","kind":"text"},{"text":"NSCollectionView","kind":"typeIdentifier","preciseIdentifier":"c:objc(cs)NSCollectionView"},{"text":", ","kind":"text"},{"kind":"externalParam","text":"itemProvider"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"NSCollectionViewDiffableDataSourceReferenceItemProvider","preciseIdentifier":"c:@T@NSCollectionViewDiffableDataSourceItemProvider"},{"kind":"text","text":")"}],"title":"init(collectionView:itemProvider:)","type":"topic","role":"symbol","url":"/documentation/appkit/nscollectionviewdiffabledatasourcereference/init(collectionview:itemprovider:)"},"doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReference/applySnapshot(_:animatingDifferences:)":{"url":"/documentation/appkit/nscollectionviewdiffabledatasourcereference/applysnapshot(_:animatingdifferences:)","fragments":[{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"text":"applySnapshot","kind":"identifier"},{"text":"(","kind":"text"},{"preciseIdentifier":"c:objc(cs)NSDiffableDataSourceSnapshot","text":"NSDiffableDataSourceSnapshotReference","kind":"typeIdentifier"},{"text":", ","kind":"text"},{"text":"animatingDifferences","kind":"externalParam"},{"text":": ","kind":"text"},{"preciseIdentifier":"s:Sb","text":"Bool","kind":"typeIdentifier"},{"text":")","kind":"text"}],"title":"applySnapshot(_:animatingDifferences:)","kind":"symbol","abstract":[{"text":"Updates the UI to reflect the state of the data in the specified snapshot, optionally animating the UI changes.","type":"text"}],"identifier":"doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReference/applySnapshot(_:animatingDifferences:)","role":"symbol","type":"topic","navigatorTitle":[{"text":"applySnapshot:animatingDifferences:","kind":"identifier"}]},"doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReference/indexPath(forItemIdentifier:)":{"navigatorTitle":[{"kind":"identifier","text":"indexPathForItemIdentifier:"}],"abstract":[{"text":"Returns an index path for the item with the specified identifier in the collection view.","type":"text"}],"type":"topic","fragments":[{"text":"func","kind":"keyword"},{"kind":"text","text":" "},{"kind":"identifier","text":"indexPath"},{"kind":"text","text":"("},{"kind":"externalParam","text":"forItemIdentifier"},{"kind":"text","text":": "},{"kind":"keyword","text":"Any"},{"kind":"text","text":") -> "},{"kind":"typeIdentifier","preciseIdentifier":"s:10Foundation9IndexPathV","text":"IndexPath"},{"kind":"text","text":"?"}],"title":"indexPath(forItemIdentifier:)","kind":"symbol","url":"/documentation/appkit/nscollectionviewdiffabledatasourcereference/indexpath(foritemidentifier:)","role":"symbol","identifier":"doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReference/indexPath(forItemIdentifier:)"},"doc://com.apple.appkit/documentation/AppKit/NSDiffableDataSourceSnapshotReference":{"identifier":"doc://com.apple.appkit/documentation/AppKit/NSDiffableDataSourceSnapshotReference","fragments":[{"kind":"keyword","text":"class"},{"kind":"text","text":" "},{"kind":"identifier","text":"NSDiffableDataSourceSnapshotReference"}],"type":"topic","abstract":[{"type":"text","text":"A representation of the state of the data in a view at a specific point in time."}],"url":"/documentation/appkit/nsdiffabledatasourcesnapshotreference","title":"NSDiffableDataSourceSnapshotReference","kind":"symbol","role":"symbol","navigatorTitle":[{"kind":"identifier","text":"NSDiffableDataSourceSnapshotReference"}]},"doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReferenceItemProvider":{"url":"/documentation/appkit/nscollectionviewdiffabledatasourcereferenceitemprovider","navigatorTitle":[{"text":"NSCollectionViewDiffableDataSourceReferenceItemProvider","kind":"identifier"}],"kind":"symbol","title":"NSCollectionViewDiffableDataSourceReferenceItemProvider","fragments":[{"text":"typealias","kind":"keyword"},{"text":" ","kind":"text"},{"text":"NSCollectionViewDiffableDataSourceReferenceItemProvider","kind":"identifier"}],"role":"symbol","abstract":[{"text":"A closure that configures and returns an item for a collection view from its diffable data source.","type":"text"}],"identifier":"doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReferenceItemProvider","type":"topic"},"doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReference/itemIdentifier(for:)":{"fragments":[{"text":"func","kind":"keyword"},{"kind":"text","text":" "},{"kind":"identifier","text":"itemIdentifier"},{"kind":"text","text":"("},{"kind":"externalParam","text":"for"},{"kind":"text","text":": "},{"kind":"typeIdentifier","preciseIdentifier":"s:10Foundation9IndexPathV","text":"IndexPath"},{"kind":"text","text":") -> "},{"kind":"keyword","text":"Any"},{"kind":"text","text":"?"}],"title":"itemIdentifier(for:)","role":"symbol","type":"topic","url":"/documentation/appkit/nscollectionviewdiffabledatasourcereference/itemidentifier(for:)","abstract":[{"type":"text","text":"Returns an identifier for the item at the specified index path in the collection view."}],"identifier":"doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReference/itemIdentifier(for:)","navigatorTitle":[{"kind":"identifier","text":"itemIdentifierForIndexPath:"}],"kind":"symbol"},"doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP":{"abstract":[{"type":"text","text":"A type with a customized textual representation suitable for debugging purposes."}],"url":"/documentation/Swift/CustomDebugStringConvertible","fragments":[{"text":"protocol","kind":"keyword"},{"text":" ","kind":"text"},{"text":"CustomDebugStringConvertible","kind":"identifier"}],"kind":"symbol","identifier":"doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP","role":"symbol","type":"topic","title":"CustomDebugStringConvertible"},"doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReference/supplementaryViewProvider":{"role":"symbol","title":"supplementaryViewProvider","kind":"symbol","type":"topic","identifier":"doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReference/supplementaryViewProvider","url":"/documentation/appkit/nscollectionviewdiffabledatasourcereference/supplementaryviewprovider","navigatorTitle":[{"kind":"identifier","text":"supplementaryViewProvider"}],"fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"supplementaryViewProvider"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"NSCollectionViewDiffableDataSourceReferenceSupplementaryViewProvider","preciseIdentifier":"c:@T@NSCollectionViewDiffableDataSourceSupplementaryViewProvider"},{"kind":"text","text":"?"}],"abstract":[{"type":"text","text":"The closure that configures and returns the collection view’s supplementary views, such as headers and footers, from the diffable data source."}]},"doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReference":{"abstract":[{"type":"text","text":"The object you use to manage data and provide items for a collection view."}],"fragments":[{"text":"class","kind":"keyword"},{"text":" ","kind":"text"},{"text":"NSCollectionViewDiffableDataSourceReference","kind":"identifier"}],"url":"/documentation/appkit/nscollectionviewdiffabledatasourcereference","identifier":"doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReference","role":"symbol","navigatorTitle":[{"text":"NSCollectionViewDiffableDataSourceReference","kind":"identifier"}],"type":"topic","kind":"symbol","title":"NSCollectionViewDiffableDataSourceReference"},"doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReference/snapshot()":{"role":"symbol","type":"topic","navigatorTitle":[{"text":"snapshot","kind":"identifier"}],"abstract":[{"text":"Returns a representation of the current state of the data in the collection view.","type":"text"}],"url":"/documentation/appkit/nscollectionviewdiffabledatasourcereference/snapshot()","kind":"symbol","fragments":[{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"text":"snapshot","kind":"identifier"},{"text":"() -> ","kind":"text"},{"text":"NSDiffableDataSourceSnapshotReference","kind":"typeIdentifier","preciseIdentifier":"c:objc(cs)NSDiffableDataSourceSnapshot"}],"identifier":"doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReference/snapshot()","title":"snapshot()"}},"variantOverrides":[{"patch":[{"value":"occ","op":"replace","path":"/identifier/interfaceLanguage"},{"value":[{"deprecated":false,"introducedAt":"10.15","beta":false,"name":"macOS","unavailable":false}],"op":"replace","path":"/metadata/platforms"},{"value":"Class","op":"replace","path":"/metadata/roleHeading"},{"value":"NSCollectionViewDiffableDataSource","op":"replace","path":"/metadata/title"},{"value":"class","op":"replace","path":"/metadata/symbolKind"},{"value":[{"text":"NSCollectionViewDiffableDataSource","kind":"identifier"}],"op":"replace","path":"/metadata/fragments"},{"value":[{"kind":"identifier","text":"NSCollectionViewDiffableDataSource"}],"op":"replace","path":"/metadata/navigatorTitle"},{"value":{"paths":[["doc://com.apple.documentation/documentation/technologies","doc://com.apple.appkit/documentation/AppKit"]]},"op":"replace","path":"/hierarchy"},{"value":[{"title":"Creating a Diffable Data Source","identifiers":["doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReference/init(collectionView:itemProvider:)","doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReferenceItemProvider"],"anchor":"Creating-a-Diffable-Data-Source"},{"anchor":"Creating-Supplementary-Views","title":"Creating Supplementary Views","identifiers":["doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReference/supplementaryViewProvider","doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReferenceSupplementaryViewProvider"]},{"anchor":"Identifying-Items","title":"Identifying Items","identifiers":["doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReference/itemIdentifier(for:)","doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReference/indexPath(forItemIdentifier:)"]},{"anchor":"Updating-Data","title":"Updating Data","identifiers":["doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReference/snapshot()","doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReference/applySnapshot(_:animatingDifferences:)"]}],"op":"replace","path":"/topicSections"},{"value":[{"identifiers":["doc://com.externally.resolved.symbol/c:objc(cs)NSObject"],"title":"Inherits From","type":"inheritsFrom","kind":"relationships"},{"identifiers":["doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDataSource"],"title":"Conforms To","type":"conformsTo","kind":"relationships"}],"op":"replace","path":"/relationshipsSections"},{"value":[{"title":"Data","generated":true,"anchor":"Data","identifiers":["doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDataSource","doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDelegate","doc://com.apple.appkit/documentation/AppKit/NSDiffableDataSourceSnapshotReference"]}],"op":"add","path":"/seeAlsoSections"},{"value":{"declarations":[{"languages":["occ"],"tokens":[{"kind":"keyword","text":"@interface"},{"kind":"text","text":" "},{"kind":"identifier","text":"NSCollectionViewDiffableDataSource"},{"kind":"text","text":" : "},{"kind":"typeIdentifier","text":"NSObject","preciseIdentifier":"c:objc(cs)NSObject","identifier":"doc://com.externally.resolved.symbol/c:objc(cs)NSObject"}],"platforms":["macOS"]}],"kind":"declarations"},"op":"replace","path":"/primaryContentSections/0"},{"op":"replace","value":"NSObject","path":"/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title"},{"op":"replace","value":"NSCollectionViewDiffableDataSourceSupplementaryViewProvider","path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewDiffableDataSourceReferenceSupplementaryViewProvider/title"},{"op":"replace","value":[{"kind":"identifier","text":"NSCollectionViewDiffableDataSourceSupplementaryViewProvider"}],"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewDiffableDataSourceReferenceSupplementaryViewProvider/fragments"},{"op":"replace","value":[{"kind":"identifier","text":"NSCollectionViewDiffableDataSourceSupplementaryViewProvider"}],"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewDiffableDataSourceReferenceSupplementaryViewProvider/navigatorTitle"},{"op":"replace","value":"NSCollectionViewDataSource","path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewDataSource/title"},{"op":"replace","value":[{"kind":"identifier","text":"NSCollectionViewDataSource"}],"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewDataSource/fragments"},{"op":"replace","value":[{"text":"NSCollectionViewDataSource","kind":"identifier"}],"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewDataSource/navigatorTitle"},{"op":"replace","value":"NSCollectionViewDelegate","path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewDelegate/title"},{"op":"replace","value":[{"text":"NSCollectionViewDelegate","kind":"identifier"}],"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewDelegate/fragments"},{"op":"replace","value":[{"kind":"identifier","text":"NSCollectionViewDelegate"}],"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewDelegate/navigatorTitle"},{"op":"replace","value":"initWithCollectionView:itemProvider:","path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewDiffableDataSourceReference~1init(collectionView:itemProvider:)/title"},{"op":"replace","value":[{"text":"- ","kind":"text"},{"text":"initWithCollectionView:itemProvider:","kind":"identifier"}],"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewDiffableDataSourceReference~1init(collectionView:itemProvider:)/fragments"},{"op":"replace","value":"applySnapshot:animatingDifferences:","path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewDiffableDataSourceReference~1applySnapshot(_:animatingDifferences:)/title"},{"op":"replace","value":[{"kind":"text","text":"- "},{"kind":"identifier","text":"applySnapshot:animatingDifferences:"}],"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewDiffableDataSourceReference~1applySnapshot(_:animatingDifferences:)/fragments"},{"op":"replace","value":"indexPathForItemIdentifier:","path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewDiffableDataSourceReference~1indexPath(forItemIdentifier:)/title"},{"op":"replace","value":[{"text":"- ","kind":"text"},{"text":"indexPathForItemIdentifier:","kind":"identifier"}],"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewDiffableDataSourceReference~1indexPath(forItemIdentifier:)/fragments"},{"op":"replace","value":"NSDiffableDataSourceSnapshot","path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDiffableDataSourceSnapshotReference/title"},{"op":"replace","value":[{"text":"NSDiffableDataSourceSnapshot","kind":"identifier"}],"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDiffableDataSourceSnapshotReference/fragments"},{"op":"replace","value":[{"text":"NSDiffableDataSourceSnapshot","kind":"identifier"}],"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDiffableDataSourceSnapshotReference/navigatorTitle"},{"op":"replace","value":"NSCollectionViewDiffableDataSourceItemProvider","path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewDiffableDataSourceReferenceItemProvider/title"},{"op":"replace","value":[{"kind":"identifier","text":"NSCollectionViewDiffableDataSourceItemProvider"}],"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewDiffableDataSourceReferenceItemProvider/fragments"},{"op":"replace","value":[{"text":"NSCollectionViewDiffableDataSourceItemProvider","kind":"identifier"}],"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewDiffableDataSourceReferenceItemProvider/navigatorTitle"},{"op":"replace","value":"itemIdentifierForIndexPath:","path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewDiffableDataSourceReference~1itemIdentifier(for:)/title"},{"op":"replace","value":[{"text":"- ","kind":"text"},{"text":"itemIdentifierForIndexPath:","kind":"identifier"}],"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewDiffableDataSourceReference~1itemIdentifier(for:)/fragments"},{"op":"replace","value":"supplementaryViewProvider","path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewDiffableDataSourceReference~1supplementaryViewProvider/title"},{"op":"replace","value":[{"text":"supplementaryViewProvider","kind":"identifier"}],"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewDiffableDataSourceReference~1supplementaryViewProvider/fragments"},{"op":"replace","value":"NSCollectionViewDiffableDataSource","path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewDiffableDataSourceReference/title"},{"op":"replace","value":[{"kind":"identifier","text":"NSCollectionViewDiffableDataSource"}],"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewDiffableDataSourceReference/fragments"},{"op":"replace","value":[{"kind":"identifier","text":"NSCollectionViewDiffableDataSource"}],"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewDiffableDataSourceReference/navigatorTitle"},{"op":"replace","value":"snapshot","path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewDiffableDataSourceReference~1snapshot()/title"},{"op":"replace","value":[{"text":"- ","kind":"text"},{"text":"snapshot","kind":"identifier"}],"path":"/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewDiffableDataSourceReference~1snapshot()/fragments"}],"traits":[{"interfaceLanguage":"occ"}]}],"legalNotices":{"copyright":"Copyright &copy; 2025 Apple Inc. All rights reserved.","termsOfUse":"https://www.apple.com/legal/internet-services/terms/site.html","privacyPolicy":"https://www.apple.com/privacy/privacy-policy"}}
+{
+  "abstract": [
+    {
+      "text": "The object you use to manage data and provide items for a collection view.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReference"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSCollectionViewDiffableDataSource",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSCollectionViewDiffableDataSourceReference"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NSCollectionViewDiffableDataSourceReference"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.15",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "NSCollectionViewDiffableDataSourceReference"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSCollectionViewDiffableDataSourceReference"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If you’re working in a Swift codebase, always use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSource-axww",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " instead of ",
+                  "type": "text"
+                },
+                {
+                  "code": "NSCollectionViewDiffableDataSourceReference",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "diffable data source",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " object is a specialized type of data source that works together with your collection view object. It provides the behavior you need to manage updates to your collection view’s data and UI in a simple, efficient way. It also conforms to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDataSource",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol and provides implementations for all of the protocol’s methods.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To fill a collection view with data:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Connect a diffable data source to your collection view.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Implement an item provider to configure your collection view’s items.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Generate the current state of the data.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Display the data in the UI.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To connect a diffable data source to a collection view, you create the diffable data source using its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReference/init(collectionView:itemProvider:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initializer, passing in the collection view you want to associate with that data source. You also pass in an item provider, where you configure each of your items to determine how to display your data in the UI.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "dataSource = NSCollectionViewDiffableDataSource<Int, UUID>(collectionView: collectionView) {",
+            "    (collectionView: NSCollectionView, indexPath: IndexPath, itemIdentifier: UUID) -> NSCollectionViewItem? in",
+            "    // configure and return item",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, you generate the current state of the data and display the data in the UI by constructing and applying a snapshot. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDiffableDataSourceSnapshotReference",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDataSource": {
+      "abstract": [
+        {
+          "text": "A set of methods that a data source object implements to provide the information and view objects that a collection view requires to present content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCollectionViewDataSource"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDataSource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSCollectionViewDataSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSCollectionViewDataSource",
+      "type": "topic",
+      "url": "/documentation/appkit/nscollectionviewdatasource"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDelegate": {
+      "abstract": [
+        {
+          "text": "A set of methods that you use to manage the behavior of a collection view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCollectionViewDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSCollectionViewDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSCollectionViewDelegate",
+      "type": "topic",
+      "url": "/documentation/appkit/nscollectionviewdelegate"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSource-axww": {
+      "abstract": [
+        {
+          "text": "The object you use to manage data and provide items for a collection view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCollectionViewDiffableDataSource"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSource-axww",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSCollectionViewDiffableDataSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSCollectionViewDiffableDataSource",
+      "type": "topic",
+      "url": "/documentation/appkit/nscollectionviewdiffabledatasource-axww"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReference": {
+      "abstract": [
+        {
+          "text": "The object you use to manage data and provide items for a collection view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCollectionViewDiffableDataSourceReference"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReference",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSCollectionViewDiffableDataSourceReference"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSCollectionViewDiffableDataSourceReference",
+      "type": "topic",
+      "url": "/documentation/appkit/nscollectionviewdiffabledatasourcereference"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReference/applySnapshot(_:animatingDifferences:)": {
+      "abstract": [
+        {
+          "text": "Updates the UI to reflect the state of the data in the specified snapshot, optionally animating the UI changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "applySnapshot"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSDiffableDataSourceSnapshot",
+          "text": "NSDiffableDataSourceSnapshotReference"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "animatingDifferences"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReference/applySnapshot(_:animatingDifferences:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "applySnapshot:animatingDifferences:"
+        }
+      ],
+      "role": "symbol",
+      "title": "applySnapshot(_:animatingDifferences:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nscollectionviewdiffabledatasourcereference/applysnapshot(_:animatingdifferences:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReference/indexPath(forItemIdentifier:)": {
+      "abstract": [
+        {
+          "text": "Returns an index path for the item with the specified identifier in the collection view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "indexPath"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forItemIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation9IndexPathV",
+          "text": "IndexPath"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReference/indexPath(forItemIdentifier:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "indexPathForItemIdentifier:"
+        }
+      ],
+      "role": "symbol",
+      "title": "indexPath(forItemIdentifier:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nscollectionviewdiffabledatasourcereference/indexpath(foritemidentifier:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReference/init(collectionView:itemProvider:)": {
+      "abstract": [
+        {
+          "text": "Creates a diffable data source with the specified item provider, and connects it to the specified collection view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "collectionView"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSCollectionView",
+          "text": "NSCollectionView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "itemProvider"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSCollectionViewDiffableDataSourceItemProvider",
+          "text": "NSCollectionViewDiffableDataSourceReferenceItemProvider"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReference/init(collectionView:itemProvider:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithCollectionView:itemProvider:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(collectionView:itemProvider:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nscollectionviewdiffabledatasourcereference/init(collectionview:itemprovider:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReference/itemIdentifier(for:)": {
+      "abstract": [
+        {
+          "text": "Returns an identifier for the item at the specified index path in the collection view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "itemIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation9IndexPathV",
+          "text": "IndexPath"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReference/itemIdentifier(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "itemIdentifierForIndexPath:"
+        }
+      ],
+      "role": "symbol",
+      "title": "itemIdentifier(for:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nscollectionviewdiffabledatasourcereference/itemidentifier(for:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReference/snapshot()": {
+      "abstract": [
+        {
+          "text": "Returns a representation of the current state of the data in the collection view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "snapshot"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSDiffableDataSourceSnapshot",
+          "text": "NSDiffableDataSourceSnapshotReference"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReference/snapshot()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "snapshot"
+        }
+      ],
+      "role": "symbol",
+      "title": "snapshot()",
+      "type": "topic",
+      "url": "/documentation/appkit/nscollectionviewdiffabledatasourcereference/snapshot()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReference/supplementaryViewProvider": {
+      "abstract": [
+        {
+          "text": "The closure that configures and returns the collection view’s supplementary views, such as headers and footers, from the diffable data source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "supplementaryViewProvider"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSCollectionViewDiffableDataSourceSupplementaryViewProvider",
+          "text": "NSCollectionViewDiffableDataSourceReferenceSupplementaryViewProvider"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReference/supplementaryViewProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "supplementaryViewProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "supplementaryViewProvider",
+      "type": "topic",
+      "url": "/documentation/appkit/nscollectionviewdiffabledatasourcereference/supplementaryviewprovider"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReferenceItemProvider": {
+      "abstract": [
+        {
+          "text": "A closure that configures and returns an item for a collection view from its diffable data source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCollectionViewDiffableDataSourceReferenceItemProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReferenceItemProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSCollectionViewDiffableDataSourceReferenceItemProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSCollectionViewDiffableDataSourceReferenceItemProvider",
+      "type": "topic",
+      "url": "/documentation/appkit/nscollectionviewdiffabledatasourcereferenceitemprovider"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReferenceSupplementaryViewProvider": {
+      "abstract": [
+        {
+          "text": "A closure that configures and returns a collection view’s supplementary view, such as a header or footer, from a diffable data source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCollectionViewDiffableDataSourceReferenceSupplementaryViewProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReferenceSupplementaryViewProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSCollectionViewDiffableDataSourceReferenceSupplementaryViewProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSCollectionViewDiffableDataSourceReferenceSupplementaryViewProvider",
+      "type": "topic",
+      "url": "/documentation/appkit/nscollectionviewdiffabledatasourcereferencesupplementaryviewprovider"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDiffableDataSourceSnapshotReference": {
+      "abstract": [
+        {
+          "text": "A representation of the state of the data in a view at a specific point in time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDiffableDataSourceSnapshotReference"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDiffableDataSourceSnapshotReference",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSDiffableDataSourceSnapshotReference"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSDiffableDataSourceSnapshotReference",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdiffabledatasourcesnapshotreference"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/protocol-implementations": {
+      "abstract": [
+        {
+          "text": "Access the diffable data source’s implementations of protocol methods.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/protocol-implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Protocol Implementations",
+      "type": "topic",
+      "url": "/documentation/appkit/protocol-implementations"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDataSource",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-Diffable-Data-Source",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReference/init(collectionView:itemProvider:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReferenceItemProvider"
+      ],
+      "title": "Creating a Diffable Data Source"
+    },
+    {
+      "anchor": "Creating-Supplementary-Views",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReference/supplementaryViewProvider",
+        "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReferenceSupplementaryViewProvider"
+      ],
+      "title": "Creating Supplementary Views"
+    },
+    {
+      "anchor": "Identifying-Items",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReference/itemIdentifier(for:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReference/indexPath(forItemIdentifier:)"
+      ],
+      "title": "Identifying Items"
+    },
+    {
+      "anchor": "Updating-Data",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReference/snapshot()",
+        "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReference/applySnapshot(_:animatingDifferences:)"
+      ],
+      "title": "Updating Data"
+    },
+    {
+      "anchor": "Supporting-Protocol-Requirements",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/protocol-implementations"
+      ],
+      "title": "Supporting Protocol Requirements"
+    },
+    {
+      "anchor": "Supporting-Bridging",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSource-axww"
+      ],
+      "title": "Supporting Bridging"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.15",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "NSCollectionViewDiffableDataSource"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCollectionViewDiffableDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCollectionViewDiffableDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.appkit/documentation/AppKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-Diffable-Data-Source",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReference/init(collectionView:itemProvider:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReferenceItemProvider"
+              ],
+              "title": "Creating a Diffable Data Source"
+            },
+            {
+              "anchor": "Creating-Supplementary-Views",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReference/supplementaryViewProvider",
+                "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReferenceSupplementaryViewProvider"
+              ],
+              "title": "Creating Supplementary Views"
+            },
+            {
+              "anchor": "Identifying-Items",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReference/itemIdentifier(for:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReference/indexPath(forItemIdentifier:)"
+              ],
+              "title": "Identifying Items"
+            },
+            {
+              "anchor": "Updating-Data",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReference/snapshot()",
+                "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDiffableDataSourceReference/applySnapshot(_:animatingDifferences:)"
+              ],
+              "title": "Updating Data"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDataSource"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Data",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDataSource",
+                "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDelegate",
+                "doc://com.apple.appkit/documentation/AppKit/NSDiffableDataSourceSnapshotReference"
+              ],
+              "title": "Data"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "NSCollectionViewDiffableDataSource"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewDiffableDataSourceReferenceSupplementaryViewProvider/title",
+          "value": "NSCollectionViewDiffableDataSourceSupplementaryViewProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewDiffableDataSourceReferenceSupplementaryViewProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCollectionViewDiffableDataSourceSupplementaryViewProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewDiffableDataSourceReferenceSupplementaryViewProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCollectionViewDiffableDataSourceSupplementaryViewProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewDataSource/title",
+          "value": "NSCollectionViewDataSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewDataSource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCollectionViewDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewDataSource/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCollectionViewDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewDelegate/title",
+          "value": "NSCollectionViewDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCollectionViewDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCollectionViewDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewDiffableDataSourceReference~1init(collectionView:itemProvider:)/title",
+          "value": "initWithCollectionView:itemProvider:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewDiffableDataSourceReference~1init(collectionView:itemProvider:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithCollectionView:itemProvider:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewDiffableDataSourceReference~1applySnapshot(_:animatingDifferences:)/title",
+          "value": "applySnapshot:animatingDifferences:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewDiffableDataSourceReference~1applySnapshot(_:animatingDifferences:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "applySnapshot:animatingDifferences:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewDiffableDataSourceReference~1indexPath(forItemIdentifier:)/title",
+          "value": "indexPathForItemIdentifier:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewDiffableDataSourceReference~1indexPath(forItemIdentifier:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "indexPathForItemIdentifier:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDiffableDataSourceSnapshotReference/title",
+          "value": "NSDiffableDataSourceSnapshot"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDiffableDataSourceSnapshotReference/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDiffableDataSourceSnapshot"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDiffableDataSourceSnapshotReference/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDiffableDataSourceSnapshot"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewDiffableDataSourceReferenceItemProvider/title",
+          "value": "NSCollectionViewDiffableDataSourceItemProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewDiffableDataSourceReferenceItemProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCollectionViewDiffableDataSourceItemProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewDiffableDataSourceReferenceItemProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCollectionViewDiffableDataSourceItemProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewDiffableDataSourceReference~1itemIdentifier(for:)/title",
+          "value": "itemIdentifierForIndexPath:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewDiffableDataSourceReference~1itemIdentifier(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "itemIdentifierForIndexPath:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewDiffableDataSourceReference~1supplementaryViewProvider/title",
+          "value": "supplementaryViewProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewDiffableDataSourceReference~1supplementaryViewProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "supplementaryViewProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewDiffableDataSourceReference/title",
+          "value": "NSCollectionViewDiffableDataSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewDiffableDataSourceReference/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCollectionViewDiffableDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewDiffableDataSourceReference/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCollectionViewDiffableDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewDiffableDataSourceReference~1snapshot()/title",
+          "value": "snapshot"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewDiffableDataSourceReference~1snapshot()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "snapshot"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/nscollectionviewdiffabledatasourcereference"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/nscollectionviewdiffabledatasourcereference"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,1 +1,4066 @@
-{"primaryContentSections":[{"declarations":[{"tokens":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"SampledAnimation"},{"kind":"text","text":"<"},{"kind":"genericParameter","text":"Value"},{"kind":"text","text":"> "},{"kind":"keyword","text":"where"},{"kind":"text","text":" "},{"kind":"typeIdentifier","text":"Value"},{"kind":"text","text":" : "},{"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/AnimatableData","preciseIdentifier":"s:17RealityFoundation14AnimatableDataP","kind":"typeIdentifier","text":"AnimatableData"}],"platforms":["iOS","iPadOS","Mac Catalyst","macOS","visionOS"],"languages":["swift"]}],"kind":"declarations"},{"content":[{"type":"heading","text":"Overview","level":2,"anchor":"overview"},{"inlineContent":[{"type":"text","text":"To specify the data that the animation samples, set one of the "},{"type":"codeVoice","code":"frames"},{"type":"text","text":" "},{"type":"text","text":"properties that matches the animated property’s type. For example, set the"},{"type":"text","text":" "},{"type":"reference","isActive":true,"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/frames-2j4nj"},{"type":"text","text":" property to interpolate"},{"type":"text","text":" "},{"type":"reference","isActive":true,"identifier":"doc://com.apple.documentation/documentation/Swift/Float"},{"type":"text","text":" values."}],"type":"paragraph"},{"inlineContent":[{"text":"The following code designates a ","type":"text"},{"isActive":true,"type":"reference","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation"},{"text":" to animate a propery of","type":"text"},{"text":" ","type":"text"},{"text":"type ","type":"text"},{"isActive":true,"type":"reference","identifier":"doc://com.apple.documentation/documentation/Swift/Float"},{"text":" by specifying","type":"text"},{"text":" ","type":"text"},{"text":"the generic typed syntax. The code queues an array of values: ","type":"text"},{"code":"1.0","type":"codeVoice"},{"text":", ","type":"text"},{"code":"2.0","type":"codeVoice"},{"text":",","type":"text"},{"text":" ","type":"text"},{"text":"and ","type":"text"},{"code":"3.0","type":"codeVoice"},{"text":".","type":"text"}],"type":"paragraph"},{"type":"codeListing","syntax":"swift","code":["// Define the animation type.","typealias SampledAnimationType = SampledAnimation<Float>","","// Define the animated property values.","let frameArray: [Float] = [1.0, 2.0, 3.0]"]},{"inlineContent":[{"text":"To determine how fast the animation progresses from frame to frame, define","type":"text"},{"text":" ","type":"text"},{"text":"this structure’s ","type":"text"},{"isActive":true,"type":"reference","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/frameInterval"},{"text":" property. The following","type":"text"},{"text":" ","type":"text"},{"text":"code specifies a one-second delay between value changes before initializing","type":"text"},{"text":" ","type":"text"},{"text":"the animation object.","type":"text"}],"type":"paragraph"},{"type":"codeListing","syntax":"swift","code":["// Define a one-second frame interval.","let interval: TimeInterval = 1","","// Create the animation.","let sampleAnim = SampledAnimationType(","    frames: frameArray,","    name: \"sampledAnim1\",","    frameInterval: interval","    isAdditive: true,","    bindTarget: .transform,","    blendLayer: 100,","    repeatMode: .autoReverse,","    fillMode: .backwards,","    trimStart: 1.0,","    trimEnd: 10.0,","    trimDuration: 9.0,","    offset: 2.0,","    delay: 1.0,","    speed: 2.0",")"]}],"kind":"content"}],"abstract":[{"text":"An animation that cycles through a series of frames at a constant interval.","type":"text"}],"kind":"symbol","relationshipsSections":[{"title":"Conforms To","type":"conformsTo","kind":"relationships","identifiers":["doc://com.apple.RealityKit/documentation/RealityKit/AnimationDefinition"]}],"variants":[{"paths":["/documentation/realitykit/sampledanimation"],"traits":[{"interfaceLanguage":"swift"}]}],"schemaVersion":{"major":0,"minor":3,"patch":0},"topicSections":[{"title":"Creating an animation","anchor":"Creating-an-animation","identifiers":["doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/init(frames:name:tweenMode:frameInterval:isAdditive:bindTarget:blendLayer:repeatMode:fillMode:trimStart:trimEnd:trimDuration:offset:delay:speed:)","doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/init(jointNames:frames:name:tweenMode:frameInterval:isAdditive:isScaleAnimated:isRotationAnimated:isTranslationAnimated:bindTarget:blendLayer:repeatMode:fillMode:trimStart:trimEnd:trimDuration:offset:delay:speed:)"]},{"title":"Configuring the animation","anchor":"Configuring-the-animation","identifiers":["doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/name","doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/bindTarget","doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/blendLayer","doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/jointNames","doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/isRotationAnimated","doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/isScaleAnimated","doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/isTranslationAnimated","doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/additive","doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/tweenMode"]},{"title":"Defining frames data","anchor":"Defining-frames-data","identifiers":["doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/frames-4eeex","doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/frames-4qotl","doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/frames-2hobp","doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/frames-2j4nj","doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/frames-2h6tu","doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/frames-9luwf","doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/frames-1zxo","doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/frames-2ywfx"]},{"title":"Timing the animation","anchor":"Timing-the-animation","identifiers":["doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/frameInterval","doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/start","doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/end","doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/speed","doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/delay","doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/duration","doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/offset","doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/trimDuration","doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/trimStart","doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/trimEnd","doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/trimmed(start:end:duration:)"]},{"title":"Repeating animation playback","anchor":"Repeating-animation-playback","identifiers":["doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/repeatMode","doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/fillMode","doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/repeated(count:)-3iijb","doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/repeated(count:)-ltbf","doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/repeatingForever()"]},{"title":"Initializers","generated":true,"anchor":"Initializers","identifiers":["doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/init(weightNames:frames:name:tweenMode:frameInterval:isAdditive:bindTarget:blendLayer:repeatMode:fillMode:trimStart:trimEnd:trimDuration:offset:delay:speed:)"]},{"title":"Instance Properties","generated":true,"anchor":"Instance-Properties","identifiers":["doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/frames-9jtu9","doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/weightNames"]},{"title":"Default Implementations","generated":true,"anchor":"Default-Implementations","identifiers":["doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/AnimationDefinition-Implementations"]}],"sections":[],"metadata":{"externalID":"s:17RealityFoundation16SampledAnimationV","roleHeading":"Structure","modules":[{"name":"RealityKit"}],"role":"symbol","symbolKind":"struct","navigatorTitle":[{"text":"SampledAnimation","kind":"identifier"}],"title":"SampledAnimation","platforms":[{"unavailable":false,"beta":false,"introducedAt":"15.0","deprecated":false,"name":"iOS"},{"unavailable":false,"beta":false,"introducedAt":"15.0","deprecated":false,"name":"iPadOS"},{"unavailable":false,"beta":false,"introducedAt":"15.0","deprecated":false,"name":"Mac Catalyst"},{"unavailable":false,"beta":false,"introducedAt":"12.0","deprecated":false,"name":"macOS"},{"unavailable":false,"beta":false,"deprecated":false,"name":"visionOS"}],"fragments":[{"text":"struct","kind":"keyword"},{"text":" ","kind":"text"},{"text":"SampledAnimation","kind":"identifier"}]},"seeAlsoSections":[{"title":"Animation definitions","generated":true,"anchor":"Animation-definitions","identifiers":["doc://com.apple.RealityKit/documentation/RealityKit/TweenMode","doc://com.apple.RealityKit/documentation/RealityKit/FromToByAnimation","doc://com.apple.RealityKit/documentation/RealityKit/AnimationTimingFunction","doc://com.apple.RealityKit/documentation/RealityKit/AnimationView","doc://com.apple.RealityKit/documentation/RealityKit/OrbitAnimation","doc://com.apple.RealityKit/documentation/RealityKit/AnimationDefinition","doc://com.apple.RealityKit/documentation/RealityKit/AnimationFillMode","doc://com.apple.RealityKit/documentation/RealityKit/AnimationGroup","doc://com.apple.RealityKit/documentation/RealityKit/AnimationHandoffType"]}],"identifier":{"url":"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation","interfaceLanguage":"swift"},"hierarchy":{"paths":[["doc://com.apple.documentation/documentation/technologies","doc://com.apple.RealityKit/documentation/RealityKit"]]},"references":{"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/frames-1zxo":{"url":"/documentation/realitykit/sampledanimation/frames-1zxo","role":"symbol","fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"frames"},{"kind":"text","text":": ["},{"kind":"typeIdentifier","text":"SIMD3","preciseIdentifier":"s:s5SIMD3V"},{"kind":"text","text":"<"},{"kind":"typeIdentifier","text":"Float","preciseIdentifier":"s:Sf"},{"kind":"text","text":">]"}],"conformance":{"constraints":[{"type":"codeVoice","code":"Value"},{"type":"text","text":" is "},{"type":"codeVoice","code":"SIMD3<Float>"},{"type":"text","text":"."}],"availabilityPrefix":[{"type":"text","text":"Available when"}],"conformancePrefix":[{"type":"text","text":"Conforms when"}]},"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/frames-1zxo","type":"topic","title":"frames","kind":"symbol","abstract":[{"type":"text","text":"An array of floating-point triplets in which each element represents a"},{"type":"text","text":" "},{"type":"text","text":"discrete state of the animated property at a given point in the"},{"type":"text","text":" "},{"type":"text","text":"animation’s timeline."}]},"doc://com.apple.RealityKit/documentation/RealityKit/AnimationFillMode":{"type":"topic","kind":"symbol","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/AnimationFillMode","navigatorTitle":[{"text":"AnimationFillMode","kind":"identifier"}],"fragments":[{"kind":"keyword","text":"struct"},{"text":" ","kind":"text"},{"text":"AnimationFillMode","kind":"identifier"}],"abstract":[{"type":"text","text":"Options that determine which animation frames display outside of the normal"},{"type":"text","text":" "},{"text":"duration.","type":"text"}],"title":"AnimationFillMode","role":"symbol","url":"/documentation/realitykit/animationfillmode"},"doc://com.apple.RealityKit/documentation/RealityKit/AnimationTimingFunction":{"title":"AnimationTimingFunction","type":"topic","abstract":[{"text":"The pacing of an animation transition.","type":"text"}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/AnimationTimingFunction","kind":"symbol","navigatorTitle":[{"text":"AnimationTimingFunction","kind":"identifier"}],"fragments":[{"text":"struct","kind":"keyword"},{"text":" ","kind":"text"},{"text":"AnimationTimingFunction","kind":"identifier"}],"role":"symbol","url":"/documentation/realitykit/animationtimingfunction"},"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/delay":{"abstract":[{"text":"An amount of time that elapses before the animation plays.","type":"text"}],"kind":"symbol","type":"topic","title":"delay","url":"/documentation/realitykit/sampledanimation/delay","fragments":[{"text":"var","kind":"keyword"},{"text":" ","kind":"text"},{"text":"delay","kind":"identifier"},{"text":": ","kind":"text"},{"text":"TimeInterval","preciseIdentifier":"c:@T@NSTimeInterval","kind":"typeIdentifier"}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/delay","role":"symbol"},"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/trimEnd":{"abstract":[{"text":"The optional time, in seconds, at which the animation stops.","type":"text"}],"kind":"symbol","type":"topic","title":"trimEnd","url":"/documentation/realitykit/sampledanimation/trimend","fragments":[{"text":"var","kind":"keyword"},{"text":" ","kind":"text"},{"text":"trimEnd","kind":"identifier"},{"text":": ","kind":"text"},{"text":"TimeInterval","preciseIdentifier":"c:@T@NSTimeInterval","kind":"typeIdentifier"},{"text":"?","kind":"text"}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/trimEnd","role":"symbol"},"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/repeatingForever()":{"title":"repeatingForever()","role":"symbol","fragments":[{"kind":"keyword","text":"func"},{"text":" ","kind":"text"},{"kind":"identifier","text":"repeatingForever"},{"text":"() -> ","kind":"text"},{"text":"Self","kind":"typeIdentifier"}],"url":"/documentation/realitykit/sampledanimation/repeatingforever()","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/repeatingForever()","abstract":[{"type":"text","text":"Repeats the animation infinitely."}],"kind":"symbol","type":"topic"},"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/offset":{"abstract":[{"text":"The time, in seconds, at which the animation begins within the duration.","type":"text"}],"kind":"symbol","type":"topic","title":"offset","url":"/documentation/realitykit/sampledanimation/offset","fragments":[{"text":"var","kind":"keyword"},{"text":" ","kind":"text"},{"text":"offset","kind":"identifier"},{"text":": ","kind":"text"},{"text":"TimeInterval","preciseIdentifier":"c:@T@NSTimeInterval","kind":"typeIdentifier"}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/offset","role":"symbol"},"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/init(weightNames:frames:name:tweenMode:frameInterval:isAdditive:bindTarget:blendLayer:repeatMode:fillMode:trimStart:trimEnd:trimDuration:offset:delay:speed:)":{"abstract":[{"text":"Creates an animation that blends between a configuration of blend targets.","type":"text"}],"kind":"symbol","type":"topic","title":"init(weightNames:frames:name:tweenMode:frameInterval:isAdditive:bindTarget:blendLayer:repeatMode:fillMode:trimStart:trimEnd:trimDuration:offset:delay:speed:)","conformance":{"constraints":[{"type":"codeVoice","code":"Value"},{"text":" is ","type":"text"},{"type":"codeVoice","code":"BlendShapeWeights"},{"text":".","type":"text"}],"availabilityPrefix":[{"text":"Available when","type":"text"}],"conformancePrefix":[{"text":"Conforms when","type":"text"}]},"url":"/documentation/realitykit/sampledanimation/init(weightnames:frames:name:tweenmode:frameinterval:isadditive:bindtarget:blendlayer:repeatmode:fillmode:trimstart:trimend:trimduration:offset:delay:speed:)","fragments":[{"text":"init","kind":"identifier"},{"text":"(","kind":"text"},{"text":"weightNames","kind":"externalParam"},{"text":": [","kind":"text"},{"kind":"typeIdentifier","preciseIdentifier":"s:SS","text":"String"},{"kind":"text","text":"], "},{"kind":"externalParam","text":"frames"},{"kind":"text","text":": ["},{"kind":"typeIdentifier","text":"Value"},{"kind":"text","text":"], "},{"kind":"externalParam","text":"name"},{"kind":"text","text":": "},{"kind":"typeIdentifier","preciseIdentifier":"s:SS","text":"String"},{"kind":"text","text":", "},{"kind":"externalParam","text":"tweenMode"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"TweenMode","preciseIdentifier":"s:17RealityFoundation9TweenModeO"},{"kind":"text","text":", "},{"kind":"externalParam","text":"frameInterval"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"Float","preciseIdentifier":"s:Sf"},{"kind":"text","text":", "},{"kind":"externalParam","text":"isAdditive"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"Bool","preciseIdentifier":"s:Sb"},{"kind":"text","text":", "},{"kind":"externalParam","text":"bindTarget"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"BindTarget","preciseIdentifier":"s:17RealityFoundation10BindTargetO"},{"kind":"text","text":"?, "},{"kind":"externalParam","text":"blendLayer"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"Int32","preciseIdentifier":"s:s5Int32V"},{"kind":"text","text":", "},{"kind":"externalParam","text":"repeatMode"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"AnimationRepeatMode","preciseIdentifier":"s:17RealityFoundation19AnimationRepeatModeO"},{"kind":"text","text":", "},{"kind":"externalParam","text":"fillMode"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"AnimationFillMode","preciseIdentifier":"s:17RealityFoundation17AnimationFillModeV"},{"kind":"text","text":", "},{"kind":"externalParam","text":"trimStart"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"TimeInterval","preciseIdentifier":"c:@T@NSTimeInterval"},{"kind":"text","text":"?, "},{"kind":"externalParam","text":"trimEnd"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"TimeInterval","preciseIdentifier":"c:@T@NSTimeInterval"},{"kind":"text","text":"?, "},{"kind":"externalParam","text":"trimDuration"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"TimeInterval","preciseIdentifier":"c:@T@NSTimeInterval"},{"kind":"text","text":"?, "},{"kind":"externalParam","text":"offset"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"TimeInterval","preciseIdentifier":"c:@T@NSTimeInterval"},{"kind":"text","text":", "},{"kind":"externalParam","text":"delay"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"TimeInterval","preciseIdentifier":"c:@T@NSTimeInterval"},{"kind":"text","text":", "},{"kind":"externalParam","text":"speed"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"Float","preciseIdentifier":"s:Sf"},{"kind":"text","text":")"}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/init(weightNames:frames:name:tweenMode:frameInterval:isAdditive:bindTarget:blendLayer:repeatMode:fillMode:trimStart:trimEnd:trimDuration:offset:delay:speed:)","role":"symbol"},"doc://com.apple.RealityKit/documentation/RealityKit/FromToByAnimation":{"title":"FromToByAnimation","role":"symbol","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/FromToByAnimation","url":"/documentation/realitykit/fromtobyanimation","abstract":[{"type":"text","text":"An animation that starts, stops, or increments by a specific value."}],"fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"FromToByAnimation"}],"kind":"symbol","navigatorTitle":[{"kind":"identifier","text":"FromToByAnimation"}],"type":"topic"},"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/fillMode":{"type":"topic","kind":"symbol","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/fillMode","fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"fillMode"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"AnimationFillMode","preciseIdentifier":"s:17RealityFoundation17AnimationFillModeV"}],"abstract":[{"type":"text","text":"An option that determines which data displays outside of the normal"},{"type":"text","text":" "},{"type":"text","text":"duration."}],"title":"fillMode","role":"symbol","url":"/documentation/realitykit/sampledanimation/fillmode"},"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/init(jointNames:frames:name:tweenMode:frameInterval:isAdditive:isScaleAnimated:isRotationAnimated:isTranslationAnimated:bindTarget:blendLayer:repeatMode:fillMode:trimStart:trimEnd:trimDuration:offset:delay:speed:)":{"abstract":[{"text":"Creates an animation that interpolates between two configurations of the","type":"text"},{"text":" ","type":"text"},{"text":"given joints.","type":"text"}],"kind":"symbol","type":"topic","title":"init(jointNames:frames:name:tweenMode:frameInterval:isAdditive:isScaleAnimated:isRotationAnimated:isTranslationAnimated:bindTarget:blendLayer:repeatMode:fillMode:trimStart:trimEnd:trimDuration:offset:delay:speed:)","conformance":{"conformancePrefix":[{"text":"Conforms when","type":"text"}],"availabilityPrefix":[{"text":"Available when","type":"text"}],"constraints":[{"code":"Value","type":"codeVoice"},{"text":" is ","type":"text"},{"code":"JointTransforms","type":"codeVoice"},{"text":".","type":"text"}]},"url":"/documentation/realitykit/sampledanimation/init(jointnames:frames:name:tweenmode:frameinterval:isadditive:isscaleanimated:isrotationanimated:istranslationanimated:bindtarget:blendlayer:repeatmode:fillmode:trimstart:trimend:trimduration:offset:delay:speed:)","fragments":[{"kind":"identifier","text":"init"},{"kind":"text","text":"("},{"text":"jointNames","kind":"externalParam"},{"text":": [","kind":"text"},{"text":"String","preciseIdentifier":"s:SS","kind":"typeIdentifier"},{"text":"], ","kind":"text"},{"text":"frames","kind":"externalParam"},{"text":": [","kind":"text"},{"text":"Value","kind":"typeIdentifier"},{"text":"], ","kind":"text"},{"text":"name","kind":"externalParam"},{"text":": ","kind":"text"},{"text":"String","preciseIdentifier":"s:SS","kind":"typeIdentifier"},{"text":", ","kind":"text"},{"text":"tweenMode","kind":"externalParam"},{"text":": ","kind":"text"},{"text":"TweenMode","preciseIdentifier":"s:17RealityFoundation9TweenModeO","kind":"typeIdentifier"},{"text":", ","kind":"text"},{"text":"frameInterval","kind":"externalParam"},{"text":": ","kind":"text"},{"text":"Float","preciseIdentifier":"s:Sf","kind":"typeIdentifier"},{"kind":"text","text":", "},{"kind":"externalParam","text":"isAdditive"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"Bool","preciseIdentifier":"s:Sb"},{"kind":"text","text":", "},{"kind":"externalParam","text":"isScaleAnimated"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"Bool","preciseIdentifier":"s:Sb"},{"kind":"text","text":", "},{"kind":"externalParam","text":"isRotationAnimated"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"Bool","preciseIdentifier":"s:Sb"},{"kind":"text","text":", "},{"kind":"externalParam","text":"isTranslationAnimated"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"Bool","preciseIdentifier":"s:Sb"},{"text":", ","kind":"text"},{"text":"bindTarget","kind":"externalParam"},{"text":": ","kind":"text"},{"preciseIdentifier":"s:17RealityFoundation10BindTargetO","text":"BindTarget","kind":"typeIdentifier"},{"text":"?, ","kind":"text"},{"text":"blendLayer","kind":"externalParam"},{"text":": ","kind":"text"},{"preciseIdentifier":"s:s5Int32V","text":"Int32","kind":"typeIdentifier"},{"text":", ","kind":"text"},{"text":"repeatMode","kind":"externalParam"},{"text":": ","kind":"text"},{"preciseIdentifier":"s:17RealityFoundation19AnimationRepeatModeO","text":"AnimationRepeatMode","kind":"typeIdentifier"},{"text":", ","kind":"text"},{"text":"fillMode","kind":"externalParam"},{"text":": ","kind":"text"},{"preciseIdentifier":"s:17RealityFoundation17AnimationFillModeV","text":"AnimationFillMode","kind":"typeIdentifier"},{"text":", ","kind":"text"},{"text":"trimStart","kind":"externalParam"},{"text":": ","kind":"text"},{"preciseIdentifier":"c:@T@NSTimeInterval","text":"TimeInterval","kind":"typeIdentifier"},{"text":"?, ","kind":"text"},{"text":"trimEnd","kind":"externalParam"},{"text":": ","kind":"text"},{"preciseIdentifier":"c:@T@NSTimeInterval","text":"TimeInterval","kind":"typeIdentifier"},{"text":"?, ","kind":"text"},{"text":"trimDuration","kind":"externalParam"},{"text":": ","kind":"text"},{"preciseIdentifier":"c:@T@NSTimeInterval","text":"TimeInterval","kind":"typeIdentifier"},{"text":"?, ","kind":"text"},{"text":"offset","kind":"externalParam"},{"text":": ","kind":"text"},{"preciseIdentifier":"c:@T@NSTimeInterval","text":"TimeInterval","kind":"typeIdentifier"},{"text":", ","kind":"text"},{"text":"delay","kind":"externalParam"},{"text":": ","kind":"text"},{"preciseIdentifier":"c:@T@NSTimeInterval","text":"TimeInterval","kind":"typeIdentifier"},{"text":", ","kind":"text"},{"text":"speed","kind":"externalParam"},{"text":": ","kind":"text"},{"preciseIdentifier":"s:Sf","text":"Float","kind":"typeIdentifier"},{"text":")","kind":"text"}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/init(jointNames:frames:name:tweenMode:frameInterval:isAdditive:isScaleAnimated:isRotationAnimated:isTranslationAnimated:bindTarget:blendLayer:repeatMode:fillMode:trimStart:trimEnd:trimDuration:offset:delay:speed:)","role":"symbol"},"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/frames-9jtu9":{"abstract":[{"text":"An array of weights in which each element represents a discrete","type":"text"},{"text":" ","type":"text"},{"text":"state of the target entity at a given point in the animation’s timeline.","type":"text"}],"kind":"symbol","type":"topic","title":"frames","conformance":{"constraints":[{"type":"codeVoice","code":"Value"},{"text":" is ","type":"text"},{"type":"codeVoice","code":"BlendShapeWeights"},{"text":".","type":"text"}],"availabilityPrefix":[{"text":"Available when","type":"text"}],"conformancePrefix":[{"text":"Conforms when","type":"text"}]},"url":"/documentation/realitykit/sampledanimation/frames-9jtu9","fragments":[{"text":"var","kind":"keyword"},{"text":" ","kind":"text"},{"kind":"identifier","text":"frames"},{"kind":"text","text":": ["},{"kind":"typeIdentifier","preciseIdentifier":"s:17RealityFoundation17BlendShapeWeightsV","text":"BlendShapeWeights"},{"kind":"text","text":"]"}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/frames-9jtu9","role":"symbol"},"doc://com.apple.documentation/documentation/Swift/Float":{"type":"topic","identifier":"doc://com.apple.documentation/documentation/Swift/Float","kind":"symbol","abstract":[{"type":"text","text":"A single-precision, floating-point value type."}],"role":"symbol","url":"/documentation/Swift/Float","fragments":[{"text":"@frozen","kind":"attribute"},{"text":" ","kind":"text"},{"text":"struct","kind":"keyword"},{"text":" ","kind":"text"},{"text":"Float","kind":"identifier"}],"title":"Float"},"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/isScaleAnimated":{"url":"/documentation/realitykit/sampledanimation/isscaleanimated","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/isScaleAnimated","role":"symbol","type":"topic","fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"isScaleAnimated"},{"kind":"text","text":": "},{"preciseIdentifier":"s:Sb","kind":"typeIdentifier","text":"Bool"}],"conformance":{"availabilityPrefix":[{"type":"text","text":"Available when"}],"conformancePrefix":[{"type":"text","text":"Conforms when"}],"constraints":[{"type":"codeVoice","code":"Value"},{"type":"text","text":" is "},{"type":"codeVoice","code":"JointTransforms"},{"type":"text","text":"."}]},"title":"isScaleAnimated","kind":"symbol","abstract":[{"text":"A Boolean value that indicates whether the animation observes changes in","type":"text"},{"text":" ","type":"text"},{"text":"the entity’s size.","type":"text"}]},"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/end":{"abstract":[{"text":"An integer multiple of the frame interval at which the animation stops.","type":"text"}],"kind":"symbol","type":"topic","title":"end","url":"/documentation/realitykit/sampledanimation/end","fragments":[{"text":"var","kind":"keyword"},{"text":" ","kind":"text"},{"kind":"identifier","text":"end"},{"kind":"text","text":": "},{"text":"TimeInterval","preciseIdentifier":"c:@T@NSTimeInterval","kind":"typeIdentifier"}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/end","role":"symbol"},"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/repeated(count:)-3iijb":{"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/repeated(count:)-3iijb","url":"/documentation/realitykit/sampledanimation/repeated(count:)-3iijb","fragments":[{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"repeated"},{"kind":"text","text":"("},{"kind":"externalParam","text":"count"},{"kind":"text","text":": "},{"kind":"typeIdentifier","preciseIdentifier":"c:@T@NSTimeInterval","text":"TimeInterval"},{"kind":"text","text":") -> "},{"kind":"typeIdentifier","text":"Self"}],"abstract":[{"type":"text","text":"Repeats an animation the number of times specified by an irrational"},{"type":"text","text":" "},{"type":"text","text":"number."}],"role":"symbol","type":"topic","title":"repeated(count:)","kind":"symbol"},"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/start":{"abstract":[{"text":"An integer multiple of the frame interval at which the animation plays.","type":"text"}],"kind":"symbol","type":"topic","title":"start","url":"/documentation/realitykit/sampledanimation/start","fragments":[{"text":"var","kind":"keyword"},{"text":" ","kind":"text"},{"text":"start","kind":"identifier"},{"text":": ","kind":"text"},{"kind":"typeIdentifier","preciseIdentifier":"c:@T@NSTimeInterval","text":"TimeInterval"}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/start","role":"symbol"},"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/init(frames:name:tweenMode:frameInterval:isAdditive:bindTarget:blendLayer:repeatMode:fillMode:trimStart:trimEnd:trimDuration:offset:delay:speed:)":{"abstract":[{"text":"Creates an animation with a collection of frames that represent","type":"text"},{"text":" ","type":"text"},{"text":"incremental steps in the overall timeline.","type":"text"}],"kind":"symbol","type":"topic","title":"init(frames:name:tweenMode:frameInterval:isAdditive:bindTarget:blendLayer:repeatMode:fillMode:trimStart:trimEnd:trimDuration:offset:delay:speed:)","url":"/documentation/realitykit/sampledanimation/init(frames:name:tweenmode:frameinterval:isadditive:bindtarget:blendlayer:repeatmode:fillmode:trimstart:trimend:trimduration:offset:delay:speed:)","fragments":[{"kind":"identifier","text":"init"},{"kind":"text","text":"("},{"text":"frames","kind":"externalParam"},{"text":": [","kind":"text"},{"text":"Value","kind":"typeIdentifier"},{"text":"], ","kind":"text"},{"text":"name","kind":"externalParam"},{"text":": ","kind":"text"},{"text":"String","preciseIdentifier":"s:SS","kind":"typeIdentifier"},{"text":", ","kind":"text"},{"text":"tweenMode","kind":"externalParam"},{"text":": ","kind":"text"},{"text":"TweenMode","preciseIdentifier":"s:17RealityFoundation9TweenModeO","kind":"typeIdentifier"},{"text":", ","kind":"text"},{"text":"frameInterval","kind":"externalParam"},{"text":": ","kind":"text"},{"text":"Float","preciseIdentifier":"s:Sf","kind":"typeIdentifier"},{"text":", ","kind":"text"},{"text":"isAdditive","kind":"externalParam"},{"text":": ","kind":"text"},{"text":"Bool","preciseIdentifier":"s:Sb","kind":"typeIdentifier"},{"kind":"text","text":", "},{"kind":"externalParam","text":"bindTarget"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"BindTarget","preciseIdentifier":"s:17RealityFoundation10BindTargetO"},{"kind":"text","text":"?, "},{"kind":"externalParam","text":"blendLayer"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"Int32","preciseIdentifier":"s:s5Int32V"},{"kind":"text","text":", "},{"kind":"externalParam","text":"repeatMode"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"AnimationRepeatMode","preciseIdentifier":"s:17RealityFoundation19AnimationRepeatModeO"},{"kind":"text","text":", "},{"kind":"externalParam","text":"fillMode"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"AnimationFillMode","preciseIdentifier":"s:17RealityFoundation17AnimationFillModeV"},{"kind":"text","text":", "},{"kind":"externalParam","text":"trimStart"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"TimeInterval","preciseIdentifier":"c:@T@NSTimeInterval"},{"kind":"text","text":"?, "},{"kind":"externalParam","text":"trimEnd"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"TimeInterval","preciseIdentifier":"c:@T@NSTimeInterval"},{"kind":"text","text":"?, "},{"kind":"externalParam","text":"trimDuration"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"TimeInterval","preciseIdentifier":"c:@T@NSTimeInterval"},{"kind":"text","text":"?, "},{"kind":"externalParam","text":"offset"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"TimeInterval","preciseIdentifier":"c:@T@NSTimeInterval"},{"kind":"text","text":", "},{"kind":"externalParam","text":"delay"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"TimeInterval","preciseIdentifier":"c:@T@NSTimeInterval"},{"kind":"text","text":", "},{"kind":"externalParam","text":"speed"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"Float","preciseIdentifier":"s:Sf"},{"kind":"text","text":")"}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/init(frames:name:tweenMode:frameInterval:isAdditive:bindTarget:blendLayer:repeatMode:fillMode:trimStart:trimEnd:trimDuration:offset:delay:speed:)","role":"symbol"},"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/frames-4eeex":{"url":"/documentation/realitykit/sampledanimation/frames-4eeex","role":"symbol","fragments":[{"text":"var","kind":"keyword"},{"text":" ","kind":"text"},{"text":"frames","kind":"identifier"},{"text":": [","kind":"text"},{"text":"JointTransforms","preciseIdentifier":"s:17RealityFoundation15JointTransformsV","kind":"typeIdentifier"},{"text":"]","kind":"text"}],"type":"topic","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/frames-4eeex","abstract":[{"text":"An array of joint transforms in which each element represents a discrete","type":"text"},{"text":" ","type":"text"},{"text":"state of the target entity at a given point in the animation’s timeline.","type":"text"}],"conformance":{"availabilityPrefix":[{"type":"text","text":"Available when"}],"conformancePrefix":[{"type":"text","text":"Conforms when"}],"constraints":[{"type":"codeVoice","code":"Value"},{"type":"text","text":" is "},{"type":"codeVoice","code":"JointTransforms"},{"type":"text","text":"."}]},"title":"frames","kind":"symbol"},"doc://com.apple.RealityKit/documentation/RealityKit/AnimationGroup":{"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/AnimationGroup","type":"topic","abstract":[{"type":"text","text":"A collection of animations that play simultaneously."}],"url":"/documentation/realitykit/animationgroup","kind":"symbol","title":"AnimationGroup","navigatorTitle":[{"kind":"identifier","text":"AnimationGroup"}],"role":"symbol","fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"AnimationGroup"}]},"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/repeatMode":{"type":"topic","abstract":[{"type":"text","text":"An option that determines how the animation repeats."}],"title":"repeatMode","url":"/documentation/realitykit/sampledanimation/repeatmode","kind":"symbol","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/repeatMode","fragments":[{"kind":"keyword","text":"var"},{"text":" ","kind":"text"},{"kind":"identifier","text":"repeatMode"},{"text":": ","kind":"text"},{"text":"AnimationRepeatMode","kind":"typeIdentifier","preciseIdentifier":"s:17RealityFoundation19AnimationRepeatModeO"}],"role":"symbol"},"doc://com.apple.RealityKit/documentation/RealityKit/AnimationHandoffType":{"navigatorTitle":[{"text":"AnimationHandoffType","kind":"identifier"}],"title":"AnimationHandoffType","kind":"symbol","fragments":[{"text":"struct","kind":"keyword"},{"text":" ","kind":"text"},{"text":"AnimationHandoffType","kind":"identifier"}],"role":"symbol","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/AnimationHandoffType","url":"/documentation/realitykit/animationhandofftype","type":"topic","abstract":[{"text":"The type of handoff the play animation method performs between a current animation and a new animation.","type":"text"}]},"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/tweenMode":{"fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"tweenMode"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"TweenMode","preciseIdentifier":"s:17RealityFoundation9TweenModeO"}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/tweenMode","title":"tweenMode","type":"topic","abstract":[{"type":"text","text":"An option that determines how animation frames transition."}],"url":"/documentation/realitykit/sampledanimation/tweenmode","kind":"symbol","role":"symbol"},"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/trimmed(start:end:duration:)":{"abstract":[{"text":"Edits the animation duration according to the specified time.","type":"text"}],"kind":"symbol","type":"topic","title":"trimmed(start:end:duration:)","url":"/documentation/realitykit/sampledanimation/trimmed(start:end:duration:)","fragments":[{"text":"func","kind":"keyword"},{"text":" ","kind":"text"},{"text":"trimmed","kind":"identifier"},{"text":"(","kind":"text"},{"kind":"externalParam","text":"start"},{"kind":"text","text":": "},{"kind":"typeIdentifier","preciseIdentifier":"c:@T@NSTimeInterval","text":"TimeInterval"},{"kind":"text","text":"?, "},{"kind":"externalParam","text":"end"},{"kind":"text","text":": "},{"kind":"typeIdentifier","preciseIdentifier":"c:@T@NSTimeInterval","text":"TimeInterval"},{"kind":"text","text":"?, "},{"kind":"externalParam","text":"duration"},{"kind":"text","text":": "},{"kind":"typeIdentifier","preciseIdentifier":"c:@T@NSTimeInterval","text":"TimeInterval"},{"kind":"text","text":"?) -> "},{"kind":"typeIdentifier","text":"Self"}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/trimmed(start:end:duration:)","role":"symbol"},"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/blendLayer":{"abstract":[{"text":"The order in which the framework composites the animation.","type":"text"}],"fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"blendLayer"},{"kind":"text","text":": "},{"kind":"typeIdentifier","preciseIdentifier":"s:s5Int32V","text":"Int32"}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/blendLayer","role":"symbol","url":"/documentation/realitykit/sampledanimation/blendlayer","kind":"symbol","title":"blendLayer","type":"topic"},"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/additive":{"abstract":[{"type":"text","text":"A Boolean value that indicates whether the animation builds on the"},{"type":"text","text":" "},{"type":"text","text":"current state of the target entity or resets the state before running."}],"fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"additive"},{"kind":"text","text":": "},{"preciseIdentifier":"s:Sb","kind":"typeIdentifier","text":"Bool"}],"kind":"symbol","title":"additive","type":"topic","role":"symbol","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/additive","url":"/documentation/realitykit/sampledanimation/additive"},"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation":{"role":"symbol","navigatorTitle":[{"kind":"identifier","text":"SampledAnimation"}],"type":"topic","title":"SampledAnimation","kind":"symbol","fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"SampledAnimation"}],"abstract":[{"type":"text","text":"An animation that cycles through a series of frames at a constant interval."}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation","url":"/documentation/realitykit/sampledanimation"},"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/bindTarget":{"abstract":[{"text":"A textual name that identifies the particular property that animates.","type":"text"}],"fragments":[{"text":"var","kind":"keyword"},{"text":" ","kind":"text"},{"text":"bindTarget","kind":"identifier"},{"text":": ","kind":"text"},{"text":"BindTarget","kind":"typeIdentifier","preciseIdentifier":"s:17RealityFoundation10BindTargetO"}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/bindTarget","role":"symbol","url":"/documentation/realitykit/sampledanimation/bindtarget","kind":"symbol","title":"bindTarget","type":"topic"},"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/name":{"url":"/documentation/realitykit/sampledanimation/name","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/name","role":"symbol","type":"topic","fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"name"},{"kind":"text","text":": "},{"preciseIdentifier":"s:SS","kind":"typeIdentifier","text":"String"}],"title":"name","kind":"symbol","abstract":[{"text":"A textual name for the animation.","type":"text"}]},"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/frames-4qotl":{"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/frames-4qotl","kind":"symbol","url":"/documentation/realitykit/sampledanimation/frames-4qotl","conformance":{"constraints":[{"code":"Value","type":"codeVoice"},{"text":" is ","type":"text"},{"code":"Transform","type":"codeVoice"},{"text":".","type":"text"}],"availabilityPrefix":[{"text":"Available when","type":"text"}],"conformancePrefix":[{"text":"Conforms when","type":"text"}]},"abstract":[{"text":"An array of transforms in which each element represents a discrete state","type":"text"},{"text":" ","type":"text"},{"text":"of the target entity at a given point in the animation’s timeline.","type":"text"}],"fragments":[{"text":"var","kind":"keyword"},{"text":" ","kind":"text"},{"text":"frames","kind":"identifier"},{"text":": [","kind":"text"},{"preciseIdentifier":"s:17RealityFoundation9TransformV","text":"Transform","kind":"typeIdentifier"},{"text":"]","kind":"text"}],"title":"frames","role":"symbol","type":"topic"},"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/frames-2h6tu":{"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/frames-2h6tu","kind":"symbol","url":"/documentation/realitykit/sampledanimation/frames-2h6tu","conformance":{"availabilityPrefix":[{"type":"text","text":"Available when"}],"conformancePrefix":[{"type":"text","text":"Conforms when"}],"constraints":[{"type":"codeVoice","code":"Value"},{"type":"text","text":" is "},{"type":"codeVoice","code":"simd_quatf"},{"type":"text","text":"."}]},"abstract":[{"type":"text","text":"An array of quaternions in which each element represents a discrete"},{"type":"text","text":" "},{"type":"text","text":"state of the animated property at a given point in the animation’s"},{"type":"text","text":" "},{"type":"text","text":"timeline."}],"fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"frames"},{"kind":"text","text":": ["},{"kind":"typeIdentifier","preciseIdentifier":"c:@SA@simd_quatf","text":"simd_quatf"},{"kind":"text","text":"]"}],"title":"frames","role":"symbol","type":"topic"},"doc://com.apple.RealityKit/documentation/RealityKit/OrbitAnimation":{"fragments":[{"text":"struct","kind":"keyword"},{"text":" ","kind":"text"},{"text":"OrbitAnimation","kind":"identifier"}],"url":"/documentation/realitykit/orbitanimation","type":"topic","navigatorTitle":[{"text":"OrbitAnimation","kind":"identifier"}],"title":"OrbitAnimation","abstract":[{"type":"text","text":"An animation that revolves an entity around its origin."}],"role":"symbol","kind":"symbol","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/OrbitAnimation"},"doc://com.apple.documentation/documentation/technologies":{"url":"/documentation/technologies","abstract":[{"text":"","type":"text"}],"kind":"technologies","type":"topic","role":"overview","title":"Technologies","identifier":"doc://com.apple.documentation/documentation/technologies"},"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/frames-9luwf":{"fragments":[{"text":"var","kind":"keyword"},{"text":" ","kind":"text"},{"text":"frames","kind":"identifier"},{"text":": [","kind":"text"},{"text":"SIMD2","preciseIdentifier":"s:s5SIMD2V","kind":"typeIdentifier"},{"text":"<","kind":"text"},{"text":"Float","preciseIdentifier":"s:Sf","kind":"typeIdentifier"},{"text":">]","kind":"text"}],"type":"topic","url":"/documentation/realitykit/sampledanimation/frames-9luwf","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/frames-9luwf","abstract":[{"text":"An array of floating-point pairs in which each element represents a","type":"text"},{"text":" ","type":"text"},{"text":"discrete state of the animated property at a given point in the","type":"text"},{"text":" ","type":"text"},{"text":"animation’s timeline.","type":"text"}],"role":"symbol","kind":"symbol","conformance":{"availabilityPrefix":[{"type":"text","text":"Available when"}],"constraints":[{"type":"codeVoice","code":"Value"},{"type":"text","text":" is "},{"type":"codeVoice","code":"SIMD2<Float>"},{"type":"text","text":"."}],"conformancePrefix":[{"type":"text","text":"Conforms when"}]},"title":"frames"},"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/frames-2j4nj":{"conformance":{"constraints":[{"type":"codeVoice","code":"Value"},{"type":"text","text":" is "},{"type":"codeVoice","code":"Float"},{"type":"text","text":"."}],"availabilityPrefix":[{"type":"text","text":"Available when"}],"conformancePrefix":[{"type":"text","text":"Conforms when"}]},"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/frames-2j4nj","abstract":[{"type":"text","text":"An array of floating-point values in which each element represents a"},{"type":"text","text":" "},{"type":"text","text":"discrete state of the animated property at a given point in the"},{"type":"text","text":" "},{"type":"text","text":"animation’s timeline."}],"role":"symbol","url":"/documentation/realitykit/sampledanimation/frames-2j4nj","kind":"symbol","title":"frames","type":"topic","fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"frames"},{"kind":"text","text":": ["},{"kind":"typeIdentifier","text":"Float","preciseIdentifier":"s:Sf"},{"kind":"text","text":"]"}]},"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/trimDuration":{"abstract":[{"text":"An optional duration that overrides the calculated duration.","type":"text"}],"kind":"symbol","type":"topic","title":"trimDuration","url":"/documentation/realitykit/sampledanimation/trimduration","fragments":[{"text":"var","kind":"keyword"},{"text":" ","kind":"text"},{"kind":"identifier","text":"trimDuration"},{"kind":"text","text":": "},{"text":"TimeInterval","preciseIdentifier":"c:@T@NSTimeInterval","kind":"typeIdentifier"},{"text":"?","kind":"text"}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/trimDuration","role":"symbol"},"doc://com.apple.RealityKit/documentation/RealityKit/AnimationDefinition":{"fragments":[{"text":"protocol","kind":"keyword"},{"text":" ","kind":"text"},{"text":"AnimationDefinition","kind":"identifier"}],"title":"AnimationDefinition","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/AnimationDefinition","navigatorTitle":[{"text":"AnimationDefinition","kind":"identifier"}],"kind":"symbol","type":"topic","role":"symbol","url":"/documentation/realitykit/animationdefinition","abstract":[{"text":"The configuration, including target object, timeframe, and visual semantics,","type":"text"},{"text":" ","type":"text"},{"text":"of an animation.","type":"text"}]},"doc://com.apple.RealityKit/documentation/RealityKit/TweenMode":{"url":"/documentation/realitykit/tweenmode","type":"topic","kind":"symbol","fragments":[{"kind":"keyword","text":"enum"},{"kind":"text","text":" "},{"kind":"identifier","text":"TweenMode"}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/TweenMode","navigatorTitle":[{"kind":"identifier","text":"TweenMode"}],"abstract":[{"type":"text","text":"Options that determine whether an animation switches between frames"},{"type":"text","text":" "},{"type":"text","text":"gradually or abruptly."}],"role":"symbol","title":"TweenMode"},"doc://com.apple.RealityKit/documentation/RealityKit":{"url":"/documentation/realitykit","abstract":[{"text":"Simulate and render 3D content for use in your augmented reality apps.","type":"text"}],"kind":"symbol","type":"topic","role":"collection","title":"RealityKit","identifier":"doc://com.apple.RealityKit/documentation/RealityKit"},"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/isRotationAnimated":{"role":"symbol","conformance":{"availabilityPrefix":[{"type":"text","text":"Available when"}],"conformancePrefix":[{"type":"text","text":"Conforms when"}],"constraints":[{"type":"codeVoice","code":"Value"},{"type":"text","text":" is "},{"type":"codeVoice","code":"JointTransforms"},{"type":"text","text":"."}]},"kind":"symbol","url":"/documentation/realitykit/sampledanimation/isrotationanimated","abstract":[{"text":"A Boolean value that indicates whether the animation observes rotational","type":"text"},{"text":" ","type":"text"},{"text":"changes in the entity’s transform.","type":"text"}],"fragments":[{"text":"var","kind":"keyword"},{"text":" ","kind":"text"},{"text":"isRotationAnimated","kind":"identifier"},{"text":": ","kind":"text"},{"text":"Bool","preciseIdentifier":"s:Sb","kind":"typeIdentifier"}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/isRotationAnimated","type":"topic","title":"isRotationAnimated"},"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/speed":{"abstract":[{"text":"A factor that changes the animation’s rate of playback.","type":"text"}],"kind":"symbol","type":"topic","title":"speed","url":"/documentation/realitykit/sampledanimation/speed","fragments":[{"text":"var","kind":"keyword"},{"text":" ","kind":"text"},{"text":"speed","kind":"identifier"},{"text":": ","kind":"text"},{"kind":"typeIdentifier","preciseIdentifier":"s:Sf","text":"Float"}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/speed","role":"symbol"},"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/isTranslationAnimated":{"role":"symbol","abstract":[{"type":"text","text":"A Boolean value that indicates whether the animation observes"},{"type":"text","text":" "},{"type":"text","text":"translational changes in the entity’s transform."}],"kind":"symbol","conformance":{"constraints":[{"type":"codeVoice","code":"Value"},{"type":"text","text":" is "},{"type":"codeVoice","code":"JointTransforms"},{"type":"text","text":"."}],"conformancePrefix":[{"type":"text","text":"Conforms when"}],"availabilityPrefix":[{"type":"text","text":"Available when"}]},"title":"isTranslationAnimated","fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"isTranslationAnimated"},{"kind":"text","text":": "},{"preciseIdentifier":"s:Sb","kind":"typeIdentifier","text":"Bool"}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/isTranslationAnimated","url":"/documentation/realitykit/sampledanimation/istranslationanimated","type":"topic"},"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/frames-2ywfx":{"fragments":[{"text":"var","kind":"keyword"},{"text":" ","kind":"text"},{"text":"frames","kind":"identifier"},{"text":": [","kind":"text"},{"preciseIdentifier":"s:s5SIMD4V","text":"SIMD4","kind":"typeIdentifier"},{"text":"<","kind":"text"},{"preciseIdentifier":"s:Sf","text":"Float","kind":"typeIdentifier"},{"text":">]","kind":"text"}],"type":"topic","url":"/documentation/realitykit/sampledanimation/frames-2ywfx","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/frames-2ywfx","abstract":[{"text":"An array of floating-point quadruples in which each element represents a","type":"text"},{"text":" ","type":"text"},{"text":"discrete state of the animated property at a given point in the","type":"text"},{"text":" ","type":"text"},{"text":"animation’s timeline.","type":"text"}],"role":"symbol","kind":"symbol","conformance":{"conformancePrefix":[{"type":"text","text":"Conforms when"}],"constraints":[{"type":"codeVoice","code":"Value"},{"type":"text","text":" is "},{"type":"codeVoice","code":"SIMD4<Float>"},{"type":"text","text":"."}],"availabilityPrefix":[{"type":"text","text":"Available when"}]},"title":"frames"},"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/weightNames":{"abstract":[{"text":"The names of the weights to animate.","type":"text"}],"kind":"symbol","type":"topic","title":"weightNames","conformance":{"constraints":[{"type":"codeVoice","code":"Value"},{"type":"text","text":" is "},{"type":"codeVoice","code":"BlendShapeWeights"},{"type":"text","text":"."}],"conformancePrefix":[{"type":"text","text":"Conforms when"}],"availabilityPrefix":[{"type":"text","text":"Available when"}]},"url":"/documentation/realitykit/sampledanimation/weightnames","fragments":[{"text":"var","kind":"keyword"},{"text":" ","kind":"text"},{"kind":"identifier","text":"weightNames"},{"kind":"text","text":": ["},{"text":"String","preciseIdentifier":"s:SS","kind":"typeIdentifier"},{"text":"]","kind":"text"}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/weightNames","role":"symbol"},"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/duration":{"url":"/documentation/realitykit/sampledanimation/duration","fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"text":"duration","kind":"identifier"},{"text":": ","kind":"text"},{"kind":"typeIdentifier","preciseIdentifier":"c:@T@NSTimeInterval","text":"TimeInterval"}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/duration","role":"symbol","kind":"symbol","type":"topic","abstract":[{"type":"text","text":"The total playback time of the animation."}],"title":"duration"},"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/AnimationDefinition-Implementations":{"abstract":[],"kind":"article","type":"topic","title":"AnimationDefinition Implementations","url":"/documentation/realitykit/sampledanimation/animationdefinition-implementations","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/AnimationDefinition-Implementations","role":"collectionGroup"},"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/frameInterval":{"url":"/documentation/realitykit/sampledanimation/frameinterval","kind":"symbol","abstract":[{"type":"text","text":"The duration within the animation timeline for each frame in the frames"},{"type":"text","text":" "},{"type":"text","text":"array."}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/frameInterval","fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"text":"frameInterval","kind":"identifier"},{"text":": ","kind":"text"},{"text":"Float","preciseIdentifier":"s:Sf","kind":"typeIdentifier"}],"title":"frameInterval","type":"topic","role":"symbol"},"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/frames-2hobp":{"conformance":{"availabilityPrefix":[{"type":"text","text":"Available when"}],"conformancePrefix":[{"type":"text","text":"Conforms when"}],"constraints":[{"type":"codeVoice","code":"Value"},{"type":"text","text":" is "},{"type":"codeVoice","code":"Double"},{"type":"text","text":"."}]},"url":"/documentation/realitykit/sampledanimation/frames-2hobp","fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"frames"},{"kind":"text","text":": ["},{"kind":"typeIdentifier","text":"Double","preciseIdentifier":"s:Sd"},{"kind":"text","text":"]"}],"abstract":[{"type":"text","text":"An array of double-precision values in which each element represents a"},{"type":"text","text":" "},{"type":"text","text":"discrete state of the animated property at a given point in the"},{"type":"text","text":" "},{"type":"text","text":"animation’s timeline."}],"role":"symbol","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/frames-2hobp","type":"topic","title":"frames","kind":"symbol"},"doc://com.apple.RealityKit/documentation/RealityKit/AnimationView":{"url":"/documentation/realitykit/animationview","type":"topic","fragments":[{"text":"struct","kind":"keyword"},{"text":" ","kind":"text"},{"text":"AnimationView","kind":"identifier"}],"title":"AnimationView","kind":"symbol","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/AnimationView","role":"symbol","abstract":[{"type":"text","text":"An animation that represents a variation of another animation."}],"navigatorTitle":[{"text":"AnimationView","kind":"identifier"}]},"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/repeated(count:)-ltbf":{"abstract":[{"type":"text","text":"Repeats an animation the number of times specified by a whole number."}],"role":"symbol","url":"/documentation/realitykit/sampledanimation/repeated(count:)-ltbf","kind":"symbol","title":"repeated(count:)","fragments":[{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"repeated"},{"kind":"text","text":"("},{"kind":"externalParam","text":"count"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"Int","preciseIdentifier":"s:Si"},{"kind":"text","text":") -> "},{"kind":"typeIdentifier","text":"Self"}],"type":"topic","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/repeated(count:)-ltbf"},"doc://com.apple.RealityKit/documentation/RealityKit/AnimatableData":{"role":"symbol","type":"topic","navigatorTitle":[{"text":"AnimatableData","kind":"identifier"}],"kind":"symbol","url":"/documentation/realitykit/animatabledata","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/AnimatableData","fragments":[{"text":"protocol","kind":"keyword"},{"text":" ","kind":"text"},{"text":"AnimatableData","kind":"identifier"}],"abstract":[{"text":"A functionality specification that animatable data types adopt.","type":"text"}],"title":"AnimatableData"},"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/jointNames":{"fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"jointNames"},{"kind":"text","text":": ["},{"preciseIdentifier":"s:SS","kind":"typeIdentifier","text":"String"},{"kind":"text","text":"]"}],"conformance":{"constraints":[{"code":"Value","type":"codeVoice"},{"text":" is ","type":"text"},{"code":"JointTransforms","type":"codeVoice"},{"text":".","type":"text"}],"conformancePrefix":[{"text":"Conforms when","type":"text"}],"availabilityPrefix":[{"text":"Available when","type":"text"}]},"role":"symbol","type":"topic","kind":"symbol","identifier":"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/jointNames","abstract":[{"type":"text","text":"The names of the joints to animate."}],"url":"/documentation/realitykit/sampledanimation/jointnames","title":"jointNames"},"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/trimStart":{"abstract":[{"text":"The optional time, in seconds, at which the animation plays.","type":"text"}],"kind":"symbol","type":"topic","title":"trimStart","url":"/documentation/realitykit/sampledanimation/trimstart","fragments":[{"text":"var","kind":"keyword"},{"text":" ","kind":"text"},{"text":"trimStart","kind":"identifier"},{"text":": ","kind":"text"},{"kind":"typeIdentifier","preciseIdentifier":"c:@T@NSTimeInterval","text":"TimeInterval"},{"kind":"text","text":"?"}],"identifier":"doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/trimStart","role":"symbol"}},"legalNotices":{"copyright":"Copyright &copy; 2025 Apple Inc. All rights reserved.","termsOfUse":"https://www.apple.com/legal/internet-services/terms/site.html","privacyPolicy":"https://www.apple.com/privacy/privacy-policy"}}
+{
+  "abstract": [
+    {
+      "text": "An animation that cycles through a series of frames at a constant interval.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:17RealityFoundation16SampledAnimationV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "SampledAnimation"
+      }
+    ],
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SampledAnimation"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "SampledAnimation"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SampledAnimation"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "kind": "genericParameter",
+              "text": "Value"
+            },
+            {
+              "kind": "text",
+              "text": "> "
+            },
+            {
+              "kind": "keyword",
+              "text": "where"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "Value"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnimatableData",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:17RealityFoundation14AnimatableDataP",
+              "text": "AnimatableData"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To specify the data that the animation samples, set one of the ",
+              "type": "text"
+            },
+            {
+              "code": "frames",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "properties that matches the animated property’s type. For example, set the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/frames-2j4nj",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to interpolate",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Float",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code designates a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to animate a propery of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "type ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Float",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " by specifying",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the generic typed syntax. The code queues an array of values: ",
+              "type": "text"
+            },
+            {
+              "code": "1.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "2.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and ",
+              "type": "text"
+            },
+            {
+              "code": "3.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Define the animation type.",
+            "typealias SampledAnimationType = SampledAnimation<Float>",
+            "",
+            "// Define the animated property values.",
+            "let frameArray: [Float] = [1.0, 2.0, 3.0]"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To determine how fast the animation progresses from frame to frame, define",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "this structure’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/frameInterval",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. The following",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "code specifies a one-second delay between value changes before initializing",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the animation object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Define a one-second frame interval.",
+            "let interval: TimeInterval = 1",
+            "",
+            "// Create the animation.",
+            "let sampleAnim = SampledAnimationType(",
+            "    frames: frameArray,",
+            "    name: \"sampledAnim1\",",
+            "    frameInterval: interval",
+            "    isAdditive: true,",
+            "    bindTarget: .transform,",
+            "    blendLayer: 100,",
+            "    repeatMode: .autoReverse,",
+            "    fillMode: .backwards,",
+            "    trimStart: 1.0,",
+            "    trimEnd: 10.0,",
+            "    trimDuration: 9.0,",
+            "    offset: 2.0,",
+            "    delay: 1.0,",
+            "    speed: 2.0",
+            ")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AnimatableData": {
+      "abstract": [
+        {
+          "text": "A functionality specification that animatable data types adopt.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnimatableData"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnimatableData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnimatableData"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnimatableData",
+      "type": "topic",
+      "url": "/documentation/realitykit/animatabledata"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AnimationDefinition": {
+      "abstract": [
+        {
+          "text": "The configuration, including target object, timeframe, and visual semantics,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "of an animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnimationDefinition"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnimationDefinition",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnimationDefinition"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnimationDefinition",
+      "type": "topic",
+      "url": "/documentation/realitykit/animationdefinition"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AnimationFillMode": {
+      "abstract": [
+        {
+          "text": "Options that determine which animation frames display outside of the normal",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "duration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnimationFillMode"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnimationFillMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnimationFillMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnimationFillMode",
+      "type": "topic",
+      "url": "/documentation/realitykit/animationfillmode"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AnimationGroup": {
+      "abstract": [
+        {
+          "text": "A collection of animations that play simultaneously.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnimationGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnimationGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnimationGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnimationGroup",
+      "type": "topic",
+      "url": "/documentation/realitykit/animationgroup"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AnimationHandoffType": {
+      "abstract": [
+        {
+          "text": "The type of handoff the play animation method performs between a current animation and a new animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnimationHandoffType"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnimationHandoffType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnimationHandoffType"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnimationHandoffType",
+      "type": "topic",
+      "url": "/documentation/realitykit/animationhandofftype"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AnimationTimingFunction": {
+      "abstract": [
+        {
+          "text": "The pacing of an animation transition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnimationTimingFunction"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnimationTimingFunction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnimationTimingFunction"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnimationTimingFunction",
+      "type": "topic",
+      "url": "/documentation/realitykit/animationtimingfunction"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AnimationView": {
+      "abstract": [
+        {
+          "text": "An animation that represents a variation of another animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnimationView"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnimationView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnimationView"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnimationView",
+      "type": "topic",
+      "url": "/documentation/realitykit/animationview"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAnimation": {
+      "abstract": [
+        {
+          "text": "An animation that starts, stops, or increments by a specific value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FromToByAnimation"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAnimation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FromToByAnimation"
+        }
+      ],
+      "role": "symbol",
+      "title": "FromToByAnimation",
+      "type": "topic",
+      "url": "/documentation/realitykit/fromtobyanimation"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/OrbitAnimation": {
+      "abstract": [
+        {
+          "text": "An animation that revolves an entity around its origin.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OrbitAnimation"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/OrbitAnimation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OrbitAnimation"
+        }
+      ],
+      "role": "symbol",
+      "title": "OrbitAnimation",
+      "type": "topic",
+      "url": "/documentation/realitykit/orbitanimation"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation": {
+      "abstract": [
+        {
+          "text": "An animation that cycles through a series of frames at a constant interval.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SampledAnimation"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SampledAnimation"
+        }
+      ],
+      "role": "symbol",
+      "title": "SampledAnimation",
+      "type": "topic",
+      "url": "/documentation/realitykit/sampledanimation"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/AnimationDefinition-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/AnimationDefinition-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "AnimationDefinition Implementations",
+      "type": "topic",
+      "url": "/documentation/realitykit/sampledanimation/animationdefinition-implementations"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/additive": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the animation builds on the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "current state of the target entity or resets the state before running.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "additive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/additive",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "additive",
+      "type": "topic",
+      "url": "/documentation/realitykit/sampledanimation/additive"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/bindTarget": {
+      "abstract": [
+        {
+          "text": "A textual name that identifies the particular property that animates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bindTarget"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation10BindTargetO",
+          "text": "BindTarget"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/bindTarget",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bindTarget",
+      "type": "topic",
+      "url": "/documentation/realitykit/sampledanimation/bindtarget"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/blendLayer": {
+      "abstract": [
+        {
+          "text": "The order in which the framework composites the animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "blendLayer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/blendLayer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "blendLayer",
+      "type": "topic",
+      "url": "/documentation/realitykit/sampledanimation/blendlayer"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/delay": {
+      "abstract": [
+        {
+          "text": "An amount of time that elapses before the animation plays.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delay"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/delay",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "delay",
+      "type": "topic",
+      "url": "/documentation/realitykit/sampledanimation/delay"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/duration": {
+      "abstract": [
+        {
+          "text": "The total playback time of the animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "duration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/duration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "duration",
+      "type": "topic",
+      "url": "/documentation/realitykit/sampledanimation/duration"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/end": {
+      "abstract": [
+        {
+          "text": "An integer multiple of the frame interval at which the animation stops.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "end"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/end",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "end",
+      "type": "topic",
+      "url": "/documentation/realitykit/sampledanimation/end"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/fillMode": {
+      "abstract": [
+        {
+          "text": "An option that determines which data displays outside of the normal",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "duration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fillMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation17AnimationFillModeV",
+          "text": "AnimationFillMode"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/fillMode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fillMode",
+      "type": "topic",
+      "url": "/documentation/realitykit/sampledanimation/fillmode"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/frameInterval": {
+      "abstract": [
+        {
+          "text": "The duration within the animation timeline for each frame in the frames",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "frameInterval"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/frameInterval",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "frameInterval",
+      "type": "topic",
+      "url": "/documentation/realitykit/sampledanimation/frameinterval"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/frames-1zxo": {
+      "abstract": [
+        {
+          "text": "An array of floating-point triplets in which each element represents a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "discrete state of the animated property at a given point in the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "animation’s timeline.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Value",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "SIMD3<Float>",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "frames"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5SIMD3V",
+          "text": "SIMD3"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ">]"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/frames-1zxo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "frames",
+      "type": "topic",
+      "url": "/documentation/realitykit/sampledanimation/frames-1zxo"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/frames-2h6tu": {
+      "abstract": [
+        {
+          "text": "An array of quaternions in which each element represents a discrete",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "state of the animated property at a given point in the animation’s",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "timeline.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Value",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "simd_quatf",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "frames"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@simd_quatf",
+          "text": "simd_quatf"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/frames-2h6tu",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "frames",
+      "type": "topic",
+      "url": "/documentation/realitykit/sampledanimation/frames-2h6tu"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/frames-2hobp": {
+      "abstract": [
+        {
+          "text": "An array of double-precision values in which each element represents a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "discrete state of the animated property at a given point in the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "animation’s timeline.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Value",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "Double",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "frames"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/frames-2hobp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "frames",
+      "type": "topic",
+      "url": "/documentation/realitykit/sampledanimation/frames-2hobp"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/frames-2j4nj": {
+      "abstract": [
+        {
+          "text": "An array of floating-point values in which each element represents a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "discrete state of the animated property at a given point in the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "animation’s timeline.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Value",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "Float",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "frames"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/frames-2j4nj",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "frames",
+      "type": "topic",
+      "url": "/documentation/realitykit/sampledanimation/frames-2j4nj"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/frames-2ywfx": {
+      "abstract": [
+        {
+          "text": "An array of floating-point quadruples in which each element represents a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "discrete state of the animated property at a given point in the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "animation’s timeline.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Value",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "SIMD4<Float>",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "frames"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5SIMD4V",
+          "text": "SIMD4"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ">]"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/frames-2ywfx",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "frames",
+      "type": "topic",
+      "url": "/documentation/realitykit/sampledanimation/frames-2ywfx"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/frames-4eeex": {
+      "abstract": [
+        {
+          "text": "An array of joint transforms in which each element represents a discrete",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "state of the target entity at a given point in the animation’s timeline.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Value",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "JointTransforms",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "frames"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation15JointTransformsV",
+          "text": "JointTransforms"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/frames-4eeex",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "frames",
+      "type": "topic",
+      "url": "/documentation/realitykit/sampledanimation/frames-4eeex"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/frames-4qotl": {
+      "abstract": [
+        {
+          "text": "An array of transforms in which each element represents a discrete state",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "of the target entity at a given point in the animation’s timeline.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Value",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "Transform",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "frames"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation9TransformV",
+          "text": "Transform"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/frames-4qotl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "frames",
+      "type": "topic",
+      "url": "/documentation/realitykit/sampledanimation/frames-4qotl"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/frames-9jtu9": {
+      "abstract": [
+        {
+          "text": "An array of weights in which each element represents a discrete",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "state of the target entity at a given point in the animation’s timeline.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Value",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "BlendShapeWeights",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "frames"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation17BlendShapeWeightsV",
+          "text": "BlendShapeWeights"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/frames-9jtu9",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "frames",
+      "type": "topic",
+      "url": "/documentation/realitykit/sampledanimation/frames-9jtu9"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/frames-9luwf": {
+      "abstract": [
+        {
+          "text": "An array of floating-point pairs in which each element represents a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "discrete state of the animated property at a given point in the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "animation’s timeline.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Value",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "SIMD2<Float>",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "frames"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5SIMD2V",
+          "text": "SIMD2"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ">]"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/frames-9luwf",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "frames",
+      "type": "topic",
+      "url": "/documentation/realitykit/sampledanimation/frames-9luwf"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/init(frames:name:tweenMode:frameInterval:isAdditive:bindTarget:blendLayer:repeatMode:fillMode:trimStart:trimEnd:trimDuration:offset:delay:speed:)": {
+      "abstract": [
+        {
+          "text": "Creates an animation with a collection of frames that represent",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "incremental steps in the overall timeline.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "frames"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "tweenMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation9TweenModeO",
+          "text": "TweenMode"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "frameInterval"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isAdditive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "bindTarget"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation10BindTargetO",
+          "text": "BindTarget"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "blendLayer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "repeatMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation19AnimationRepeatModeO",
+          "text": "AnimationRepeatMode"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "fillMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation17AnimationFillModeV",
+          "text": "AnimationFillMode"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "trimStart"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "trimEnd"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "trimDuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "offset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "delay"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "speed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/init(frames:name:tweenMode:frameInterval:isAdditive:bindTarget:blendLayer:repeatMode:fillMode:trimStart:trimEnd:trimDuration:offset:delay:speed:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(frames:name:tweenMode:frameInterval:isAdditive:bindTarget:blendLayer:repeatMode:fillMode:trimStart:trimEnd:trimDuration:offset:delay:speed:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/sampledanimation/init(frames:name:tweenmode:frameinterval:isadditive:bindtarget:blendlayer:repeatmode:fillmode:trimstart:trimend:trimduration:offset:delay:speed:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/init(jointNames:frames:name:tweenMode:frameInterval:isAdditive:isScaleAnimated:isRotationAnimated:isTranslationAnimated:bindTarget:blendLayer:repeatMode:fillMode:trimStart:trimEnd:trimDuration:offset:delay:speed:)": {
+      "abstract": [
+        {
+          "text": "Creates an animation that interpolates between two configurations of the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "given joints.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Value",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "JointTransforms",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "jointNames"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "frames"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "tweenMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation9TweenModeO",
+          "text": "TweenMode"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "frameInterval"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isAdditive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isScaleAnimated"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isRotationAnimated"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isTranslationAnimated"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "bindTarget"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation10BindTargetO",
+          "text": "BindTarget"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "blendLayer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "repeatMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation19AnimationRepeatModeO",
+          "text": "AnimationRepeatMode"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "fillMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation17AnimationFillModeV",
+          "text": "AnimationFillMode"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "trimStart"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "trimEnd"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "trimDuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "offset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "delay"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "speed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/init(jointNames:frames:name:tweenMode:frameInterval:isAdditive:isScaleAnimated:isRotationAnimated:isTranslationAnimated:bindTarget:blendLayer:repeatMode:fillMode:trimStart:trimEnd:trimDuration:offset:delay:speed:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(jointNames:frames:name:tweenMode:frameInterval:isAdditive:isScaleAnimated:isRotationAnimated:isTranslationAnimated:bindTarget:blendLayer:repeatMode:fillMode:trimStart:trimEnd:trimDuration:offset:delay:speed:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/sampledanimation/init(jointnames:frames:name:tweenmode:frameinterval:isadditive:isscaleanimated:isrotationanimated:istranslationanimated:bindtarget:blendlayer:repeatmode:fillmode:trimstart:trimend:trimduration:offset:delay:speed:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/init(weightNames:frames:name:tweenMode:frameInterval:isAdditive:bindTarget:blendLayer:repeatMode:fillMode:trimStart:trimEnd:trimDuration:offset:delay:speed:)": {
+      "abstract": [
+        {
+          "text": "Creates an animation that blends between a configuration of blend targets.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Value",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "BlendShapeWeights",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "weightNames"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "frames"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "tweenMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation9TweenModeO",
+          "text": "TweenMode"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "frameInterval"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isAdditive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "bindTarget"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation10BindTargetO",
+          "text": "BindTarget"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "blendLayer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "repeatMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation19AnimationRepeatModeO",
+          "text": "AnimationRepeatMode"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "fillMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation17AnimationFillModeV",
+          "text": "AnimationFillMode"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "trimStart"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "trimEnd"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "trimDuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "offset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "delay"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "speed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/init(weightNames:frames:name:tweenMode:frameInterval:isAdditive:bindTarget:blendLayer:repeatMode:fillMode:trimStart:trimEnd:trimDuration:offset:delay:speed:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(weightNames:frames:name:tweenMode:frameInterval:isAdditive:bindTarget:blendLayer:repeatMode:fillMode:trimStart:trimEnd:trimDuration:offset:delay:speed:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/sampledanimation/init(weightnames:frames:name:tweenmode:frameinterval:isadditive:bindtarget:blendlayer:repeatmode:fillmode:trimstart:trimend:trimduration:offset:delay:speed:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/isRotationAnimated": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the animation observes rotational",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "changes in the entity’s transform.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Value",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "JointTransforms",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isRotationAnimated"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/isRotationAnimated",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isRotationAnimated",
+      "type": "topic",
+      "url": "/documentation/realitykit/sampledanimation/isrotationanimated"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/isScaleAnimated": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the animation observes changes in",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the entity’s size.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Value",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "JointTransforms",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isScaleAnimated"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/isScaleAnimated",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isScaleAnimated",
+      "type": "topic",
+      "url": "/documentation/realitykit/sampledanimation/isscaleanimated"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/isTranslationAnimated": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the animation observes",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "translational changes in the entity’s transform.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Value",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "JointTransforms",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isTranslationAnimated"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/isTranslationAnimated",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isTranslationAnimated",
+      "type": "topic",
+      "url": "/documentation/realitykit/sampledanimation/istranslationanimated"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/jointNames": {
+      "abstract": [
+        {
+          "text": "The names of the joints to animate.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Value",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "JointTransforms",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "jointNames"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/jointNames",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "jointNames",
+      "type": "topic",
+      "url": "/documentation/realitykit/sampledanimation/jointnames"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/name": {
+      "abstract": [
+        {
+          "text": "A textual name for the animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/name",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "name",
+      "type": "topic",
+      "url": "/documentation/realitykit/sampledanimation/name"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/offset": {
+      "abstract": [
+        {
+          "text": "The time, in seconds, at which the animation begins within the duration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "offset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/offset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "offset",
+      "type": "topic",
+      "url": "/documentation/realitykit/sampledanimation/offset"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/repeatMode": {
+      "abstract": [
+        {
+          "text": "An option that determines how the animation repeats.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "repeatMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation19AnimationRepeatModeO",
+          "text": "AnimationRepeatMode"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/repeatMode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "repeatMode",
+      "type": "topic",
+      "url": "/documentation/realitykit/sampledanimation/repeatmode"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/repeated(count:)-3iijb": {
+      "abstract": [
+        {
+          "text": "Repeats an animation the number of times specified by an irrational",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "number.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "repeated"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "count"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/repeated(count:)-3iijb",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "repeated(count:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/sampledanimation/repeated(count:)-3iijb"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/repeated(count:)-ltbf": {
+      "abstract": [
+        {
+          "text": "Repeats an animation the number of times specified by a whole number.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "repeated"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "count"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/repeated(count:)-ltbf",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "repeated(count:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/sampledanimation/repeated(count:)-ltbf"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/repeatingForever()": {
+      "abstract": [
+        {
+          "text": "Repeats the animation infinitely.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "repeatingForever"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/repeatingForever()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "repeatingForever()",
+      "type": "topic",
+      "url": "/documentation/realitykit/sampledanimation/repeatingforever()"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/speed": {
+      "abstract": [
+        {
+          "text": "A factor that changes the animation’s rate of playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "speed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/speed",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "speed",
+      "type": "topic",
+      "url": "/documentation/realitykit/sampledanimation/speed"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/start": {
+      "abstract": [
+        {
+          "text": "An integer multiple of the frame interval at which the animation plays.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "start"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/start",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "start",
+      "type": "topic",
+      "url": "/documentation/realitykit/sampledanimation/start"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/trimDuration": {
+      "abstract": [
+        {
+          "text": "An optional duration that overrides the calculated duration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "trimDuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/trimDuration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "trimDuration",
+      "type": "topic",
+      "url": "/documentation/realitykit/sampledanimation/trimduration"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/trimEnd": {
+      "abstract": [
+        {
+          "text": "The optional time, in seconds, at which the animation stops.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "trimEnd"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/trimEnd",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "trimEnd",
+      "type": "topic",
+      "url": "/documentation/realitykit/sampledanimation/trimend"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/trimStart": {
+      "abstract": [
+        {
+          "text": "The optional time, in seconds, at which the animation plays.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "trimStart"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/trimStart",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "trimStart",
+      "type": "topic",
+      "url": "/documentation/realitykit/sampledanimation/trimstart"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/trimmed(start:end:duration:)": {
+      "abstract": [
+        {
+          "text": "Edits the animation duration according to the specified time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "trimmed"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "start"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "end"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "duration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/trimmed(start:end:duration:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "trimmed(start:end:duration:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/sampledanimation/trimmed(start:end:duration:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/tweenMode": {
+      "abstract": [
+        {
+          "text": "An option that determines how animation frames transition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tweenMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation9TweenModeO",
+          "text": "TweenMode"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/tweenMode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tweenMode",
+      "type": "topic",
+      "url": "/documentation/realitykit/sampledanimation/tweenmode"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/weightNames": {
+      "abstract": [
+        {
+          "text": "The names of the weights to animate.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Value",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "BlendShapeWeights",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "weightNames"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/weightNames",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "weightNames",
+      "type": "topic",
+      "url": "/documentation/realitykit/sampledanimation/weightnames"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/TweenMode": {
+      "abstract": [
+        {
+          "text": "Options that determine whether an animation switches between frames",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "gradually or abruptly.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TweenMode"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/TweenMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TweenMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "TweenMode",
+      "type": "topic",
+      "url": "/documentation/realitykit/tweenmode"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Float": {
+      "abstract": [
+        {
+          "text": "A single-precision, floating-point value type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Float",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Float",
+      "type": "topic",
+      "url": "/documentation/Swift/Float"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/AnimationDefinition"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Animation-definitions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/TweenMode",
+        "doc://com.apple.RealityKit/documentation/RealityKit/FromToByAnimation",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AnimationTimingFunction",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AnimationView",
+        "doc://com.apple.RealityKit/documentation/RealityKit/OrbitAnimation",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AnimationDefinition",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AnimationFillMode",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AnimationGroup",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AnimationHandoffType"
+      ],
+      "title": "Animation definitions"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-an-animation",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/init(frames:name:tweenMode:frameInterval:isAdditive:bindTarget:blendLayer:repeatMode:fillMode:trimStart:trimEnd:trimDuration:offset:delay:speed:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/init(jointNames:frames:name:tweenMode:frameInterval:isAdditive:isScaleAnimated:isRotationAnimated:isTranslationAnimated:bindTarget:blendLayer:repeatMode:fillMode:trimStart:trimEnd:trimDuration:offset:delay:speed:)"
+      ],
+      "title": "Creating an animation"
+    },
+    {
+      "anchor": "Configuring-the-animation",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/name",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/bindTarget",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/blendLayer",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/jointNames",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/isRotationAnimated",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/isScaleAnimated",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/isTranslationAnimated",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/additive",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/tweenMode"
+      ],
+      "title": "Configuring the animation"
+    },
+    {
+      "anchor": "Defining-frames-data",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/frames-4eeex",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/frames-4qotl",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/frames-2hobp",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/frames-2j4nj",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/frames-2h6tu",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/frames-9luwf",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/frames-1zxo",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/frames-2ywfx"
+      ],
+      "title": "Defining frames data"
+    },
+    {
+      "anchor": "Timing-the-animation",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/frameInterval",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/start",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/end",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/speed",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/delay",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/duration",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/offset",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/trimDuration",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/trimStart",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/trimEnd",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/trimmed(start:end:duration:)"
+      ],
+      "title": "Timing the animation"
+    },
+    {
+      "anchor": "Repeating-animation-playback",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/repeatMode",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/fillMode",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/repeated(count:)-3iijb",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/repeated(count:)-ltbf",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/repeatingForever()"
+      ],
+      "title": "Repeating animation playback"
+    },
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/init(weightNames:frames:name:tweenMode:frameInterval:isAdditive:bindTarget:blendLayer:repeatMode:fillMode:trimStart:trimEnd:trimDuration:offset:delay:speed:)"
+      ],
+      "title": "Initializers"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/frames-9jtu9",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/weightNames"
+      ],
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "Default-Implementations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/SampledAnimation/AnimationDefinition-Implementations"
+      ],
+      "title": "Default Implementations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/sampledanimation"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

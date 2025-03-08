@@ -1,0 +1,1004 @@
+{
+  "abstract": [
+    {
+      "text": "A component that draws 2D text at an entity’s location.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/TextComponent"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:17RealityFoundation13TextComponentV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "TextComponent"
+      }
+    ],
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "TextComponent"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "TextComponent"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "TextComponent"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "TextComponent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " renders two-dimensional text in a RealityKit scene.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "It creates a rounded rectangle mesh to serve as a canvas and draws an attributed string on the mesh. This component handles",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "everything required to render the text, including updating the plane transform, setting material parameters, and creating mesh components.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Set the component’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/TextComponent/size",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to define the area of the canvas in points. This setting also affects the size at which RealityKit",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "renders the text. The world-size of the canvas may be different than the value you specify because the component’s entity inherits its",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "parent’s transform, which may include scale changes that affect the final rendered size.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Text components use the CoreGraphics coordinate space: The origin is at the upper left of the canvas and positive",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "values extend down and to the right. You can’t specify an explicit backing-buffer size. RealityKit dynamically adjusts",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the backing size to a value that results in high-fidelity text at its current location.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "RealityKit lays out text using default ",
+              "type": "text"
+            },
+            {
+              "code": "Foundation/AttributedString",
+              "type": "codeVoice"
+            },
+            {
+              "text": " behaviors and wraps text instead of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "truncating it. It keeps the text a constant font size: It doesn’t stretch or scale the text to fit tha canvas. Use",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Core Text to determine the required canvas size for a particular string or layout.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Attachment": {
+      "abstract": [
+        {
+          "text": "An attachment content you can use to gather an identifier and view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Attachment"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Attachment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Attachment"
+        }
+      ],
+      "role": "symbol",
+      "title": "Attachment",
+      "type": "topic",
+      "url": "/documentation/realitykit/attachment"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Component": {
+      "abstract": [
+        {
+          "text": "A representation of a geometry or a behavior that you apply to an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Component"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Component",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Component"
+        }
+      ],
+      "role": "symbol",
+      "title": "Component",
+      "type": "topic",
+      "url": "/documentation/realitykit/component"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/RealityViewAttachmentBuilderContent": {
+      "abstract": [
+        {
+          "text": "A view that gathers the attachment content for your current reality view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RealityViewAttachmentBuilderContent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/RealityViewAttachmentBuilderContent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RealityViewAttachmentBuilderContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "RealityViewAttachmentBuilderContent",
+      "type": "topic",
+      "url": "/documentation/realitykit/realityviewattachmentbuildercontent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/RealityViewAttachments": {
+      "abstract": [
+        {
+          "text": "The attachments that belong to a RealityView.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RealityViewAttachments"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/RealityViewAttachments",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RealityViewAttachments"
+        }
+      ],
+      "role": "symbol",
+      "title": "RealityViewAttachments",
+      "type": "topic",
+      "url": "/documentation/realitykit/realityviewattachments"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/RealityViewAttachments/entity(for:)": {
+      "abstract": [
+        {
+          "text": "Gets the identified attachment view as an entity, if the view with that",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "identifier exists.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "entity"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SH",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:19_RealityKit_SwiftUI20ViewAttachmentEntityC",
+          "text": "ViewAttachmentEntity"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/RealityViewAttachments/entity(for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "entity(for:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/realityviewattachments/entity(for:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/TextComponent": {
+      "abstract": [
+        {
+          "text": "A component that draws 2D text at an entity’s location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TextComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/TextComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TextComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "TextComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/textcomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/TextComponent/Component-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/TextComponent/Component-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Component Implementations",
+      "type": "topic",
+      "url": "/documentation/realitykit/textcomponent/component-implementations"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/TextComponent/EdgeInsets-swift.typealias": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EdgeInsets"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/TextComponent/EdgeInsets-swift.typealias",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EdgeInsets"
+        }
+      ],
+      "role": "symbol",
+      "title": "TextComponent.EdgeInsets",
+      "type": "topic",
+      "url": "/documentation/realitykit/textcomponent/edgeinsets-swift.typealias"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/TextComponent/backgroundColor": {
+      "abstract": [
+        {
+          "text": "The canvas’s background color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "backgroundColor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGColorRef",
+          "text": "CGColor"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/TextComponent/backgroundColor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "backgroundColor",
+      "type": "topic",
+      "url": "/documentation/realitykit/textcomponent/backgroundcolor"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/TextComponent/cornerRadius": {
+      "abstract": [
+        {
+          "text": "The corner radius of the text mesh.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cornerRadius"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/TextComponent/cornerRadius",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cornerRadius",
+      "type": "topic",
+      "url": "/documentation/realitykit/textcomponent/cornerradius"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/TextComponent/edgeInsets-3n3rn": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "edgeInsets"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation13TextComponentV",
+          "text": "TextComponent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation13TextComponentV0A3KitE10EdgeInsetsa",
+          "text": "EdgeInsets"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/TextComponent/edgeInsets-3n3rn",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "edgeInsets",
+      "type": "topic",
+      "url": "/documentation/realitykit/textcomponent/edgeinsets-3n3rn"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/TextComponent/edgeInsets-49dib": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "edgeInsets"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation13TextComponentV",
+          "text": "TextComponent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation13TextComponentV0A3KitE10EdgeInsetsa",
+          "text": "EdgeInsets"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/TextComponent/edgeInsets-49dib",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "edgeInsets",
+      "type": "topic",
+      "url": "/documentation/realitykit/textcomponent/edgeinsets-49dib"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/TextComponent/init()": {
+      "abstract": [
+        {
+          "text": "Creates a new text component.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/TextComponent/init()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/realitykit/textcomponent/init()"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/TextComponent/size": {
+      "abstract": [
+        {
+          "text": "The size of the canvas in points.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "size"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGSize",
+          "text": "CGSize"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/TextComponent/size",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "size",
+      "type": "topic",
+      "url": "/documentation/realitykit/textcomponent/size"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/TextComponent/text": {
+      "abstract": [
+        {
+          "text": "The attributed string this component renders.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "text"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation16AttributedStringV",
+          "text": "AttributedString"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/TextComponent/text",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "text",
+      "type": "topic",
+      "url": "/documentation/realitykit/textcomponent/text"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ViewAttachmentComponent": {
+      "abstract": [
+        {
+          "text": "A component containing additional information about a view attachment",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "entity provided  via the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/RealityViewAttachments/entity(for:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ViewAttachmentComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ViewAttachmentComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ViewAttachmentComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "ViewAttachmentComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/viewattachmentcomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ViewAttachmentEntity": {
+      "abstract": [
+        {
+          "text": "An entity that has a view attachment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ViewAttachmentEntity"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ViewAttachmentEntity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ViewAttachmentEntity"
+        }
+      ],
+      "role": "symbol",
+      "title": "ViewAttachmentEntity",
+      "type": "topic",
+      "url": "/documentation/realitykit/viewattachmententity"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/Component"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "SwiftUI-view-attachments",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/RealityViewAttachmentBuilderContent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Attachment",
+        "doc://com.apple.RealityKit/documentation/RealityKit/RealityViewAttachments",
+        "doc://com.apple.RealityKit/documentation/RealityKit/ViewAttachmentEntity",
+        "doc://com.apple.RealityKit/documentation/RealityKit/ViewAttachmentComponent"
+      ],
+      "title": "SwiftUI view attachments"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/TextComponent/init()"
+      ],
+      "title": "Initializers"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/TextComponent/backgroundColor",
+        "doc://com.apple.RealityKit/documentation/RealityKit/TextComponent/cornerRadius",
+        "doc://com.apple.RealityKit/documentation/RealityKit/TextComponent/edgeInsets-3n3rn",
+        "doc://com.apple.RealityKit/documentation/RealityKit/TextComponent/edgeInsets-49dib",
+        "doc://com.apple.RealityKit/documentation/RealityKit/TextComponent/size",
+        "doc://com.apple.RealityKit/documentation/RealityKit/TextComponent/text"
+      ],
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "Type-Aliases",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/TextComponent/EdgeInsets-swift.typealias"
+      ],
+      "title": "Type Aliases"
+    },
+    {
+      "anchor": "Default-Implementations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/TextComponent/Component-Implementations"
+      ],
+      "title": "Default Implementations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/textcomponent"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

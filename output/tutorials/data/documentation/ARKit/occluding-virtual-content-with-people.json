@@ -1,0 +1,992 @@
+{
+  "abstract": [
+    {
+      "text": "Cover your app’s virtual content with people that ARKit perceives in the camera feed.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.arkit/documentation/ARKit",
+        "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios",
+        "doc://com.apple.arkit/documentation/ARKit/camera-lighting-and-effects"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.arkit/documentation/ARKit/occluding-virtual-content-with-people"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "ARKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Occluding virtual content with people"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, virtual content covers anything in the camera feed. For example, when a person passes in front of a virtual object, the object is drawn on top of the person, which can break the illusion of the AR experience.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "figure1-annotated",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To cover your app’s virtual content with people that ARKit perceives in the camera feed, you enable ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "people occlusion",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". Your app can then render a virtual object behind people who pass in front of the camera. ARKit accomplishes the occlusion by identifying regions in the camera feed where people reside, and preventing virtual content from drawing into that region’s pixels.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "figure2-annotated",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample renders its graphics using RealityKit, but you can follow the same steps to use people occlusion with SceneKit. To enable people occlusion in Metal apps, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/effecting-people-occlusion-in-custom-renderers",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Verify-device-support-for-people-occlusion",
+          "level": 2,
+          "text": "Verify device support for people occlusion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "People occlusion is supported on Apple A12 and later devices. Before attempting to enable people occlusion, verify that the user’s device supports it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard ARWorldTrackingConfiguration.supportsFrameSemantics(.personSegmentationWithDepth) else {",
+            "    fatalError(\"People occlusion is not supported on this device.\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If your device doesn’t support people occlusion, the sample stops. However, if the user’s device doesn’t support people occlusion, you should continue your AR experience without it.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Enable-people-occlusion",
+          "level": 2,
+          "text": "Enable people occlusion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the user’s device supports people occlusion, enable it by adding the",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "arconfiguration/framesemantics/3194576-personsegmentationwithdepth",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARConfiguration/FrameSemantics-swift.struct/personSegmentationWithDepth",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " option to your configuration’s frame semantics.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "config.frameSemantics.insert(.personSegmentationWithDepth)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Any time you change your session’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSession/configuration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", rerun the session to effect the configuration change.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "arView.session.run(config)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARConfiguration/FrameSemantics-swift.struct/personSegmentationWithDepth",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " option specifies that a person occludes a virtual object only when the person is closer to the camera than the virtual object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "figure3-annotated",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Alternatively, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARConfiguration/FrameSemantics-swift.struct/personSegmentation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " frame semantic gives you the option of always occluding virtual content with any people that ARKit perceives in the camera feed irrespective of depth. This technique is useful, for example, in green-screen scenarios.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "figure4-annotated",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Disable-people-occlusion",
+          "level": 2,
+          "text": "Disable people occlusion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You might choose to disable people occlusion for performance reasons if, for example, no virtual content is present in the scene, or if the device has reached a serious or critical ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/processinfo/1417480-thermalstate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/processinfo/thermalstate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "). To temporarily disable people occlusion, remove that option from your app’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARConfiguration/frameSemantics-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "config.frameSemantics.remove(.personSegmentationWithDepth)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, rerun your session to effect the configuration change.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "arView.session.run(config)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "93957d4568dc/OccludingVirtualContentWithPeople.zip": {
+      "checksum": "93957d4568dc738cd858250341c088cc54ca726a35c88f09fb834330e9ba052a1ffd48c06a48a91e472d7381d7bd321ddb9d39cef5d643707b1acf2b8b580811",
+      "identifier": "93957d4568dc/OccludingVirtualContentWithPeople.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/93957d4568dc/OccludingVirtualContentWithPeople.zip"
+    },
+    "doc://com.apple.arkit/documentation/ARKit": {
+      "abstract": [
+        {
+          "text": "Integrate hardware sensing features to produce augmented reality apps and games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ARKit",
+      "type": "topic",
+      "url": "/documentation/arkit"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARConfiguration/FrameSemantics-swift.struct/personSegmentation": {
+      "abstract": [
+        {
+          "text": "An option that indicates that people occlude your app’s virtual content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "personSegmentation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARConfiguration",
+          "text": "ARConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ARFrameSemantics",
+          "text": "FrameSemantics"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARConfiguration/FrameSemantics-swift.struct/personSegmentation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARFrameSemanticPersonSegmentation"
+        }
+      ],
+      "role": "symbol",
+      "title": "personSegmentation",
+      "type": "topic",
+      "url": "/documentation/arkit/arconfiguration/framesemantics-swift.struct/personsegmentation"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARConfiguration/FrameSemantics-swift.struct/personSegmentationWithDepth": {
+      "abstract": [
+        {
+          "text": "An option that indicates that people occlude your app’s virtual content depending on depth.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "personSegmentationWithDepth"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARConfiguration",
+          "text": "ARConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ARFrameSemantics",
+          "text": "FrameSemantics"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARConfiguration/FrameSemantics-swift.struct/personSegmentationWithDepth",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARFrameSemanticPersonSegmentationWithDepth"
+        }
+      ],
+      "role": "symbol",
+      "title": "personSegmentationWithDepth",
+      "type": "topic",
+      "url": "/documentation/arkit/arconfiguration/framesemantics-swift.struct/personsegmentationwithdepth"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARConfiguration/frameSemantics-swift.property": {
+      "abstract": [
+        {
+          "text": "The set of active semantics on the frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "frameSemantics"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARConfiguration",
+          "text": "ARConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ARFrameSemantics",
+          "text": "FrameSemantics"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARConfiguration/frameSemantics-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "frameSemantics"
+        }
+      ],
+      "role": "symbol",
+      "title": "frameSemantics",
+      "type": "topic",
+      "url": "/documentation/arkit/arconfiguration/framesemantics-swift.property"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARMatteGenerator": {
+      "abstract": [
+        {
+          "text": "An object that creates matte textures you use to occlude your app’s virtual content with people, that ARKit recognizes in the camera feed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARMatteGenerator"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARMatteGenerator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARMatteGenerator"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARMatteGenerator",
+      "type": "topic",
+      "url": "/documentation/arkit/armattegenerator"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSession/configuration": {
+      "abstract": [
+        {
+          "text": "An object that defines motion and scene tracking behaviors for the session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "configuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARConfiguration",
+          "text": "ARConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSession/configuration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "configuration"
+        }
+      ],
+      "role": "symbol",
+      "title": "configuration",
+      "type": "topic",
+      "url": "/documentation/arkit/arsession/configuration"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios": {
+      "abstract": [
+        {
+          "text": "Integrate iOS device camera and motion features to produce augmented reality experiences in your app or game.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ARKit in iOS",
+      "type": "topic",
+      "url": "/documentation/arkit/arkit-in-ios"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/camera-lighting-and-effects": {
+      "abstract": [
+        {
+          "text": "Determine the camera position and lighting for the current session, and apply effects, such as occlusion, to elements of the environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/camera-lighting-and-effects",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Camera, Lighting, and Effects",
+      "type": "topic",
+      "url": "/documentation/arkit/camera-lighting-and-effects"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/effecting-people-occlusion-in-custom-renderers": {
+      "abstract": [
+        {
+          "text": "Occlude your app’s virtual content where ARKit recognizes people in the camera feed by using matte generator.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/effecting-people-occlusion-in-custom-renderers",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Effecting People Occlusion in Custom Renderers",
+      "type": "topic",
+      "url": "/documentation/arkit/effecting-people-occlusion-in-custom-renderers"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/visualizing-and-interacting-with-a-reconstructed-scene": {
+      "abstract": [
+        {
+          "text": "Estimate the shape of the physical environment using a polygonal mesh.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/visualizing-and-interacting-with-a-reconstructed-scene",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Visualizing and interacting with a reconstructed scene",
+      "type": "topic",
+      "url": "/documentation/arkit/visualizing-and-interacting-with-a-reconstructed-scene"
+    },
+    "doc://com.apple.documentation/documentation/foundation/processinfo/1417480-thermalstate": {
+      "abstract": [
+        {
+          "text": "The current thermal state of the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "thermalState"
+        },
+        {
+          "kind": "text",
+          "text": ": ProcessInfo.ThermalState"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/processinfo/1417480-thermalstate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "thermalState",
+      "type": "topic",
+      "url": "/documentation/foundation/processinfo/1417480-thermalstate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/processinfo/thermalstate": {
+      "abstract": [
+        {
+          "text": "Values used to indicate the system’s thermal state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "ProcessInfo.ThermalState"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/processinfo/thermalstate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ProcessInfo.ThermalState",
+      "type": "topic",
+      "url": "/documentation/foundation/processinfo/thermalstate"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "figure1-annotated": {
+      "alt": "Screenshot of virtual books drawn on top of a person.",
+      "identifier": "figure1-annotated",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4c0490a4cc2d074602b03a229cd28680/figure1-annotated.png"
+        }
+      ]
+    },
+    "figure2-annotated": {
+      "alt": "Screenshot of the virtual books behind the person.",
+      "identifier": "figure2-annotated",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9ec57b947ed7064da9005afeac529989/figure2-annotated.png"
+        }
+      ]
+    },
+    "figure3-annotated": {
+      "alt": "Screenshot of people occlusion with depth.",
+      "identifier": "figure3-annotated",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f6770bbb0eba749cbc51690111811142/figure3-annotated.png"
+        }
+      ]
+    },
+    "figure4-annotated": {
+      "alt": "Screenshot of people occlusion with virtual background.",
+      "identifier": "figure4-annotated",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a8660b7bc5fa2f9d0bbaddb18ecc069c/figure4-annotated.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "93957d4568dc/OccludingVirtualContentWithPeople.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Occlusion",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/effecting-people-occlusion-in-custom-renderers",
+        "doc://com.apple.arkit/documentation/ARKit/visualizing-and-interacting-with-a-reconstructed-scene",
+        "doc://com.apple.arkit/documentation/ARKit/ARMatteGenerator"
+      ],
+      "title": "Occlusion"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Occlusion",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/effecting-people-occlusion-in-custom-renderers",
+                "doc://com.apple.arkit/documentation/ARKit/visualizing-and-interacting-with-a-reconstructed-scene",
+                "doc://com.apple.arkit/documentation/ARKit/ARMatteGenerator"
+              ],
+              "title": "Occlusion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARMatteGenerator/title",
+          "value": "ARMatteGenerator"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARMatteGenerator/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARMatteGenerator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARMatteGenerator/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARMatteGenerator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1processinfo~1thermalstate/title",
+          "value": "NSProcessInfoThermalState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARConfiguration~1frameSemantics-swift.property/title",
+          "value": "frameSemantics"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARConfiguration~1frameSemantics-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "frameSemantics"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARConfiguration~1FrameSemantics-swift.struct~1personSegmentationWithDepth/title",
+          "value": "ARFrameSemanticPersonSegmentationWithDepth"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARConfiguration~1FrameSemantics-swift.struct~1personSegmentationWithDepth/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARFrameSemanticPersonSegmentationWithDepth"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARConfiguration~1FrameSemantics-swift.struct~1personSegmentation/title",
+          "value": "ARFrameSemanticPersonSegmentation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARConfiguration~1FrameSemantics-swift.struct~1personSegmentation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARFrameSemanticPersonSegmentation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession~1configuration/title",
+          "value": "configuration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession~1configuration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "configuration"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/arkit/occluding-virtual-content-with-people"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/arkit/occluding-virtual-content-with-people"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1508 @@
+{
+  "abstract": [
+    {
+      "text": "A convolution kernel with binary weights and an input image using binary approximations.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/convolutional_neural_network_kernels"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnbinaryconvolution"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 2866971,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)MPSCNNBinaryConvolution",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "MPSCNNBinaryConvolution"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Metal Performance Shaders"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "11.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "11.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.13",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "11.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "MPSCNNBinaryConvolution"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MPSCNNBinaryConvolution"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnkernel",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)MPSCNNKernel",
+              "text": "MPSCNNKernel"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnbinaryconvolution",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " optionally first binarizes the input image and then convolves the result with a set of binary-valued filters, each producing one feature map in the output image (which is a normal image).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The output is computed as follows: ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2903520",
+              "metadata": {
+                "anchor": "2903520",
+                "title": "Figure 1"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "where the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "sum over",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "dx,dy",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " is over the spatial filter kernel window defined by ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolutiondescriptor/1648959-kernelwidth",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolutiondescriptor/1648904-kernelheight",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "sum over",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "f",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " is over the input feature channel indices within group, ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "B",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " contains the binary weights, interpreted as ",
+              "type": "text"
+            },
+            {
+              "code": "{-1, 1}",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "{0, 1}",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "scale[c]",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " is the ",
+              "type": "text"
+            },
+            {
+              "code": "outputScaleTerms",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array and bias is the ",
+              "type": "text"
+            },
+            {
+              "code": "outputBiasTerms",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array. Above ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "i",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " is the image index in batch the sum over input channels ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "f",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " runs through the group indices. The convolution operator ⊗ is defined by ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnbinaryconvolutiontype",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " passed in at initialization time of the filter:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The input image is not binarized at all and the convolution is computed interpreting the weights as ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "[0, 1] -> {-1, 1}",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " with the given scaling terms.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnbinaryconvolutiontype/binaryweights",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The convolution is computed by first binarizing the input image using the sign function ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "bin(x) = x < 0 ? -1 : 1",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " and the convolution multiplication is done with the XNOR-operator: ",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "code": "!(x ^ y) = delta_xy = { (x == y) ? 1 : 0 }",
+                        "type": "codeVoice"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "and scaled according to the optional scaling operations.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Note that we output the values of the bitwise convolutions to interval ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "{-1, 1}",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", which means that the output of the XNOR-operator is scaled implicitly as follows:",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "code": "r = 2 * ( !(x ^ y) ) - 1 = { -1, 1 }",
+                        "type": "codeVoice"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "This means that for a dot-product of two 32-bit words the result is:",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "code": "r = 2 * popcount(!(x ^ y) ) - 32 = 32 - 2 * popcount( x ^ y ) = { -32, -30, ..., 30, 32 }",
+                        "type": "codeVoice"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnbinaryconvolutiontype/xnor",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The convolution is computed by first binarizing the input image using the sign function ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "bin(x) = x < 0 ? -1 : 1",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " and the convolution multiplication is done with the AND-operator: ",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "code": "(x & y) = delta_xy * delta_x1 = { (x == y == 1) ? 1 : 0 }",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " ",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "and scaled according to the optional scaling operations.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Note that we output the values of the AND-operation is assumed to lie in ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "{0, 1}",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " interval and hence no more implicit scaling takes place.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "This means that for a dot-product of two 32-bit words the result is:",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "code": "r = popcount(x & y) = { 0, ..., 31, 32 }",
+                        "type": "codeVoice"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnbinaryconvolutiontype/and",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The input data can be pre-offset and scaled by providing the ",
+              "type": "text"
+            },
+            {
+              "code": "inputBiasTerms",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "inputScaleTerms",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameters for the initialization functions and this can be used for example to accomplish batch normalization of the data. The scaling of input values happens before possible beta-image computation. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The parameter ",
+              "type": "text"
+            },
+            {
+              "code": "beta",
+              "type": "codeVoice"
+            },
+            {
+              "text": " above is an optional image which is used to compute scaling factors for each spatial position and image index. For the XNOR-Net based networks this is computed as follows: ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2903518",
+              "metadata": {
+                "anchor": "2903518",
+                "title": "Figure 2"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "where ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "(dx,dy)",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " are summed over the convolution filter window.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2903519",
+              "metadata": {
+                "anchor": "2903519",
+                "title": "Figure 3"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "where ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "in",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " is the original input image (in full precision) and ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Nc",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " is the number of input channels in the input image. Parameter ",
+              "type": "text"
+            },
+            {
+              "code": "beta",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is not passed as input and to enable beta-scaling the user can provide ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnbinaryconvolutionflags/usebetascaling",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in the flags parameter in the initialization functions. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally the normal activation neuron is applied and the result is written to the output image. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnbinaryconvolution",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " does not currently support ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolutiondescriptor/1648849-groups",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " greater than 1.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/metalperformanceshaders": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal Performance Shaders",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/convolutional_neural_network_kernels": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/convolutional_neural_network_kernels",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Convolutional Neural Network Kernels",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/convolutional_neural_network_kernels"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnbinaryconvolution": {
+      "abstract": [
+        {
+          "text": "A convolution kernel with binary weights and an input image using binary approximations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNBinaryConvolution"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnbinaryconvolution",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNBinaryConvolution",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnbinaryconvolution"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnbinaryconvolution/2866959-outputfeaturechannels": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "outputFeatureChannels"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnbinaryconvolution/2866959-outputfeaturechannels",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "outputFeatureChannels",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnbinaryconvolution/2866959-outputfeaturechannels"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnbinaryconvolution/2866978-init": {
+      "abstract": [
+        {
+          "text": "Initializes a binary convolution kernel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "device"
+        },
+        {
+          "kind": "text",
+          "text": ": any MTLDevice, "
+        },
+        {
+          "kind": "identifier",
+          "text": "convolutionData"
+        },
+        {
+          "kind": "text",
+          "text": ": any MPSCNNConvolutionDataSource, "
+        },
+        {
+          "kind": "identifier",
+          "text": "outputBiasTerms"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafePointer<Float>?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "outputScaleTerms"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafePointer<Float>?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "inputBiasTerms"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafePointer<Float>?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "inputScaleTerms"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafePointer<Float>?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "type"
+        },
+        {
+          "kind": "text",
+          "text": ": MPSCNNBinaryConvolutionType, "
+        },
+        {
+          "kind": "identifier",
+          "text": "flags"
+        },
+        {
+          "kind": "text",
+          "text": ": MPSCNNBinaryConvolutionFlags)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnbinaryconvolution/2866978-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(device:convolutionData:outputBiasTerms:outputScaleTerms:inputBiasTerms:inputScaleTerms:type:flags:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnbinaryconvolution/2866978-init"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnbinaryconvolution/2866981-init": {
+      "abstract": [
+        {
+          "text": "Initializes a binary convolution kernel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "device"
+        },
+        {
+          "kind": "text",
+          "text": ": any MTLDevice, "
+        },
+        {
+          "kind": "identifier",
+          "text": "convolutionData"
+        },
+        {
+          "kind": "text",
+          "text": ": any MPSCNNConvolutionDataSource, "
+        },
+        {
+          "kind": "identifier",
+          "text": "scaleValue"
+        },
+        {
+          "kind": "text",
+          "text": ": Float, "
+        },
+        {
+          "kind": "identifier",
+          "text": "type"
+        },
+        {
+          "kind": "text",
+          "text": ": MPSCNNBinaryConvolutionType, "
+        },
+        {
+          "kind": "identifier",
+          "text": "flags"
+        },
+        {
+          "kind": "text",
+          "text": ": MPSCNNBinaryConvolutionFlags)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnbinaryconvolution/2866981-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(device:convolutionData:scaleValue:type:flags:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnbinaryconvolution/2866981-init"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnbinaryconvolution/2867126-inputfeaturechannels": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "inputFeatureChannels"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnbinaryconvolution/2867126-inputfeaturechannels",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "inputFeatureChannels",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnbinaryconvolution/2867126-inputfeaturechannels"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnbinaryconvolution/2867194-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "coder"
+        },
+        {
+          "kind": "text",
+          "text": ": NSCoder, "
+        },
+        {
+          "kind": "identifier",
+          "text": "device"
+        },
+        {
+          "kind": "text",
+          "text": ": any MTLDevice)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnbinaryconvolution/2867194-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(coder:device:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnbinaryconvolution/2867194-init"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnbinaryconvolutionflags": {
+      "abstract": [
+        {
+          "text": "Options used to control binary convolution kernels.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNBinaryConvolutionFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnbinaryconvolutionflags",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNBinaryConvolutionFlags",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnbinaryconvolutionflags"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnbinaryconvolutionflags/usebetascaling": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnbinaryconvolutionflags/usebetascaling",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNBinaryConvolutionFlags.useBetaScaling",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnbinaryconvolutionflags/usebetascaling"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnbinaryconvolutiontype": {
+      "abstract": [
+        {
+          "text": "Options that defines what operations are used to perform binary convolution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNBinaryConvolutionType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnbinaryconvolutiontype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNBinaryConvolutionType",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnbinaryconvolutiontype"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnbinaryconvolutiontype/and": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnbinaryconvolutiontype/and",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNBinaryConvolutionType.AND",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnbinaryconvolutiontype/and"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnbinaryconvolutiontype/binaryweights": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnbinaryconvolutiontype/binaryweights",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNBinaryConvolutionType.binaryWeights",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnbinaryconvolutiontype/binaryweights"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnbinaryconvolutiontype/xnor": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnbinaryconvolutiontype/xnor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNBinaryConvolutionType.XNOR",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnbinaryconvolutiontype/xnor"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolution": {
+      "abstract": [
+        {
+          "text": "A convolution kernel that convolves the input image with a set of filters, with each producing one feature map in the output image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNConvolution"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolution",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNConvolution",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnconvolution"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolutiondatasource": {
+      "abstract": [
+        {
+          "text": "The protocol that provides convolution filter weights and bias terms.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNConvolutionDataSource"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolutiondatasource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNConvolutionDataSource",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnconvolutiondatasource"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolutiondescriptor/1648849-groups": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolutiondescriptor/1648849-groups",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "groups",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnconvolutiondescriptor/1648849-groups"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolutiondescriptor/1648904-kernelheight": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolutiondescriptor/1648904-kernelheight",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kernelHeight",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnconvolutiondescriptor/1648904-kernelheight"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolutiondescriptor/1648959-kernelwidth": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolutiondescriptor/1648959-kernelwidth",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kernelWidth",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnconvolutiondescriptor/1648959-kernelwidth"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolutiongradient": {
+      "abstract": [
+        {
+          "text": "A gradient convolution kernel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNConvolutionGradient"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolutiongradient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNConvolutionGradient",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnconvolutiongradient"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolutiongradientstate": {
+      "abstract": [
+        {
+          "text": "An object that exposes a gradient convolution kernel's gradient with respect to weights and biases.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNConvolutionGradientState"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolutiongradientstate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNConvolutionGradientState",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnconvolutiongradientstate"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolutiontranspose": {
+      "abstract": [
+        {
+          "text": "A transposed convolution kernel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNConvolutionTranspose"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolutiontranspose",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNConvolutionTranspose",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnconvolutiontranspose"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolutionweightsandbiasesstate": {
+      "abstract": [
+        {
+          "text": "A class that stores weights and biases.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNConvolutionWeightsAndBiasesState"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolutionweightsandbiasesstate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNConvolutionWeightsAndBiasesState",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnconvolutionweightsandbiasesstate"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnndepthwiseconvolutiondescriptor": {
+      "abstract": [
+        {
+          "text": "A description of a convolution object that does depthwise convolution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNDepthWiseConvolutionDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnndepthwiseconvolutiondescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNDepthWiseConvolutionDescriptor",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnndepthwiseconvolutiondescriptor"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnkernel": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnkernel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNKernel",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnkernel"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnsubpixelconvolutiondescriptor": {
+      "abstract": [
+        {
+          "text": "A description of a convolution object that does subpixel upsampling and reshaping. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNSubPixelConvolutionDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnsubpixelconvolutiondescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNSubPixelConvolutionDescriptor",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnsubpixelconvolutiondescriptor"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagesizeencodingstate": {
+      "abstract": [
+        {
+          "text": "A protocol for objects that contain information about an image size elsewhere in the graph.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSImageSizeEncodingState"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagesizeencodingstate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSImageSizeEncodingState",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimagesizeencodingstate"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "link-media-2903518": {
+      "identifier": "link-media-2903518",
+      "title": "Figure 2",
+      "type": "link",
+      "url": "/documentation/metalperformanceshaders/mpscnnbinaryconvolution#2903518"
+    },
+    "link-media-2903519": {
+      "identifier": "link-media-2903519",
+      "title": "Figure 3",
+      "type": "link",
+      "url": "/documentation/metalperformanceshaders/mpscnnbinaryconvolution#2903519"
+    },
+    "link-media-2903520": {
+      "identifier": "link-media-2903520",
+      "title": "Figure 1",
+      "type": "link",
+      "url": "/documentation/metalperformanceshaders/mpscnnbinaryconvolution#2903520"
+    },
+    "media-2903518": {
+      "alt": "beta[i,x,y] = sum_{dx,dy} A[i, x+dx, y+dy] / (kx * ky)",
+      "identifier": "media-2903518",
+      "title": "Figure 2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/866dd98e74/9f323d96-169d-441b-9126-33acfff420be.png"
+        }
+      ]
+    },
+    "media-2903519": {
+      "alt": "[ -kx/2, (kx-1)/2], [ -ky/2, (ky-1)/2 ] and A[i,x,y] = sum_{c} abs( in[i,x,y,c] ) / Nc",
+      "identifier": "media-2903519",
+      "title": "Figure 3",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/866dd98e74/6ec9c656-8b23-4d5c-9716-ff947b9efadf.png"
+        }
+      ]
+    },
+    "media-2903520": {
+      "alt": "out[i, x, y, c] = ( sum_{dx,dy,f} in[i,x+dx, y+dy, f] x B[c,dx,dy,f] ) * scale[c] * beta[i,x,y] + bias[c]",
+      "identifier": "media-2903520",
+      "title": "Figure 1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/866dd98e74/bd225f43-535a-49b5-aaf0-bb7bc47f6a39.png"
+        }
+      ]
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnkernel"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolution",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnndepthwiseconvolutiondescriptor",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnsubpixelconvolutiondescriptor",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolutiontranspose",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolutiongradient",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolutiongradientstate",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagesizeencodingstate",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolutionweightsandbiasesstate"
+      ],
+      "title": "Convolution Layers"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "2869009",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnbinaryconvolution/2867194-init",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnbinaryconvolution/2866978-init",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnbinaryconvolution/2866981-init",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolutiondatasource",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnbinaryconvolutiontype",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnbinaryconvolutionflags"
+      ],
+      "kind": "taskGroup",
+      "title": "Initializers"
+    },
+    {
+      "anchor": "2869010",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnbinaryconvolution/2867126-inputfeaturechannels",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnbinaryconvolution/2866959-outputfeaturechannels"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Properties"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/metalperformanceshaders/mpscnnbinaryconvolution"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/metalperformanceshaders/mpscnnbinaryconvolution"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

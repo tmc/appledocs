@@ -1,0 +1,1409 @@
+{
+  "abstract": [
+    {
+      "text": "Represents a string literal with interpolations while it is being built up.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift/documentation/Swift"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift/documentation/Swift/DefaultStringInterpolation"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:s26DefaultStringInterpolationV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "DefaultStringInterpolation"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Swift"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "DefaultStringInterpolation"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.10",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "DefaultStringInterpolation"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@frozen"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "DefaultStringInterpolation"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Do not create an instance of this type directly. It is used by the compiler",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "when you create a string using string interpolation. Instead, use string",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "interpolation to create a new string by including values, literals,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "variables, or expressions enclosed in parentheses, prefixed by a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "backslash (",
+              "type": "text"
+            },
+            {
+              "code": "\\(",
+              "type": "codeVoice"
+            },
+            {
+              "text": "…",
+              "type": "text"
+            },
+            {
+              "code": ")",
+              "type": "codeVoice"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let price = 2",
+            "let number = 3",
+            "let message = \"\"\"",
+            "              If one cookie costs \\(price) dollars, \\",
+            "              \\(number) cookies cost \\(price * number) dollars.",
+            "              \"\"\"",
+            "print(message)",
+            "// Prints \"If one cookie costs 2 dollars, 3 cookies cost 6 dollars.\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When implementing an ",
+              "type": "text"
+            },
+            {
+              "code": "ExpressibleByStringInterpolation",
+              "type": "codeVoice"
+            },
+            {
+              "text": " conformance,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "set the ",
+              "type": "text"
+            },
+            {
+              "code": "StringInterpolation",
+              "type": "codeVoice"
+            },
+            {
+              "text": " associated type to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "DefaultStringInterpolation",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to get the same interpolation behavior as",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Swift’s built-in ",
+              "type": "text"
+            },
+            {
+              "code": "String",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type and construct a ",
+              "type": "text"
+            },
+            {
+              "code": "String",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with the results.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If you don’t want the default behavior or don’t want to construct a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "String",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", use a custom type conforming to ",
+              "type": "text"
+            },
+            {
+              "code": "StringInterpolationProtocol",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "instead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Extending-default-string-interpolation-behavior",
+          "level": 1,
+          "text": "Extending default string interpolation behavior",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Code outside the standard library can extend string interpolation on",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "String",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and many other common types by extending",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "DefaultStringInterpolation",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and adding an ",
+              "type": "text"
+            },
+            {
+              "code": "appendInterpolation(...)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method. For example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "extension DefaultStringInterpolation {",
+            "    fileprivate mutating func appendInterpolation(",
+            "             escaped value: String, asASCII forceASCII: Bool = false) {",
+            "        for char in value.unicodeScalars {",
+            "            appendInterpolation(char.escaped(asASCII: forceASCII))",
+            "        }",
+            "    }",
+            "}",
+            "",
+            "print(\"Escaped string: \\(escaped: string)\")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "See ",
+              "type": "text"
+            },
+            {
+              "code": "StringInterpolationProtocol",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for details on ",
+              "type": "text"
+            },
+            {
+              "code": "appendInterpolation",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "methods.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "DefaultStringInterpolation",
+              "type": "codeVoice"
+            },
+            {
+              "text": " extensions should add only ",
+              "type": "text"
+            },
+            {
+              "code": "mutating",
+              "type": "codeVoice"
+            },
+            {
+              "text": " members",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and should not copy ",
+              "type": "text"
+            },
+            {
+              "code": "self",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or capture it in an escaping closure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Swift-PageImage-card.png": {
+      "alt": "An orange Swift logo on a gradient background.",
+      "identifier": "Swift-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/81257762cf893d205c049e3021340e5f/Swift-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4d2ed632470b4616483901941fae4098/Swift-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Swift/documentation/Swift": {
+      "abstract": [
+        {
+          "text": "Build apps using a powerful open language.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift",
+      "images": [
+        {
+          "identifier": "Swift-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift",
+      "type": "topic",
+      "url": "/documentation/swift"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Copyable": {
+      "abstract": [
+        {
+          "text": "A type whose values can be implicitly or explicitly copied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Copyable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Copyable",
+      "type": "topic",
+      "url": "/documentation/swift/copyable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/CustomStringConvertible": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/CustomStringConvertible",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/swift/customstringconvertible"
+    },
+    "doc://com.apple.Swift/documentation/Swift/DefaultStringInterpolation": {
+      "abstract": [
+        {
+          "text": "Represents a string literal with interpolations while it is being built up.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DefaultStringInterpolation"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/DefaultStringInterpolation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DefaultStringInterpolation"
+        }
+      ],
+      "role": "symbol",
+      "title": "DefaultStringInterpolation",
+      "type": "topic",
+      "url": "/documentation/swift/defaultstringinterpolation"
+    },
+    "doc://com.apple.Swift/documentation/Swift/DefaultStringInterpolation/CustomStringConvertible-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/DefaultStringInterpolation/CustomStringConvertible-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CustomStringConvertible Implementations",
+      "type": "topic",
+      "url": "/documentation/swift/defaultstringinterpolation/customstringconvertible-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Swift/DefaultStringInterpolation/StringLiteralType": {
+      "abstract": [
+        {
+          "text": "The type that should be used for literal segments.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "StringLiteralType"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/DefaultStringInterpolation/StringLiteralType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StringLiteralType"
+        }
+      ],
+      "role": "symbol",
+      "title": "DefaultStringInterpolation.StringLiteralType",
+      "type": "topic",
+      "url": "/documentation/swift/defaultstringinterpolation/stringliteraltype"
+    },
+    "doc://com.apple.Swift/documentation/Swift/DefaultStringInterpolation/TextOutputStream-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/DefaultStringInterpolation/TextOutputStream-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "TextOutputStream Implementations",
+      "type": "topic",
+      "url": "/documentation/swift/defaultstringinterpolation/textoutputstream-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Swift/DefaultStringInterpolation/appendInterpolation(_:)-2bzja": {
+      "abstract": [
+        {
+          "text": "Interpolates the given value’s textual representation into the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "string literal being created.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "appendInterpolation"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/DefaultStringInterpolation/appendInterpolation(_:)-2bzja",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendInterpolation(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/defaultstringinterpolation/appendinterpolation(_:)-2bzja"
+    },
+    "doc://com.apple.Swift/documentation/Swift/DefaultStringInterpolation/appendInterpolation(_:)-468zr": {
+      "abstract": [
+        {
+          "text": "Interpolates the given value’s textual representation into the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "string literal being created.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "appendInterpolation"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/DefaultStringInterpolation/appendInterpolation(_:)-468zr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendInterpolation(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/defaultstringinterpolation/appendinterpolation(_:)-468zr"
+    },
+    "doc://com.apple.Swift/documentation/Swift/DefaultStringInterpolation/appendInterpolation(_:)-6kx4d": {
+      "abstract": [
+        {
+          "text": "Interpolates the given value’s textual representation into the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "string literal being created.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "appendInterpolation"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/DefaultStringInterpolation/appendInterpolation(_:)-6kx4d",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendInterpolation(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/defaultstringinterpolation/appendinterpolation(_:)-6kx4d"
+    },
+    "doc://com.apple.Swift/documentation/Swift/DefaultStringInterpolation/appendInterpolation(_:)-8x6aw": {
+      "abstract": [
+        {
+          "text": "Interpolates the given value’s textual representation into the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "string literal being created.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "appendInterpolation"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/DefaultStringInterpolation/appendInterpolation(_:)-8x6aw",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendInterpolation(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/defaultstringinterpolation/appendinterpolation(_:)-8x6aw"
+    },
+    "doc://com.apple.Swift/documentation/Swift/DefaultStringInterpolation/appendInterpolation(_:)-jfy9": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "appendInterpolation"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": ".Type)"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/DefaultStringInterpolation/appendInterpolation(_:)-jfy9",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendInterpolation(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/defaultstringinterpolation/appendinterpolation(_:)-jfy9"
+    },
+    "doc://com.apple.Swift/documentation/Swift/DefaultStringInterpolation/appendLiteral(_:)": {
+      "abstract": [
+        {
+          "text": "Appends a literal segment of a string interpolation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "appendLiteral"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/DefaultStringInterpolation/appendLiteral(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendLiteral(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/defaultstringinterpolation/appendliteral(_:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/DefaultStringInterpolation/init(literalCapacity:interpolationCount:)": {
+      "abstract": [
+        {
+          "text": "Creates a string interpolation with storage pre-sized for a literal",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "with the indicated attributes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "literalCapacity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "interpolationCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/DefaultStringInterpolation/init(literalCapacity:interpolationCount:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(literalCapacity:interpolationCount:)",
+      "type": "topic",
+      "url": "/documentation/swift/defaultstringinterpolation/init(literalcapacity:interpolationcount:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ExpressibleByExtendedGraphemeClusterLiteral": {
+      "abstract": [
+        {
+          "text": "A type that can be initialized with a string literal containing a single",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "extended grapheme cluster.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExpressibleByExtendedGraphemeClusterLiteral"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ExpressibleByExtendedGraphemeClusterLiteral",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ExpressibleByExtendedGraphemeClusterLiteral"
+        }
+      ],
+      "role": "symbol",
+      "title": "ExpressibleByExtendedGraphemeClusterLiteral",
+      "type": "topic",
+      "url": "/documentation/swift/expressiblebyextendedgraphemeclusterliteral"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ExpressibleByStringInterpolation": {
+      "abstract": [
+        {
+          "text": "A type that can be initialized by string interpolation with a string",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "literal that includes expressions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExpressibleByStringInterpolation"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ExpressibleByStringInterpolation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ExpressibleByStringInterpolation"
+        }
+      ],
+      "role": "symbol",
+      "title": "ExpressibleByStringInterpolation",
+      "type": "topic",
+      "url": "/documentation/swift/expressiblebystringinterpolation"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ExpressibleByStringLiteral": {
+      "abstract": [
+        {
+          "text": "A type that can be initialized with a string literal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExpressibleByStringLiteral"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ExpressibleByStringLiteral",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ExpressibleByStringLiteral"
+        }
+      ],
+      "role": "symbol",
+      "title": "ExpressibleByStringLiteral",
+      "type": "topic",
+      "url": "/documentation/swift/expressiblebystringliteral"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ExpressibleByUnicodeScalarLiteral": {
+      "abstract": [
+        {
+          "text": "A type that can be initialized with a string literal containing a single",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Unicode scalar value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExpressibleByUnicodeScalarLiteral"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ExpressibleByUnicodeScalarLiteral",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ExpressibleByUnicodeScalarLiteral"
+        }
+      ],
+      "role": "symbol",
+      "title": "ExpressibleByUnicodeScalarLiteral",
+      "type": "topic",
+      "url": "/documentation/swift/expressiblebyunicodescalarliteral"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Sendable": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Sendable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/swift/sendable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/StringInterpolationProtocol": {
+      "abstract": [
+        {
+          "text": "Represents the contents of a string literal with interpolations while it’s",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "being built up.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "StringInterpolationProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/StringInterpolationProtocol",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StringInterpolationProtocol"
+        }
+      ],
+      "role": "symbol",
+      "title": "StringInterpolationProtocol",
+      "type": "topic",
+      "url": "/documentation/swift/stringinterpolationprotocol"
+    },
+    "doc://com.apple.Swift/documentation/Swift/TextOutputStream": {
+      "abstract": [
+        {
+          "text": "A type that can be the target of text-streaming operations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TextOutputStream"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/TextOutputStream",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TextOutputStream"
+        }
+      ],
+      "role": "symbol",
+      "title": "TextOutputStream",
+      "type": "topic",
+      "url": "/documentation/swift/textoutputstream"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Copyable",
+        "doc://com.apple.Swift/documentation/Swift/CustomStringConvertible",
+        "doc://com.apple.Swift/documentation/Swift/Sendable",
+        "doc://com.apple.Swift/documentation/Swift/StringInterpolationProtocol",
+        "doc://com.apple.Swift/documentation/Swift/TextOutputStream"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "String-Literals",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/ExpressibleByStringLiteral",
+        "doc://com.apple.Swift/documentation/Swift/ExpressibleByExtendedGraphemeClusterLiteral",
+        "doc://com.apple.Swift/documentation/Swift/ExpressibleByUnicodeScalarLiteral",
+        "doc://com.apple.Swift/documentation/Swift/ExpressibleByStringInterpolation",
+        "doc://com.apple.Swift/documentation/Swift/StringInterpolationProtocol"
+      ],
+      "title": "String Literals"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/DefaultStringInterpolation/init(literalCapacity:interpolationCount:)"
+      ],
+      "title": "Initializers"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/DefaultStringInterpolation/appendInterpolation(_:)-2bzja",
+        "doc://com.apple.Swift/documentation/Swift/DefaultStringInterpolation/appendInterpolation(_:)-468zr",
+        "doc://com.apple.Swift/documentation/Swift/DefaultStringInterpolation/appendInterpolation(_:)-6kx4d",
+        "doc://com.apple.Swift/documentation/Swift/DefaultStringInterpolation/appendInterpolation(_:)-8x6aw",
+        "doc://com.apple.Swift/documentation/Swift/DefaultStringInterpolation/appendInterpolation(_:)-jfy9",
+        "doc://com.apple.Swift/documentation/Swift/DefaultStringInterpolation/appendLiteral(_:)"
+      ],
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "Type-Aliases",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/DefaultStringInterpolation/StringLiteralType"
+      ],
+      "title": "Type Aliases"
+    },
+    {
+      "anchor": "Default-Implementations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/DefaultStringInterpolation/CustomStringConvertible-Implementations",
+        "doc://com.apple.Swift/documentation/Swift/DefaultStringInterpolation/TextOutputStream-Implementations"
+      ],
+      "title": "Default Implementations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swift/defaultstringinterpolation"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

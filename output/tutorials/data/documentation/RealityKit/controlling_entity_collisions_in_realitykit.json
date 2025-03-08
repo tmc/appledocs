@@ -1,0 +1,427 @@
+{
+  "abstract": [
+    {
+      "text": "Create collision filters to control which objects collide.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/realitykit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/realitykit/controlling_entity_collisions_in_realitykit"
+  },
+  "kind": "article",
+  "legacy_identifier": 3665193,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "platforms": [
+      {
+        "current": "18.0",
+        "introducedAt": "13.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.0",
+        "introducedAt": "13.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "16.0",
+        "introducedAt": "12.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Controlling Entity Collisions in RealityKit"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, objects that participate in RealityKit simulations collide with all other participating objects in the scene. To prevent particular objects from colliding with specific other objects, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in combination with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CollisionFilter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". This sample code project shows how to use collision groups and collision filters to take precise control over which entities collide in a scene.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this sample, the user can drag entities around the scene. As they do so, those entities collide with other entities that have different shapes or colors, but ignore (or pass through) entities of the same shape and color. For example, if the user drags a sphere into a cube, the entities will collide, causing the cube to move. However, if the user drags a red sphere into another red sphere, the entities will pass through each other.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3695366",
+          "level": 3,
+          "text": "Configure the Sample Code Project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample code project requires Xcode 12.0, iOS 14.0, and an iOS device with an A9 or later processor. ARKit isn’t supported in iOS Simulator.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3695367",
+          "level": 3,
+          "text": "Define Collision Groups",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Collision groups provide a way to group entities in a scene. Each group represents entities that respond the same way during a collision. Because ",
+              "type": "text"
+            },
+            {
+              "code": "CollisionGroup",
+              "type": "codeVoice"
+            },
+            {
+              "text": " conforms to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/OptionSet",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", groups can be combined in many different ways to create new groups. The sample project defines a set of groups that represent each distinct type of objects, and assigns each one a different bit flag.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample project defines four collision groups, as shown here:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "    let planeGroup = CollisionGroup(rawValue: 1 << 0)",
+            "    let cubeGroup = CollisionGroup(rawValue: 1 << 1)",
+            "    let beveledCubeGroup = CollisionGroup(rawValue: 1 << 2)",
+            "    let sphereGroup = CollisionGroup(rawValue: 1 << 3)"
+          ],
+          "metadata": {
+            "anchor": "3695360",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Collision groups aren’t assigned directly to entities. Instead, collision filters define the collision properties for entities by specifying which groups the object collides with. Assigning a collision filter to an entity automatically places that entity into the collision filter’s group or groups.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3695368",
+          "level": 3,
+          "text": "Create a Collision Filter",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Collision filters define the entities that collide with other entities based on group membership. Entities that share the same filter are part of the same group or groups and have the same collision properties. More than one filter can be created for each collision group, however, so not all members of the same collision group necessarily collide with the same other objects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample project, for example, creates a filter for the ",
+              "type": "text"
+            },
+            {
+              "code": "cubeGroup",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which defines the filter that causes cubes to collide with everything except other cubes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "    let cubeMask = CollisionGroup.all.subtracting(cubeGroup)",
+            "    let cubeFilter = CollisionFilter(group: cubeGroup,",
+            "                                      mask: cubeMask)"
+          ],
+          "metadata": {
+            "anchor": "3695362",
+            "title": "Listing 2"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Group membership doesn’t have to be exclusive. A ",
+                  "type": "text"
+                },
+                {
+                  "code": "CollisionFilter",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": "‘s ",
+                  "type": "text"
+                },
+                {
+                  "code": "group",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " parameter is an ",
+                  "type": "text"
+                },
+                {
+                  "code": "OptionSet",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", so it can include any combination of defined groups. Any entity that gets assigned a filter will be a member of all of that filter’s groups.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample code project assigns ",
+              "type": "text"
+            },
+            {
+              "code": "cubeFilter",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to all the cube entities, which places all of the cube entities into the ",
+              "type": "text"
+            },
+            {
+              "code": "cubeGroup",
+              "type": "codeVoice"
+            },
+            {
+              "text": " collision group, like this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "    cube1.collision?.filter = cubeFilter",
+            "    cube2.collision?.filter = cubeFilter",
+            "    cube3.collision?.filter = cubeFilter"
+          ],
+          "metadata": {
+            "anchor": "3695363",
+            "title": "Listing 3"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "All cubes are part of the ",
+              "type": "text"
+            },
+            {
+              "code": "cubeGroup",
+              "type": "codeVoice"
+            },
+            {
+              "text": " because that is the group assigned to their filter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.RealityKit/documentation/RealityKit/CollisionFilter": {
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CollisionFilter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CollisionFilter",
+      "type": "topic",
+      "url": "/documentation/realitykit/collisionfilter"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup": {
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CollisionGroup",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CollisionGroup",
+      "type": "topic",
+      "url": "/documentation/realitykit/collisiongroup"
+    },
+    "doc://com.apple.Swift/documentation/Swift/OptionSet": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/OptionSet",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OptionSet",
+      "type": "topic",
+      "url": "/documentation/swift/optionset"
+    },
+    "doc://com.apple.documentation/documentation/realitykit": {
+      "identifier": "doc://com.apple.documentation/documentation/realitykit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.documentation/documentation/realitykit/controlling_entity_collisions_in_realitykit#3695360": {
+      "identifier": "doc://com.apple.documentation/documentation/realitykit/controlling_entity_collisions_in_realitykit#3695360",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/realitykit/controlling_entity_collisions_in_realitykit#3695360"
+    },
+    "doc://com.apple.documentation/documentation/realitykit/controlling_entity_collisions_in_realitykit#3695362": {
+      "identifier": "doc://com.apple.documentation/documentation/realitykit/controlling_entity_collisions_in_realitykit#3695362",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/realitykit/controlling_entity_collisions_in_realitykit#3695362"
+    },
+    "doc://com.apple.documentation/documentation/realitykit/controlling_entity_collisions_in_realitykit#3695363": {
+      "identifier": "doc://com.apple.documentation/documentation/realitykit/controlling_entity_collisions_in_realitykit#3695363",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 3",
+      "type": "section",
+      "url": "/documentation/realitykit/controlling_entity_collisions_in_realitykit#3695363"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://docs-assets.developer.apple.com/published/6aa4f61d14/ControllingEntityCollisionsInRealityKit.zip": {
+      "checksum": "1524df908890bbb09852d8f45e05d1ae9c037271a033b18e85d2a4d9f460ff6ab35dce0b4a3230c3735ff50da0062daa38eb5a0e9f695dd88e2f93bd3d9b843c",
+      "identifier": "https://docs-assets.developer.apple.com/published/6aa4f61d14/ControllingEntityCollisionsInRealityKit.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/6aa4f61d14/ControllingEntityCollisionsInRealityKit.zip"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "https://docs-assets.developer.apple.com/published/6aa4f61d14/ControllingEntityCollisionsInRealityKit.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "documentation/realitykit/controlling_entity_collisions_in_realitykit"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

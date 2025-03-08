@@ -1,0 +1,4796 @@
+{
+  "abstract": [
+    {
+      "text": "Add regions of layered content to a map view.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.mapkit/documentation/MapKit",
+        "doc://com.apple.mapkit/documentation/MapKit/mapkit-for-appkit-and-uikit",
+        "doc://com.apple.mapkit/documentation/MapKit/mapkit-overlays"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.mapkit/documentation/MapKit/displaying-overlays-on-a-map"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "MapKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "16.1",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.1",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Displaying overlays on a map"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Overlays offer a way to layer content over regions of a map and have that content scale with the map.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This sample code project demonstrates how to draw common shapes, how to perform custom drawing outside of a common shape, and how to use map tiles from additional data sources.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Define-overlays-with-geographic-coordinates",
+          "level": 3,
+          "text": "Define overlays with geographic coordinates",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Overlays are data objects that represent geographic information.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Most overlays use geographic coordinates to create contiguous or noncontiguous sets of lines, rectangles, circles, and other shapes.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, this sample app defines a rectangular area enclosing San Francisco as an array of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreLocation/CLLocationCoordinate2D",
+              "isActive": true,
+              "overridingTitle": "CLLocationCoordinate2D",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "CLLocationCoordinate2D",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " coordinates.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// A rectangular area containing San Francisco.",
+            "static let sanFranciscoRectangle = [",
+            "    CLLocationCoordinate2D(latitude: 37.816_41, longitude: -122.522_62),",
+            "    CLLocationCoordinate2D(latitude: 37.816_41, longitude: -122.355_54),",
+            "    CLLocationCoordinate2D(latitude: 37.702_08, longitude: -122.355_54),",
+            "    CLLocationCoordinate2D(latitude: 37.702_08, longitude: -122.522_62)",
+            "]"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app creates the overlay objects by providing the coordinate data to an object that conforms to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MapKit/MKOverlay",
+              "isActive": true,
+              "overridingTitle": "MKOverlay",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "MKOverlay",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " protocol.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This data object is responsible for managing the data that defines the overlay.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "MapKit defines several concrete overlay objects for specifying different types of standard shapes, such as circles and polygons.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The app uses the coordinate array above to create one of these provided overlay objects — a polygon.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// Creates a rectangle polygon.",
+            "var rectangleOverlay: MKPolygon {",
+            "    return MKPolygon(coordinates: LocationData.sanFranciscoRectangle, count: LocationData.sanFranciscoRectangle.count)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because MapKit defines overlays using a protocol, any class in an app can be an overlay object by conforming to the ",
+              "type": "text"
+            },
+            {
+              "code": "MKOverlay",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol, or by subclassing ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MapKit/MKShape",
+              "isActive": true,
+              "overridingTitle": "MKShape",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "MKShape",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MapKit/MKMultiPoint",
+              "isActive": true,
+              "overridingTitle": "MKMultiPoint",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "MKMultiPoint",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ". For example, ",
+              "type": "text"
+            },
+            {
+              "code": "PeakGroundAccelerationGrid",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in this sample app is a custom data class representing an overlay, so it subclasses ",
+              "type": "text"
+            },
+            {
+              "code": "MKShape",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An overlay contains two key properties, a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MapKit/MKOverlay/coordinate",
+              "isActive": true,
+              "overridingTitle": "coordinate",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "coordinate",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " that defines the center point of the overlay, and the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MapKit/MKOverlay/boundingMapRect",
+              "isActive": true,
+              "overridingTitle": "boundingMapRect",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "boundingMapRect",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " that the system expresses as an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MapKit/MKMapRect",
+              "isActive": true,
+              "overridingTitle": "MKMapRect",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "MKMapRect",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " that completely encompasses the overlay’s content.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When the app uses system-provided overlay objects, the system automatically computes the values of these properties.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When defining a custom overlay object, the class needs to implement these properties and return appropriate values, as the ",
+              "type": "text"
+            },
+            {
+              "code": "PeakGroundAccelerationGrid",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class in this app demonstrates.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Load-overlay-data-using-GeoJSON",
+          "level": 3,
+          "text": "Load overlay data using GeoJSON",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "https://tools.ietf.org/html/rfc7946",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is a standards-based data format for representing geographic data, and apps often receive overlay data from a server in GeoJSON format.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Rather than connect to a server, this app uses a local GeoJSON file containing ",
+              "type": "text"
+            },
+            {
+              "code": "MultiPolygon",
+              "type": "codeVoice"
+            },
+            {
+              "text": " features into an ",
+              "type": "text"
+            },
+            {
+              "code": "MKMultiPolygon",
+              "type": "codeVoice"
+            },
+            {
+              "text": " by using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MapKit/MKGeoJSONDecoder",
+              "isActive": true,
+              "overridingTitle": "MKGeoJSONDecoder",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "MKGeoJSONDecoder",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "init() {",
+            "    /// In a real app, the event data probably downloads from a server. This sample loads GeoJSON data from a local file instead.",
+            "    if let jsonUrl = Bundle.main.url(forResource: \"event\", withExtension: \"json\") {",
+            "        do {",
+            "            let eventData = try Data(contentsOf: jsonUrl)",
+            "",
+            "            // Use the `MKGeoJSONDecoder` to convert the JSON data into MapKit objects, such as `MKGeoJSONFeature`.",
+            "            let decoder = MKGeoJSONDecoder()",
+            "            let jsonObjects = try decoder.decode(eventData)",
+            "",
+            "            parse(jsonObjects)",
+            "        } catch {",
+            "            print(\"Error decoding GeoJSON: \\(error).\")",
+            "        }",
+            "    }",
+            "}",
+            "",
+            "private func parse(_ jsonObjects: [MKGeoJSONObject]) {",
+            "    for object in jsonObjects {",
+            "",
+            "        /**",
+            "         In this sample's GeoJSON data, there are only GeoJSON features at the top level, so this parse method only checks for those. An",
+            "         implementation that parses arbitrary GeoJSON files needs to check for GeoJSON geometry objects too.",
+            "        */",
+            "        if let feature = object as? MKGeoJSONFeature {",
+            "            for geometry in feature.geometry {",
+            "",
+            "                /**",
+            "                 Separate annotation objects from overlay objects because you add them to the map view in different ways. This sample",
+            "                 GeoJSON only contains `Point` and `MultiPolygon` geometry. In a generic parser, check for all possible geometry types.",
+            "                */",
+            "                if let multiPolygon = geometry as? MKMultiPolygon {",
+            "                    overlays.append(multiPolygon)",
+            "                } else if let point = geometry as? MKPointAnnotation {",
+            "                     // The name of the annotation passes in the feature properties.",
+            "                     // Parse the name and apply it to the annotation.",
+            "                    configure(annotation: point, using: feature.properties)",
+            "                    annotations.append(point)",
+            "                }",
+            "            }",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Display-overlays-on-a-map-view",
+          "level": 3,
+          "text": "Display overlays on a map view",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app adds the overlay data objects to the map in a specific order to ensure that certain overlays display on top of others.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To specify whether an overlay is above or below content that the map provides, such as roads and labels, the app calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/mapkit/mkmapview/1452635-addoverlay",
+              "isActive": true,
+              "overridingTitle": "addOverlay(_:level:)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "addOverlay(_:level:)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " with the ",
+              "type": "text"
+            },
+            {
+              "code": "level",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter as a value that ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MapKit/MKOverlayLevel",
+              "isActive": true,
+              "overridingTitle": "MKOverlayLevel",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "MKOverlayLevel",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " provides.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "mapView.addOverlay(reliefTileOverlay, level: .aboveLabels)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The overlay data object doesn’t draw the overlay on the map.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "A second object, called an ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "overlay renderer",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", handles the drawing responsibilities for displaying the overlay on the map view.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "After adding an overlay, the map view calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MapKit/MKMapViewDelegate/mapView(_:rendererFor:)",
+              "isActive": true,
+              "overridingTitle": "mapView(_:rendererFor:)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "mapView(_:rendererFor:)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " on its delegate to create an appropriate renderer object.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Because this app demonstrates many different overlays, its implementation of ",
+              "type": "text"
+            },
+            {
+              "code": "mapView(_:rendererFor:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " creates many different types of overlay renderers.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Most apps only use a small number of overlay types, so this function only needs to create the small number of corresponding overlay renderer types.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {",
+            "    switch overlay {",
+            "    case let overlay as MKCircle:",
+            "        return createCircleRenderer(for: overlay)",
+            "    case let overlay as MKGeodesicPolyline:",
+            "        return createGeodesicPolylineRenderer(for: overlay)",
+            "    case let overlay as MKPolyline where currentExample == .gradientPolyline:",
+            "        return createGradientPolylineRenderer(for: overlay)",
+            "    case let overlay as MKPolyline:",
+            "        return createPolylineRenderer(for: overlay)",
+            "    case let overlay as MKPolygon where currentExample == .blendModes:",
+            "        return createBlendModesPolygonRenderer(for: overlay)",
+            "    case let overlay as MKPolygon:",
+            "        return createPolygonRenderer(for: overlay)",
+            "    case let overlay as MKMultiPolygon:",
+            "        return createMultiPolylineRenderer(for: overlay)",
+            "    case let overlay as PeakGroundAccelerationGrid:",
+            "        return createCustomRenderer(for: overlay)",
+            "    case let overlay as MKTileOverlay:",
+            "        return createTileRenderer(for: overlay)",
+            "    default:",
+            "        return MKOverlayRenderer(overlay: overlay)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the app creates the renderer and returns it from ",
+              "type": "text"
+            },
+            {
+              "code": "mapView(_:rendererFor:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the map view uses the ",
+              "type": "text"
+            },
+            {
+              "code": "boundingMapRect",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property on the overlay data object to determine when the returned overlay renderer draws the overlay on the map.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/mapkit/mkmapview/1452784-overlays",
+              "isActive": true,
+              "overridingTitle": "overlays",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "overlays",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " property of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MapKit/MKMapView",
+              "isActive": true,
+              "overridingTitle": "MKMapView",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "MKMapView",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " stores the registered overlays, but the order of the array doesn’t necessarily reflect their visual order on the map.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To understand the rendering order of overlays at a specific level, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/mapkit/mkmapview/1452757-overlays",
+              "isActive": true,
+              "overridingTitle": "overlays(in:)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "overlays(in:)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-the-standard-overlay-objects-for-common-shapes",
+          "level": 3,
+          "text": "Use the standard overlay objects for common shapes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app highlights specific map regions with basic shapes by using the standard overlay classes, including ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MapKit/MKCircle",
+              "isActive": true,
+              "overridingTitle": "MKCircle",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "MKCircle",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MapKit/MKPolyline",
+              "isActive": true,
+              "overridingTitle": "MKPolyline",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "MKPolyline",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MapKit/MKPolygon",
+              "isActive": true,
+              "overridingTitle": "MKPolygon",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "MKPolygon",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, it creates a circle overlay using ",
+              "type": "text"
+            },
+            {
+              "code": "MKCircle",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with a center coordinate and a radius specified in meters to highlight San Francisco.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// Create a circle overlay that centers on San Francisco.",
+            "let circleOverlay = MKCircle(center: LocationData.sanFranciscoGeographicCenter, radius: 9000)",
+            "mapView.addOverlay(circleOverlay, level: overlayLevel)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The standard overlay classes define the basic shape of the overlay, and the app uses them in conjunction with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MapKit/MKCircleRenderer",
+              "isActive": true,
+              "overridingTitle": "MKCircleRenderer",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "MKCircleRenderer",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MapKit/MKPolylineRenderer",
+              "isActive": true,
+              "overridingTitle": "MKPolylineRenderer",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "MKPolylineRenderer",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MapKit/MKPolygonRenderer",
+              "isActive": true,
+              "overridingTitle": "MKPolygonRenderer",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "MKPolygonRenderer",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " classes to handle the rendering of that shape on the map.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The app creates a renderer for the circle described above with the following code:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func createCircleRenderer(for circle: MKCircle) -> MKCircleRenderer {",
+            "    /**",
+            "     Some of the most common customizations for an `MKOverlayRenderer` include customizing drawing settings, such as the",
+            "     fill color of an enclosed shape, or the stroke color for the edge of the shape.",
+            "     */",
+            "    let renderer = MKCircleRenderer(circle: circle)",
+            "    renderer.lineWidth = 2",
+            "    renderer.strokeColor = .systemBlue",
+            "    renderer.fillColor = .systemTeal",
+            "    renderer.alpha = 0.5",
+            "    ",
+            "    return renderer",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the app uses the provided renderer classes for common shapes, MapKit vectorizes overlay shapes so that they always remain sharp while the map scales.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The app doesn’t change the default value of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MapKit/MKOverlayPathRenderer/shouldRasterize",
+              "isActive": true,
+              "overridingTitle": "shouldRasterize",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "shouldRasterize",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " property, so the standard overlay shapes always remain sharp.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Subclassing any of the provided renderer objects and providing a custom implementation of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MapKit/MKOverlayRenderer/draw(_:zoomScale:in:)",
+              "isActive": true,
+              "overridingTitle": "draw(_:zoomScale:in:)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "draw(_:zoomScale:in:)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", like the ",
+              "type": "text"
+            },
+            {
+              "code": "PeakGroundAccelerationOverlayRenderer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class, automatically enables rasterized rendering.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-drawing-properties-to-customize-the-overlay-rendering",
+          "level": 3,
+          "text": "Set drawing properties to customize the overlay rendering",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The standard overlay renderers allow customization of common drawing properties for the fill and edges.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, the app displays an ",
+              "type": "text"
+            },
+            {
+              "code": "MKPolyline",
+              "type": "codeVoice"
+            },
+            {
+              "text": " overlay using dashes instead of a solid line, and sets a customized dash pattern using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MapKit/MKOverlayPathRenderer/lineDashPattern",
+              "isActive": true,
+              "overridingTitle": "lineDashPattern",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "lineDashPattern",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " property of an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MapKit/MKPolylineRenderer",
+              "isActive": true,
+              "overridingTitle": "MKPolylineRenderer",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "MKPolylineRenderer",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/**",
+            " Apply a custom pattern to the line, alternating dash length with space length in drawing points.",
+            " The pattern repeats for the length of the polyline.",
+            " */",
+            "renderer.lineDashPattern = [20 as NSNumber,   // Long dash",
+            "                            10 as NSNumber,   // Space",
+            "                             5 as NSNumber,   // Shorter dash",
+            "                            10 as NSNumber,   // Space",
+            "                             1 as NSNumber,   // Dot",
+            "                            10 as NSNumber]   // Space"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "MapKit also provides ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MapKit/MKGradientPolylineRenderer",
+              "isActive": true,
+              "overridingTitle": "MKGradientPolylineRenderer",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "MKGradientPolylineRenderer",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " to draw a polyline with a color gradient.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The app configures a gradient renderer in the following way:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func createGradientPolylineRenderer(for line: MKPolyline) -> MKGradientPolylineRenderer {",
+            "    let renderer = MKGradientPolylineRenderer(polyline: line)",
+            "    ",
+            "    let colorPalette: [UIColor] = [.systemPurple, .systemMint, .systemOrange, .systemTeal, .systemRed]",
+            "    ",
+            "    /**",
+            "     Gradient polylines take an array of colors and an array of locations to place each color within the gradient.",
+            "     The system describes the location values as a fractional distance along the polyline between 0.0 (representing the first point) and",
+            "     1.0 (representing the last point).",
+            "     ",
+            "     For apps that add a color to the gradient per point in the polyline, `MKPolyline` offers the `location(atPointIndex:)` function to",
+            "     compute the location value for use with the gradient polyline.",
+            "     */",
+            "    var unitDistances = [CGFloat]()",
+            "    var colors = [UIColor]()",
+            "    var index = 0",
+            "    while index < line.pointCount {",
+            "        // Figure out the location of a point in the polyline as a fraction of unit distance between 0 and 1.",
+            "        unitDistances.append(line.location(atPointIndex: index))",
+            "        ",
+            "        // Pick a color to add to the gradient.",
+            "        colors.append(colorPalette[index % colorPalette.count])",
+            "        ",
+            "        index += 1",
+            "    }",
+            "    ",
+            "    renderer.setColors(colors, locations: unitDistances)",
+            "    renderer.lineWidth = 2",
+            "    ",
+            "    return renderer",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Render-multiple-overlays-with-the-same-style-efficiently",
+          "level": 3,
+          "text": "Render multiple overlays with the same style efficiently",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It’s common to have multiple related overlays appear on the map with an identical visual style.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, the app displays a map of an outdoor event that uses multiple overlays to show where the stage is located in relation to different event booths.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Because the app shows each of these overlays using the same color scheme, it groups the individual overlay objects together using an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MapKit/MKMultiPolygon",
+              "isActive": true,
+              "overridingTitle": "MKMultiPolygon",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "MKMultiPolygon",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app then adds the grouped overlay to the map view, rather than adding the individual overlays, to avoid requesting a separate renderer for each overlay from its delegate.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Instead, the app returns an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MapKit/MKMultiPolygonRenderer",
+              "isActive": true,
+              "overridingTitle": "MKMultiPolygonRenderer",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "MKMultiPolygonRenderer",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " from the delegate.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This returned renderer applies the same drawing properties to all overlays within the  ",
+              "type": "text"
+            },
+            {
+              "code": "MKMultiPolygon",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This is more efficient than creating a renderer for each overlay.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func createMultiPolylineRenderer(for multiPolygon: MKMultiPolygon) -> MKMultiPolygonRenderer {",
+            "    let renderer = MKMultiPolygonRenderer(multiPolygon: multiPolygon)",
+            "    renderer.fillColor = UIColor(named: \"MultiPolygonOverlayFill\")",
+            "    renderer.strokeColor = UIColor(named: \"MultiPolygonOverlayStroke\")",
+            "    renderer.lineWidth = 2.0",
+            "",
+            "    return renderer",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "To maximize rendering efficiency, developers need to group overlays using ",
+                  "type": "text"
+                },
+                {
+                  "code": "MKMultiPolyline",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "code": "MKMultiPolygon",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " whenever the visual style is the same.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "This is especially important when an app displays significant numbers of visually identical overlays.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Create-visual-effects-using-blend-modes",
+          "level": 3,
+          "text": "Create visual effects using blend modes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Blend modes",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " relate the content that draws in an overlay to the content that draws behind the overlay.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This enables creating visual effects on the map by adding overlays with a specific Z-order and applying a blend mode on the different overlays.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, the app highlights a park hosting an outdoor event by using blend modes to lighten the map areas outside the park and to amplify the colors within the park.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create such an effect, the app uses two overlays.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The first overlay covers the entire map except for an inner polygon for the park, and the second overlay is a polygon outlining only the park.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// Turn an array of points into a polygon. You can also load the polygon from a GeoJSON file by using `MKGeoJSONDecoder`.",
+            "let parkPolygon = MKPolygon(coordinates: LocationData.plazaDeCesarChavezParkOutline,",
+            "                                 count: LocationData.plazaDeCesarChavezParkOutline.count)",
+            "",
+            "/// Create an overlay polygon that covers the entire world, except for a cutout of the highlighted park.",
+            "let worldPoints = [MKMapRect.world.origin,",
+            "                   MKMapPoint(x: MKMapRect.world.origin.x, y: MKMapRect.world.origin.y + MKMapRect.world.size.height),",
+            "                   MKMapPoint(x: MKMapRect.world.origin.x + MKMapRect.world.size.width, y: MKMapRect.world.origin.y),",
+            "                   MKMapPoint(x: MKMapRect.world.origin.x + MKMapRect.world.size.width,",
+            "                              y: MKMapRect.world.origin.y + MKMapRect.world.size.height)]",
+            "let desaturatedBase = MKPolygon(points: worldPoints, count: worldPoints.count, interiorPolygons: [parkPolygon])"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the map view requests renderer objects from the map delegate for these overlay objects, the app configures the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MapKit/MKOverlayRenderer/blendMode",
+              "isActive": true,
+              "overridingTitle": "blendMode",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "blendMode",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " property with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgblendmode/screen",
+              "isActive": true,
+              "overridingTitle": "screen",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "screen",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " blend mode to lighten the map area outside the park, and the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgblendmode/colorburn",
+              "isActive": true,
+              "overridingTitle": "colorBurn",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "colorBurn",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " blend mode to darken the colors within the park.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func createBlendModesPolygonRenderer(for overlay: MKPolygon) -> MKPolygonRenderer {",
+            "    let renderer = MKPolygonRenderer(polygon: overlay)",
+            "    ",
+            "    if overlay.interiorPolygons == nil {",
+            "        /// An overlay without `interiorPolygons` is the overlay highlighting the park.",
+            "        renderer.fillColor = traitCollection.userInterfaceStyle == .light ? .darkGray : .white",
+            "        renderer.blendMode = .colorBurn",
+            "    } else {",
+            "        /// An overlay with `interiorPolygons` is the background overlay to desaturate.",
+            "        renderer.fillColor = .gray",
+            "        renderer.blendMode = .screen",
+            "    }",
+            "    return renderer",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For further information on blend modes, see “Setting Blend Modes” and “Using Blend Modes with Images” in ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/drawingwithquartz2d/Introduction/Introduction.html#//apple_ref/doc/uid/TP30001066",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Define-a-custom-overlay-renderer",
+          "level": 3,
+          "text": "Define a custom overlay renderer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To draw complex overlays that go beyond drawing boundaries and filling standard overlay shapes, this sample code project creates a custom overlay renderer.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The app contains data related to earthquake hazards, and defines a custom ",
+              "type": "text"
+            },
+            {
+              "code": "MKOverlay",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to represent that hazard data. It also defines a custom overlay renderer to draw a color-coded, shaded map of hazards based on the data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a custom overlay renderer, the app subclasses ",
+              "type": "text"
+            },
+            {
+              "code": "MKOverlayRenderer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and implements ",
+              "type": "text"
+            },
+            {
+              "code": "draw(_:zoomScale:in:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to draw the earthquake data into the provided ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgcontext",
+              "isActive": true,
+              "overridingTitle": "CGContext",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "CGContext",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "MapKit calls this method concurrently on multiple background queues for the app to draw the overlay, with each call rendering a specific section of the overlay within the bounds of the ",
+              "type": "text"
+            },
+            {
+              "code": "mapRect",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "override func draw(_ mapRect: MKMapRect, zoomScale: MKZoomScale, in context: CGContext) {",
+            "    // Don't draw anything that doesn't intersect the data set.",
+            "    guard mapRect.intersects(data.boundingMapRect) else { return }",
+            "    ",
+            "    /**",
+            "     Determine the section of the overlay to render. MapKit breaks overlays into multiple rectangles for rendering on multiple threads.",
+            "     Each call to `draw(_:zoomScale:in:)` should only render within bounds of the provided `mapRect`.",
+            "     If your drawing implementation needs to draw content outside of the provided `mapRect` as part of its drawing algorithm, apply a clipping",
+            "     rectangle by calling `clip(to:)` on the `CGContext`.",
+            "     */",
+            "    let intersection = mapRect.intersection(data.boundingMapRect)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the app draws the custom overlay, it uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MapKit/MKMapPoint",
+              "isActive": true,
+              "overridingTitle": "MKMapPoint",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "MKMapPoint",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " data associated with the overlay to define shapes.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When it needs to convert data between MapKit geometry and Core Graphics geometry, it uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MapKit/MKOverlayRenderer/point(for:)",
+              "isActive": true,
+              "overridingTitle": "point(for:)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "point(for:)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let point1Conversion = point(for: coord1.mapPoint)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "MapKit also provides ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MapKit/MKOverlayRenderer/mapRect(for:)",
+              "isActive": true,
+              "overridingTitle": "mapRect(for:)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "mapRect(for:)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " for converting rectangles between MapKit geometry and Core Graphics geometry.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When implementing a custom renderer, the app doesn’t use the ",
+              "type": "text"
+            },
+            {
+              "code": "bounds",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "frame",
+              "type": "codeVoice"
+            },
+            {
+              "text": " of the ",
+              "type": "text"
+            },
+            {
+              "code": "MKMapView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as reference points during drawing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Load-custom-map-tiles",
+          "level": 3,
+          "text": "Load custom map tiles",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "MapKit supports using custom bitmap map tiles to provide an underlying map that’s customizable.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, this app displays map tiles that emphasize rivers and mountains.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use a custom bitmap map tile overlay, the app uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MapKit/MKTileOverlay",
+              "isActive": true,
+              "overridingTitle": "MKTileOverlay",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "MKTileOverlay",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " to manage loading the tile data and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MapKit/MKTileOverlayRenderer",
+              "isActive": true,
+              "overridingTitle": "MKTileOverlayRenderer",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "MKTileOverlayRenderer",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " to render the map tiles.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When creating the tile overlay, the app provides a URL template with placeholder values for the tile position, zoom level, and scale factor to the ",
+              "type": "text"
+            },
+            {
+              "code": "MKTileOverlay",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When the tile overlay loads the data, MapKit replaces the placeholder values with the required values to load tiles for a specific map region according to the EPSG:3857 spherical Mercator projection coordinate system.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The URL template can be either an HTTP URL or a file URL, and this app uses both.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, it loads some map tiles bundled with the app and specifies a file URL template that locates the map tiles within the app’s bundle.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let tileDirectoryName = \"tileData\"",
+            "guard let resourcePath = Bundle.main.resourcePath else { return }",
+            "let localPath = \"file://\\(resourcePath)/\\(tileDirectoryName)/{z}/{x}/{y}.jpg\"",
+            "let tileOverlay = MKTileOverlay(urlTemplate: localPath)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the app loads tiles from a server, it also does so with a URL template, replacing the file URL with an HTTP URL.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "CustomLoadingTileOverlay",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class in this sample code project implements ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MapKit/MKTileOverlay/loadTile(at:result:)",
+              "isActive": true,
+              "overridingTitle": "loadTile(at:result:)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "loadTile(at:result:)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " to show how to customize tile-loading behavior for specialized loading needs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-an-overlay-as-an-annotation",
+          "level": 3,
+          "text": "Use an overlay as an annotation",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "MKOverlay",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol conforms to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MapKit/MKAnnotation",
+              "isActive": true,
+              "overridingTitle": "MKAnnotation",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "MKAnnotation",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " protocol.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "As a result, all overlay objects are also annotation objects.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When adding an overlay as an annotation to the map, ",
+              "type": "text"
+            },
+            {
+              "code": "MKMapView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " displays it at the overlay’s ",
+              "type": "text"
+            },
+            {
+              "code": "coordinate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, the app uses a polygon outlining the park for an outdoor concert as an annotation to label the concert location.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/**",
+            " Types that derive from `MKOverlay`, such as `MKPolygon`, also conform to `MKAnnotation`, enabling you to add them to the map as an overlay,",
+            " as well as place an annotation on the overlay to label it.",
+            " */",
+            "parkPolygon.title = \"Concert Location\"",
+            "mapView.addAnnotation(parkPolygon)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because the app treats the overlay object as both an overlay and an annotation, it’s responsible for adding and removing the object from the map view as both an annotation and as an overlay.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/CoreLocation/CLLocationCoordinate2D": {
+      "abstract": [
+        {
+          "text": "The latitude and longitude associated with a location, specified using the WGS 84 reference frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLLocationCoordinate2D"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreLocation/CLLocationCoordinate2D",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CLLocationCoordinate2D",
+      "type": "topic",
+      "url": "/documentation/CoreLocation/CLLocationCoordinate2D"
+    },
+    "doc://com.apple.documentation/documentation/MapKit/MKAnnotation": {
+      "abstract": [
+        {
+          "text": "An interface for associating your content with a specific map location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKAnnotation"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MapKit/MKAnnotation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MKAnnotation",
+      "type": "topic",
+      "url": "/documentation/MapKit/MKAnnotation"
+    },
+    "doc://com.apple.documentation/documentation/MapKit/MKCircle": {
+      "abstract": [
+        {
+          "text": "A circular overlay with a configurable radius that you center on a geographic coordinate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKCircle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MapKit/MKCircle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MKCircle",
+      "type": "topic",
+      "url": "/documentation/MapKit/MKCircle"
+    },
+    "doc://com.apple.documentation/documentation/MapKit/MKCircleRenderer": {
+      "abstract": [
+        {
+          "text": "The visual representation of a circular overlay.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKCircleRenderer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MapKit/MKCircleRenderer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MKCircleRenderer",
+      "type": "topic",
+      "url": "/documentation/MapKit/MKCircleRenderer"
+    },
+    "doc://com.apple.documentation/documentation/MapKit/MKGeoJSONDecoder": {
+      "abstract": [
+        {
+          "text": "An object that decodes GeoJSON objects into MapKit types.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKGeoJSONDecoder"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MapKit/MKGeoJSONDecoder",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MKGeoJSONDecoder",
+      "type": "topic",
+      "url": "/documentation/MapKit/MKGeoJSONDecoder"
+    },
+    "doc://com.apple.documentation/documentation/MapKit/MKGradientPolylineRenderer": {
+      "abstract": [
+        {
+          "text": "A visual representation of any polyline overlay object with a gradient.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKGradientPolylineRenderer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MapKit/MKGradientPolylineRenderer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MKGradientPolylineRenderer",
+      "type": "topic",
+      "url": "/documentation/MapKit/MKGradientPolylineRenderer"
+    },
+    "doc://com.apple.documentation/documentation/MapKit/MKMapPoint": {
+      "abstract": [
+        {
+          "text": "A point on a two-dimensional map projection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKMapPoint"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MapKit/MKMapPoint",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MKMapPoint",
+      "type": "topic",
+      "url": "/documentation/MapKit/MKMapPoint"
+    },
+    "doc://com.apple.documentation/documentation/MapKit/MKMapRect": {
+      "abstract": [
+        {
+          "text": "A rectangular area on a two-dimensional map projection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKMapRect"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MapKit/MKMapRect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MKMapRect",
+      "type": "topic",
+      "url": "/documentation/MapKit/MKMapRect"
+    },
+    "doc://com.apple.documentation/documentation/MapKit/MKMapView": {
+      "abstract": [
+        {
+          "text": "An embeddable map interface, similar to the one that the Maps app provides.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKMapView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MapKit/MKMapView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MKMapView",
+      "type": "topic",
+      "url": "/documentation/MapKit/MKMapView"
+    },
+    "doc://com.apple.documentation/documentation/MapKit/MKMapViewDelegate/mapView(_:rendererFor:)": {
+      "abstract": [
+        {
+          "text": "Asks the delegate for a renderer object to use when drawing the specified overlay.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mapView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "mapView"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MKMapView",
+          "text": "MKMapView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "rendererFor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "overlay"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MKOverlay",
+          "text": "MKOverlay"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MKOverlayRenderer",
+          "text": "MKOverlayRenderer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MapKit/MKMapViewDelegate/mapView(_:rendererFor:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mapView(_:rendererFor:)",
+      "type": "topic",
+      "url": "/documentation/MapKit/MKMapViewDelegate/mapView(_:rendererFor:)"
+    },
+    "doc://com.apple.documentation/documentation/MapKit/MKMultiPoint": {
+      "abstract": [
+        {
+          "text": "An abstract class that defines the common behavior that open and closed polygon overlays share.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKMultiPoint"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MapKit/MKMultiPoint",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MKMultiPoint",
+      "type": "topic",
+      "url": "/documentation/MapKit/MKMultiPoint"
+    },
+    "doc://com.apple.documentation/documentation/MapKit/MKMultiPolygon": {
+      "abstract": [
+        {
+          "text": "A collection of multiple closed polygon overlays.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKMultiPolygon"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MapKit/MKMultiPolygon",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MKMultiPolygon",
+      "type": "topic",
+      "url": "/documentation/MapKit/MKMultiPolygon"
+    },
+    "doc://com.apple.documentation/documentation/MapKit/MKMultiPolygonRenderer": {
+      "abstract": [
+        {
+          "text": "The visual representation of multiple polygon overlays.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKMultiPolygonRenderer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MapKit/MKMultiPolygonRenderer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MKMultiPolygonRenderer",
+      "type": "topic",
+      "url": "/documentation/MapKit/MKMultiPolygonRenderer"
+    },
+    "doc://com.apple.documentation/documentation/MapKit/MKOverlay": {
+      "abstract": [
+        {
+          "text": "An interface for associating content with a specific map region.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKOverlay"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MKAnnotation",
+          "text": "MKAnnotation"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MapKit/MKOverlay",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MKOverlay",
+      "type": "topic",
+      "url": "/documentation/MapKit/MKOverlay"
+    },
+    "doc://com.apple.documentation/documentation/MapKit/MKOverlay/boundingMapRect": {
+      "abstract": [
+        {
+          "text": "The projected rectangle that encompasses the overlay.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "boundingMapRect"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MKMapRect",
+          "text": "MKMapRect"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MapKit/MKOverlay/boundingMapRect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "boundingMapRect",
+      "type": "topic",
+      "url": "/documentation/MapKit/MKOverlay/boundingMapRect"
+    },
+    "doc://com.apple.documentation/documentation/MapKit/MKOverlay/coordinate": {
+      "abstract": [
+        {
+          "text": "The approximate center point of the overlay area.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "coordinate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CLLocationCoordinate2D",
+          "text": "CLLocationCoordinate2D"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MapKit/MKOverlay/coordinate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "coordinate",
+      "type": "topic",
+      "url": "/documentation/MapKit/MKOverlay/coordinate"
+    },
+    "doc://com.apple.documentation/documentation/MapKit/MKOverlayLevel": {
+      "abstract": [
+        {
+          "text": "Constants that indicate the position of overlays relative to other content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKOverlayLevel"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MapKit/MKOverlayLevel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MKOverlayLevel",
+      "type": "topic",
+      "url": "/documentation/MapKit/MKOverlayLevel"
+    },
+    "doc://com.apple.documentation/documentation/MapKit/MKOverlayPathRenderer/lineDashPattern": {
+      "abstract": [
+        {
+          "text": "An array of numbers specifying the dash pattern to use for the path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "lineDashPattern"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNumber",
+          "text": "NSNumber"
+        },
+        {
+          "kind": "text",
+          "text": "]? { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MapKit/MKOverlayPathRenderer/lineDashPattern",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "lineDashPattern",
+      "type": "topic",
+      "url": "/documentation/MapKit/MKOverlayPathRenderer/lineDashPattern"
+    },
+    "doc://com.apple.documentation/documentation/MapKit/MKOverlayPathRenderer/shouldRasterize": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether the overlay path renderer renders the overlay as a bitmap before compositing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shouldRasterize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MapKit/MKOverlayPathRenderer/shouldRasterize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "shouldRasterize",
+      "type": "topic",
+      "url": "/documentation/MapKit/MKOverlayPathRenderer/shouldRasterize"
+    },
+    "doc://com.apple.documentation/documentation/MapKit/MKOverlayRenderer/blendMode": {
+      "abstract": [
+        {
+          "text": "The blend mode to apply to the overlay.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "blendMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CGBlendMode",
+          "text": "CGBlendMode"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MapKit/MKOverlayRenderer/blendMode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "blendMode",
+      "type": "topic",
+      "url": "/documentation/MapKit/MKOverlayRenderer/blendMode"
+    },
+    "doc://com.apple.documentation/documentation/MapKit/MKOverlayRenderer/draw(_:zoomScale:in:)": {
+      "abstract": [
+        {
+          "text": "Draws the overlay’s contents at the specified location on the map.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "draw"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "mapRect"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MKMapRect",
+          "text": "MKMapRect"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "zoomScale"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MKZoomScale",
+          "text": "MKZoomScale"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "context"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGContextRef",
+          "text": "CGContext"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MapKit/MKOverlayRenderer/draw(_:zoomScale:in:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "draw(_:zoomScale:in:)",
+      "type": "topic",
+      "url": "/documentation/MapKit/MKOverlayRenderer/draw(_:zoomScale:in:)"
+    },
+    "doc://com.apple.documentation/documentation/MapKit/MKOverlayRenderer/mapRect(for:)": {
+      "abstract": [
+        {
+          "text": "Returns the rectangle on the map that corresponds to the specified rectangle in the overlay renderer’s drawing area.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mapRect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "rect"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGRect",
+          "text": "CGRect"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MKMapRect",
+          "text": "MKMapRect"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MapKit/MKOverlayRenderer/mapRect(for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mapRect(for:)",
+      "type": "topic",
+      "url": "/documentation/MapKit/MKOverlayRenderer/mapRect(for:)"
+    },
+    "doc://com.apple.documentation/documentation/MapKit/MKOverlayRenderer/point(for:)": {
+      "abstract": [
+        {
+          "text": "Returns the point in the overlay renderer’s drawing area corresponding to the specified point on the map.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "point"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "mapPoint"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MKMapPoint",
+          "text": "MKMapPoint"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MapKit/MKOverlayRenderer/point(for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "point(for:)",
+      "type": "topic",
+      "url": "/documentation/MapKit/MKOverlayRenderer/point(for:)"
+    },
+    "doc://com.apple.documentation/documentation/MapKit/MKPolygon": {
+      "abstract": [
+        {
+          "text": "A closed polygon overlay.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKPolygon"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MapKit/MKPolygon",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MKPolygon",
+      "type": "topic",
+      "url": "/documentation/MapKit/MKPolygon"
+    },
+    "doc://com.apple.documentation/documentation/MapKit/MKPolygonRenderer": {
+      "abstract": [
+        {
+          "text": "The visual representation of a single polygon overlay.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKPolygonRenderer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MapKit/MKPolygonRenderer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MKPolygonRenderer",
+      "type": "topic",
+      "url": "/documentation/MapKit/MKPolygonRenderer"
+    },
+    "doc://com.apple.documentation/documentation/MapKit/MKPolyline": {
+      "abstract": [
+        {
+          "text": "An open polygon overlay consisting of one or more connected line segments.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKPolyline"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MapKit/MKPolyline",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MKPolyline",
+      "type": "topic",
+      "url": "/documentation/MapKit/MKPolyline"
+    },
+    "doc://com.apple.documentation/documentation/MapKit/MKPolylineRenderer": {
+      "abstract": [
+        {
+          "text": "A visual representation of any polyline overlay object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKPolylineRenderer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MapKit/MKPolylineRenderer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MKPolylineRenderer",
+      "type": "topic",
+      "url": "/documentation/MapKit/MKPolylineRenderer"
+    },
+    "doc://com.apple.documentation/documentation/MapKit/MKShape": {
+      "abstract": [
+        {
+          "text": "An abstract class that defines the basic properties for all shape-based overlay objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKShape"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MapKit/MKShape",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MKShape",
+      "type": "topic",
+      "url": "/documentation/MapKit/MKShape"
+    },
+    "doc://com.apple.documentation/documentation/MapKit/MKTileOverlay": {
+      "abstract": [
+        {
+          "text": "An overlay that covers an area of the map with tiles of bitmap images.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKTileOverlay"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MapKit/MKTileOverlay",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MKTileOverlay",
+      "type": "topic",
+      "url": "/documentation/MapKit/MKTileOverlay"
+    },
+    "doc://com.apple.documentation/documentation/MapKit/MKTileOverlay/loadTile(at:result:)": {
+      "abstract": [
+        {
+          "text": "Loads the specified tile asynchronously.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadTile"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "path"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MKTileOverlayPath",
+          "text": "MKTileOverlayPath"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "result"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MapKit/MKTileOverlay/loadTile(at:result:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "loadTile(at:result:)",
+      "type": "topic",
+      "url": "/documentation/MapKit/MKTileOverlay/loadTile(at:result:)"
+    },
+    "doc://com.apple.documentation/documentation/MapKit/MKTileOverlayRenderer": {
+      "abstract": [
+        {
+          "text": "The renderer for a tile overlay that handles the drawing of bitmap images on the map surface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKTileOverlayRenderer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MapKit/MKTileOverlayRenderer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MKTileOverlayRenderer",
+      "type": "topic",
+      "url": "/documentation/MapKit/MKTileOverlayRenderer"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgblendmode/colorburn": {
+      "abstract": [
+        {
+          "text": "Darkens the background image samples to reflect the source image samples. Source image sample values that specify white do not produce a change.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "case "
+        },
+        {
+          "kind": "identifier",
+          "text": "colorBurn"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgblendmode/colorburn",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGBlendMode.colorBurn",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgblendmode/colorburn"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgblendmode/screen": {
+      "abstract": [
+        {
+          "text": "Multiplies the inverse of the source image samples with the inverse of the background image samples, resulting in colors that are at least as light as either of the two contributing sample colors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "case "
+        },
+        {
+          "kind": "identifier",
+          "text": "screen"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgblendmode/screen",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGBlendMode.screen",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgblendmode/screen"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgcontext": {
+      "abstract": [
+        {
+          "text": "A Quartz 2D drawing environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGContext"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgcontext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGContext",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgcontext"
+    },
+    "doc://com.apple.documentation/documentation/mapkit/mkmapview/1452635-addoverlay": {
+      "abstract": [
+        {
+          "text": "Adds the overlay object to the map at the specified level.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "addOverlay"
+        },
+        {
+          "kind": "text",
+          "text": "(any MKOverlay, "
+        },
+        {
+          "kind": "identifier",
+          "text": "level"
+        },
+        {
+          "kind": "text",
+          "text": ": MKOverlayLevel)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/mapkit/mkmapview/1452635-addoverlay",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addOverlay(_:level:)",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkmapview/1452635-addoverlay"
+    },
+    "doc://com.apple.documentation/documentation/mapkit/mkmapview/1452757-overlays": {
+      "abstract": [
+        {
+          "text": "Returns overlay objects in the specified level of the map.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "overlays"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": MKOverlayLevel) -> [any MKOverlay]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/mapkit/mkmapview/1452757-overlays",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "overlays(in:)",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkmapview/1452757-overlays"
+    },
+    "doc://com.apple.documentation/documentation/mapkit/mkmapview/1452784-overlays": {
+      "abstract": [
+        {
+          "text": "The overlay objects associated with the map view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "overlays"
+        },
+        {
+          "kind": "text",
+          "text": ": [any MKOverlay]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/mapkit/mkmapview/1452784-overlays",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "overlays",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkmapview/1452784-overlays"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit": {
+      "abstract": [
+        {
+          "text": "Display map or satellite imagery within your app, call out points of interest, and determine placemark information for map coordinates.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "MapKit",
+      "type": "topic",
+      "url": "/documentation/mapkit"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/displaying-an-updating-path-of-a-user-s-location-history": {
+      "abstract": [
+        {
+          "text": "Continually update a MapKit overlay displaying the path a user travels.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/displaying-an-updating-path-of-a-user-s-location-history",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Displaying an updating path of a user’s location history",
+      "type": "topic",
+      "url": "/documentation/mapkit/displaying-an-updating-path-of-a-user-s-location-history"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/mapkit-for-appkit-and-uikit": {
+      "abstract": [],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/mapkit-for-appkit-and-uikit",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "MapKit for AppKit and UIKit",
+      "type": "topic",
+      "url": "/documentation/mapkit/mapkit-for-appkit-and-uikit"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/mapkit-overlays": {
+      "abstract": [
+        {
+          "text": "Create overlays to highlight geographic regions or paths.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/mapkit-overlays",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "MapKit overlays",
+      "type": "topic",
+      "url": "/documentation/mapkit/mapkit-overlays"
+    },
+    "f14a9bc447c5/DisplayingOverlaysOnAMap.zip": {
+      "checksum": "f14a9bc447c57e9400a124c1a112aa02895f44cb08a5fafe898a5f3b6cba0ffde7d8befb2210d9c8c17a6e766f24a6e49892898a60d5a9895d03372097547e26",
+      "identifier": "f14a9bc447c5/DisplayingOverlaysOnAMap.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/f14a9bc447c5/DisplayingOverlaysOnAMap.zip"
+    },
+    "https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/drawingwithquartz2d/Introduction/Introduction.html#//apple_ref/doc/uid/TP30001066": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/drawingwithquartz2d/Introduction/Introduction.html#//apple_ref/doc/uid/TP30001066",
+      "title": "Quartz 2D Programming Guide",
+      "titleInlineContent": [
+        {
+          "text": "Quartz 2D Programming Guide",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/drawingwithquartz2d/Introduction/Introduction.html#//apple_ref/doc/uid/TP30001066"
+    },
+    "https://tools.ietf.org/html/rfc7946": {
+      "identifier": "https://tools.ietf.org/html/rfc7946",
+      "title": "GeoJSON",
+      "titleInlineContent": [
+        {
+          "text": "GeoJSON",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://tools.ietf.org/html/rfc7946"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "f14a9bc447c5/DisplayingOverlaysOnAMap.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Samples",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.mapkit/documentation/MapKit/displaying-an-updating-path-of-a-user-s-location-history"
+      ],
+      "title": "Samples"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Samples",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.mapkit/documentation/MapKit/displaying-an-updating-path-of-a-user-s-location-history"
+              ],
+              "title": "Samples"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MapKit~1MKAnnotation/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MKAnnotation"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MapKit~1MKOverlay~1boundingMapRect/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@SA@MKMapRect",
+              "text": "MKMapRect"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "boundingMapRect"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MapKit~1MKTileOverlay~1loadTile(at:result:)/title",
+          "value": "loadTileAtPath:result:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MapKit~1MKTileOverlay~1loadTile(at:result:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "loadTileAtPath:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@SA@MKTileOverlayPath",
+              "text": "MKTileOverlayPath"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "path"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "result:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " (^)("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSData",
+              "text": "NSData"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "tileData"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSError",
+              "text": "NSError"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "error"
+            },
+            {
+              "kind": "text",
+              "text": ")) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "result"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MapKit~1MKOverlayRenderer~1point(for:)/title",
+          "value": "pointForMapPoint:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MapKit~1MKOverlayRenderer~1point(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@CGPoint",
+              "text": "CGPoint"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "pointForMapPoint:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@SA@MKMapPoint",
+              "text": "MKMapPoint"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "mapPoint"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MapKit~1MKOverlayPathRenderer~1shouldRasterize/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "assign"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "shouldRasterize"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MapKit~1MKMapRect/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " { ... } "
+            },
+            {
+              "kind": "identifier",
+              "text": "MKMapRect"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MapKit~1MKMapPoint/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " { ... } "
+            },
+            {
+              "kind": "identifier",
+              "text": "MKMapPoint"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MapKit~1MKPolylineRenderer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MKPolylineRenderer"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)MKOverlayPathRenderer",
+              "text": "MKOverlayPathRenderer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1mapkit~1mkmapview~11452757-overlays/title",
+          "value": "overlaysInLevel:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1coregraphics~1cgblendmode~1screen/title",
+          "value": "kCGBlendModeScreen"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1coregraphics~1cgblendmode~1colorburn/title",
+          "value": "kCGBlendModeColorBurn"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MapKit~1MKOverlay~1coordinate/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@CLLocationCoordinate2D",
+              "text": "CLLocationCoordinate2D"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "coordinate"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MapKit~1MKOverlayLevel/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "enum"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MKOverlayLevel"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSInteger",
+              "text": "NSInteger"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MapKit~1MKTileOverlay/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MKTileOverlay"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MapKit~1MKMultiPoint/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MKMultiPoint"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)MKShape",
+              "text": "MKShape"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreLocation~1CLLocationCoordinate2D/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CLLocationCoordinate2D"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MapKit~1MKMultiPolygonRenderer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MKMultiPolygonRenderer"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)MKOverlayPathRenderer",
+              "text": "MKOverlayPathRenderer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MapKit~1MKOverlayPathRenderer~1lineDashPattern/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "copy"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSArray",
+              "text": "NSArray<NSNumber *>"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "lineDashPattern"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MapKit~1MKPolygonRenderer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MKPolygonRenderer"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)MKOverlayPathRenderer",
+              "text": "MKOverlayPathRenderer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MapKit~1MKCircle/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MKCircle"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)MKShape",
+              "text": "MKShape"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MapKit~1MKMapView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MKMapView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIView",
+              "text": "UIView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MapKit~1MKTileOverlayRenderer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MKTileOverlayRenderer"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)MKOverlayRenderer",
+              "text": "MKOverlayRenderer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MapKit~1MKPolygon/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MKPolygon"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)MKMultiPoint",
+              "text": "MKMultiPoint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MapKit~1MKMultiPolygon/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MKMultiPolygon"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)MKShape",
+              "text": "MKShape"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MapKit~1MKGradientPolylineRenderer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MKGradientPolylineRenderer"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)MKPolylineRenderer",
+              "text": "MKPolylineRenderer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MapKit~1MKOverlayRenderer~1mapRect(for:)/title",
+          "value": "mapRectForRect:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MapKit~1MKOverlayRenderer~1mapRect(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@SA@MKMapRect",
+              "text": "MKMapRect"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "mapRectForRect:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@CGRect",
+              "text": "CGRect"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "rect"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MapKit~1MKOverlayRenderer~1blendMode/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "assign"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@CGBlendMode",
+              "text": "CGBlendMode"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "blendMode"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MapKit~1MKPolyline/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MKPolyline"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)MKMultiPoint",
+              "text": "MKMultiPoint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MapKit~1MKCircleRenderer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MKCircleRenderer"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)MKOverlayPathRenderer",
+              "text": "MKOverlayPathRenderer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MapKit~1MKOverlayRenderer~1draw(_:zoomScale:in:)/title",
+          "value": "drawMapRect:zoomScale:inContext:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MapKit~1MKOverlayRenderer~1draw(_:zoomScale:in:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "drawMapRect:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@SA@MKMapRect",
+              "text": "MKMapRect"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "mapRect"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "zoomScale:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@MKZoomScale",
+              "text": "MKZoomScale"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "zoomScale"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "inContext:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CGContextRef",
+              "text": "CGContextRef"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "context"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MapKit~1MKOverlay/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MKOverlay"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)MKAnnotation",
+              "text": "MKAnnotation"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1mapkit~1mkmapview~11452635-addoverlay/title",
+          "value": "addOverlay:level:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MapKit~1MKMapViewDelegate~1mapView(_:rendererFor:)/title",
+          "value": "mapView:rendererForOverlay:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MapKit~1MKMapViewDelegate~1mapView(_:rendererFor:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)MKOverlayRenderer",
+              "text": "MKOverlayRenderer"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "identifier",
+              "text": "mapView:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)MKMapView",
+              "text": "MKMapView"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "mapView"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "rendererForOverlay:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Qoobjc(pl)MKOverlay",
+              "text": "id<MKOverlay>"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "overlay"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1coregraphics~1cgcontext/title",
+          "value": "CGContextRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MapKit~1MKShape/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MKShape"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MapKit~1MKGeoJSONDecoder/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MKGeoJSONDecoder"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/mapkit/displaying-overlays-on-a-map"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/mapkit/displaying-overlays-on-a-map"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}
